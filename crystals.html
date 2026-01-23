@@ -8,45 +8,46 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('cristale.jpg') center/cover; z-index: -2; animation: move 20s infinite; }
-        @keyframes move { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.7); z-index: -1; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('cristale.jpg') center/cover; z-index: -2; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: -1; }
         .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); }
-        .serif { font-family: 'Playfair Display', serif; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
+        .serif { font-family: 'Playfair Display', serif; transition: 0.4s; }
+        .serif:hover { color: #fcd34d; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
     <div class="bg-fixed"></div><div class="overlay"></div>
-    <nav class="p-6 flex flex-col md:flex-row justify-between items-center sticky top-0 z-50 bg-black/60 backdrop-blur-md">
-        <h1 class="serif text-xl font-bold italic mb-4 md:mb-0">Energetica</h1>
-        <div class="flex gap-6 text-[9px] uppercase font-bold tracking-widest">
-            <a href="index.html">Acasă</a>
-            <a href="crystals.html" class="text-amber-400">Colecție</a>
-            <a href="despre.html">Ghid</a>
-            <a href="contact.html">Contact</a>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="serif text-xl md:text-2xl font-bold uppercase tracking-tighter italic text-white mb-3 md:mb-0">Energetica</div>
+            <div class="flex items-center justify-center gap-4 md:gap-8">
+                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Acasă</a>
+                <a href="crystals.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-amber-400">Colecție</a>
+                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Ghid</a>
+                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 py-12">
-        <header class="text-center mb-16 reveal">
-            <h2 class="serif text-4xl md:text-6xl italic">Colecție</h2>
-        </header>
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-            <div class="glass p-4 rounded-2xl reveal">
-                <img src="ametist.jpg" class="rounded-xl mb-4 h-64 w-full object-cover">
-                <h3 class="serif text-2xl italic">Ametist</h3>
-                <p class="text-amber-200 text-sm mb-4">120 RON</p>
-                <button class="w-full border border-white/20 py-2 text-[10px] uppercase hover:bg-white hover:text-black transition">Adaugă</button>
+    <main class="max-w-7xl mx-auto px-6 pt-32 pb-20 text-center">
+        <h2 class="serif text-4xl md:text-6xl italic mb-16 reveal">Colecția</h2>
+        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+            <div class="glass p-6 rounded-3xl reveal">
+                <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
+                    <img src="ametist.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-700">
+                </div>
+                <h3 class="serif text-2xl italic">Ametist Spirit</h3>
+                <p class="text-amber-200 text-sm mt-2 mb-6 tracking-widest">120 RON</p>
+                <button class="w-full border border-white/20 py-3 text-[10px] uppercase font-bold hover:bg-white hover:text-black transition">Adaugă în coș</button>
             </div>
             </div>
     </main>
 
     <script>
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        });
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
