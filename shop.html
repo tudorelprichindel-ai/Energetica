@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energetica | Shop</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&display=swap');
+        body { background-color: #faf9f6; font-family: sans-serif; margin: 0; }
+        .serif { font-family: 'Playfair Display', serif; }
+        /* Forțăm afișarea gridului */
+        #main-grid { display: grid !important; }
+    </style>
+</head>
+<body>
+
+    <nav class="bg-white border-b p-4 sticky top-0 z-50 flex justify-between items-center px-6">
+        <div class="serif text-xl font-bold italic text-amber-900">Energetica</div>
+        <div class="hidden md:flex space-x-6 text-[10px] font-bold uppercase tracking-widest text-stone-500">
+            <a href="index.html">Acasă</a>
+            <a href="shop.html" class="text-amber-900">Colecție</a>
+            <a href="contact.html">Contact</a>
+        </div>
+        <div class="text-[10px] font-bold text-amber-900">COȘ: <span id="cart-count">0</span></div>
+    </nav>
+
+    <div class="py-10 text-center">
+        <h1 class="serif text-4xl italic">Toate Produsele</h1>
+    </div>
+
+    <div id="main-grid" class="max-w-7xl mx-auto px-6 grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 pb-20">
+        
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1588444839138-eb6a5040d959?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Amethyst Spirit</h3>
+            <p class="text-amber-900 font-bold mb-3">120 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Rose Quartz Love</h3>
+            <p class="text-amber-900 font-bold mb-3">115 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1599643477877-537ef5278533?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Tiger's Eye Power</h3>
+            <p class="text-amber-900 font-bold mb-3">110 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1515402127221-a4968846cc7c?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Black Obsidian</h3>
+            <p class="text-amber-900 font-bold mb-3">130 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1615484477201-9f4953340fab?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Citrine Abundance</h3>
+            <p class="text-amber-900 font-bold mb-3">140 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1551028150-64b9f398f678?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Lapis Lazuli</h3>
+            <p class="text-amber-900 font-bold mb-3">145 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1615484477201-d007ec6bc91c?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Green Adventure</h3>
+            <p class="text-amber-900 font-bold mb-3">110 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1524412529635-a258ed66c010?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">White Howlite</h3>
+            <p class="text-amber-900 font-bold mb-3">105 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1515562141207-7a18b5ce7142?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Amazonite Balance</h3>
+            <p class="text-amber-900 font-bold mb-3">125 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+        <div class="bg-white border p-4 rounded-xl shadow-sm">
+            <img src="https://images.unsplash.com/photo-1569388330292-79cc1ec67270?w=400" class="w-full h-48 object-cover rounded-lg mb-4">
+            <h3 class="serif text-lg italic">Clear Quartz</h3>
+            <p class="text-amber-900 font-bold mb-3">110 RON</p>
+            <button onclick="add()" class="w-full bg-stone-800 text-white py-2 text-[10px] uppercase font-bold rounded">Adaugă</button>
+        </div>
+
+    </div>
+
+    <script>
+        let count = 0;
+        function add() {
+            count++;
+            document.getElementById('cart-count').innerText = count;
+        }
+    </script>
+</body>
+</html>

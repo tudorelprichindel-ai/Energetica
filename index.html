@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energetica | Home</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+        * { box-sizing: border-box; }
+        body, html { margin: 0; padding: 0; width: 100%; height: 100%; background-color: #080310; font-family: 'Segoe UI', sans-serif; color: white; overflow: hidden; }
+        .hero-fullscreen {
+            height: 100vh; width: 100vw; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center;
+            background-image: url('cristale.jpg'); background-size: cover; background-position: center;
+            animation: moveBackground 12s ease-in-out infinite;
+        }
+        @keyframes moveBackground { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
+        .overlay { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.4); z-index: 1; }
+        .nav { position: fixed; top: 0; width: 100%; padding: 30px 50px; display: flex; justify-content: space-between; align-items: center; z-index: 10; background: rgba(0,0,0,0.2); backdrop-blur: 5px; }
+        .serif { font-family: 'Playfair Display', serif; }
+        .btn-explore { border: 1px solid white; padding: 15px 40px; text-transform: uppercase; letter-spacing: 4px; font-size: 10px; font-weight: bold; background: transparent; color: white; cursor: pointer; transition: 0.4s; z-index: 5; }
+        .btn-explore:hover { background: white; color: black; }
+    </style>
+
+</head>
+<body>
+    <div class="overlay"></div>
+    <nav class="nav">
+        <div class="serif text-2xl font-bold uppercase tracking-tighter italic">Energetica</div>
+        <div class="space-x-8 text-[10px] font-bold uppercase tracking-[3px]">
+            <a href="index.html" class="text-white border-b border-white">Acasă</a>
+            <a href="crystals.html" class="hover:text-amber-300">Colecție</a>
+            <a href="despre.html" class="hover:text-amber-300">Ghid</a>
+            <a href="contact.html" class="hover:text-amber-300">Contact</a>
+        </div>
+</div> <section class="max-w-6xl mx-auto py-24 px-6 reveal">
+        <div class="text-center mb-16">
+            <h2 class="serif text-4xl italic mb-4 text-white">Experiențe Energetice</h2>
+            <p class="text-amber-200/60 tracking-[0.5em] uppercase text-[9px]">Ce spun clienții noștri</p>
+        </div>
+        </section>
+    <script>
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+    </script>
+
+</body> </html>
+    </nav>
+    <div class="hero-fullscreen">
+        <div style="z-index: 5;">
+            <p class="uppercase tracking-[5px] text-[10px] mb-4 text-stone-300">Echilibru și energie pură</p>
+            <h1 class="serif text-7xl italic mb-10">Cristale</h1>
+            <a href="crystals.html"><button class="btn-explore">Explorează Colecția</button></a>
+        </div>
+    </div>
+</body>
+</html>
