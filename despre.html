@@ -3,59 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Ghid & Recenzii</title>
+    <title>Energetica | Ghid</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; opacity: 0.5; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: -1; }
         .serif { font-family: 'Playfair Display', serif; transition: 0.3s; }
-        .serif:hover { color: #fcd34d; }
         .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); }
         .reveal { opacity: 0; transform: translateY(20px); transition: 1s ease; }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
-    <div class="bg-fixed"></div>
-    <nav class="p-6 flex flex-col md:flex-row justify-between items-center sticky top-0 z-50 bg-black/60 backdrop-blur-md">
-        <h1 class="serif text-xl italic font-bold">Energetica</h1>
-        <div class="flex gap-6 text-[9px] font-bold uppercase tracking-widest mt-4 md:mt-0">
-            <a href="index.html">Acasă</a>
-            <a href="crystals.html">Colecție</a>
-            <a href="despre.html" class="text-amber-400">Ghid</a>
-            <a href="contact.html">Contact</a>
+    <div class="bg-fixed"></div><div class="overlay"></div>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="serif text-xl md:text-2xl font-bold uppercase tracking-tighter italic text-white mb-3 md:mb-0">Energetica</div>
+            <div class="flex items-center justify-center gap-4 md:gap-8">
+                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Acasă</a>
+                <a href="crystals.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Colecție</a>
+                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-amber-400">Ghid</a>
+                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto py-16 px-6">
-        <h2 class="serif text-4xl italic text-center mb-12 reveal">Ghid Energetic</h2>
-        <div class="glass rounded-3xl divide-y divide-white/10 reveal">
-            <div class="p-8 hover:bg-white/5 transition">
-                <h3 class="serif text-2xl text-amber-200">Ametist</h3>
-                <p class="text-stone-300 text-sm mt-2">Liniște și claritate mentală.</p>
+    <main class="max-w-4xl mx-auto pt-32 pb-20 px-6">
+        <h2 class="serif text-4xl italic text-center mb-16 reveal">Ghidul Energetic</h2>
+        <div class="glass rounded-3xl divide-y divide-white/10 overflow-hidden reveal">
+            <div class="p-10 flex flex-col md:flex-row gap-6 hover:bg-white/5 transition">
+                <div class="md:w-1/3"><h3 class="serif text-2xl text-amber-200">Ametist</h3></div>
+                <div class="md:w-2/3"><p class="text-stone-300 text-sm">Liniște, claritate mentală și protecție spirituală pentru un somn profund.</p></div>
             </div>
             </div>
 
         <section class="mt-32 reveal">
             <h2 class="serif text-3xl italic text-center mb-12">Recenzii</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div class="glass p-6 rounded-2xl">
-                    <p class="italic text-stone-300">"Calitate incredibilă!"</p>
-                    <p class="text-amber-400 text-[10px] mt-4 font-bold">- IOANA V.</p>
-                </div>
-                <div class="glass p-6 rounded-2xl">
-                    <p class="italic text-stone-300">"Energia cristalelor se simte imediat."</p>
-                    <p class="text-amber-400 text-[10px] mt-4 font-bold">- MARCU A.</p>
+                <div class="glass p-8 rounded-3xl">
+                    <p class="italic text-stone-300">"O experiență magică. Cristalele sunt superbe!"</p>
+                    <p class="text-amber-400 text-[10px] mt-4 font-bold uppercase tracking-widest">— Elena M.</p>
                 </div>
             </div>
         </section>
     </main>
 
     <script>
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        });
+        const obs = new IntersectionObserver(entries => { entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); });
         document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
