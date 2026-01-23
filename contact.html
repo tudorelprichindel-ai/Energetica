@@ -7,65 +7,42 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; }
-        
-        .bg-fixed-hero {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh;
-            background-image: url('cristale.jpg'); background-size: cover; background-position: center;
-            z-index: -2; animation: moveBackground 20s ease-in-out infinite;
-        }
-        @keyframes moveBackground { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.1); } }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.75); z-index: -1; }
-        
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; opacity: 0.4; }
         .serif { font-family: 'Playfair Display', serif; }
-        .input-line { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 0; outline: none; transition: 0.4s; width: 100%; color: white; }
+        .input-line { background: transparent; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 12px 0; width: 100%; outline: none; transition: 0.4s; color: white; }
         .input-line:focus { border-bottom: 1px solid #fcd34d; }
-
-        /* Animații */
-        .reveal { opacity: 0; transform: translateY(20px); transition: all 1s ease-out; }
+        .reveal { opacity: 0; transform: translateY(20px); transition: 1s; }
         .reveal.active { opacity: 1; transform: translateY(0); }
-        .delay-1 { transition-delay: 0.2s; }
-        .delay-2 { transition-delay: 0.4s; }
-        .delay-3 { transition-delay: 0.6s; }
     </style>
 </head>
 <body>
-    <div class="bg-fixed-hero"></div>
-    <div class="overlay"></div>
-
-    <nav class="p-8 flex justify-between items-center sticky top-0 z-50 bg-black/40 backdrop-blur-md">
-        <h1 class="serif text-2xl font-bold uppercase tracking-tighter italic">Energetica</h1>
-        <div class="space-x-8 text-[10px] font-bold uppercase tracking-widest text-stone-300">
-            <a href="index.html" class="hover:text-amber-400 transition">Acasă</a>
-            <a href="crystals.html" class="hover:text-amber-400 transition">Colecție</a>
-            <a href="despre.html" class="hover:text-amber-400 transition">Ghid</a>
+    <div class="bg-fixed"></div>
+    <nav class="p-6 flex flex-col md:flex-row justify-between items-center bg-black/40 backdrop-blur-md">
+        <h1 class="serif text-xl italic font-bold">Energetica</h1>
+        <div class="flex gap-6 text-[9px] font-bold uppercase mt-4 md:mt-0">
+            <a href="index.html">Acasă</a>
+            <a href="crystals.html">Colecție</a>
+            <a href="despre.html">Ghid</a>
             <a href="contact.html" class="text-amber-400">Contact</a>
         </div>
     </nav>
 
-    <main class="max-w-xl mx-auto py-32 px-6 text-center">
-        <h2 class="serif text-5xl italic mb-4 reveal">Conectează-te</h2>
-        <p class="text-stone-400 text-[10px] uppercase tracking-[0.3em] mb-20 reveal delay-1">Așteptăm mesajul tău în universul nostru</p>
-        
-        <form class="space-y-12 text-left">
-            <input type="text" placeholder="NUMELE TĂU" class="input-line text-xs tracking-widest reveal delay-1">
-            <input type="email" placeholder="EMAIL" class="input-line text-xs tracking-widest reveal delay-2">
-            <textarea placeholder="MESAJUL TĂU" rows="3" class="input-line text-xs tracking-widest reveal delay-3"></textarea>
-            
-            <button class="w-full border border-white/30 py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white hover:text-black transition duration-700 mt-10 reveal delay-3">
-                Trimite Vibrația
-            </button>
+    <main class="max-w-xl mx-auto py-20 px-6 reveal">
+        <h2 class="serif text-4xl italic text-center mb-12">Contact</h2>
+        <form class="space-y-8">
+            <input type="text" placeholder="NUME" class="input-line text-[10px]">
+            <input type="email" placeholder="EMAIL" class="input-line text-[10px]">
+            <textarea placeholder="MESAJ" rows="3" class="input-line text-[10px]"></textarea>
+            <button class="w-full border border-white/30 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition">Trimite</button>
         </form>
     </main>
 
     <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => {
-                if (entry.isIntersecting) entry.target.classList.add('active');
-            });
-        }, { threshold: 0.1 });
-
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
+        const obs = new IntersectionObserver(entries => {
+            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
+        });
+        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
     </script>
 </body>
 </html>
