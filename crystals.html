@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Colecție</title>
+    <title>Energetica | Colecție Completă</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; }
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow-x: hidden; margin: 0; }
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: url('cristale.jpg') center/cover; z-index: -2; }
-        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.75); z-index: -1; }
-        .glass { background: rgba(255,255,255,0.05); backdrop-filter: blur(10px); border: 1px solid rgba(255,255,255,0.1); transition: 0.5s; }
-        .glass:hover { background: rgba(255,255,255,0.08); border-color: rgba(252, 211, 77, 0.3); }
-        .serif { font-family: 'Playfair Display', serif; transition: 0.4s; }
-        .reveal { opacity: 0; transform: translateY(30px); transition: 1s ease; }
+        .overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.8); z-index: -1; }
+        .glass { background: rgba(255,255,255,0.03); backdrop-filter: blur(15px); border: 1px solid rgba(255,255,255,0.1); transition: all 0.5s ease; }
+        .glass:hover { background: rgba(255,255,255,0.08); border-color: rgba(252, 211, 77, 0.4); transform: translateY(-10px); }
+        .serif { font-family: 'Playfair Display', serif; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: 1s cubic-bezier(0.22, 1, 0.36, 1); }
         .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
@@ -21,60 +21,89 @@
     <div class="bg-fixed"></div><div class="overlay"></div>
 
     <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+        <div class="max-w-7xl mx-auto px-6 py-4 flex flex-col md:flex-row justify-between items-center">
             <div class="serif text-xl md:text-2xl font-bold uppercase tracking-tighter italic text-white mb-3 md:mb-0">Energetica</div>
-            <div class="flex items-center justify-center gap-4 md:gap-8 text-white">
-                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Acasă</a>
+            <div class="flex items-center justify-center gap-4 md:gap-8">
+                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-stone-300 hover:text-amber-400 transition">Acasă</a>
                 <a href="crystals.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-amber-400 border-b border-amber-400">Colecție</a>
-                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Ghid</a>
-                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Contact</a>
+                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-stone-300 hover:text-amber-400 transition">Ghid</a>
+                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-stone-300 hover:text-amber-400 transition">Contact</a>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto px-6 pt-40 pb-20 text-center">
-        <header class="mb-16 reveal">
-            <h2 class="serif text-4xl md:text-6xl italic mb-4">Colecția de Cristale</h2>
-            <p class="text-stone-400 uppercase tracking-[5px] text-[9px]">Piese unice alese pentru energia lor</p>
+    <main class="max-w-7xl mx-auto px-6 pt-40 pb-24 text-center">
+        <header class="mb-20 reveal">
+            <h2 class="serif text-5xl md:text-7xl italic mb-4">Colecția</h2>
+            <p class="text-amber-200/50 uppercase tracking-[6px] text-[10px]">Piese unice pentru echilibrul tău</p>
         </header>
 
-        <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-12">
             
-            <div class="glass p-6 rounded-3xl reveal">
+            <div class="glass p-6 rounded-[2rem] reveal">
                 <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
-                    <img src="ametist.jpg" alt="Ametist" class="h-full w-full object-cover hover:scale-110 transition duration-700">
+                    <img src="ametist.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
                 </div>
-                <h3 class="serif text-2xl italic">Ametist Royal</h3>
-                <p class="text-amber-200 text-sm mt-2 mb-6 tracking-widest uppercase font-bold">120 RON</p>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase font-bold tracking-widest hover:bg-white hover:text-black transition">Adaugă în coș</button>
+                <h3 class="serif text-2xl italic mb-2">Ametist Spirit</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">120 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
             </div>
 
-            <div class="glass p-6 rounded-3xl reveal">
+            <div class="glass p-6 rounded-[2rem] reveal">
                 <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
-                    <img src="cuart-roz.jpg" alt="Cuart Roz" class="h-full w-full object-cover hover:scale-110 transition duration-700">
+                    <img src="cuart-roz.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
                 </div>
-                <h3 class="serif text-2xl italic">Cuarț Roz Pur</h3>
-                <p class="text-amber-200 text-sm mt-2 mb-6 tracking-widest uppercase font-bold">95 RON</p>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase font-bold tracking-widest hover:bg-white hover:text-black transition">Adaugă în coș</button>
+                <h3 class="serif text-2xl italic mb-2">Cuarț Roz Pur</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">95 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
             </div>
 
-            <div class="glass p-6 rounded-3xl reveal">
+            <div class="glass p-6 rounded-[2rem] reveal">
                 <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
-                    <img src="citrin.jpg" alt="Citrin" class="h-full w-full object-cover hover:scale-110 transition duration-700">
+                    <img src="citrin.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
                 </div>
-                <h3 class="serif text-2xl italic">Citrin Solar</h3>
-                <p class="text-amber-200 text-sm mt-2 mb-6 tracking-widest uppercase font-bold">110 RON</p>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase font-bold tracking-widest hover:bg-white hover:text-black transition">Adaugă în coș</button>
+                <h3 class="serif text-2xl italic mb-2">Citrin Solar</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">115 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
+            </div>
+
+            <div class="glass p-6 rounded-[2rem] reveal">
+                <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
+                    <img src="cristal-stanca.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
+                </div>
+                <h3 class="serif text-2xl italic mb-2">Cristal de Stâncă</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">130 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
+            </div>
+
+            <div class="glass p-6 rounded-[2rem] reveal">
+                <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
+                    <img src="obsidian.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
+                </div>
+                <h3 class="serif text-2xl italic mb-2">Obsidian Negru</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">105 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
+            </div>
+
+            <div class="glass p-6 rounded-[2rem] reveal">
+                <div class="h-80 w-full mb-6 overflow-hidden rounded-2xl">
+                    <img src="ochi-de-tigru.jpg" class="h-full w-full object-cover hover:scale-110 transition duration-1000">
+                </div>
+                <h3 class="serif text-2xl italic mb-2">Ochi de Tigru</h3>
+                <p class="text-amber-200 text-sm mb-6 font-bold tracking-widest">110 RON</p>
+                <button class="w-full border border-white/10 py-4 text-[10px] uppercase font-bold tracking-[3px] hover:bg-white hover:text-black transition duration-500">Adaugă în coș</button>
             </div>
 
         </div>
     </main>
 
     <script>
-        const obs = new IntersectionObserver(entries => { 
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); }); 
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
         }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
+        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
     </script>
 </body>
 </html>
