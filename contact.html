@@ -8,41 +8,35 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; opacity: 0.4; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; opacity: 0.5; }
         .serif { font-family: 'Playfair Display', serif; }
         .input-line { background: transparent; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 12px 0; width: 100%; outline: none; transition: 0.4s; color: white; }
         .input-line:focus { border-bottom: 1px solid #fcd34d; }
-        .reveal { opacity: 0; transform: translateY(20px); transition: 1s; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
     </style>
 </head>
 <body>
     <div class="bg-fixed"></div>
-    <nav class="p-6 flex flex-col md:flex-row justify-between items-center bg-black/40 backdrop-blur-md">
-        <h1 class="serif text-xl italic font-bold">Energetica</h1>
-        <div class="flex gap-6 text-[9px] font-bold uppercase mt-4 md:mt-0">
-            <a href="index.html">Acasă</a>
-            <a href="crystals.html">Colecție</a>
-            <a href="despre.html">Ghid</a>
-            <a href="contact.html" class="text-amber-400">Contact</a>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/10">
+        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
+            <div class="serif text-xl md:text-2xl font-bold uppercase tracking-tighter italic text-white mb-3 md:mb-0">Energetica</div>
+            <div class="flex items-center justify-center gap-4 md:gap-8">
+                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Acasă</a>
+                <a href="crystals.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Colecție</a>
+                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Ghid</a>
+                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-amber-400">Contact</a>
+            </div>
         </div>
     </nav>
 
-    <main class="max-w-xl mx-auto py-20 px-6 reveal">
-        <h2 class="serif text-4xl italic text-center mb-12">Contact</h2>
-        <form class="space-y-8">
-            <input type="text" placeholder="NUME" class="input-line text-[10px]">
-            <input type="email" placeholder="EMAIL" class="input-line text-[10px]">
-            <textarea placeholder="MESAJ" rows="3" class="input-line text-[10px]"></textarea>
-            <button class="w-full border border-white/30 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition">Trimite</button>
+    <main class="max-w-xl mx-auto pt-40 px-6 text-center">
+        <h2 class="serif text-5xl italic mb-12">Conectează-te</h2>
+        <form class="space-y-10 text-left">
+            <input type="text" placeholder="NUME" class="input-line text-[10px] tracking-widest">
+            <input type="email" placeholder="EMAIL" class="input-line text-[10px] tracking-widest">
+            <textarea placeholder="MESAJ" rows="3" class="input-line text-[10px] tracking-widest"></textarea>
+            <button class="w-full border border-white/30 py-4 text-[10px] uppercase font-bold tracking-[4px] hover:bg-white hover:text-black transition duration-700">Trimite</button>
         </form>
     </main>
-
-    <script>
-        const obs = new IntersectionObserver(entries => {
-            entries.forEach(e => { if(e.isIntersecting) e.target.classList.add('active'); });
-        });
-        document.querySelectorAll('.reveal').forEach(el => obs.observe(el));
-    </script>
 </body>
 </html>
