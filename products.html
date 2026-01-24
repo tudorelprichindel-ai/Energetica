@@ -8,80 +8,85 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        
-        /* Fundalul tău mistic configurat corect */
-        .bg-fixed { 
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-            background-image: url('cristale.jpg'); 
-            background-size: cover; background-position: center; 
-            z-index: -2; filter: brightness(0.35); 
-        }
-        
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; background-position: center; z-index: -2; filter: brightness(0.35); }
         .serif { font-family: 'Playfair Display', serif; }
-        
-        /* Carduri tip Glassmorphism pentru cele 3 produse */
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            transition: 0.4s ease-in-out; 
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; }
+        .glass-card:hover { transform: translateY(-10px); border-color: #fcd34d; }
+        .product-img { width: 100%; height: 18rem; object-fit: cover; border-radius: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+
+        /* Stil pentru Pop-up (Toast) */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: rgba(252, 211, 77, 0.9);
+            color: #000;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
-        .glass-card:hover { 
-            transform: translateY(-10px); 
-            border-color: rgba(252, 211, 77, 0.5); 
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
         }
-        
-        .product-img { 
-            width: 100%; height: 18rem; 
-            object-fit: cover; 
-            border-radius: 1.5rem; 
-            border: 1px solid rgba(255,255,255,0.1); 
-        }
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
     </style>
 </head>
 <body>
     <div class="bg-fixed"></div>
+    <div id="toast">Vibrație adăugată în coș</div>
     
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="hidden md:flex gap-8">
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400 transition">Acasă</a>
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Acasă</a>
             <a href="products.html" class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Colecție</a>
-            <a href="despre.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400 transition">Ghid</a>
-            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400 transition">Contact</a>
+            <a href="despre.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Ghid</a>
+            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Contact</a>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto pt-40 px-10 pb-24">
-        <header class="text-center mb-16">
-            <h1 class="serif text-5xl italic mb-4">Colecția Ta</h1>
-            <p class="text-stone-400 text-[10px] uppercase tracking-[0.4em]">Energie cristalizată în formă pură</p>
-        </header>
-
         <div class="grid grid-cols-1 md:grid-cols-3 gap-10">
-            
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <img src="ametist.jpg" class="product-img mb-6" alt="Ochi de Tigru Gold">
+                <img src="ametist.jpg" class="product-img mb-6" alt="Ochi de Tigru">
                 <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
-                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">120 RON</p>
-                <button class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
+                <p class="text-amber-200 font-bold text-lg mb-6">120 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <img src="bratara_tripla.jpg" class="product-img mb-6" alt="Triplă Protecție Azur">
+                <img src="bratara_tripla.jpg" class="product-img mb-6" alt="Tripla Protectie">
                 <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
-                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
-                <button class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
+                <p class="text-amber-200 font-bold text-lg mb-6">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <img src="bratara_vulcanica.jpg" class="product-img mb-6" alt="Energie Vulcanică">
+                <img src="bratara_vulcanica.jpg" class="product-img mb-6" alt="Energie Vulcanica">
                 <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
-                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
-                <button class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
+                <p class="text-amber-200 font-bold text-lg mb-6">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl font-bold">Adaugă în coș</button>
             </div>
-
         </div>
     </main>
+
+    <script>
+        function showToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
 </body>
 </html>
