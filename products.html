@@ -33,29 +33,6 @@
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
         .glass-card:hover .product-img { transform: scale(1.1); }
 
-        /* MODAL / LIGHTBOX (Imagine Mărită) */
-        #lightbox {
-            display: none;
-            position: fixed;
-            z-index: 1000;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(10px);
-            justify-content: center;
-            align-items: center;
-            cursor: zoom-out;
-        }
-        #lightbox img {
-            max-width: 90%;
-            max-height: 80%;
-            border-radius: 1rem;
-            box-shadow: 0 0 50px rgba(255,255,255,0.1);
-            transform: scale(0.9);
-            transition: transform 0.3s ease;
-        }
-        #lightbox.open img { transform: scale(1); }
-
         /* BUTOANE UNIFIED */
         .btn-unified {
             border: 1px solid rgba(255, 255, 255, 0.2);
@@ -67,19 +44,56 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center; justify-content: center; gap: 10px;
+            text-decoration: none;
         }
-        .btn-unified:hover { background-color: white; color: black; }
+        .btn-unified:hover { background-color: white; color: black; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
         .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; min-width: 130px; }
 
-        footer { background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); }
+        /* LIGHTBOX PENTRU IMAGINI */
+        #lightbox {
+            display: none; position: fixed; z-index: 1000;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px);
+            justify-content: center; align-items: center; cursor: zoom-out;
+        }
+        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 1rem; transform: scale(0.9); transition: 0.3s; }
+        #lightbox.open img { transform: scale(1); }
+
+        /* PANOU LATERAL COȘ */
+        #cart-sidebar {
+            position: fixed; top: 0; right: 0; height: 100%; width: 350px;
+            background: rgba(8, 3, 16, 0.95); backdrop-filter: blur(25px);
+            z-index: 1100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            border-l: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;
+            display: flex; flex-col;
+        }
+        #cart-sidebar.open { transform: translateX(0); }
+
+        .cart-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        footer { background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); backdrop-filter: blur(10px); }
     </style>
 </head>
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
 
-    <div id="lightbox" onclick="closeLightbox()">
-        <img id="lightbox-img" src="" alt="Mărit">
+    <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
+
+    <div id="cart-sidebar" class="flex flex-col">
+        <div class="flex justify-between items-center mb-10">
+            <h2 class="serif text-3xl italic">Coșul Tău</h2>
+            <button onclick="toggleCart()" class="text-white/50 hover:text-white text-2xl">&times;</button>
+        </div>
+        <div id="cart-content" class="flex-grow overflow-y-auto pr-2">
+            </div>
+        <div class="mt-8 pt-8 border-t border-white/10">
+            <div class="flex justify-between items-center mb-8">
+                <span class="text-stone-500 uppercase text-[10px] tracking-widest">Subtotal</span>
+                <span id="cart-total" class="text-xl font-bold">0 RON</span>
+            </div>
+            <a href="contact.html" class="btn-unified w-full py-4 rounded-lg text-[10px] tracking-[0.3em]">Finalizează Comanda</a>
+        </div>
     </div>
     
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
@@ -89,6 +103,7 @@
             <a href="products.html" class="border-b border-white">Colecție</a>
             <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
+            <button onclick="toggleCart()" class="hover:text-stone-400 transition"><i class="fa-solid fa-bag-shopping"></i></button>
         </div>
     </nav>
 
@@ -96,48 +111,38 @@
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
             
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container" onclick="openLightbox('ametist.jpg')">
-                    <img src="ametist.jpg" class="product-img" alt="Ochi de Tigru Gold">
-                </div>
+                <div class="img-container" onclick="openLightbox('ametist.jpg')"><img src="ametist.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">120 RON</p>
-                <button class="btn-unified product-btn">Adaugă în coș</button>
+                <button onclick="addToCart('Ochi de Tigru Gold', 120, 'ametist.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container" onclick="openLightbox('bratara_tripla.jpg')">
-                    <img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție Azur">
-                </div>
+                <div class="img-container" onclick="openLightbox('bratara_tripla.jpg')"><img src="bratara_tripla.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
-                <button class="btn-unified product-btn">Adaugă în coș</button>
+                <button onclick="addToCart('Triplă Protecție Azur', 85, 'bratara_tripla.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container" onclick="openLightbox('bratara_vulcanica.jpg')">
-                    <img src="bratara_vulcanica.jpg" class="product-img" alt="Energie Vulcanică">
-                </div>
+                <div class="img-container" onclick="openLightbox('bratara_vulcanica.jpg')"><img src="bratara_vulcanica.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
-                <button class="btn-unified product-btn">Adaugă în coș</button>
+                <button onclick="addToCart('Energie Vulcanică', 85, 'bratara_vulcanica.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container" onclick="openLightbox('citrin.jpg')">
-                    <img src="citrin.jpg" class="product-img" alt="Scut Hematit">
-                </div>
+                <div class="img-container" onclick="openLightbox('citrin.jpg')"><img src="citrin.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Scut Hematit</h3>
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">95 RON</p>
-                <button class="btn-unified product-btn">Adaugă în coș</button>
+                <button onclick="addToCart('Scut Hematit', 95, 'citrin.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container" onclick="openLightbox('cuart-roz.jpg')">
-                    <img src="cuart-roz.jpg" class="product-img" alt="Spiritul Buddha">
-                </div>
+                <div class="img-container" onclick="openLightbox('cuart-roz.jpg')"><img src="cuart-roz.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Spiritul Buddha</h3>
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
-                <button class="btn-unified product-btn">Adaugă în coș</button>
+                <button onclick="addToCart('Spiritul Buddha', 85, 'cuart-roz.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
 
         </div>
@@ -157,19 +162,56 @@
     </footer>
 
     <script>
-        function openLightbox(src) {
-            const lightbox = document.getElementById('lightbox');
-            const img = document.getElementById('lightbox-img');
-            img.src = src;
-            lightbox.style.display = 'flex';
-            setTimeout(() => lightbox.classList.add('open'), 10);
+        let cart = JSON.parse(localStorage.getItem('energetica_cart')) || [];
+
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
+
+        function addToCart(name, price, img) {
+            cart.push({name, price, img});
+            localStorage.setItem('energetica_cart', JSON.stringify(cart));
+            updateCartUI();
+            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
         }
 
-        function closeLightbox() {
-            const lightbox = document.getElementById('lightbox');
-            lightbox.classList.remove('open');
-            setTimeout(() => lightbox.style.display = 'none', 300);
+        function removeFromCart(index) {
+            cart.splice(index, 1);
+            localStorage.setItem('energetica_cart', JSON.stringify(cart));
+            updateCartUI();
         }
+
+        function updateCartUI() {
+            const container = document.getElementById('cart-content');
+            const totalEl = document.getElementById('cart-total');
+            container.innerHTML = '';
+            let total = 0;
+            cart.forEach((item, i) => {
+                total += item.price;
+                container.innerHTML += `
+                    <div class="cart-item">
+                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg border border-white/10">
+                        <div class="flex-grow">
+                            <h4 class="text-[10px] uppercase font-bold tracking-tighter">${item.name}</h4>
+                            <p class="text-stone-400 text-xs">${item.price} RON</p>
+                        </div>
+                        <button onclick="removeFromCart(${i})" class="text-white/20 hover:text-white">&times;</button>
+                    </div>`;
+            });
+            totalEl.innerText = total + " RON";
+        }
+
+        function openLightbox(src) {
+            const lb = document.getElementById('lightbox');
+            document.getElementById('lightbox-img').src = src;
+            lb.style.display = 'flex';
+            setTimeout(() => lb.classList.add('open'), 10);
+        }
+        function closeLightbox() {
+            const lb = document.getElementById('lightbox');
+            lb.classList.remove('open');
+            setTimeout(() => lb.style.display = 'none', 300);
+        }
+
+        updateCartUI();
     </script>
 </body>
 </html>
