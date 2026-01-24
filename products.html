@@ -8,22 +8,53 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+        
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* ZOOM PE FUNDAL */
         .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
-        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; background-position: center; filter: brightness(0.3); animation: backgroundZoom 25s infinite alternate ease-in-out; }
+        .bg-image { 
+            width: 100%; height: 100%; 
+            background-image: url('cristale.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            filter: brightness(0.3); 
+            animation: backgroundZoom 25s infinite alternate ease-in-out; 
+        }
         @keyframes backgroundZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
         
         .serif { font-family: 'Playfair Display', serif; }
+
+        /* Carduri Produse */
         .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s ease-in-out; }
+        .glass-card:hover { transform: translateY(-10px); border-color: rgba(255, 255, 255, 0.3); }
+
         .img-container { width: 100%; height: 18rem; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1.5rem; }
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
         .glass-card:hover .product-img { transform: scale(1.15); }
 
-        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: 0.4s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; }
-        .btn-unified:hover { background: white; color: black; }
+        /* BUTOANE UNIFIED (Alb la Hover) */
+        .btn-unified {
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            background: transparent;
+            color: white;
+            text-transform: uppercase;
+            font-weight: bold;
+            transition: all 0.4s ease;
+            cursor: pointer;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            text-decoration: none;
+        }
+        .btn-unified:hover { background-color: white; color: black; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
-        .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; text-decoration: none; }
-        #toast { visibility: hidden; min-width: 250px; background: white; color: black; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: bold; font-size: 10px; }
+        .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
+
+        /* Toast */
+        #toast { visibility: hidden; min-width: 250px; background: white; color: black; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; transform: translateX(-50%); font-weight: bold; font-size: 10px; letter-spacing: 2px; }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
@@ -32,7 +63,8 @@
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
     <div id="toast">VIBRAȚIE ADĂUGATĂ ÎN COȘ</div>
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md">
+    
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
             <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
@@ -41,22 +73,67 @@
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
         </div>
     </nav>
-    <main class="max-w-7xl mx-auto pt-40 px-10 pb-24">
+
+    <main class="max-w-7xl mx-auto pt-40 px-10 pb-24 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container"><img src="ametist.jpg" class="product-img" alt=""></div>
+                <div class="img-container"><img src="ametist.jpg" class="product-img" alt="Ochi de Tigru Gold"></div>
                 <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
-                <p class="text-stone-400 font-bold mb-6">120 RON</p>
+                <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">120 RON</p>
                 <button onclick="showToast()" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție Azur"></div>
+                <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
+                <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_vulcanica.jpg" class="product-img" alt="Energie Vulcanică"></div>
+                <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
+                <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="btn-unified product-btn">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="citrin.jpg" class="product-img" alt="Scut Hematit"></div>
+                <h3 class="serif text-2xl italic mb-2">Scut Hematit</h3>
+                <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">95 RON</p>
+                <button onclick="showToast()" class="btn-unified product-btn">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="cuart-roz.jpg" class="product-img" alt="Spiritul Buddha"></div>
+                <h3 class="serif text-2xl italic mb-2">Spiritul Buddha</h3>
+                <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="btn-unified product-btn">Adaugă în coș</button>
+            </div>
+
+        </div>
     </main>
-    <footer class="w-full py-12 border-t border-white/10 bg-black/60 relative z-50">
+
+    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-md relative z-50">
         <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="serif text-xl italic text-stone-300">Energetica</div>
-            <div class="flex flex-wrap gap-4"><a href="#" class="btn-unified social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a><a href="#" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a></div>
+            <div class="flex flex-wrap gap-4 justify-center items-center">
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
         </div>
     </footer>
-    <script>function showToast() { var x = document.getElementById("toast"); x.className = "show"; setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000); }</script>
+
+    <script>
+        function showToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
 </body>
 </html>
