@@ -8,31 +8,114 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
+        
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        
+        /* ZOOM PE FUNDAL (Restaurat) */
         .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
-        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; background-position: center; filter: brightness(0.35); animation: backgroundZoom 25s infinite alternate ease-in-out; }
-        @keyframes backgroundZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+        .bg-image { 
+            width: 100%; height: 100%; 
+            background-image: url('cristale.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            filter: brightness(0.35); 
+            animation: backgroundZoom 25s infinite alternate ease-in-out; 
+        }
+        @keyframes backgroundZoom { 
+            from { transform: scale(1); } 
+            to { transform: scale(1.15); } 
+        }
+
         .serif { font-family: 'Playfair Display', serif; }
-        .glass-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem; color: white; border-radius: 0.75rem; width: 100%; }
-        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: 0.4s ease; display: inline-flex; align-items: center; justify-content: center; gap: 10px; cursor: pointer; text-decoration: none; }
-        .btn-unified:hover { background: white; color: black; }
+
+        /* Stil Input-uri Glassmorphism */
+        .glass-input { 
+            background: rgba(255, 255, 255, 0.05); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 1.25rem; 
+            color: white; 
+            border-radius: 1rem; 
+            width: 100%; 
+            transition: 0.4s;
+            backdrop-filter: blur(5px);
+        }
+        .glass-input:focus { 
+            border-color: white; 
+            outline: none; 
+            background: rgba(255, 255, 255, 0.1); 
+        }
+
+        /* BUTOANE UNIFIED */
+        .btn-unified { 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            background: transparent; 
+            color: white; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            transition: all 0.4s ease; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            text-decoration: none;
+        }
+        .btn-unified:hover { 
+            background-color: white; 
+            color: black; 
+            box-shadow: 0 10px 25px rgba(0,0,0,0.4); 
+            transform: translateY(-3px); 
+        }
+        
+        .form-btn { width: 100%; padding: 1.25rem; font-size: 11px; letter-spacing: 0.3em; border-radius: 1rem; }
         .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
+
+        /* Animație de apariție pentru formular */
+        .fade-up {
+            animation: fadeUp 1.5s ease-out forwards;
+            opacity: 0;
+        }
+        @keyframes fadeUp {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
     </style>
 </head>
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md">
-        <div class="serif text-2xl font-bold uppercase italic text-white">Energetica</div>
-        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest"><a href="index.html" class="hover:text-stone-400">Acasă</a><a href="contact.html" class="text-white border-b border-white">Contact</a></div>
+    
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
+            <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
+            <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
+            <a href="contact.html" class="text-white border-b border-white">Contact</a>
+        </div>
     </nav>
-    <main class="max-w-3xl mx-auto pt-40 px-10 pb-24 text-center">
-        <h1 class="serif text-6xl italic mb-12">Contact</h1>
-        <form class="space-y-6"><input type="text" placeholder="Nume" class="glass-input"><button type="submit" class="btn-unified w-full py-4 rounded-xl">Trimite</button></form>
+
+    <main class="max-w-xl mx-auto pt-48 px-10 pb-24 relative z-10 fade-up">
+        <h1 class="serif text-5xl italic mb-4 text-center">Contact</h1>
+        <p class="text-stone-400 text-center text-xs uppercase tracking-widest mb-12">Trimite-ne intenția ta</p>
+        
+        <form class="space-y-6">
+            <input type="text" placeholder="Nume complet" class="glass-input">
+            <input type="email" placeholder="Adresa de email" class="glass-input">
+            <textarea placeholder="Mesajul tău energetic..." rows="5" class="glass-input"></textarea>
+            <button type="submit" class="btn-unified form-btn">Trimite Mesajul</button>
+        </form>
     </main>
-    <footer class="w-full py-12 border-t border-white/10 bg-black/60 relative z-50">
-        <div class="max-w-7xl mx-auto px-10 flex justify-between items-center">
+
+    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-md relative z-50">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="serif text-xl italic text-stone-300">Energetica</div>
-            <div class="flex gap-4"><a href="#" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a></div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
         </div>
     </footer>
 </body>
