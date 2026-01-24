@@ -3,80 +3,107 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Ghid</title>
+    <title>Energetica | Ghidul Cristalelor</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+        
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; z-index: -2; filter: brightness(0.3); }
+        
+        .bg-fixed { 
+            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
+            background-image: url('cristale.jpg'); background-size: cover; 
+            background-position: center; z-index: -2; filter: brightness(0.3); 
+        }
+        
         .serif { font-family: 'Playfair Display', serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); }
-        .reveal { opacity: 0; transform: translateY(20px); transition: 1s; }
-        .reveal.active { opacity: 1; transform: translateY(0); }
+
+        /* Container conținut tip Glassmorphism */
+        .glass-article { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 3rem;
+            border-radius: 2.5rem;
+        }
+
+        /* Stil Butoane Sociale */
+        .social-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            color: #a8a29e;
+            font-size: 11px;
+            font-weight: bold;
+            transition: 0.4s all ease;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+        }
+        .social-btn:hover {
+            background: rgba(252, 211, 77, 0.1);
+            border-color: #fcd34d;
+            color: #fcd34d;
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.2);
+            transform: translateY(-3px);
+        }
     </style>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
 </head>
 <body>
     <div class="bg-fixed"></div>
+    
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
-        <div class="hidden md:flex gap-8">
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Acasă</a>
-            <a href="products.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Colecție</a>
-            <a href="despre.html" class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Ghid</a>
-            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Contact</a>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="hover:text-amber-400 transition">Acasă</a>
+            <a href="products.html" class="hover:text-amber-400 transition">Colecție</a>
+            <a href="despre.html" class="text-amber-400">Ghid</a>
+            <a href="contact.html" class="hover:text-amber-400 transition">Contact</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto pt-40 px-6 pb-20">
-        <header class="text-center mb-16 reveal">
-            <h2 class="serif text-5xl italic mb-4">Ghidul Energetic</h2>
-            <p class="text-amber-200/60 tracking-[0.5em] uppercase text-[9px]">Proprietăți și vibrații curative</p>
-        </header>
-        
-        <div class="glass-card rounded-3xl overflow-hidden reveal">
-            <div class="divide-y divide-white/10">
-                <div class="p-10 flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/3 text-center md:text-left">
-                        <h3 class="serif text-3xl text-amber-200 italic">Ametist</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Chakra Al Treilea Ochi</p>
-                    </div>
-                    <p class="md:w-2/3 text-stone-200 text-sm leading-relaxed font-light">Protecție spirituală și claritate mentală. Un aliat perfect pentru meditație și eliminarea stresului cotidian.</p>
-                </div>
+    <main class="max-w-4xl mx-auto pt-40 px-10 pb-24">
+        <div class="glass-article">
+            <h1 class="serif text-5xl italic mb-8 text-center text-amber-200">Ghidul Tău Energetic</h1>
+            
+            <div class="space-y-8 text-stone-300 leading-relaxed text-sm">
+                <section>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Cum să alegi cristalul potrivit?</h2>
+                    <p>Fiecare piatră poartă o frecvență unică. Atunci când alegi o brățară, lasă-te ghidat de intuiție. Deseori, cristalul de care ai cea mai mare nevoie este cel care îți atrage privirea prima dată.</p>
+                </section>
 
-                <div class="p-10 flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/3 text-center md:text-left">
-                        <h3 class="serif text-3xl text-amber-200 italic">Cuarț Roz</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Chakra Inimii</p>
-                    </div>
-                    <p class="md:w-2/3 text-stone-200 text-sm leading-relaxed font-light">Piatra iubirii necondiționate. Vindecă rănile emoționale și atrage vibrații de armonie pură.</p>
-                </div>
+                <section>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Curățarea și Purificarea</h2>
+                    <p>Pentru a menține vibrația înaltă a brățării tale, îți recomandăm să o purifici periodic sub jet de apă călduță sau să o lași la lumina lunii pline.</p>
+                </section>
 
-                <div class="p-10 flex flex-col md:flex-row items-center gap-8">
-                    <div class="md:w-1/3 text-center md:text-left">
-                        <h3 class="serif text-3xl text-amber-200 italic">Citrin</h3>
-                        <p class="text-[9px] uppercase tracking-widest text-stone-400 font-bold">Chakra Plexului Solar</p>
-                    </div>
-                    <p class="md:w-2/3 text-stone-200 text-sm leading-relaxed font-light">Aduce abundență, succes și energie solară. Cunoscut drept "piatra succesului".</p>
-                </div>
+                <section>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Misiunea Noastră</h2>
+                    <p>Energetica s-a născut din dorința de a aduce echilibrul naturii în viața cotidiană. Fiecare brățară este asamblată manual, selectând doar pietre autentice cu proprietăți recunoscute.</p>
+                </section>
             </div>
         </div>
-
-        <section class="mt-20 p-10 glass-card rounded-3xl text-center reveal">
-            <h2 class="serif text-3xl italic mb-6">Misiunea Energetica</h2>
-            <p class="text-stone-300 leading-relaxed">Credem că fiecare piatră poartă o poveste și o vibrație unică. Scopul nostru este să îți aducem natura mai aproape de suflet.</p>
-            <div class="mt-8">
-                <span class="text-[10px] tracking-[0.5em] text-amber-400 uppercase">Puritate • Echilibru • Energie</span>
-            </div>
-        </section>
     </main>
 
-    <script>
-        const observer = new IntersectionObserver((entries) => {
-            entries.forEach(entry => { if (entry.isIntersecting) entry.target.classList.add('active'); });
-        }, { threshold: 0.1 });
-        document.querySelectorAll('.reveal').forEach((el) => observer.observe(el));
-    </script>
+    <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-50">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="serif text-xl italic text-stone-300">Energetica</div>
+            <div class="flex flex-wrap gap-4 justify-center items-center">
+                <a href="https://instagram.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://tiktok.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-tiktok"></i> TikTok
+                </a>
+                <a href="https://facebook.com" target="_blank" class="social-btn">
+                    <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+        </div>
+    </footer>
 </body>
 </html>
-
