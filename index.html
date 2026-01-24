@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Energie Pură</title>
+    <title>Energetica | Ghid</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
@@ -11,8 +11,9 @@
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
         .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; background-position: center; z-index: -2; filter: brightness(0.3); }
         .serif { font-family: 'Playfair Display', serif; }
-        .social-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.7rem 1.4rem; border-radius: 50px; color: #a8a29e; font-size: 11px; font-weight: bold; transition: 0.4s all ease; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
-        .social-btn:hover { background: rgba(252, 211, 77, 0.1); border-color: #fcd34d; color: #fcd34d; transform: translateY(-3px); }
+        .glass-article { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem; border-radius: 2.5rem; }
+        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: all 0.4s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
+        .btn-unified:hover { background-color: white; color: black; transform: translateY(-2px); }
     </style>
 </head>
 <body>
@@ -20,35 +21,29 @@
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="text-amber-400">Acasă</a>
-            <a href="products.html" class="hover:text-amber-400">Colecție</a>
-            <a href="despre.html" class="hover:text-amber-400">Ghid</a>
-            <a href="contact.html" class="hover:text-amber-400">Contact</a>
+            <a href="index.html" class="hover:text-stone-400">Acasă</a>
+            <a href="products.html" class="hover:text-stone-400">Colecție</a>
+            <a href="despre.html" class="text-amber-400">Ghid</a>
+            <a href="contact.html" class="hover:text-stone-400">Contact</a>
         </div>
     </nav>
-
-    <main class="h-screen flex flex-col justify-center items-center text-center px-10">
-        <h1 class="serif text-6xl md:text-8xl italic mb-6">Descoperă Puterea</h1>
-        <p class="text-stone-400 text-xs uppercase tracking-[0.5em] mb-12">Cristale autentice pentru echilibrul tău</p>
-        <a href="products.html" class="border border-white/20 px-12 py-5 text-[10px] uppercase tracking-[0.3em] hover:bg-white hover:text-black transition">Vezi Colecția</a>
+    <main class="max-w-4xl mx-auto pt-40 px-10 pb-24">
+        <div class="glass-article">
+            <h1 class="serif text-5xl italic mb-8 text-center">Ghidul Tău</h1>
+            <p class="text-stone-300 leading-relaxed text-center">Aici vei găsi informații despre purificarea și alegerea cristalelor care rezonează cu energia ta.</p>
+        </div>
     </main>
-
     <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-50">
-        <div class="flex flex-wrap gap-4 justify-center items-center">
-    <a href="https://instagram.com/PROFILUL_TAU" target="_blank" class="social-btn">
-        <i class="fa-brands fa-instagram"></i> Instagram
-    </a>
-    <a href="https://tiktok.com/@PROFILUL_TAU" target="_blank" class="social-btn">
-        <i class="fa-brands fa-tiktok"></i> TikTok
-    </a>
-    <a href="https://facebook.com/PAGINA_TA" target="_blank" class="social-btn">
-        <i class="fa-brands fa-facebook-f"></i> Facebook
-    </a>
-    <a href="https://t.me/NUME_UTILIZATOR" target="_blank" class="social-btn">
-        <i class="fa-brands fa-telegram"></i> Telegram
-    </a>
-</div>
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="serif text-xl italic text-stone-300">Energetica</div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+        </div>
     </footer>
 </body>
 </html>
-
