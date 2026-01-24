@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Colecție Completă</title>
+    <title>Energetica | Produse</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; z-index: -2; filter: brightness(0.3); }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; z-index: -2; filter: brightness(0.35); }
         .serif { font-family: 'Playfair Display', serif; }
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; display: flex; flex-direction: column; height: 100%; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; display: flex; flex-direction: column; }
         .glass-card:hover { transform: translateY(-10px); border-color: #fcd34d; }
         .product-img { width: 100%; height: 16rem; object-fit: cover; border-radius: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
     </style>
@@ -22,8 +22,6 @@
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="flex gap-6 items-center">
             <a href="index.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Acasă</a>
-            <a href="despre.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Ghid</a>
-            <a href="contact.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Contact</a>
             <div class="h-4 w-[1px] bg-white/20"></div>
             <button onclick="changeL('ro')" id="btn-ro" class="text-amber-400 font-bold text-xs">RO</button>
             <button onclick="changeL('en')" id="btn-en" class="text-white font-bold text-xs">EN</button>
@@ -32,35 +30,34 @@
 
     <main class="max-w-7xl mx-auto pt-40 px-10 pb-24">
         <header class="text-center mb-16">
-            <h1 class="serif text-5xl italic mb-4">Colecția Energetică</h1>
-            <p class="text-stone-400 text-[10px] uppercase tracking-[0.4em]">Piese unice purificate pentru vibrația ta</p>
+            <h1 class="serif text-5xl italic mb-4">Colecția Ta</h1>
+            <p class="text-stone-400 text-[10px] uppercase tracking-[0.4em]">Energie cristalizată în formă pură</p>
         </header>
 
-        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
             
             <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1615484477201-d007ec6bc91c?w=500" class="product-img" alt="Aventurin">
+                <img src="ametist.jpg" class="product-img" alt="Bratara Tiger Eye">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Green Adventure" data-en="Green Adventure">Green Adventure</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Noroc & Sănătate</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">110 RON</p>
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Ochi de Tigru Gold" data-en="Golden Tiger's Eye">Ochi de Tigru Gold</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Încredere & Putere</p>
+                    <p class="text-amber-200 font-bold text-lg mb-6">120 RON</p>
                 </div>
                 <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
             </div>
 
             <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1524412529635-a258ed66c010?w=500" class="product-img" alt="Howlit">
+                <img src="bratara_tripla.jpg" class="product-img" alt="Bratara Tripla">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="White Howlite" data-en="White Howlite">White Howlite</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Calm Interior</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">105 RON</p>
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Triplă Protecție Azur" data-en="Azure Triple Protection">Triplă Protecție Azur</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Claritate & Scut</p>
+                    <p class="text-amber-200 font-bold text-lg mb-6">85 RON</p>
                 </div>
                 <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
             </div>
 
             <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1515562141207-7a18b5ce7142?w=500" class="product-img" alt="Amazonit">
+                <img src="bratara_vulcanica.jpg" class="product-img" alt="Bratara Vulcanica">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Amazonite Balance" data-en="Amazonite Balance">Amazonite Balance</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Speranță & Calm</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">125 RON [cite: shop.
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Energie Vulcanică" data-en="Volcanic Energy">Energie Vulcanică</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Ancorare
