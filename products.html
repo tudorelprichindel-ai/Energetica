@@ -65,12 +65,15 @@
             position: fixed; top: 0; right: 0; height: 100%; width: 350px;
             background: rgba(8, 3, 16, 0.95); backdrop-filter: blur(25px);
             z-index: 1100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            border-l: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;
-            display: flex; flex-col;
+            border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;
+            display: flex; flex-direction: column;
         }
         #cart-sidebar.open { transform: translateX(0); }
 
         .cart-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* Badge pentru număr produse în coș */
+        #cart-count { background: white; color: black; font-size: 9px; padding: 2px 6px; border-radius: 50px; margin-left: 5px; font-weight: 800; vertical-align: middle; }
 
         footer { background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); backdrop-filter: blur(10px); }
     </style>
@@ -80,7 +83,7 @@
 
     <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
 
-    <div id="cart-sidebar" class="flex flex-col">
+    <div id="cart-sidebar">
         <div class="flex justify-between items-center mb-10">
             <h2 class="serif text-3xl italic">Coșul Tău</h2>
             <button onclick="toggleCart()" class="text-white/50 hover:text-white text-2xl">&times;</button>
@@ -103,7 +106,10 @@
             <a href="products.html" class="border-b border-white">Colecție</a>
             <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
-            <button onclick="toggleCart()" class="hover:text-stone-400 transition"><i class="fa-solid fa-bag-shopping"></i></button>
+            <button onclick="toggleCart()" class="hover:text-stone-400 transition flex items-center">
+                <i class="fa-solid fa-bag-shopping"></i>
+                <span id="cart-count">0</span>
+            </button>
         </div>
     </nav>
 
@@ -167,14 +173,22 @@
         function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
 
         function addToCart(name, price, img) {
-            cart.push({name, price, img});
+            // Căutăm dacă produsul există deja
+            const existingProduct = cart.find(item => item.name === name);
+            
+            if (existingProduct) {
+                existingProduct.quantity += 1;
+            } else {
+                cart.push({name, price, img, quantity: 1});
+            }
+
             localStorage.setItem('energetica_cart', JSON.stringify(cart));
             updateCartUI();
             if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
         }
 
-        function removeFromCart(index) {
-            cart.splice(index, 1);
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
             localStorage.setItem('energetica_cart', JSON.stringify(cart));
             updateCartUI();
         }
@@ -182,21 +196,28 @@
         function updateCartUI() {
             const container = document.getElementById('cart-content');
             const totalEl = document.getElementById('cart-total');
+            const countEl = document.getElementById('cart-count');
+            
             container.innerHTML = '';
             let total = 0;
-            cart.forEach((item, i) => {
-                total += item.price;
+            let totalItems = 0;
+
+            cart.forEach((item) => {
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
                 container.innerHTML += `
                     <div class="cart-item">
                         <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg border border-white/10">
                         <div class="flex-grow">
                             <h4 class="text-[10px] uppercase font-bold tracking-tighter">${item.name}</h4>
-                            <p class="text-stone-400 text-xs">${item.price} RON</p>
+                            <p class="text-stone-400 text-xs">${item.quantity} buc. x ${item.price} RON</p>
                         </div>
-                        <button onclick="removeFromCart(${i})" class="text-white/20 hover:text-white">&times;</button>
+                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white">&times;</button>
                     </div>`;
             });
+            
             totalEl.innerText = total + " RON";
+            countEl.innerText = totalItems;
         }
 
         function openLightbox(src) {
@@ -211,6 +232,7 @@
             setTimeout(() => lb.style.display = 'none', 300);
         }
 
+        // Inițializare la încărcare
         updateCartUI();
     </script>
 </body>
