@@ -58,3 +58,141 @@
             height: 18rem;
             overflow: hidden;
             border-radius: 1.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .product-img { 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; 
+            transition: transform 0.7s ease-in-out; 
+        }
+
+        .glass-card:hover .product-img { 
+            transform: scale(1.15); /* Efectul de mărire la cursor */
+        }
+
+        /* Stil subsol (Footer) cu prioritate mare pentru click-uri */
+        footer {
+            position: relative;
+            z-index: 50; /* Ridicăm footer-ul peste grid-ul de produse */
+            clear: both;
+        }
+
+        .social-link {
+            color: #a8a29e;
+            transition: 0.4s ease;
+            text-decoration: none;
+            display: inline-block;
+        }
+        .social-link:hover {
+            color: #fcd34d;
+            text-shadow: 0 0 10px rgba(252, 211, 77, 0.4);
+            letter-spacing: 3px;
+        }
+
+        /* Notificare Pop-up */
+        #toast {
+            visibility: hidden;
+            min-width: 250px;
+            background-color: #fcd34d;
+            color: #000;
+            text-align: center;
+            border-radius: 50px;
+            padding: 16px;
+            position: fixed;
+            z-index: 100;
+            left: 50%;
+            bottom: 30px;
+            transform: translateX(-50%);
+            font-size: 10px;
+            font-weight: bold;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        #toast.show {
+            visibility: visible;
+            animation: fadein 0.5s, fadeout 0.5s 2.5s;
+        }
+
+        @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
+        @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
+    </style>
+</head>
+<body>
+    <div class="bg-fixed"></div>
+    <div id="toast">VIBRAȚIE ADĂUGATĂ ÎN COȘ</div>
+    
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="hover:text-amber-400 transition">Acasă</a>
+            <a href="products.html" class="text-amber-400">Colecție</a>
+            <a href="despre.html" class="hover:text-amber-400 transition">Ghid</a>
+            <a href="contact.html" class="hover:text-amber-400 transition">Contact</a>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto pt-40 px-10 pb-24">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+            
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="ametist.jpg" class="product-img" alt="Ochi de Tigru Gold"></div>
+                <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">120 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție"></div>
+                <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_vulcanica.jpg" class="product-img" alt="Energie Vulcanică"></div>
+                <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="citrin.jpg" class="product-img" alt="Scut Hematit"></div>
+                <h3 class="serif text-2xl italic mb-2">Scut Hematit</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">95 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="cuart-roz.jpg" class="product-img" alt="Spiritul Buddha"></div>
+                <h3 class="serif text-2xl italic mb-2">Spiritul Buddha</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+        </div>
+    </main>
+
+    <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="serif text-xl italic text-stone-300">Energetica</div>
+            <div class="flex gap-8 items-center">
+                <a href="https://instagram.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">Instagram</a>
+                <a href="https://tiktok.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">TikTok</a>
+                <a href="https://facebook.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">Facebook</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+        </div>
+    </footer>
+
+    <script>
+        function showToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+</body>
+</html>
