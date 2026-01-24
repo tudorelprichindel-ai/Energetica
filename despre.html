@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Ghidul Cristalelor</title>
+    <title>Energetica | Ghid</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
@@ -11,88 +11,107 @@
         
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* Containerul care ascunde marginile imaginii în timp ce se mărește */
-.bg-container {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 100vw;
-    height: 100vh;
-    z-index: -2;
-    overflow: hidden;
-}
+        /* EFECT ZOOM PE FUNDAL */
+        .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
+        .bg-image { 
+            width: 100%; height: 100%; 
+            background-image: url('cristale.jpg'); 
+            background-size: cover; 
+            background-position: center; 
+            filter: brightness(0.35); 
+            animation: backgroundZoom 25s infinite alternate ease-in-out; 
+        }
+        @keyframes backgroundZoom { 
+            from { transform: scale(1); } 
+            to { transform: scale(1.15); } 
+        }
 
-/* Imaginea care se mișcă */
-.bg-image {
-    width: 100%;
-    height: 100%;
-    background-image: url('cristale.jpg');
-    background-size: cover;
-    background-position: center;
-    filter: brightness(0.35);
-    animation: backgroundZoom 25s infinite alternate ease-in-out;
-}
+        .serif { font-family: 'Playfair Display', serif; }
 
-/* Regula pentru animația de zoom lent */
-@keyframes backgroundZoom {
-    from { transform: scale(1); }
-    to { transform: scale(1.15); }
-}
+        /* Container conținut tip Glassmorphism */
+        .glass-article { 
+            background: rgba(255, 255, 255, 0.05); 
+            backdrop-filter: blur(15px); 
+            border: 1px solid rgba(255, 255, 255, 0.1); 
+            padding: 3.5rem;
+            border-radius: 2.5rem;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.3);
+        }
+
+        /* STILUL UNIFICAT PENTRU BUTOANE SOCIALE */
+        .btn-unified { 
+            border: 1px solid rgba(255, 255, 255, 0.2); 
+            background: transparent; 
+            color: white; 
+            text-transform: uppercase; 
+            font-weight: bold; 
+            transition: all 0.4s ease; 
+            cursor: pointer; 
+            display: inline-flex; 
+            align-items: center; 
+            justify-content: center; 
+            gap: 10px; 
+            text-decoration: none;
+            padding: 0.7rem 1.4rem;
+            border-radius: 50px;
+            font-size: 11px;
+        }
+        
+        .btn-unified:hover { 
+            background-color: white; 
+            color: black; 
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3); 
+            transform: translateY(-3px); 
+        }
     </style>
 </head>
 <body>
-    <div class="bg-fixed"></div>
+    <div class="bg-container"><div class="bg-image"></div></div>
     
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="hover:text-amber-400 transition">Acasă</a>
-            <a href="products.html" class="hover:text-amber-400 transition">Colecție</a>
-            <a href="despre.html" class="text-amber-400">Ghid</a>
-            <a href="contact.html" class="hover:text-amber-400 transition">Contact</a>
+            <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
+            <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
+            <a href="despre.html" class="text-white border-b border-white">Ghid</a>
+            <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
         </div>
     </nav>
 
-    <main class="max-w-4xl mx-auto pt-40 px-10 pb-24">
+    <main class="max-w-4xl mx-auto pt-48 px-10 pb-24 relative z-10">
         <div class="glass-article">
-            <h1 class="serif text-5xl italic mb-8 text-center text-amber-200">Ghidul Tău Energetic</h1>
+            <h1 class="serif text-5xl italic mb-10 text-center">Ghidul Cristalelor</h1>
             
-            <div class="space-y-8 text-stone-300 leading-relaxed text-sm">
+            <div class="space-y-10 text-stone-200 leading-relaxed">
                 <section>
-                    <h2 class="serif text-2xl text-white mb-4 italic">Cum să alegi cristalul potrivit?</h2>
-                    <p>Fiecare piatră poartă o frecvență unică. Atunci când alegi o brățară, lasă-te ghidat de intuiție. Deseori, cristalul de care ai cea mai mare nevoie este cel care îți atrage privirea prima dată.</p>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Conexiunea Energetică</h2>
+                    <p class="text-sm tracking-wide">Cristalele nu sunt doar accesorii, ci amplificatori de intenție. Fiecare brățară Energetica este creată pentru a te ajuta să îți găsești centrul și să îți cureți câmpul vibrațional.</p>
                 </section>
 
                 <section>
-                    <h2 class="serif text-2xl text-white mb-4 italic">Curățarea și Purificarea</h2>
-                    <p>Pentru a menține vibrația înaltă a brățării tale, îți recomandăm să o purifici periodic sub jet de apă călduță sau să o lași la lumina lunii pline.</p>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Purificarea și Activarea</h2>
+                    <p class="text-sm tracking-wide">Recomandăm curățarea cristalelor tale sub jet de apă rece sau folosind fumul de salvie. Odată curățate, ține brățara în palme și vizualizează intenția ta pentru a o "programa".</p>
                 </section>
 
                 <section>
-                    <h2 class="serif text-2xl text-white mb-4 italic">Misiunea Noastră</h2>
-                    <p>Energetica s-a născut din dorința de a aduce echilibrul naturii în viața cotidiană. Fiecare brățară este asamblată manual, selectând doar pietre autentice cu proprietăți recunoscute.</p>
+                    <h2 class="serif text-2xl text-white mb-4 italic">Pietre Autentice</h2>
+                    <p class="text-sm tracking-wide">Folosim exclusiv pietre naturale, selecționate manual. De la Ochiul de Tigru pentru protecție, până la Ametist pentru claritate mentală, fiecare piesă este unică, exact ca tine.</p>
                 </section>
             </div>
         </div>
     </main>
 
-    <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-50">
-        <div class="flex flex-wrap gap-4 justify-center items-center">
-    <a href="https://instagram.com/PROFILUL_TAU" target="_blank" class="social-btn">
-        <i class="fa-brands fa-instagram"></i> Instagram
-    </a>
-    <a href="https://tiktok.com/@PROFILUL_TAU" target="_blank" class="social-btn">
-        <i class="fa-brands fa-tiktok"></i> TikTok
-    </a>
-    <a href="https://facebook.com/PAGINA_TA" target="_blank" class="social-btn">
-        <i class="fa-brands fa-facebook-f"></i> Facebook
-    </a>
-    <a href="https://t.me/NUME_UTILIZATOR" target="_blank" class="social-btn">
-        <i class="fa-brands fa-telegram"></i> Telegram
-    </a>
-</div>
+    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-md relative z-50">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="serif text-xl italic text-stone-300">Energetica</div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="#" target="_blank" class="btn-unified"><i class="fa-brands fa-telegram"></i> Telegram</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+        </div>
     </footer>
 </body>
 </html>
-
-
