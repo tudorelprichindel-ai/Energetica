@@ -7,75 +7,38 @@
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; overflow: hidden; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: url('cristale.jpg') center/cover; z-index: -2; opacity: 0.5; }
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; z-index: -2; filter: brightness(0.3); }
         .serif { font-family: 'Playfair Display', serif; }
-        .input-line { background: transparent; border-bottom: 1px solid rgba(255,255,255,0.2); padding: 12px 0; width: 100%; outline: none; transition: 0.4s; color: white; }
+        .input-line { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 0; outline: none; transition: 0.4s; width: 100%; color: white; }
         .input-line:focus { border-bottom: 1px solid #fcd34d; }
     </style>
 </head>
 <body>
     <div class="bg-fixed"></div>
-
-    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-lg border-b border-white/10">
-        <div class="max-w-7xl mx-auto px-4 py-4 flex flex-col md:flex-row justify-between items-center">
-            <div class="serif text-xl md:text-2xl font-bold uppercase tracking-tighter italic text-white mb-3 md:mb-0">Energetica</div>
-            <div class="flex items-center justify-center gap-4 md:gap-8">
-                <a href="index.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Acasă</a>
-                <a href="crystals.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Colecție</a>
-                <a href="despre.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] hover:text-amber-400 transition">Ghid</a>
-                <a href="contact.html" class="text-[9px] md:text-[11px] font-bold uppercase tracking-[2px] text-amber-400">Contact</a>
-            </div>
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
+        <div class="hidden md:flex gap-8">
+            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Acasă</a>
+            <a href="products.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Colecție</a>
+            <a href="despre.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Ghid</a>
+            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Contact</a>
         </div>
     </nav>
 
-    <main class="max-w-xl mx-auto pt-40 px-6 text-center">
-        <h2 class="serif text-5xl italic mb-12">Conectează-te</h2>
-        <form class="space-y-10 text-left">
-            <input type="text" placeholder="NUME" class="input-line text-[10px] tracking-widest">
-            <input type="email" placeholder="EMAIL" class="input-line text-[10px] tracking-widest">
-            <textarea placeholder="MESAJ" rows="3" class="input-line text-[10px] tracking-widest"></textarea>
-            <button class="w-full border border-white/30 py-4 text-[10px] uppercase font-bold tracking-[4px] hover:bg-white hover:text-black transition duration-700">Trimite</button>
+    <main class="max-w-xl mx-auto pt-48 px-6 text-center pb-20">
+        <h2 class="serif text-5xl italic mb-4">Conectează-te</h2>
+        <p class="text-stone-400 text-[10px] uppercase tracking-[0.3em] mb-20">Așteptăm mesajul tău în universul nostru</p>
+        
+        <form class="space-y-12 text-left">
+            <input type="text" placeholder="NUMELE TĂU" class="input-line text-xs tracking-widest">
+            <input type="email" placeholder="EMAIL" class="input-line text-xs tracking-widest">
+            <textarea placeholder="MESAJUL TĂU" rows="3" class="input-line text-xs tracking-widest"></textarea>
+            
+            <button class="w-full border border-white/30 py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white hover:text-black transition duration-700 mt-10">
+                Trimite Vibrația
+            </button>
         </form>
     </main>
-    <footer class="bg-black/90 border-t border-white/10 pt-16 pb-8 px-6 mt-20 relative z-10">
-    <div class="max-w-7xl mx-auto grid grid-cols-1 md:grid-cols-3 gap-12 text-center md:text-left">
-        
-        <div>
-            <h3 class="serif text-2xl italic text-amber-400 mb-4">Energetica</h3>
-            <p class="text-stone-400 text-sm leading-relaxed">
-                Echilibru și energie pură prin cristale naturale alese manual pentru vibrația lor unică.
-            </p>
-        </div>
-
-        <div class="flex flex-col gap-2">
-            <h4 class="text-[10px] uppercase tracking-[3px] text-white mb-4 font-bold">Explorează</h4>
-            <a href="index.html" class="text-stone-400 text-sm hover:text-amber-400 transition">Acasă</a>
-            <a href="crystals.html" class="text-stone-400 text-sm hover:text-amber-400 transition">Colecție</a>
-            <a href="despre.html" class="text-stone-400 text-sm hover:text-amber-400 transition">Ghid Energetic</a>
-        </div>
-
-        <div>
-            <h4 class="text-[10px] uppercase tracking-[3px] text-white mb-4 font-bold">Urmărește-ne</h4>
-            <div class="flex justify-center md:justify-start gap-6">
-                <a href="#" class="text-stone-400 hover:text-pink-500 text-2xl transition duration-300">
-                    <i class="fab fa-instagram"></i>
-                </a>
-                <a href="#" class="text-stone-400 hover:text-white text-2xl transition duration-300">
-                    <i class="fab fa-tiktok"></i>
-                </a>
-                <a href="#" class="text-stone-400 hover:text-red-500 text-2xl transition duration-300">
-                    <i class="fab fa-pinterest"></i>
-                </a>
-            </div>
-        </div>
-
-    </div>
-    
-    <div class="text-center mt-16 pt-8 border-t border-white/5">
-        <p class="text-[9px] uppercase tracking-[2px] text-stone-500">© 2024 Energetica. Creat cu intenție.</p>
-    </div>
-</footer>
 </body>
 </html>
-
