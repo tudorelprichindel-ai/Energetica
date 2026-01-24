@@ -69,5 +69,47 @@
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
                 <div class="img-container"><img src="ametist.jpg" class="product-img" alt="Ochi de Tigru Gold"></div>
                 <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
-                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">120 EUR</p>
-                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">120 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție"></div>
+                <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="bratara_vulcanica.jpg" class="product-img" alt="Energie Vulcanică"></div>
+                <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="citrin.jpg" class="product-img" alt="Scut Hematit"></div>
+                <h3 class="serif text-2xl italic mb-2">Scut Hematit</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">95 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+            <div class="glass-card p-6 rounded-[2.5rem] text-center">
+                <div class="img-container"><img src="cuart-roz.jpg" class="product-img" alt="Spiritul Buddha"></div>
+                <h3 class="serif text-2xl italic mb-2">Spiritul Buddha</h3>
+                <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
+                <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
+            </div>
+
+        </div>
+    </main>
+
+    <script>
+        function showToast() {
+            var x = document.getElementById("toast");
+            x.className = "show";
+            setTimeout(function(){ x.className = x.className.replace("show", ""); }, 3000);
+        }
+    </script>
+</body>
+</html>
