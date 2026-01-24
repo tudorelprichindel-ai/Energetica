@@ -35,16 +35,45 @@
         .btn-unified:hover { background-color: white; color: black; }
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
 
-        /* COȘ - PUNGA DE CUMPĂRĂTURI HÂRTIE */
-        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.3s; color: white; padding: 5px; }
-        .paper-bag-link i { font-size: 1.4rem; }
-        .paper-bag-link:hover { transform: translateY(-2px); opacity: 0.8; }
+        /* --- PUNGA DE CUMPĂRĂTURI MĂRITĂ --- */
+        .paper-bag-link { 
+            position: relative; 
+            display: flex; 
+            align-items: center; 
+            cursor: pointer; 
+            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); 
+            color: white; 
+            padding: 10px;
+        }
+        .paper-bag-link i { 
+            font-size: 2.2rem; /* Dimensiune mărită semnificativ */
+        }
+        .paper-bag-link:hover { transform: scale(1.1); }
         
         #cart-badge { 
-            position: absolute; bottom: 4px; left: 50%; transform: translateX(-50%);
-            font-size: 9px; font-weight: 800; color: #080310; 
-            background: white; min-width: 14px; height: 14px; 
-            border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            position: absolute; 
+            bottom: 12px; /* Ajustat pentru noua dimensiune */
+            left: 50%; 
+            transform: translateX(-50%);
+            font-size: 11px; 
+            font-weight: 900; 
+            color: #080310; 
+            background: white; 
+            min-width: 18px; 
+            height: 18px; 
+            border-radius: 50%; 
+            display: flex; 
+            align-items: center; 
+            justify-content: center;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.5);
+        }
+
+        /* Animație la adăugare */
+        .bump { animation: bump 0.4s ease-out; }
+        @keyframes bump {
+            0% { transform: scale(1); }
+            50% { transform: scale(1.3); }
+            100% { transform: scale(1); }
         }
 
         /* SIDEBAR COȘ */
@@ -81,13 +110,13 @@
     
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic tracking-tighter">Energetica</div>
-        <div class="hidden md:flex gap-8 items-center text-[10px] font-bold uppercase tracking-widest">
+        <div class="hidden md:flex gap-12 items-center text-[10px] font-bold uppercase tracking-widest">
             <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
             <a href="products.html" class="border-b border-white">Colecție</a>
             <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
             
-            <div onclick="toggleCart()" class="paper-bag-link ml-4">
+            <div onclick="toggleCart()" class="paper-bag-link ml-4" id="bag-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span id="cart-badge">0</span>
             </div>
@@ -152,52 +181,6 @@
             if (existing) { existing.quantity += 1; } 
             else { cart.push({name, price, img, quantity: 1}); }
             localStorage.setItem('energetica_cart', JSON.stringify(cart));
-            updateCartUI();
-        }
-
-        function removeFromCart(name) {
-            cart = cart.filter(item => item.name !== name);
-            localStorage.setItem('energetica_cart', JSON.stringify(cart));
-            updateCartUI();
-        }
-
-        function updateCartUI() {
-            const container = document.getElementById('cart-content');
-            const totalEl = document.getElementById('cart-total');
-            const badge = document.getElementById('cart-badge');
-            container.innerHTML = '';
-            let total = 0; let totalItems = 0;
-            cart.forEach((item) => {
-                total += item.price * item.quantity;
-                totalItems += item.quantity;
-                container.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg border border-white/10">
-                        <div class="flex-grow">
-                            <h4 class="text-[10px] uppercase font-bold tracking-tighter">${item.name}</h4>
-                            <p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p>
-                        </div>
-                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white">&times;</button>
-                    </div>`;
-            });
-            totalEl.innerText = total + " RON";
-            badge.innerText = totalItems;
-            badge.style.display = totalItems > 0 ? 'flex' : 'none';
-        }
-
-        function openLightbox(src) {
-            const lb = document.getElementById('lightbox');
-            document.getElementById('lightbox-img').src = src;
-            lb.style.display = 'flex';
-            setTimeout(() => lb.classList.add('open'), 10);
-        }
-        function closeLightbox() {
-            const lb = document.getElementById('lightbox');
-            lb.classList.remove('open');
-            setTimeout(() => lb.style.display = 'none', 300);
-        }
-
-        updateCartUI();
-    </script>
-</body>
-</html>
+            
+            // Efect de animație pe pungă
+            const
