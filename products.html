@@ -20,46 +20,40 @@
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.7s ease-in-out; }
         .glass-card:hover .product-img { transform: scale(1.15); }
 
-        /* --- STILIZARE BUTOANE NOI --- */
+        /* Stil Butoane Produse */
         .btn-energetica {
-            position: relative;
-            overflow: hidden;
-            border: 1px solid rgba(252, 211, 77, 0.4); /* Aurit discret */
-            background: transparent;
-            color: #fcd34d;
-            padding: 1rem;
-            font-size: 10px;
+            position: relative; overflow: hidden; border: 1px solid rgba(252, 211, 77, 0.4); 
+            background: transparent; color: #fcd34d; padding: 1rem; font-size: 10px; font-weight: bold; 
+            text-transform: uppercase; letter-spacing: 3px; border-radius: 0.75rem; transition: all 0.5s ease; z-index: 1;
+        }
+        .btn-energetica::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: #fcd34d; transition: all 0.5s ease; z-index: -1; }
+        .btn-energetica:hover { color: #000; box-shadow: 0 0 20px rgba(252, 211, 77, 0.4); }
+        .btn-energetica:hover::before { left: 0; }
+
+        /* --- STILIZARE BUTOANE SOCIALE --- */
+        .social-btn {
+            background: rgba(255, 255, 255, 0.03);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 0.6rem 1.2rem;
+            border-radius: 50px;
+            color: #a8a29e;
+            font-size: 9px;
             font-weight: bold;
             text-transform: uppercase;
-            letter-spacing: 3px;
-            border-radius: 0.75rem;
-            transition: all 0.5s ease;
-            z-index: 1;
+            letter-spacing: 2px;
+            transition: 0.4s all ease;
+            text-decoration: none;
+            display: inline-block;
         }
-
-        .btn-energetica::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: #fcd34d; /* Fundal aurit la hover */
-            transition: all 0.5s ease;
-            z-index: -1;
-        }
-
-        .btn-energetica:hover {
-            color: #000;
-            box-shadow: 0 0 20px rgba(252, 211, 77, 0.4);
-        }
-
-        .btn-energetica:hover::before {
-            left: 0;
+        .social-btn:hover {
+            background: rgba(252, 211, 77, 0.1);
+            border-color: #fcd34d;
+            color: #fcd34d;
+            box-shadow: 0 0 15px rgba(252, 211, 77, 0.2);
+            transform: translateY(-3px);
         }
 
         footer { position: relative; z-index: 50; clear: both; }
-        .social-link { color: #a8a29e; transition: 0.4s ease; text-decoration: none; display: inline-block; }
-        .social-link:hover { color: #fcd34d; text-shadow: 0 0 10px rgba(252, 211, 77, 0.4); letter-spacing: 3px; }
-
         #toast { visibility: hidden; min-width: 250px; background-color: #fcd34d; color: #000; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
@@ -118,10 +112,10 @@
     <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md">
         <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="serif text-xl italic text-stone-300">Energetica</div>
-            <div class="flex gap-8 items-center">
-                <a href="https://instagram.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">Instagram</a>
-                <a href="https://tiktok.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">TikTok</a>
-                <a href="https://facebook.com" target="_blank" class="social-link text-[10px] font-bold uppercase tracking-widest">Facebook</a>
+            <div class="flex gap-4 items-center">
+                <a href="https://instagram.com" target="_blank" class="social-btn">Instagram</a>
+                <a href="https://tiktok.com" target="_blank" class="social-btn">TikTok</a>
+                <a href="https://facebook.com" target="_blank" class="social-btn">Facebook</a>
             </div>
             <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
         </div>
