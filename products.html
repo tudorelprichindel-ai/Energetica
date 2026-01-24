@@ -36,9 +36,8 @@
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
 
         /* PUNGA DE CUMPĂRĂTURI MĂRITĂ */
-        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: white; padding: 10px; }
-        .paper-bag-link i { font-size: 2.2rem; }
-        .paper-bag-link:hover { transform: scale(1.1); }
+        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: white; padding: 10px; z-index: 60; }
+        .paper-bag-link i { font-size: 2.5rem; }
         
         #cart-badge { 
             position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
@@ -60,7 +59,7 @@
         #lightbox.open img { transform: scale(1); }
 
         /* FOOTER FIX (Z-INDEX) */
-        footer { position: relative; z-index: 100; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { position: relative; z-index: 50; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -173,8 +172,13 @@
             const container = document.getElementById('cart-content');
             const totalEl = document.getElementById('cart-total');
             const badge = document.getElementById('cart-badge');
+            
+            if (!container || !totalEl || !badge) return;
+
             container.innerHTML = '';
-            let total = 0; let totalItems = 0;
+            let total = 0; 
+            let totalItems = 0;
+
             cart.forEach((item) => {
                 total += item.price * item.quantity;
                 totalItems += item.quantity;
@@ -183,11 +187,12 @@
                         <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg border border-white/10">
                         <div class="flex-grow">
                             <h4 class="text-[10px] uppercase font-bold tracking-tighter">${item.name}</h4>
-                            <p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p>
+                            <p class="text-stone-400 text-[10px]">${item.quantity} buc. x ${item.price} RON</p>
                         </div>
                         <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white text-xl">&times;</button>
                     </div>`;
             });
+            
             totalEl.innerText = total + " RON";
             badge.innerText = totalItems;
             badge.style.display = totalItems > 0 ? 'flex' : 'none';
@@ -199,13 +204,15 @@
             lb.style.display = 'flex';
             setTimeout(() => lb.classList.add('open'), 10);
         }
+
         function closeLightbox() {
             const lb = document.getElementById('lightbox');
             lb.classList.remove('open');
             setTimeout(() => lb.style.display = 'none', 300);
         }
 
-        updateCartUI();
+        // Inițializare corectă
+        window.onload = updateCartUI;
     </script>
 </body>
 </html>
