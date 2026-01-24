@@ -5,40 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energetica | Contact</title>
     <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; z-index: -2; filter: brightness(0.3); }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; background-position: center; z-index: -2; filter: brightness(0.3); }
         .serif { font-family: 'Playfair Display', serif; }
-        .input-line { background: transparent; border-bottom: 1px solid rgba(255, 255, 255, 0.2); padding: 15px 0; outline: none; transition: 0.4s; width: 100%; color: white; }
-        .input-line:focus { border-bottom: 1px solid #fcd34d; }
+        .glass-input { background: rgba(255, 255, 255, 0.05); border: 1px solid rgba(255, 255, 255, 0.1); padding: 1rem; color: white; border-radius: 0.75rem; width: 100%; transition: 0.4s; }
+        .glass-input:focus { border-color: #fcd34d; outline: none; background: rgba(255, 255, 255, 0.1); }
+        .social-btn { background: rgba(255, 255, 255, 0.03); border: 1px solid rgba(255, 255, 255, 0.1); padding: 0.7rem 1.4rem; border-radius: 50px; color: #a8a29e; font-size: 11px; font-weight: bold; transition: 0.4s all ease; text-decoration: none; display: inline-flex; align-items: center; gap: 10px; }
+        .social-btn:hover { background: rgba(252, 211, 77, 0.1); border-color: #fcd34d; color: #fcd34d; transform: translateY(-3px); }
     </style>
 </head>
 <body>
     <div class="bg-fixed"></div>
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
-        <div class="hidden md:flex gap-8">
-            <a href="index.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Acasă</a>
-            <a href="products.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Colecție</a>
-            <a href="despre.html" class="text-[10px] font-bold uppercase tracking-widest hover:text-amber-400">Ghid</a>
-            <a href="contact.html" class="text-[10px] font-bold uppercase tracking-widest text-amber-400">Contact</a>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="hover:text-amber-400">Acasă</a>
+            <a href="products.html" class="hover:text-amber-400">Colecție</a>
+            <a href="despre.html" class="hover:text-amber-400">Ghid</a>
+            <a href="contact.html" class="text-amber-400">Contact</a>
         </div>
     </nav>
 
-    <main class="max-w-xl mx-auto pt-48 px-6 text-center pb-20">
-        <h2 class="serif text-5xl italic mb-4">Conectează-te</h2>
-        <p class="text-stone-400 text-[10px] uppercase tracking-[0.3em] mb-20">Așteptăm mesajul tău în universul nostru</p>
-        
-        <form class="space-y-12 text-left">
-            <input type="text" placeholder="NUMELE TĂU" class="input-line text-xs tracking-widest">
-            <input type="email" placeholder="EMAIL" class="input-line text-xs tracking-widest">
-            <textarea placeholder="MESAJUL TĂU" rows="3" class="input-line text-xs tracking-widest"></textarea>
-            
-            <button class="w-full border border-white/30 py-4 text-[10px] font-bold uppercase tracking-[0.4em] hover:bg-white hover:text-black transition duration-700 mt-10">
-                Trimite Vibrația
-            </button>
+    <main class="max-w-3xl mx-auto pt-40 px-10 pb-24">
+        <h1 class="serif text-5xl italic mb-12 text-center">Contactează-ne</h1>
+        <form class="space-y-6">
+            <input type="text" placeholder="Numele tău" class="glass-input">
+            <input type="email" placeholder="Email" class="glass-input">
+            <textarea placeholder="Mesajul tău" rows="5" class="glass-input"></textarea>
+            <button type="submit" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold tracking-widest hover:bg-white hover:text-black transition rounded-xl">Trimite Mesaj</button>
         </form>
     </main>
+
+    <footer class="w-full py-12 border-t border-white/10 bg-black/40 backdrop-blur-md relative z-50">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
+            <div class="serif text-xl italic text-stone-300">Energetica</div>
+            <div class="flex flex-wrap gap-4 justify-center">
+                <a href="#" target="_blank" class="social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="#" target="_blank" class="social-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="#" target="_blank" class="social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+            </div>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+        </div>
+    </footer>
 </body>
 </html>
