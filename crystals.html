@@ -12,7 +12,7 @@
         .serif { font-family: 'Playfair Display', serif; }
         .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s; display: flex; flex-direction: column; height: 100%; }
         .glass-card:hover { transform: translateY(-10px); border-color: #fcd34d; }
-        .product-img { width: 100%; h-64; object-fit: cover; border-radius: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
+        .product-img { width: 100%; height: 16rem; object-fit: cover; border-radius: 1rem; margin-bottom: 1.5rem; border: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -22,6 +22,8 @@
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="flex gap-6 items-center">
             <a href="index.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Acasă</a>
+            <a href="despre.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Ghid</a>
+            <a href="contact.html" class="text-[10px] uppercase font-bold tracking-widest hover:text-amber-400">Contact</a>
             <div class="h-4 w-[1px] bg-white/20"></div>
             <button onclick="changeL('ro')" id="btn-ro" class="text-amber-400 font-bold text-xs">RO</button>
             <button onclick="changeL('en')" id="btn-en" class="text-white font-bold text-xs">EN</button>
@@ -37,74 +39,28 @@
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
             
             <div class="glass-card p-5 rounded-3xl">
-                <img src="bratara_vulcanica.jpg" class="product-img" alt="Bratara Vulcanica">
+                <img src="https://images.unsplash.com/photo-1615484477201-d007ec6bc91c?w=500" class="product-img" alt="Aventurin">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Ochi de Tigru & Vulcan" data-en="Tiger's Eye & Lava">Ochi de Tigru & Vulcan</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Protecție & Noroc</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">85 RON</p>
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Green Adventure" data-en="Green Adventure">Green Adventure</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Noroc & Sănătate</p>
+                    <p class="text-amber-200 font-bold text-lg mb-6">110 RON</p>
                 </div>
                 <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
             </div>
 
             <div class="glass-card p-5 rounded-3xl">
-                <img src="bratara_tripla.jpg" class="product-img" alt="Bratara Tripla">
+                <img src="https://images.unsplash.com/photo-1524412529635-a258ed66c010?w=500" class="product-img" alt="Howlit">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Triplă Protecție" data-en="Triple Protection">Triplă Protecție</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Echilibru Spiritual</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">85 RON</p>
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="White Howlite" data-en="White Howlite">White Howlite</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Calm Interior</p>
+                    <p class="text-amber-200 font-bold text-lg mb-6">105 RON</p>
                 </div>
                 <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
             </div>
 
             <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1588444839138-eb6a5040d959?w=500" class="product-img" alt="Ametist">
+                <img src="https://images.unsplash.com/photo-1515562141207-7a18b5ce7142?w=500" class="product-img" alt="Amazonit">
                 <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Amethyst Spirit" data-en="Amethyst Spirit">Amethyst Spirit</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Liniște & Claritate</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">120 RON</p>
-                </div>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
-            </div>
-
-            <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1615484477778-ca3b77940c25?w=500" class="product-img" alt="Cuart Roz">
-                <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Rose Quartz Love" data-en="Rose Quartz Love">Rose Quartz Love</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Iubire Necondiționată</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">115 RON</p>
-                </div>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
-            </div>
-
-            <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1551028150-64b9f398f678?w=500" class="product-img" alt="Lapis Lazuli">
-                <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Lapis Lazuli" data-en="Lapis Lazuli">Lapis Lazuli</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Înțelepciune</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">145 RON</p>
-                </div>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
-            </div>
-
-            <div class="glass-card p-5 rounded-3xl">
-                <img src="https://images.unsplash.com/photo-1615484477201-9f4953340fab?w=500" class="product-img" alt="Citrin">
-                <div class="flex-grow text-center">
-                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Citrine Abundance" data-en="Citrine Abundance">Citrine Abundance</h3>
-                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Prosperitate</p>
-                    <p class="text-amber-200 font-bold text-lg mb-6">140 RON</p>
-                </div>
-                <button class="w-full border border-white/20 py-3 text-[10px] uppercase tracking-widest hover:bg-white hover:text-black transition rounded-xl">Adaugă</button>
-            </div>
-
-        </div>
-    </main>
-
-    <script>
-        function changeL(lang) {
-            document.querySelectorAll('.p-title').forEach(el => el.innerText = el.getAttribute('data-' + lang));
-            document.getElementById('btn-ro').className = lang === 'ro' ? 'text-amber-400 font-bold text-xs' : 'text-white font-bold text-xs';
-            document.getElementById('btn-en').className = lang === 'en' ? 'text-amber-400 font-bold text-xs' : 'text-white font-bold text-xs';
-        }
-    </script>
-</body>
-</html>
+                    <h3 class="serif text-xl italic mb-2 p-title" data-ro="Amazonite Balance" data-en="Amazonite Balance">Amazonite Balance</h3>
+                    <p class="text-[10px] text-stone-400 uppercase tracking-widest mb-4">Speranță & Calm</p>
+                    <p class="text-amber-200 font-bold text-lg mb-6">125 RON [cite: shop.
