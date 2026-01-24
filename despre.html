@@ -11,45 +11,33 @@
         
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
         
-        .bg-fixed { 
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-            background-image: url('cristale.jpg'); background-size: cover; 
-            background-position: center; z-index: -2; filter: brightness(0.3); 
-        }
-        
-        .serif { font-family: 'Playfair Display', serif; }
+        /* Containerul care ascunde marginile imaginii în timp ce se mărește */
+.bg-container {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    z-index: -2;
+    overflow: hidden;
+}
 
-        /* Container conținut tip Glassmorphism */
-        .glass-article { 
-            background: rgba(255, 255, 255, 0.05); 
-            backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); 
-            padding: 3rem;
-            border-radius: 2.5rem;
-        }
+/* Imaginea care se mișcă */
+.bg-image {
+    width: 100%;
+    height: 100%;
+    background-image: url('cristale.jpg');
+    background-size: cover;
+    background-position: center;
+    filter: brightness(0.35);
+    animation: backgroundZoom 25s infinite alternate ease-in-out;
+}
 
-        /* Stil Butoane Sociale */
-        .social-btn {
-            background: rgba(255, 255, 255, 0.03);
-            border: 1px solid rgba(255, 255, 255, 0.1);
-            padding: 0.7rem 1.4rem;
-            border-radius: 50px;
-            color: #a8a29e;
-            font-size: 11px;
-            font-weight: bold;
-            transition: 0.4s all ease;
-            text-decoration: none;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-        }
-        .social-btn:hover {
-            background: rgba(252, 211, 77, 0.1);
-            border-color: #fcd34d;
-            color: #fcd34d;
-            box-shadow: 0 0 15px rgba(252, 211, 77, 0.2);
-            transform: translateY(-3px);
-        }
+/* Regula pentru animația de zoom lent */
+@keyframes backgroundZoom {
+    from { transform: scale(1); }
+    to { transform: scale(1.15); }
+}
     </style>
 </head>
 <body>
@@ -106,4 +94,5 @@
     </footer>
 </body>
 </html>
+
 
