@@ -16,8 +16,7 @@
         .bg-image { 
             width: 100%; height: 100%; 
             background-image: url('cristale.jpg'); 
-            background-size: cover; 
-            background-position: center; 
+            background-size: cover; background-position: center; 
             filter: brightness(0.3); 
             animation: backgroundZoom 25s infinite alternate ease-in-out; 
         }
@@ -31,7 +30,6 @@
 
         .img-container { width: 100%; height: 18rem; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1.5rem; cursor: zoom-in; }
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
-        .glass-card:hover .product-img { transform: scale(1.1); }
 
         /* BUTOANE UNIFIED */
         .btn-unified {
@@ -44,13 +42,40 @@
             cursor: pointer;
             display: inline-flex;
             align-items: center; justify-content: center; gap: 10px;
-            text-decoration: none;
         }
-        .btn-unified:hover { background-color: white; color: black; box-shadow: 0 10px 20px rgba(0,0,0,0.3); }
+        .btn-unified:hover { background-color: white; color: black; }
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
-        .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; min-width: 130px; }
 
-        /* LIGHTBOX PENTRU IMAGINI */
+        /* PICTOGRAMA COȘ (Floating Cart) */
+        .cart-trigger {
+            position: fixed; top: 2rem; right: 2rem;
+            z-index: 100; background: white; color: black;
+            width: 3.5rem; height: 3.5rem; border-radius: 50%;
+            display: flex; items-center; justify-content: center;
+            cursor: pointer; transition: 0.3s cubic-bezier(0.23, 1, 0.32, 1);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .cart-trigger:hover { transform: scale(1.1); }
+        #cart-count-badge {
+            position: absolute; top: -5px; right: -5px;
+            background: #ff4757; color: white;
+            font-size: 10px; font-weight: bold;
+            min-width: 20px; height: 20px; border-radius: 10px;
+            display: flex; items-center; justify-content: center; padding: 0 5px;
+        }
+
+        /* PANOU LATERAL COȘ */
+        #cart-sidebar {
+            position: fixed; top: 0; right: 0; height: 100%; width: 350px;
+            background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px);
+            z-index: 1100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
+            border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;
+            display: flex; flex-direction: column;
+        }
+        #cart-sidebar.open { transform: translateX(0); }
+        .cart-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
+
+        /* LIGHTBOX */
         #lightbox {
             display: none; position: fixed; z-index: 1000;
             top: 0; left: 0; width: 100%; height: 100%;
@@ -60,26 +85,16 @@
         #lightbox img { max-width: 90%; max-height: 80%; border-radius: 1rem; transform: scale(0.9); transition: 0.3s; }
         #lightbox.open img { transform: scale(1); }
 
-        /* PANOU LATERAL COȘ */
-        #cart-sidebar {
-            position: fixed; top: 0; right: 0; height: 100%; width: 350px;
-            background: rgba(8, 3, 16, 0.95); backdrop-filter: blur(25px);
-            z-index: 1100; transform: translateX(100%); transition: transform 0.5s cubic-bezier(0.22, 1, 0.36, 1);
-            border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem;
-            display: flex; flex-direction: column;
-        }
-        #cart-sidebar.open { transform: translateX(0); }
-
-        .cart-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
-
-        /* Badge pentru număr produse în coș */
-        #cart-count { background: white; color: black; font-size: 9px; padding: 2px 6px; border-radius: 50px; margin-left: 5px; font-weight: 800; vertical-align: middle; }
-
-        footer { background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); backdrop-filter: blur(10px); }
+        footer { background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); }
     </style>
 </head>
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
+
+    <div class="cart-trigger" onclick="toggleCart()">
+        <i class="fa-solid fa-bag-shopping"></i>
+        <span id="cart-count-badge">0</span>
+    </div>
 
     <div id="lightbox" onclick="closeLightbox()"><img id="lightbox-img" src="" alt=""></div>
 
@@ -88,8 +103,7 @@
             <h2 class="serif text-3xl italic">Coșul Tău</h2>
             <button onclick="toggleCart()" class="text-white/50 hover:text-white text-2xl">&times;</button>
         </div>
-        <div id="cart-content" class="flex-grow overflow-y-auto pr-2">
-            </div>
+        <div id="cart-content" class="flex-grow overflow-y-auto pr-2"></div>
         <div class="mt-8 pt-8 border-t border-white/10">
             <div class="flex justify-between items-center mb-8">
                 <span class="text-stone-500 uppercase text-[10px] tracking-widest">Subtotal</span>
@@ -106,16 +120,11 @@
             <a href="products.html" class="border-b border-white">Colecție</a>
             <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
-            <button onclick="toggleCart()" class="hover:text-stone-400 transition flex items-center">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span id="cart-count">0</span>
-            </button>
         </div>
     </nav>
 
     <main class="max-w-7xl mx-auto pt-40 px-10 pb-24 relative z-10">
         <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
-            
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
                 <div class="img-container" onclick="openLightbox('ametist.jpg')"><img src="ametist.jpg" class="product-img"></div>
                 <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
@@ -150,7 +159,6 @@
                 <p class="text-stone-400 font-bold text-lg mb-6 tracking-widest">85 RON</p>
                 <button onclick="addToCart('Spiritul Buddha', 85, 'cuart-roz.jpg')" class="btn-unified product-btn">Adaugă în coș</button>
             </div>
-
         </div>
     </main>
 
@@ -158,12 +166,12 @@
         <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-12">
             <div class="serif text-2xl italic text-stone-300">Energetica</div>
             <div class="flex flex-wrap gap-4 justify-center items-center">
-                <a href="https://instagram.com" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="https://tiktok.com" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="https://facebook.com" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
-                <a href="https://t.me" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                <a href="https://instagram.com" target="_blank" class="btn-unified px-6 py-3 rounded-full text-[11px]"><i class="fa-brands fa-instagram"></i> Instagram</a>
+                <a href="https://tiktok.com" target="_blank" class="btn-unified px-6 py-3 rounded-full text-[11px]"><i class="fa-brands fa-tiktok"></i> TikTok</a>
+                <a href="https://facebook.com" target="_blank" class="btn-unified px-6 py-3 rounded-full text-[11px]"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
+                <a href="https://t.me" target="_blank" class="btn-unified px-6 py-3 rounded-full text-[11px]"><i class="fa-brands fa-telegram"></i> Telegram</a>
             </div>
-            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-bold">© 2026 Energetica • Energie pură</p>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
         </div>
     </footer>
 
@@ -173,18 +181,12 @@
         function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
 
         function addToCart(name, price, img) {
-            // Căutăm dacă produsul există deja
-            const existingProduct = cart.find(item => item.name === name);
-            
-            if (existingProduct) {
-                existingProduct.quantity += 1;
-            } else {
-                cart.push({name, price, img, quantity: 1});
-            }
-
+            const existing = cart.find(item => item.name === name);
+            if (existing) { existing.quantity += 1; } 
+            else { cart.push({name, price, img, quantity: 1}); }
             localStorage.setItem('energetica_cart', JSON.stringify(cart));
             updateCartUI();
-            if(!document.getElementById('cart-sidebar').classList.contains('open')) toggleCart();
+            // Nu mai deschidem toggleCart() automat, doar actualizăm badge-ul.
         }
 
         function removeFromCart(name) {
@@ -196,12 +198,9 @@
         function updateCartUI() {
             const container = document.getElementById('cart-content');
             const totalEl = document.getElementById('cart-total');
-            const countEl = document.getElementById('cart-count');
-            
+            const badge = document.getElementById('cart-count-badge');
             container.innerHTML = '';
-            let total = 0;
-            let totalItems = 0;
-
+            let total = 0; let totalItems = 0;
             cart.forEach((item) => {
                 total += item.price * item.quantity;
                 totalItems += item.quantity;
@@ -215,9 +214,9 @@
                         <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white">&times;</button>
                     </div>`;
             });
-            
             totalEl.innerText = total + " RON";
-            countEl.innerText = totalItems;
+            badge.innerText = totalItems;
+            badge.style.display = totalItems > 0 ? 'flex' : 'none';
         }
 
         function openLightbox(src) {
@@ -232,7 +231,6 @@
             setTimeout(() => lb.style.display = 'none', 300);
         }
 
-        // Inițializare la încărcare
         updateCartUI();
     </script>
 </body>
