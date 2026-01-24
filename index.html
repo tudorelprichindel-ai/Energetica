@@ -25,7 +25,7 @@
 
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* BUTON UNIFIED CU ZOOM LA HOVER */
+        /* BUTON UNIFIED */
         .btn-unified { 
             border: 1px solid rgba(255, 255, 255, 0.2); 
             background: transparent; 
@@ -51,30 +51,15 @@
         .hero-btn { padding: 1.25rem 3.5rem; font-size: 11px; letter-spacing: 0.4em; border-radius: 2px; }
         .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
 
-        /* --- EFECTUL DE APARIȚIE TEXT (RESTAURAT) --- */
-        .reveal-text {
-            animation: revealUp 2s ease-out forwards;
-            opacity: 0;
-        }
-
+        /* EFECT APARIȚIE TEXT */
+        .reveal-text { animation: revealUp 2s ease-out forwards; opacity: 0; }
         @keyframes revealUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-                filter: blur(10px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-                filter: blur(0);
-            }
+            from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
+            to { opacity: 1; transform: translateY(0); filter: blur(0); }
         }
-
-        /* Delay pentru elemente ca să apară pe rând */
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.5s; }
         .delay-3 { animation-delay: 0.8s; }
-
     </style>
 </head>
 <body>
@@ -92,9 +77,7 @@
 
     <main class="h-screen flex flex-col justify-center items-center text-center px-10 relative z-10">
         <h1 class="serif text-6xl md:text-9xl italic mb-6 leading-tight reveal-text delay-1">Energetica</h1>
-        
         <p class="text-stone-400 text-xs md:text-sm uppercase tracking-[0.6em] mb-14 reveal-text delay-2">Echilibrul cristalelor în palma ta</p>
-        
         <div class="reveal-text delay-3">
             <a href="products.html" class="btn-unified hero-btn">Vezi Colecția</a>
         </div>
