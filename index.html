@@ -8,89 +8,37 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; }
         
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        
-        /* EFECT ZOOM PE FUNDAL (Animație lentă de respirație) */
-        .bg-container {
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-            z-index: -2; overflow: hidden;
-        }
-        .bg-image {
-            width: 100%; height: 100%;
-            background-image: url('cristale.jpg');
-            background-size: cover;
-            background-position: center;
-            filter: brightness(0.35);
-            animation: backgroundZoom 20s infinite alternate ease-in-out;
-        }
-        @keyframes backgroundZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
+        /* FUNDAL CU ZOOM LENT */
+        .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
+        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; background-position: center; filter: brightness(0.35); animation: backgroundZoom 25s infinite alternate ease-in-out; }
+        @keyframes backgroundZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
         .serif { font-family: 'Playfair Display', serif; }
-        
-        /* BUTON UNIFIED CU EFECT DE ZOOM LA HOVER */
-        .btn-unified { 
-            border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: transparent; 
-            color: white; 
-            text-transform: uppercase; 
-            font-weight: bold; 
-            transition: all 0.4s cubic-bezier(0.23, 1, 0.32, 1); 
-            cursor: pointer; 
-            display: inline-flex; 
-            align-items: center; 
-            justify-content: center; 
-            gap: 10px; 
-            text-decoration: none; 
-        }
-        
-        .btn-unified:hover { 
-            background-color: white; 
-            color: black; 
-            box-shadow: 0 15px 30px rgba(0,0,0,0.4); 
-            transform: translateY(-5px) scale(1.05); /* ZOOM pe buton la hover */
-        }
-        
-        .hero-btn { padding: 1.25rem 3.5rem; font-size: 11px; letter-spacing: 0.4em; border-radius: 2px; }
+        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: all 0.4s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+        .btn-unified:hover { background-color: white; color: black; box-shadow: 0 10px 20px rgba(0,0,0,0.3); transform: translateY(-2px) scale(1.05); }
+        .hero-btn { padding: 1.25rem 3.5rem; font-size: 11px; letter-spacing: 0.4em; }
         .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
-
-        /* Animație de apariție pentru text */
-        .fade-in {
-            animation: fadeInText 2s ease-out;
-        }
-        @keyframes fadeInText {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
     </style>
 </head>
 <body>
-    <div class="bg-container">
-        <div class="bg-image"></div>
-    </div>
-
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
-        <div class="serif text-2xl font-bold uppercase italic tracking-tighter">Energetica</div>
-        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.3em]">
-            <a href="index.html" class="text-white border-b border-white/40">Acasă</a>
+    <div class="bg-container"><div class="bg-image"></div></div>
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
+        <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
+            <a href="index.html" class="text-white border-b border-white">Acasă</a>
             <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
             <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
             <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
         </div>
     </nav>
-
     <main class="h-screen flex flex-col justify-center items-center text-center px-10 relative z-10">
-        <div class="fade-in">
-            <h1 class="serif text-6xl md:text-9xl italic mb-6 leading-tight">Energetica</h1>
-            <p class="text-stone-400 text-xs md:text-sm uppercase tracking-[0.6em] mb-14">Echilibrul cristalelor în palma ta</p>
-            <a href="products.html" class="btn-unified hero-btn">Vezi Colecția</a>
-        </div>
+        <h1 class="serif text-6xl md:text-9xl italic mb-6">Energetica</h1>
+        <p class="text-stone-400 text-xs uppercase tracking-[0.6em] mb-14">Echilibrul cristalelor în palma ta</p>
+        <a href="products.html" class="btn-unified hero-btn">Vezi Colecția</a>
     </main>
-
-    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-xl relative z-50">
+    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-md relative z-50">
         <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
             <div class="serif text-xl italic text-stone-300">Energetica</div>
             <div class="flex flex-wrap gap-4 justify-center">
@@ -99,7 +47,6 @@
                 <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
                 <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
             </div>
-            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
         </div>
     </footer>
 </body>
