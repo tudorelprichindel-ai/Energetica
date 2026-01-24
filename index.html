@@ -9,9 +9,9 @@
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
         
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow: hidden; }
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* ZOOM PE FUNDAL */
+        /* ZOOM LENT FUNDAL */
         .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
         .bg-image { 
             width: 100%; height: 100%; 
@@ -25,10 +25,10 @@
 
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* BUTON UNIFIED */
+        /* BUTOANE UNIFIED (INDEX & SOCIAL) */
         .btn-unified { 
             border: 1px solid rgba(255, 255, 255, 0.2); 
-            background: transparent; 
+            background: rgba(255, 255, 255, 0.02); 
             color: white; 
             text-transform: uppercase; 
             font-weight: bold; 
@@ -48,10 +48,10 @@
             transform: translateY(-5px) scale(1.05); 
         }
         
-        .hero-btn { padding: 1.25rem 3.5rem; font-size: 11px; letter-spacing: 0.4em; border-radius: 2px; }
-        .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; }
+        .hero-btn { padding: 1.25rem 3.5rem; font-size: 11px; letter-spacing: 0.4em; }
+        .social-btn { padding: 0.7rem 1.4rem; border-radius: 50px; font-size: 11px; min-width: 140px; }
 
-        /* EFECT APARIȚIE TEXT */
+        /* REVEAL ANIMATION */
         .reveal-text { animation: revealUp 2s ease-out forwards; opacity: 0; }
         @keyframes revealUp {
             from { opacity: 0; transform: translateY(30px); filter: blur(10px); }
@@ -60,12 +60,20 @@
         .delay-1 { animation-delay: 0.2s; }
         .delay-2 { animation-delay: 0.5s; }
         .delay-3 { animation-delay: 0.8s; }
+
+        /* STRATIFICARE FOOTER */
+        footer { 
+            position: relative; 
+            z-index: 100; /* Ne asigurăm că e deasupra tuturor elementelor */
+            background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%);
+            backdrop-filter: blur(10px);
+        }
     </style>
 </head>
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
 
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/20 backdrop-blur-md border-b border-white/10">
+    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic tracking-tighter">Energetica</div>
         <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-[0.3em]">
             <a href="index.html" class="text-white border-b border-white/40">Acasă</a>
@@ -83,16 +91,26 @@
         </div>
     </main>
 
-    <footer class="w-full py-12 border-t border-white/10 bg-black/60 backdrop-blur-xl relative z-50">
-        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-8">
-            <div class="serif text-xl italic text-stone-300">Energetica</div>
-            <div class="flex flex-wrap gap-4 justify-center">
-                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
-                <a href="#" target="_blank" class="btn-unified social-btn"><i class="fa-brands fa-telegram"></i> Telegram</a>
+    <footer class="w-full py-16 border-t border-white/10">
+        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-12">
+            <div class="serif text-2xl italic text-stone-300">Energetica</div>
+            
+            <div class="flex flex-wrap gap-4 justify-center items-center">
+                <a href="https://instagram.com" target="_blank" class="btn-unified social-btn">
+                    <i class="fa-brands fa-instagram"></i> Instagram
+                </a>
+                <a href="https://tiktok.com" target="_blank" class="btn-unified social-btn">
+                    <i class="fa-brands fa-tiktok"></i> TikTok
+                </a>
+                <a href="https://facebook.com" target="_blank" class="btn-unified social-btn">
+                    <i class="fa-brands fa-facebook-f"></i> Facebook
+                </a>
+                <a href="https://t.me" target="_blank" class="btn-unified social-btn">
+                    <i class="fa-brands fa-telegram"></i> Telegram
+                </a>
             </div>
-            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica • Energie pură</p>
+            
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-bold">© 2026 Energetica • Energie pură</p>
         </div>
     </footer>
 </body>
