@@ -3,47 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Colecție Produse</title>
+    <title>Energetica | Produse</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <style>
         @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; }
-        
-        /* Fundal fix cu imaginea cristale.jpg */
-        .bg-fixed { 
-            position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; 
-            background-image: url('cristale.jpg'); background-size: cover; 
-            background-position: center; z-index: -2; filter: brightness(0.3); 
-        }
-        
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        .bg-fixed { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background-image: url('cristale.jpg'); background-size: cover; background-position: center; z-index: -2; filter: brightness(0.35); }
         .serif { font-family: 'Playfair Display', serif; }
-        
-        /* Cardul de tip Glassmorphism */
-        .glass-card { 
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); 
-            border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s ease-in-out; 
-        }
-        .glass-card:hover { transform: translateY(-10px); border-color: #fcd34d; }
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s cubic-bezier(0.22, 1, 0.36, 1); display: flex; flex-direction: column; }
+        .glass-card:hover { transform: translateY(-10px); border-color: rgba(252, 211, 77, 0.5); box-shadow: 0 20px 40px rgba(0,0,0,0.4); }
 
-        /* Animația de ZOOM solicitată */
-        .img-container { 
-            width: 100%; height: 18rem; overflow: hidden; 
-            border-radius: 1.5rem; margin-bottom: 1.5rem; 
-        }
-        .product-img { 
-            width: 100%; height: 100%; object-fit: cover; 
-            transition: transform 0.7s ease-in-out; 
-        }
+        /* Containerul pentru animația de zoom solicitată */
+        .img-container { width: 100%; height: 18rem; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1.5rem; border: 1px solid rgba(255, 255, 255, 0.1); }
+        .product-img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.6s cubic-bezier(0.22, 1, 0.36, 1); }
         .glass-card:hover .product-img { transform: scale(1.15); }
 
-        /* Notificare Pop-up */
-        #toast { 
-            visibility: hidden; min-width: 250px; background-color: #fcd34d; 
-            color: #000; text-align: center; border-radius: 50px; padding: 16px; 
-            position: fixed; z-index: 100; left: 50%; bottom: 30px; 
-            transform: translateX(-50%); font-weight: bold; font-size: 11px; 
-        }
+        #toast { visibility: hidden; min-width: 250px; background-color: #fcd34d; color: #000; text-align: center; border-radius: 50px; padding: 16px; position: fixed; z-index: 100; left: 50%; bottom: 30px; transform: translateX(-50%); font-size: 10px; font-weight: bold; text-transform: uppercase; letter-spacing: 2px; }
         #toast.show { visibility: visible; animation: fadein 0.5s, fadeout 0.5s 2.5s; }
         @keyframes fadein { from {bottom: 0; opacity: 0;} to {bottom: 30px; opacity: 1;} }
         @keyframes fadeout { from {bottom: 30px; opacity: 1;} to {bottom: 0; opacity: 0;} }
@@ -51,15 +26,15 @@
 </head>
 <body>
     <div class="bg-fixed"></div>
-    <div id="toast">VIBRAȚIE ADĂUGATĂ ÎN COȘ</div>
-
+    <div id="toast">Vibrație adăugată în coș</div>
+    
     <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
         <div class="serif text-2xl font-bold uppercase italic">Energetica</div>
         <div class="hidden md:flex gap-8 text-[10px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="hover:text-amber-400 transition">Acasă</a>
+            <a href="index.html" class="hover:text-amber-400">Acasă</a>
             <a href="products.html" class="text-amber-400">Colecție</a>
-            <a href="despre.html" class="hover:text-amber-400 transition">Ghid</a>
-            <a href="contact.html" class="hover:text-amber-400 transition">Contact</a>
+            <a href="despre.html" class="hover:text-amber-400">Ghid</a>
+            <a href="contact.html" class="hover:text-amber-400">Contact</a>
         </div>
     </nav>
 
@@ -74,7 +49,7 @@
             </div>
 
             <div class="glass-card p-6 rounded-[2.5rem] text-center">
-                <div class="img-container"><img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție"></div>
+                <div class="img-container"><img src="bratara_tripla.jpg" class="product-img" alt="Triplă Protecție Azur"></div>
                 <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
                 <p class="text-amber-300 font-bold text-lg mb-6 tracking-widest">85 RON</p>
                 <button onclick="showToast()" class="w-full border border-white/20 py-4 text-[10px] uppercase font-bold rounded-xl hover:bg-white hover:text-black transition">Adaugă în coș</button>
