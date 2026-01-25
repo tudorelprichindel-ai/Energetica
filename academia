@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Energetica | Academia</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
+        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
+        .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
+        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; filter: brightness(0.2); }
+        .serif { font-family: 'Playfair Display', serif; }
+        #dropdown-menu { max-height: 0; opacity: 0; overflow: hidden; transition: 0.6s; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(20px); }
+        #dropdown-menu.open { max-height: 600px; opacity: 1; }
+        .nav-link-mobile { padding: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); width: 100%; text-align: center; display: block; }
+        .lang-btn { font-size: 10px; border: 1px solid rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px; }
+        .lang-active { background: white; color: black; }
+        .card-digital { background: rgba(255,255,255,0.03); border: 1px solid rgba(255,255,255,0.1); border-radius: 2rem; padding: 2rem; text-align: center; transition: 0.4s; }
+        .card-digital:hover { border-color: white; transform: translateY(-5px); }
+        #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: #080310; z-index: 3000; transform: translateX(100%); transition: 0.5s; border-left: 1px solid rgba(255,255,255,0.1); padding: 2rem; display: flex; flex-direction: column; }
+        #cart-sidebar.open { transform: translateX(0); }
+    </style>
+</head>
+<body>
+    <div class="bg-container"><div class="bg-image"></div></div>
+
+    <div id="cart-sidebar">
+        <div class="flex justify-between items-center mb-10 text-white">
+            <h2 class="serif text-3xl italic">Punga ta</h2>
+            <button onclick="toggleCart()" class="text-4xl">&times;</button>
+        </div>
+        <div id="cart-content" class="flex-grow overflow-y-auto"></div>
+        <div class="mt-8 pt-6 border-t border-white/10 text-center">
+            <div class="flex justify-between items-center mb-6 px-4 font-bold tracking-widest text-xl text-white">
+                <span>TOTAL:</span><span id="cart-total">0 RON</span>
+            </div>
+            <button onclick="sendOrder()" class="w-full py-5 border border-white/20 text-white rounded-xl text-[10px] tracking-widest font-bold uppercase hover:bg-white hover:text-black transition">Finalizare Comandă</button>
+        </div>
+    </div>
+
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10 text-white">
+        <div class="p-5 md:p-8 flex justify-between items-center">
+            <div class="flex items-center gap-4">
+                <button onclick="toggleDropdown()" class="lg:hidden text-2xl"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
+                <a href="index.html" class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">Energetica</a>
+            </div>
+            <div class="flex items-center gap-4 md:gap-10">
+                <div class="flex gap-2 mr-4">
+                    <button class="lang-btn lang-active">RO</button>
+                    <button class="lang-btn">EN</button>
+                    <button class="lang-btn">RU</button>
+                </div>
+                <div class="hidden lg:flex gap-6 items-center text-[10px] font-bold uppercase tracking-widest">
+                    <a href="index.html" class="hover:text-stone-400">Acasă</a>
+                    <a href="products.html" class="hover:text-stone-400">Colecție</a>
+                    <a href="academia.html" class="border-b border-white">Academia</a>
+                    <a href="club.html" class="hover:text-stone-400">Clubul</a>
+                    <a href="programari.html" class="hover:text-stone-400">Consultații</a>
+                    <a href="contact.html" class="hover:text-stone-400">Contact</a>
+                </div>
+                <div onclick="toggleCart()" class="cursor-pointer relative"><i class="fa-solid fa-bag-shopping text-2xl"></i><span id="cart-badge" class="absolute -bottom-1 -right-1 bg-white text-black text-[9px] font-bold px-1 rounded-full">0</span></div>
+            </div>
+        </div>
+        <div id="dropdown-menu" class="lg:hidden">
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="nav-link-mobile serif text-xl italic">Acasă</a>
+                <a href="products.html" class="nav-link-mobile serif text-xl italic">Colecție</a>
+                <a href="academia.html" class="nav-link-mobile serif text-xl italic">Academia</a>
+                <a href="club.html" class="nav-link-mobile serif text-xl italic">Clubul</a>
+                <a href="programari.html" class="nav-link-mobile serif text-xl italic">Consultații</a>
+                <a href="contact.html" class="nav-link-mobile serif text-xl italic">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="max-w-7xl mx-auto pt-40 px-6 pb-24 relative z-10">
+        <h2 class="serif text-4xl md:text-5xl italic mb-12 text-center">Academia Energetica</h2>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <div class="card-digital">
+                <i class="fa-solid fa-play-circle text-4xl mb-4 opacity-40"></i>
+                <h3 class="serif text-2xl italic mb-1">Curs Video: Sun & Moon</h3>
+                <p class="text-stone-500 text-[10px] uppercase mb-4 tracking-widest font-bold italic">Mass Market • Acces Instant</p>
+                <p class="text-2xl serif mb-8">150 RON</p>
+                <button onclick="addToCart('Curs Video: Sun & Moon', 150, 'video.jpg')" class="w-full py-4 border border-white/20 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Adaugă în pungă</button>
+            </div>
+
+            <div class="card-digital">
+                <i class="fa-regular fa-file-pdf text-4xl mb-4 opacity-40"></i>
+                <h3 class="serif text-2xl italic mb-1">Ghid: Money Code</h3>
+                <p class="text-stone-500 text-[10px] uppercase mb-4 tracking-widest font-bold italic">PDF Digital • Step-by-Step</p>
+                <p class="text-2xl serif mb-8">120 RON</p>
+                <button onclick="addToCart('Ghid: Money Code', 120, 'pdf.jpg')" class="w-full py-4 border border-white/20 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Adaugă în pungă</button>
+            </div>
+
+            <div class="card-digital">
+                <i class="fa-regular fa-file-pdf text-4xl mb-4 opacity-40"></i>
+                <h3 class="serif text-2xl italic mb-1">Ghid: Solar Power</h3>
+                <p class="text-stone-500 text-[10px] uppercase mb-4 tracking-widest font-bold italic">PDF Digital • Ghid Aniversar</p>
+                <p class="text-2xl serif mb-8">95 RON</p>
+                <button onclick="addToCart('Ghid: Solar Power', 95, 'pdf.jpg')" class="w-full py-4 border border-white/20 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">Adaugă în pungă</button>
+            </div>
+        </div>
+    </main>
+
+    <script>
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdown-menu');
+            const icon = document.getElementById('menu-icon');
+            menu.classList.toggle('open');
+            menu.classList.contains('open') ? icon.classList.replace('fa-bars-staggered', 'fa-xmark') : icon.classList.replace('fa-xmark', 'fa-bars-staggered');
+        }
+        let cart = JSON.parse(localStorage.getItem('energetica_cart')) || [];
+        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
+        function updateCartUI() {
+            const container = document.getElementById('cart-content');
+            const totalEl = document.getElementById('cart-total');
+            const badge = document.getElementById('cart-badge');
+            container.innerHTML = '';
+            let total = 0; let totalItems = 0;
+            cart.forEach((item) => {
+                total += item.price * item.quantity;
+                totalItems += item.quantity;
+                container.innerHTML += `<div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/5 text-white"><div class="flex-grow"><h4 class="text-[10px] uppercase font-bold">${item.name}</h4><p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p></div><button onclick="removeFromCart('${item.name}')" class="text-white/20 text-2xl">&times;</button></div>`;
+            });
+            totalEl.innerText = total + " RON";
+            badge.innerText = totalItems;
+            badge.style.display = totalItems > 0 ? 'flex' : 'none';
+        }
+        function addToCart(name, price, img) {
+            const existing = cart.find(item => item.name === name);
+            if(existing) existing.quantity += 1;
+            else cart.push({name, price, img, quantity: 1});
+            localStorage.setItem('energetica_cart', JSON.stringify(cart));
+            updateCartUI();
+            toggleCart();
+        }
+        function removeFromCart(name) {
+            cart = cart.filter(item => item.name !== name);
+            localStorage.setItem('energetica_cart', JSON.stringify(cart));
+            updateCartUI();
+        }
+        function sendOrder() {
+            const phone = "37127507367"; 
+            let orderDetails = "";
+            cart.forEach(item => orderDetails += `• ${item.name} (${item.quantity} buc.)\n`);
+            const baseText = `Bună! Vreau să achiziționez aceste resurse digitale:\n\n${orderDetails}\n*TOTAL: ${document.getElementById('cart-total').innerText}*`;
+            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(baseText)}`, '_blank');
+        }
+        window.onload = updateCartUI;
+    </script>
+</body>
+</html>
