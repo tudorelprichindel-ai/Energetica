@@ -3,41 +3,31 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Elena Shipko | Astrology Power Boutique</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Energetica | Elena Shipko</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
     <style>
         :root {
-            --midnight: #0a0e14;
             --gold: #c5a059;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif;
-            color: var(--white); background-color: var(--midnight); overflow-x: hidden;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Montserrat', sans-serif; color: var(--white);
+            background-color: #0a0e14; overflow-x: hidden;
         }
 
-        /* FUNDALUL TĂU SPECIFIC: cristale.jpg */
+        /* RESTAURARE FUNDAL ORIGINAL */
         .crystal-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(rgba(10, 14, 20, 0.7), rgba(10, 14, 20, 0.7)), 
-                        url('cristale.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale.jpg') no-repeat center center;
             background-size: cover;
-            transform: scale(1.1);
-            animation: crystalDrift 20s infinite alternate ease-in-out;
         }
 
-        @keyframes crystalDrift {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
-
-        /* HEADER UNIVERSAL */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass);
+            background: rgba(10, 14, 20, 0.8); backdrop-filter: blur(10px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
         }
 
         .nav-container {
@@ -46,122 +36,49 @@
         }
 
         .logo {
-            font-family: 'Playfair Display', serif; font-size: 1.6rem;
-            color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: 700;
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            color: var(--gold); text-decoration: none; letter-spacing: 2px;
         }
 
-        /* NAVIGARE CU DROP-DOWNS DIN SCHIȚE */
-        .nav-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
-        .nav-menu li { position: relative; }
-        .nav-menu a {
-            text-decoration: none; color: var(--white); font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s;
-        }
-        .nav-menu a:hover { color: var(--gold); }
+        .nav-menu { display: flex; gap: 2rem; list-style: none; }
+        .nav-menu a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; }
 
-        .dropdown-content {
-            display: none; position: absolute; top: 100%; left: 0;
-            background: rgba(10, 14, 20, 0.98); min-width: 260px;
-            border: 1px solid var(--glass); padding: 1rem 0; box-shadow: 0 15px 45px rgba(0,0,0,0.8);
-        }
-        .nav-menu li:hover .dropdown-content { display: block; }
-        .dropdown-content a { padding: 0.8rem 1.5rem; display: block; text-transform: none; font-size: 0.9rem; }
-        .dropdown-content a:hover { background: var(--glass); color: var(--gold); }
-
-        /* HERO - "3 MINUTE DE INTERES" */
         .hero {
             height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
+            justify-content: center; align-items: center; text-align: center;
         }
-        .hero h1 {
-            font-size: clamp(2.5rem, 7vw, 4rem); font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem; background: linear-gradient(to bottom, #fff, var(--gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p { font-size: 1.1rem; max-width: 700px; color: #ddd; margin-bottom: 2rem; font-weight: 300; }
 
-        .cta-gold {
-            padding: 1.2rem 3rem; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; text-transform: uppercase; font-size: 0.8rem;
-            letter-spacing: 3px; transition: 0.5s;
-        }
-        .cta-gold:hover { background: var(--gold); color: var(--midnight); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 0.5rem; }
+        .hero p { font-weight: 300; letter-spacing: 1px; }
 
-        /* GRILA PILONI DE BUSINESS (Conform Schiței WhatsApp) */
-        .business-grid { padding: 8rem 2rem; max-width: 1200px; margin: 0 auto; display: grid; 
-                         grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
-        
-        .biz-card {
-            background: rgba(255, 255, 255, 0.03); padding: 4rem 2rem; text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
-            transition: 0.4s; text-decoration: none; color: white;
+        .btn {
+            margin-top: 2rem; padding: 1rem 2.5rem; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none; transition: 0.3s;
         }
-        .biz-card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(255,255,255,0.07); }
-        .biz-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 1rem; }
-
-        footer { padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--glass); color: #666; font-size: 0.8rem; }
+        .btn:hover { background: var(--gold); color: black; }
     </style>
 </head>
 <body>
-
     <div class="crystal-bg"></div>
-
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <ul class="nav-menu">
-                <li><a href="index.html">Acasă</a></li>
-                <li>
-                    <a href="programari.html">Consultații ▾</a>
-                    <div class="dropdown-content">
-                        <a href="business.html">Business & Bani (Astro HR)</a>
-                        <a href="personal.html">Personal (Cine sunt eu?)</a>
-                        <a href="relatii.html">Relații & Parteneriat</a>
-                        <a href="kids.html">Copii & Potențial</a>
-                    </div>
-                </li>
-                <li>
-                    <a href="academia.html">Academia ▾</a>
-                    <div class="dropdown-content">
-                        <a href="cursuri.html">Cursuri Video (Sun, Moon, Venus)</a>
-                        <a href="ghiduri.html">Ghiduri & Fișiere PDF</a>
-                        <a href="social.html">Social Project (Astro/NLP)</a>
-                    </div>
-                </li>
-                <li><a href="products.html">Colecție</a></li>
-                <li><a href="club.html">Club VIP</a></li>
-            </ul>
+            <nav>
+                <ul class="nav-menu">
+                    <li><a href="index.html">Acasă</a></li>
+                    <li><a href="programari.html">Consultații</a></li>
+                    <li><a href="academia.html">Academia</a></li>
+                    <li><a href="products.html">Colecție</a></li>
+                    <li><a href="club.html">Club</a></li>
+                </ul>
+            </nav>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Astrology Power Boutique</h1>
-        <p>Elena Shipko • NLP Master • Business Strategist. <br>Transformăm energia subtilă în rezultate concrete și scalabile.</p>
-        <a href="programari.html" class="cta-gold">Solicită Audit Energetic</a>
+        <h1>Energie Pură</h1>
+        <p>Astrologie • NLP • Mentoring</p>
+        <a href="programari.html" class="btn">Solicită o Sesiune</a>
     </section>
-
-    <section class="business-grid">
-        <a href="business.html" class="biz-card">
-            <h3>BUSINESS</h3>
-            <p>Proforientare, Astro HR și parteneriate de succes.</p>
-        </a>
-        <a href="personal.html" class="biz-card">
-            <h3>PERSONAL</h3>
-            <p>Harta natală, Prognoză Solară și explorarea Umbrei.</p>
-        </a>
-        <a href="academia.html" class="biz-card">
-            <h3>ACADEMIA</h3>
-            <p>Educație profundă prin Cursuri Video și Ghiduri PDF.</p>
-        </a>
-        <a href="club.html" class="biz-card">
-            <h3>CLUBUL VIP</h3>
-            <p>Comunitate exclusivă cu acces la experți în Tarot și Psihologie.</p>
-        </a>
-    </section>
-
-    <footer>
-        <p>© 2026 ENERGETICA • ELENA SHIPKO • TOATE DREPTURILE REZERVATE</p>
-    </footer>
-
 </body>
 </html>
