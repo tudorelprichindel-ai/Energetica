@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Elena Shipko | Energie & Scalabilitate</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Energetica | Elena Shipko | Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --midnight: #0a0e14;
@@ -14,22 +14,37 @@
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif;
-            color: var(--white); background-color: var(--midnight); overflow-x: hidden;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Montserrat', sans-serif; color: var(--white);
+            background-color: var(--midnight); overflow-x: hidden;
         }
 
-        #background-canvas { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; }
+        /* CONTAINER PENTRU FUNDALUL TĂU CU CRISTALE */
+        .crystal-background {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1;
+            background-image: url('cristale.jpg'); /* Numele fișierului tău */
+            background-size: cover;
+            background-position: center;
+            filter: brightness(0.4); /* Întunecăm puțin pentru lizibilitate */
+        }
 
-        /* HEADER & NAVIGARE */
+        /* Efect de animație discretă pentru fundal */
+        @keyframes drift {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+        .crystal-background { animation: drift 20s infinite alternate ease-in-out; }
+
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
+            background: rgba(10, 14, 20, 0.8); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass);
         }
 
         .nav-container {
             max-width: 1200px; margin: 0 auto; display: flex;
-            justify-content: space-between; align-items: center; padding: 1rem 2rem;
+            justify-content: space-between; align-items: center; padding: 1.2rem 2rem;
         }
 
         .logo {
@@ -41,66 +56,46 @@
         .nav-menu li { position: relative; }
         .nav-menu a {
             text-decoration: none; color: var(--white); font-size: 0.8rem;
-            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s;
+            text-transform: uppercase; letter-spacing: 1.5px;
         }
-        .nav-menu a:hover { color: var(--gold); }
 
-        /* DROP-DOWN PENTRU BUSINESS */
+        /* DROP-DOWNS BUSINESS */
         .dropdown-content {
             display: none; position: absolute; top: 100%; left: 0;
             background: rgba(10, 14, 20, 0.95); min-width: 250px;
-            border: 1px solid var(--glass); padding: 1rem 0; box-shadow: 0 10px 40px rgba(0,0,0,0.7);
+            border: 1px solid var(--glass); padding: 1rem 0;
         }
         .nav-menu li:hover .dropdown-content { display: block; }
-        .dropdown-content a { padding: 0.8rem 1.5rem; display: block; text-transform: none; font-size: 0.85rem; }
-        .dropdown-content a:hover { background: var(--glass); color: var(--gold); }
+        .dropdown-content a { padding: 0.8rem 1.5rem; display: block; text-transform: none; }
 
-        /* HERO SECTION - UTP din schițe */
         .hero {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
-        .hero h1 {
-            font-size: clamp(2.5rem, 8vw, 4.5rem); font-family: 'Playfair Display', serif;
-            margin-bottom: 1rem; letter-spacing: 2px;
-            background: linear-gradient(to bottom, #fff, var(--gold));
-            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-        }
-        .hero p { font-size: 1.1rem; max-width: 700px; color: #ccc; margin-bottom: 2.5rem; font-weight: 300; }
+        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 1rem; color: var(--gold); }
+        .hero p { max-width: 700px; font-weight: 300; line-height: 1.6; color: #ddd; }
 
-        .cta-main {
-            padding: 1.2rem 3rem; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
-            letter-spacing: 3px; transition: 0.5s;
+        .cta-gold {
+            margin-top: 2rem; padding: 1rem 3rem; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none; letter-spacing: 2px; transition: 0.4s;
         }
-        .cta-main:hover { background: var(--gold); color: var(--midnight); box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
+        .cta-gold:hover { background: var(--gold); color: var(--midnight); }
 
-        /* SECȚIUNEA "3 MINUTE DE INTERES" / MISIUNE */
-        .mission-section {
-            padding: 8rem 2rem; max-width: 900px; margin: 0 auto; text-align: center;
-        }
-        .mission-section h2 { font-size: 2.2rem; color: var(--gold); margin-bottom: 2rem; }
-        .mission-section p { font-size: 1.1rem; line-height: 1.8; color: #d1d1d1; font-weight: 300; }
-
-        /* GRILA DE SERVICII - PILONII TĂI */
         .services-grid {
-            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;
         }
-        .service-card {
-            background: rgba(255, 255, 255, 0.02); padding: 4rem 2rem; text-align: center;
-            border: 1px solid rgba(255, 255, 255, 0.08); transition: 0.4s; text-decoration: none; color: white;
-            backdrop-filter: blur(5px);
+        .card {
+            background: rgba(255, 255, 255, 0.05); padding: 3rem 2rem; text-align: center;
+            border: 1px solid rgba(255, 255, 255, 0.1); backdrop-filter: blur(10px);
+            text-decoration: none; color: white; transition: 0.3s;
         }
-        .service-card:hover { border-color: var(--gold); transform: translateY(-15px); background: rgba(255,255,255,0.05); }
-        .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.4rem; margin-bottom: 1rem; color: var(--gold); }
-
-        footer { padding: 6rem 2rem; text-align: center; border-top: 1px solid var(--glass); color: #555; font-size: 0.8rem; letter-spacing: 1px; }
+        .card:hover { border-color: var(--gold); transform: translateY(-5px); }
     </style>
 </head>
 <body>
 
-    <canvas id="background-canvas"></canvas>
+    <div class="crystal-background"></div>
 
     <header>
         <div class="nav-container">
@@ -108,22 +103,15 @@
             <ul class="nav-menu">
                 <li><a href="index.html">Acasă</a></li>
                 <li>
-                    <a href="programari.html">Consultații ▾</a>
+                    <a href="#">Consultații ▾</a>
                     <div class="dropdown-content">
-                        <a href="business.html">Business & Bani (Astro HR)</a>
-                        <a href="personal.html">Personal (Cine sunt eu?)</a>
-                        <a href="relatii.html">Relații & Parteneriat</a>
-                        <a href="kids.html">Copii & Potențial</a>
+                        <a href="business.html">Business & Bani</a>
+                        <a href="personal.html">Personal</a>
+                        <a href="relatii.html">Relații</a>
+                        <a href="kids.html">Copii</a>
                     </div>
                 </li>
-                <li>
-                    <a href="academia.html">Academia ▾</a>
-                    <div class="dropdown-content">
-                        <a href="cursuri.html">Cursuri Video (Sun/Moon/Venus)</a>
-                        <a href="ghiduri.html">Ghiduri & Fișiere (Solar/Power)</a>
-                        <a href="social.html">Social Project (Astro/NLP)</a>
-                    </div>
-                </li>
+                <li><a href="academia.html">Academia</a></li>
                 <li><a href="products.html">Colecție</a></li>
                 <li><a href="club.html">Club VIP</a></li>
             </ul>
@@ -132,76 +120,16 @@
 
     <section class="hero">
         <h1>Astrology Power Boutique</h1>
-        <p>Elena Shipko • NLP Master • Business Strategist. Transformăm energia subtilă în rezultate concrete și scalabile.</p>
-        <a href="programari.html" class="cta-main">Solicită Audit Energetic</a>
-    </section>
-
-    <section class="mission-section">
-        <h2>Misiune & Scop</h2>
-        <p>
-            Îmbin expertiza în <strong>Astrologie, Numerologie și NLP</strong> pentru a ghida liderii și vizionarii către echilibru. 
-            În schițele mele, acest loc este dedicat celor "3 minute de interes" – spațiul unde înțelegi cum energia ta personală 
-            devine motorul succesului tău profesional.
-        </p>
+        <p>Elena Shipko • NLP Master • Business Strategist. Ghidare energetică pentru rezultate scalabile.</p>
+        <a href="programari.html" class="cta-gold">Rezervă o Sesiune</a>
     </section>
 
     <div class="services-grid">
-        <a href="business.html" class="service-card">
-            <h3>BUSINESS & BANI</h3>
-            <p>Astro HR, proforientare și strategia parteneriatelor de succes.</p>
-        </a>
-        <a href="personal.html" class="service-card">
-            <h3>PERSONAL</h3>
-            <p>Descoperă cine ești: Umbra, lumina și prognoza ta solară anuală.</p>
-        </a>
-        <a href="relatii.html" class="service-card">
-            <h3>RELAȚII</h3>
-            <p>Analiza sinastriei pentru cupluri sau parteneri de afaceri.</p>
-        </a>
-        <a href="kids.html" class="service-card">
-            <h3>COPII</h3>
-            <p>Identificarea talentelor și a potențialului nativ al copilului tău.</p>
-        </a>
+        <a href="business.html" class="card"><h3>BUSINESS</h3><p>Strategie HR și Proforientare.</p></a>
+        <a href="personal.html" class="card"><h3>PERSONAL</h3><p>Harta natală și Prognoză.</p></a>
+        <a href="academia.html" class="card"><h3>ACADEMIA</h3><p>Cursuri video și Ghiduri PDF.</p></a>
+        <a href="products.html" class="card"><h3>COLECȚIE</h3><p>Bijuterii și Brățări energetice.</p></a>
     </div>
 
-    <footer>
-        <p>© 2026 ENERGETICA • ELENA SHIPKO</p>
-        <p style="margin-top: 10px;">Confidențialitate Garantată • Secure Payment Flow</p>
-    </footer>
-
-    <script>
-        const canvas = document.getElementById('background-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
-        window.addEventListener('resize', resize);
-        resize();
-        class Particle {
-            constructor() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 2 + 0.5;
-                this.speedX = Math.random() * 0.4 - 0.2;
-                this.speedY = Math.random() * 0.4 - 0.2;
-                this.opacity = Math.random() * 0.5 + 0.1;
-            }
-            update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > canvas.width) this.x = 0; if (this.x < 0) this.x = canvas.width;
-                if (this.y > canvas.height) this.y = 0; if (this.y < 0) this.y = canvas.height;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`;
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
-            }
-        }
-        function init() { for (let i = 0; i < 100; i++) particles.push(new Particle()); }
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => { p.update(); p.draw(); });
-            requestAnimationFrame(animate);
-        }
-        init(); animate();
-    </script>
 </body>
 </html>
