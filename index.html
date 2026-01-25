@@ -3,82 +3,136 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Elena Shipko</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@700&family=Montserrat:wght@300;400&display=swap" rel="stylesheet">
+    <title>Energetica | Elena Shipko | Astrology Power Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --gold: #c5a059;
+            --midnight: #0a0e14;
             --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
         }
 
         body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
             font-family: 'Montserrat', sans-serif; color: var(--white);
-            background-color: #0a0e14; overflow-x: hidden;
+            background-color: var(--midnight); overflow-x: hidden;
         }
 
-        /* RESTAURARE FUNDAL ORIGINAL */
-        .crystal-bg {
+        /* EFECT ZOOM CINEMATIC FUNDAL */
+        .hero-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale.jpg') no-repeat center center;
+            background: linear-gradient(rgba(10, 14, 20, 0.6), rgba(10, 14, 20, 0.6)), url('cristale.jpg') no-repeat center center;
             background-size: cover;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
+        @keyframes cinematicZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        /* HEADER UNIVERSAL LUX */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 14, 20, 0.8); backdrop-filter: blur(10px);
-            border-bottom: 1px solid rgba(255,255,255,0.1);
+            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
         }
 
         .nav-container {
             max-width: 1200px; margin: 0 auto; display: flex;
-            justify-content: space-between; align-items: center; padding: 1rem 2rem;
+            justify-content: space-between; align-items: center; padding: 1.2rem 2rem;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif; font-size: 1.5rem;
-            color: var(--gold); text-decoration: none; letter-spacing: 2px;
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: 700;
         }
 
-        .nav-menu { display: flex; gap: 2rem; list-style: none; }
-        .nav-menu a { text-decoration: none; color: white; font-size: 0.8rem; text-transform: uppercase; }
+        .nav-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-menu li { position: relative; }
+        .nav-menu a {
+            text-decoration: none; color: var(--white); font-size: 0.8rem;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
+        }
+        .nav-menu a:hover { color: var(--gold); }
 
-        .hero {
+        /* DROP-DOWNS (Toate serviciile din schițe) */
+        .dropdown-content {
+            display: none; position: absolute; top: 100%; left: 0;
+            background: rgba(10, 14, 20, 0.95); min-width: 260px;
+            border: 1px solid var(--glass); padding: 1rem 0; box-shadow: 0 20px 50px rgba(0,0,0,0.7);
+        }
+        .nav-menu li:hover .dropdown-content { display: block; }
+        .dropdown-content a { padding: 0.8rem 1.5rem; display: block; text-transform: none; font-size: 0.9rem; }
+        .dropdown-content a:hover { background: var(--glass); color: var(--gold); }
+
+        /* HERO CONTENT */
+        .hero-section {
             height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
-
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; margin-bottom: 0.5rem; }
-        .hero p { font-weight: 300; letter-spacing: 1px; }
-
-        .btn {
-            margin-top: 2rem; padding: 1rem 2.5rem; border: 1px solid var(--gold);
-            color: var(--gold); text-decoration: none; transition: 0.3s;
+        .hero-section h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem);
+            margin-bottom: 1rem; color: var(--gold); letter-spacing: 2px;
         }
-        .btn:hover { background: var(--gold); color: black; }
+        .hero-section p { font-size: 1.2rem; max-width: 800px; font-weight: 300; line-height: 1.6; color: #e0e0e0; }
+
+        .cta-btn {
+            margin-top: 2.5rem; padding: 1.2rem 3.5rem; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none; text-transform: uppercase;
+            font-size: 0.8rem; letter-spacing: 4px; transition: 0.5s;
+        }
+        .cta-btn:hover { background: var(--gold); color: var(--midnight); box-shadow: 0 0 40px rgba(197, 160, 89, 0.4); }
+
+        /* FOOTER */
+        footer {
+            position: absolute; bottom: 30px; width: 100%; text-align: center;
+            font-size: 0.7rem; letter-spacing: 2px; color: rgba(255,255,255,0.5);
+        }
     </style>
 </head>
 <body>
-    <div class="crystal-bg"></div>
+
+    <div class="hero-bg"></div>
+
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <nav>
-                <ul class="nav-menu">
-                    <li><a href="index.html">Acasă</a></li>
-                    <li><a href="programari.html">Consultații</a></li>
-                    <li><a href="academia.html">Academia</a></li>
-                    <li><a href="products.html">Colecție</a></li>
-                    <li><a href="club.html">Club</a></li>
-                </ul>
-            </nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Acasă</a></li>
+                <li>
+                    <a href="programari.html">Consultații ▾</a>
+                    <div class="dropdown-content">
+                        <a href="business.html">Business & Bani (Astro HR)</a>
+                        <a href="personal.html">Personal (Cine sunt eu?)</a>
+                        <a href="relatii.html">Parteneriat & Relații</a>
+                        <a href="kids.html">Copii & Potențial</a>
+                    </div>
+                </li>
+                <li>
+                    <a href="academia.html">Academia ▾</a>
+                    <div class="dropdown-content">
+                        <a href="cursuri.html">Cursuri Video (Sun, Moon, Venus)</a>
+                        <a href="ghiduri.html">Ghiduri & PDF (Solar, Power)</a>
+                    </div>
+                </li>
+                <li><a href="products.html">Colecție</a></li>
+                <li><a href="club.html">Club VIP</a></li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Energie Pură</h1>
-        <p>Astrologie • NLP • Mentoring</p>
-        <a href="programari.html" class="btn">Solicită o Sesiune</a>
+    <section class="hero-section">
+        <h1>Astrology Power Boutique</h1>
+        <p>Elena Shipko • NLP Master • Business Strategist<br>Instrumente de înaltă precizie pentru evoluție conștientă.</p>
+        <a href="programari.html" class="cta-btn">Rezervă o Sesiune</a>
     </section>
+
+    <footer>
+        © 2026 ENERGETICA • ELENA SHIPKO • TOATE DREPTURILE REZERVATE
+    </footer>
+
 </body>
 </html>
