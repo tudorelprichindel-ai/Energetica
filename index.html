@@ -9,309 +9,133 @@
         :root {
             --midnight: #0a0e14;
             --gold: #c5a059;
-            --gold-light: #e2c99d;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
         }
 
         body, html {
-            margin: 0;
-            padding: 0;
-            width: 100%;
-            height: 100%;
-            font-family: 'Montserrat', sans-serif;
-            color: var(--white);
-            background-color: var(--midnight);
-            overflow-x: hidden;
+            margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif;
+            color: var(--white); background-color: var(--midnight); overflow-x: hidden;
         }
 
-        /* FUNDALUL ANIMAT ORIGINAL */
+        /* FUNDAL ANIMAT */
         .animated-bg {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            z-index: -1;
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
             background: linear-gradient(45deg, #0a0e14, #1a1f26, #0d121a, #151a21);
-            background-size: 400% 400%;
-            animation: gradientBG 15s ease infinite;
+            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
         }
-
         @keyframes gradientBG {
             0% { background-position: 0% 50%; }
             50% { background-position: 100% 50%; }
             100% { background-position: 0% 50%; }
         }
 
-        h1, h2, h3 { font-family: 'Playfair Display', serif; }
-
-        /* HEADER & NAVIGARE UNIVERSALĂ */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(10, 14, 20, 0.7);
-            backdrop-filter: blur(15px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(10, 14, 20, 0.8); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass);
         }
 
         .nav-container {
-            max-width: 1200px;
-            margin: 0 auto;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            padding: 1rem 2rem;
+            max-width: 1200px; margin: 0 auto; display: flex;
+            justify-content: space-between; align-items: center; padding: 1rem 2rem;
         }
 
         .logo {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.8rem;
-            color: var(--gold);
-            text-decoration: none;
-            letter-spacing: 2px;
+            font-family: 'Playfair Display', serif; font-size: 1.8rem;
+            color: var(--gold); text-decoration: none; letter-spacing: 2px;
         }
 
-        nav ul {
-            list-style: none;
-            display: flex;
-            gap: 2rem;
-            margin: 0;
-            padding: 0;
+        /* NAVIGARE DESKTOP */
+        .nav-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
+        .nav-menu li { position: relative; }
+        .nav-menu a {
+            text-decoration: none; color: var(--white); font-size: 0.85rem;
+            text-transform: uppercase; letter-spacing: 1.5px; transition: 0.3s;
         }
+        .nav-menu a:hover { color: var(--gold); }
 
-        nav ul li { position: relative; }
-
-        nav ul li a {
-            text-decoration: none;
-            color: var(--white);
-            font-size: 0.85rem;
-            font-weight: 400;
-            letter-spacing: 1.5px;
-            transition: 0.3s;
-            text-transform: uppercase;
-        }
-
-        nav ul li a:hover { color: var(--gold); }
-
-        /* DROP-DOWN LUX */
+        /* DROP-DOWN */
         .dropdown-content {
-            display: none;
-            position: absolute;
-            top: 100%;
-            left: 0;
-            background: rgba(10, 14, 20, 0.95);
-            min-width: 240px;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
-            border: 1px solid var(--glass);
-            padding: 1rem 0;
-            z-index: 1001;
-            backdrop-filter: blur(10px);
+            display: none; position: absolute; top: 100%; left: 0;
+            background: rgba(10, 14, 20, 0.95); min-width: 240px;
+            border: 1px solid var(--glass); padding: 1rem 0;
         }
-
-        nav ul li:hover .dropdown-content { display: block; }
-
+        .nav-menu li:hover .dropdown-content { display: block; }
         .dropdown-content a {
-            padding: 0.8rem 1.5rem;
-            display: block;
-            font-size: 0.8rem;
-            text-transform: none;
-            letter-spacing: 1px;
+            padding: 0.8rem 1.5rem; display: block; text-transform: none;
         }
 
-        .dropdown-content a:hover { 
-            background: var(--glass);
-            color: var(--gold);
-        }
+        /* MENIU MOBIL (HAMBURGER) */
+        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
+        .menu-toggle span { width: 25px; height: 2px; background: var(--gold); }
 
-        /* HERO SECTION */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 20px;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
-
         .hero h1 {
-            font-size: 3.5rem;
-            margin-bottom: 1.5rem;
-            letter-spacing: 3px;
-            background: linear-gradient(to bottom, #ffffff, #c5a059);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-        }
-
-        .hero p {
-            font-size: 1.1rem;
-            max-width: 700px;
-            font-weight: 300;
-            color: #d1d1d1;
-            margin-bottom: 2.5rem;
-        }
-
-        .cta-gold {
-            padding: 1.2rem 3rem;
-            border: 1px solid var(--gold);
-            color: var(--gold);
-            text-decoration: none;
-            text-transform: uppercase;
-            font-size: 0.75rem;
-            letter-spacing: 3px;
-            transition: 0.5s;
-            position: relative;
-            overflow: hidden;
-        }
-
-        .cta-gold:hover {
-            background: var(--gold);
-            color: var(--midnight);
-            box-shadow: 0 0 30px rgba(197, 160, 89, 0.4);
-        }
-
-        /* CONTENT SECTION */
-        .content-area {
-            position: relative;
-            z-index: 1;
-            padding: 8rem 2rem;
-            max-width: 1200px;
-            margin: 0 auto;
+            font-size: 3.5rem; font-family: 'Playfair Display', serif;
+            background: linear-gradient(to bottom, #fff, var(--gold));
+            -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
         .grid-container {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem;
-            margin-top: 4rem;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2.5rem; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;
         }
-
         .card {
-            background: rgba(255, 255, 255, 0.03);
-            padding: 4rem 2rem;
-            border: 1px solid rgba(255,255,255,0.08);
-            text-align: center;
-            transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-            text-decoration: none;
-            color: white;
-            backdrop-filter: blur(5px);
+            background: rgba(255,255,255,0.03); padding: 3rem 2rem; text-align: center;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-decoration: none; color: white;
         }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
 
-        .card:hover {
-            border-color: var(--gold);
-            transform: translateY(-15px);
-            background: rgba(255, 255, 255, 0.06);
-        }
-
-        .card h3 {
-            font-size: 1.5rem;
-            margin-bottom: 1rem;
-            letter-spacing: 1px;
-        }
-
-        .card p {
-            font-size: 0.9rem;
-            color: #b0b0b0;
-            font-weight: 300;
-        }
-
-        /* FOOTER */
-        footer {
-            padding: 5rem 2rem;
-            border-top: 1px solid var(--glass);
-            text-align: center;
-            font-size: 0.75rem;
-            color: #888;
-            letter-spacing: 1px;
-        }
-
-        /* MOBILE MENU RESPONSIVENESS */
         @media (max-width: 992px) {
-            nav ul { display: none; } /* În paginile următoare vom integra iconița de meniu mobil */
+            .nav-menu { display: none; }
+            .menu-toggle { display: flex; }
             .hero h1 { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
-
     <div class="animated-bg"></div>
-
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <nav>
-                <ul>
-                    <li><a href="index.html">Acasă</a></li>
-                    <li>
-                        <a href="programari.html">Consultații ▾</a>
-                        <div class="dropdown-content">
-                            <a href="business.html">Business & Bani</a>
-                            <a href="personal.html">Personal (Cine sunt eu?)</a>
-                            <a href="relatii.html">Parteneriat & Relații</a>
-                            <a href="kids.html">Copii & Potențial</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="academia.html">Academia ▾</a>
-                        <div class="dropdown-content">
-                            <a href="cursuri.html">Cursuri Video</a>
-                            <a href="ghiduri.html">Ghiduri PDF (Solar, Power)</a>
-                        </div>
-                    </li>
-                    <li>
-                        <a href="products.html">Colecție ▾</a>
-                        <div class="dropdown-content">
-                            <a href="bijuterii.html">Bijuterii Cod Morse</a>
-                            <a href="bratari.html">Brățări Personalizate</a>
-                        </div>
-                    </li>
-                    <li><a href="club.html">Club</a></li>
-                </ul>
-            </nav>
+            <div class="menu-toggle"><span></span><span></span><span></span></div>
+            <ul class="nav-menu">
+                <li><a href="index.html">Acasă</a></li>
+                <li><a href="#">Consultații ▾</a>
+                    <div class="dropdown-content">
+                        <a href="business.html">Business & Bani</a>
+                        <a href="personal.html">Personal</a>
+                        <a href="relatii.html">Relații</a>
+                        <a href="kids.html">Copii</a>
+                    </div>
+                </li>
+                <li><a href="academia.html">Academia ▾</a>
+                    <div class="dropdown-content">
+                        <a href="cursuri.html">Cursuri Video</a>
+                        <a href="ghiduri.html">Ghiduri PDF</a>
+                    </div>
+                </li>
+                <li><a href="products.html">Colecție</a></li>
+                <li><a href="club.html">Club</a></li>
+            </ul>
         </div>
     </header>
 
     <section class="hero">
         <h1>Energie Pură & Echilibru</h1>
-        <p>Ghidez lideri și vizionari prin Astrologie, NLP și Strategie de Business către o stare de scalabilitate conștientă.</p>
-        <a href="programari.html" class="cta-gold">Solicită o Consultație VIP</a>
+        <p>Astrologie • NLP • Strategie de Business</p>
+        <a href="programari.html" style="padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; margin-top: 2rem;">Rezervă o Sesiune</a>
     </section>
 
-    <div class="content-area">
-        <h2 style="text-align: center; font-size: 2.2rem; margin-bottom: 0.5rem;">Pilonii Energetica</h2>
-        <p style="text-align: center; color: var(--gold); font-weight: 300; letter-spacing: 2px; text-transform: uppercase; font-size: 0.8rem;">Evoluție la toate nivelurile</p>
-        
-        <div class="grid-container">
-            <a href="academia.html" class="card">
-                <h3>ACADEMIA</h3>
-                <p>Cursuri video și resurse despre puterea Soarelui, Lunii și a tehnicilor NLP.</p>
-                <div style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--gold); letter-spacing: 2px;">VEZI CURSURILE</div>
-            </a>
-            <a href="programari.html" class="card">
-                <h3>CONSULTAȚII</h3>
-                <p>Audit energetic, astro-strategie de business și sesiuni NLP individuale.</p>
-                <div style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--gold); letter-spacing: 2px;">REZERVARE SESIUNE</div>
-            </a>
-            <a href="club.html" class="card">
-                <h3>CLUBUL</h3>
-                <p>Acces la webinarii cu experți în Tarot, Psihologie și Sport. Comunitatea ta VIP.</p>
-                <div style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--gold); letter-spacing: 2px;">DETALII MEMBERSHIP</div>
-            </a>
-            <a href="products.html" class="card">
-                <h3>COLECȚIE</h3>
-                <p>Bijuterii lucrate manual cu intenție, cod Morse și cristale energetice.</p>
-                <div style="margin-top: 1.5rem; font-size: 0.7rem; color: var(--gold); letter-spacing: 2px;">EXPLOREAZĂ SHOP-UL</div>
-            </a>
-        </div>
+    <div class="grid-container">
+        <a href="academia.html" class="card"><h3>ACADEMIA</h3><p>Cursuri și resurse educaționale</p></a>
+        <a href="programari.html" class="card"><h3>CONSULTAȚII</h3><p>Sesiuni individuale</p></a>
+        <a href="club.html" class="card"><h3>CLUBUL</h3><p>Comunitate VIP</p></a>
+        <a href="products.html" class="card"><h3>COLECȚIE</h3><p>Obiecte cu semnificație</p></a>
     </div>
-
-    <footer>
-        <p>© 2026 ENERGETICA • ELENA SHIPKO</p>
-        <p style="margin-top: 1rem; opacity: 0.6;">Astrology • NLP Master • Business Mentor</p>
-    </footer>
-
 </body>
 </html>
