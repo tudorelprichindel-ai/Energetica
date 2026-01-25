@@ -77,7 +77,7 @@
                 <span class="text-stone-500 uppercase text-[10px] tracking-widest font-bold">Total</span>
                 <span id="cart-total" class="text-xl font-bold">0 RON</span>
             </div>
-            <button onclick="sendOrder()" class="btn-unified w-full py-4 rounded-lg text-[10px] tracking-[0.3em]">Finalizează pe WhatsApp</button>
+            <button onclick="sendOrder()" class="btn-unified w-full py-4 rounded-lg text-[10px] tracking-[0.3em]">Finalizare WhatsApp</button>
         </div>
     </div>
     
@@ -195,7 +195,7 @@
         function sendOrder() {
             if (cart.length === 0) return alert("Punga e goală!");
             
-            // NUMĂRUL TĂU ACTUALIZAT
+            // NUMĂRUL TĂU DE LETONIA
             let phone = "37125507367"; 
             
             let message = "Bună! Aș dori să plasez o comandă pe Energetica:%0A%0A";
@@ -207,7 +207,6 @@
             });
             message += `%0A*Total:%20${total}%20RON*`;
             
-            // Folosim api.whatsapp.com pentru a evita 404
             window.open("https://api.whatsapp.com/send?phone=" + phone + "&text=" + message, "_blank");
         }
 
