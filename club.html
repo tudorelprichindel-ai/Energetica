@@ -2,53 +2,109 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Energetica | Club</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Club & T-Game | Energetica | Elena Shipko</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        /* Păstrează aceleași stiluri CSS ca în index.html pentru navigație și selectorul de limbă */
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; }
-        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; filter: brightness(0.2); }
-        .serif { font-family: 'Playfair Display', serif; }
-        #dropdown-menu { max-height: 0; opacity: 0; overflow: hidden; transition: 0.6s; background: rgba(8, 3, 16, 0.96); backdrop-filter: blur(15px); }
-        #dropdown-menu.open { max-height: 600px; opacity: 1; }
-        .club-card { background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1); border-radius: 2rem; padding: 2.5rem; transition: 0.4s; }
-        .club-card:hover { border-color: white; transform: translateY(-5px); }
+        :root {
+            --gold: #c5a059;
+            --midnight: #0a0e14;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
+        }
+
+        body, html { margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif; color: var(--white); background-color: var(--midnight); }
+
+        .bg-zoom {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            background: linear-gradient(rgba(10, 14, 20, 0.8), rgba(10, 14, 20, 0.8)), url('cristale.jpg') no-repeat center center;
+            background-size: cover; animation: cinematicEffect 30s infinite alternate ease-in-out;
+        }
+        @keyframes cinematicEffect { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
+        }
+        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; }
+
+        .content-wrapper { max-width: 1100px; margin: 120px auto 60px; padding: 0 20px; }
+
+        /* SECTIUNE CLUB */
+        .club-intro { text-align: center; margin-bottom: 80px; }
+        .club-intro h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 20px; }
+        .club-intro p { max-width: 700px; margin: 0 auto; font-weight: 300; line-height: 1.8; color: #ccc; }
+
+        /* T-GAME SECTION */
+        .game-section { display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: center; margin-top: 50px; }
+        .game-info { text-align: left; }
+        .game-info h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); }
+        .game-info ul { list-style: none; padding: 0; margin: 25px 0; }
+        .game-info li { margin-bottom: 15px; font-weight: 300; display: flex; align-items: center; }
+        .game-info li::before { content: "◈"; color: var(--gold); margin-right: 15px; }
+
+        .game-cards { display: grid; grid-template-columns: 1fr 1fr; gap: 1.5rem; }
+        .game-card {
+            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass);
+            padding: 30px 20px; text-align: center; backdrop-filter: blur(10px);
+        }
+        .game-card h3 { font-size: 0.9rem; letter-spacing: 2px; color: var(--gold); }
+        .game-card p { font-size: 0.8rem; color: #999; }
+
+        .btn-cta {
+            display: inline-block; margin-top: 30px; padding: 1rem 3rem;
+            border: 1px solid var(--gold); color: var(--gold); text-decoration: none;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.4s;
+        }
+        .btn-cta:hover { background: var(--gold); color: var(--midnight); }
+
+        @media (max-width: 768px) { .game-section { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
-    <div class="bg-container"><div class="bg-image"></div></div>
-    
-    <main class="max-w-5xl mx-auto pt-40 px-6 pb-24 relative z-10 text-center">
-        <h2 class="serif text-4xl md:text-6xl italic mb-6">Energetica Club</h2>
-        <p class="text-stone-400 mb-12 max-w-2xl mx-auto uppercase tracking-widest text-[10px] font-bold">
-            Astrologie • Jocuri Transformative • NLP • Comunitate
-        </p>
 
-        <div class="club-card max-w-lg mx-auto">
-            <h3 class="serif text-3xl italic mb-2">Membru Energetica</h3>
-            <p class="text-stone-500 text-[10px] uppercase font-bold tracking-[0.4em] mb-8 italic">Abonament Lunar</p>
-            
-            <ul class="text-left space-y-4 mb-10 text-sm text-stone-300">
-                <li><i class="fa-solid fa-check mr-3 opacity-50"></i> Acces la întâlniri lunare exclusive</li>
-                <li><i class="fa-solid fa-check mr-3 opacity-50"></i> Tehnici NLP și Astrologie aplicată</li>
-                <li><i class="fa-solid fa-check mr-3 opacity-50"></i> Comunitate privată de suport</li>
-                <li><i class="fa-solid fa-check mr-3 opacity-50"></i> Reduceri la brățări și consultații</li>
-            </ul>
+    <div class="bg-zoom"></div>
 
-            <div class="text-4xl serif italic mb-10">150 RON <span class="text-xs uppercase text-stone-500">/ lună</span></div>
-            
-            <button onclick="addToCart('Abonament Club', 150, 'club-icon.jpg')" class="w-full py-5 border border-white/20 rounded-xl text-[10px] font-bold uppercase tracking-widest hover:bg-white hover:text-black transition">
-                Vreau să fac parte din Club
-            </button>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ENERGETICA</a>
+            <nav><a href="index.html" style="text-decoration: none; color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">Acasă</a></nav>
         </div>
-    </main>
+    </header>
 
-    <script>
-        // Include scripturile de toggleDropdown, toggleCart și updateCartUI identice cu index.html
-    </script>
+    <div class="content-wrapper">
+        <section class="club-intro">
+            <h1>Club Energetica</h1>
+            <p>O comunitate restrânsă dedicată evoluției continue. Acces la webinarii lunare cu experți în Tarot, Psihologie și Sport, plus tehnici NLP aplicate zilnic.</p>
+            <a href="contact.html" class="btn-cta">Solicită Aderarea în Club</a>
+        </section>
+
+        <section class="game-section">
+            <div class="game-info">
+                <h2>T-Game: Genius Road</h2>
+                <p>O experiență imersivă care folosește mecanismele jocului pentru a descătușa potențialul tău nativ.</p>
+                <ul>
+                    <li>Clarificarea misiunii personale</li>
+                    <li>Identificarea blocajelor subconștiente</li>
+                    <li>Strategie de scalare prin joc</li>
+                </ul>
+                <a href="contact.html" class="btn-cta">Vezi disponibilitate joc</a>
+            </div>
+
+            <div class="game-cards">
+                <div class="game-card">
+                    <h3>Individual</h3>
+                    <p>Experiență 1-la-1 personalizată complet.</p>
+                </div>
+                <div class="game-card">
+                    <h3>Grup</h3>
+                    <p>Sesiuni interactive de 2-4 participanți.</p>
+                </div>
+            </div>
+        </section>
+    </div>
+
 </body>
 </html>
