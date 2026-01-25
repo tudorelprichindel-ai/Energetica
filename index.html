@@ -24,23 +24,36 @@
         
         .serif { font-family: 'Playfair Display', serif; }
 
-        /* BUTOANE UNIFIED */
-        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: 0.4s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
-        .btn-unified:hover { background-color: white; color: black; }
-
-        /* MENIU MOBIL (Hamburger Overlay) */
-        #mobile-menu {
-            display: none;
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(20px);
-            z-index: 2000; flex-direction: column; justify-content: center; align-items: center; gap: 2rem;
+        /* ANIMAȚIE DROPDOWN */
+        #dropdown-menu {
+            max-height: 0;
+            opacity: 0;
+            overflow: hidden;
+            transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease;
+            background: rgba(8, 3, 16, 0.96);
+            backdrop-filter: blur(15px);
         }
-        #mobile-menu.active { display: flex; }
+        #dropdown-menu.open {
+            max-height: 400px; /* Suficient pentru link-uri */
+            opacity: 1;
+        }
 
-        /* PUNGA DE CUMPĂRĂTURI */
-        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; color: white; padding: 8px; z-index: 60; }
+        /* STILURI LINK-URI DROPDOWN */
+        .nav-link-mobile {
+            padding: 1.5rem;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.05);
+            width: 100%;
+            text-align: center;
+            display: block;
+            transition: 0.3s;
+        }
+        .nav-link-mobile:active { background: rgba(255, 255, 255, 0.1); }
+
+        /* BUTOANE & PUNGA */
+        .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: 0.4s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
+        
+        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; color: white; padding: 8px; }
         .paper-bag-link i { font-size: 1.8rem; }
-        @media (min-width: 768px) { .paper-bag-link i { font-size: 2.2rem; } }
         
         #cart-badge { 
             position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%);
@@ -52,24 +65,16 @@
         #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px); z-index: 3000; transform: translateX(100%); transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem; display: flex; flex-direction: column; }
         #cart-sidebar.open { transform: translateX(0); }
 
-        footer { position: relative; z-index: 100; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 4rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        footer { position: relative; z-index: 100; border-top: 1px solid rgba(255, 255, 255, 0.1); padding: 3rem 0; background: #080310; }
     </style>
 </head>
 <body>
     <div class="bg-container"><div class="bg-image"></div></div>
 
-    <div id="mobile-menu">
-        <button onclick="toggleMobileMenu()" class="absolute top-8 right-8 text-4xl text-white/50">&times;</button>
-        <a href="index.html" class="serif text-3xl italic">Acasă</a>
-        <a href="products.html" class="serif text-3xl italic">Colecție</a>
-        <a href="despre.html" class="serif text-3xl italic">Ghid</a>
-        <a href="contact.html" class="serif text-3xl italic">Contact</a>
-    </div>
-
     <div id="cart-sidebar">
         <div class="flex justify-between items-center mb-10">
             <h2 class="serif text-3xl italic">Punga ta</h2>
-            <button onclick="toggleCart()" class="text-white/30 hover:text-white text-4xl">&times;</button>
+            <button onclick="toggleCart()" class="text-white/30 text-4xl">&times;</button>
         </div>
         <div id="cart-content" class="flex-grow overflow-y-auto"></div>
         <div class="mt-8 pt-6 border-t border-white/10">
@@ -81,32 +86,45 @@
         </div>
     </div>
     
-    <nav class="fixed top-0 w-full p-5 md:p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
-        <div class="flex items-center gap-4">
-            <button onclick="toggleMobileMenu()" class="lg:hidden text-2xl">
-                <i class="fa-solid fa-bars"></i>
-            </button>
-            <a href="index.html" class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">Energetica</a>
+    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
+        <div class="p-5 md:p-8 flex justify-between items-center">
+            <div class="flex items-center gap-6">
+                <button onclick="toggleDropdown()" class="lg:hidden text-2xl focus:outline-none">
+                    <i id="menu-icon" class="fa-solid fa-bars-staggered"></i>
+                </button>
+                <a href="index.html" class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">
+                    Energetica
+                </a>
+            </div>
+
+            <div class="flex items-center gap-4">
+                <div class="hidden lg:flex gap-8 items-center text-[10px] font-bold uppercase tracking-widest">
+                    <a href="index.html" class="border-b border-white">Acasă</a>
+                    <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
+                    <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
+                    <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
+                </div>
+                
+                <div onclick="toggleCart()" class="paper-bag-link" id="bag-icon">
+                    <i class="fa-solid fa-bag-shopping"></i>
+                    <span id="cart-badge">0</span>
+                </div>
+            </div>
         </div>
 
-        <div class="flex items-center gap-4 md:gap-12">
-            <div class="hidden lg:flex gap-8 items-center text-[10px] font-bold uppercase tracking-widest">
-                <a href="index.html" class="border-b border-white">Acasă</a>
-                <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
-                <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
-                <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
-            </div>
-            
-            <div onclick="toggleCart()" class="paper-bag-link" id="bag-icon">
-                <i class="fa-solid fa-bag-shopping"></i>
-                <span id="cart-badge">0</span>
+        <div id="dropdown-menu" class="lg:hidden">
+            <div class="flex flex-col items-center">
+                <a href="index.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Acasă</a>
+                <a href="products.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Colecție</a>
+                <a href="despre.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Ghid</a>
+                <a href="contact.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Contact</a>
             </div>
         </div>
     </nav>
 
     <main class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
-        <h1 class="serif text-5xl md:text-8xl italic mb-6">Energetica</h1>
-        <p class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-stone-400 mb-12">
+        <h1 class="serif text-5xl md:text-8xl italic mb-4">Energetica</h1>
+        <p class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-stone-400 mb-10">
             Cristale naturale pentru echilibrul tău
         </p>
         <a href="products.html" class="btn-unified px-10 py-4 rounded-full text-[10px] tracking-widest">
@@ -115,25 +133,35 @@
     </main>
 
     <footer>
-        <div class="max-w-7xl mx-auto px-5 flex flex-col items-center gap-10">
+        <div class="max-w-7xl mx-auto px-5 flex flex-col items-center gap-8">
             <div class="serif text-2xl italic text-stone-300">Energetica</div>
-            <div class="flex flex-wrap gap-5 justify-center">
-                <a href="https://instagram.com" target="_blank" class="btn-unified p-4 rounded-full"><i class="fa-brands fa-instagram"></i></a>
-                <a href="https://tiktok.com" target="_blank" class="btn-unified p-4 rounded-full"><i class="fa-brands fa-tiktok"></i></a>
-                <a href="https://facebook.com" target="_blank" class="btn-unified p-4 rounded-full"><i class="fa-brands fa-facebook-f"></i></a>
-                <a href="https://t.me" target="_blank" class="btn-unified p-4 rounded-full"><i class="fa-brands fa-telegram"></i></a>
+            <div class="flex gap-6 justify-center">
+                <a href="https://instagram.com" target="_blank" class="text-xl text-white/50 hover:text-white"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="text-xl text-white/50 hover:text-white"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://facebook.com" target="_blank" class="text-xl text-white/50 hover:text-white"><i class="fa-brands fa-facebook-f"></i></a>
             </div>
-            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-bold">© 2026 Energetica</p>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest">© 2026 Energetica</p>
         </div>
     </footer>
 
     <script>
-        function toggleMobileMenu() {
-            document.getElementById('mobile-menu').classList.toggle('active');
+        // FUNCȚIE DROPDOWN CU ANIMAȚIE
+        function toggleDropdown() {
+            const menu = document.getElementById('dropdown-menu');
+            const icon = document.getElementById('menu-icon');
+            
+            menu.classList.toggle('open');
+            
+            // Schimbăm iconița între Bars și X
+            if(menu.classList.contains('open')) {
+                icon.classList.replace('fa-bars-staggered', 'fa-xmark');
+            } else {
+                icon.classList.replace('fa-xmark', 'fa-bars-staggered');
+            }
         }
 
+        // LOGICA COȘ (Aceeași ca înainte)
         let cart = JSON.parse(localStorage.getItem('energetica_cart')) || [];
-
         function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
 
         function updateCartUI() {
@@ -153,7 +181,7 @@
                             <h4 class="text-[10px] uppercase font-bold tracking-tight">${item.name}</h4>
                             <p class="text-stone-400 text-[10px]">${item.quantity} buc. x ${item.price} RON</p>
                         </div>
-                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white text-2xl">&times;</button>
+                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 text-2xl">&times;</button>
                     </div>`;
             });
             totalEl.innerText = total + " RON";
