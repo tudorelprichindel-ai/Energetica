@@ -3,8 +3,8 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Energie Pură & Putere de Scalare</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <title>Energetica | Landing Page</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
             --midnight: #0a0e14;
@@ -14,20 +14,15 @@
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif;
-            color: var(--white); background-color: var(--midnight); overflow-x: hidden;
+            margin: 0; padding: 0; width: 100%; height: 100%;
+            font-family: 'Montserrat', sans-serif; color: var(--white);
+            background-color: var(--midnight); overflow-x: hidden;
         }
 
-        /* FUNDAL ANIMAT */
-        .animated-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(45deg, #0a0e14, #1a1f26, #0d121a, #151a21);
-            background-size: 400% 400%; animation: gradientBG 15s ease infinite;
-        }
-        @keyframes gradientBG {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
+        /* FUNDALUL CU CRISTALE ANIMAT (CEL ORIGINAL) */
+        #background-canvas {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
         }
 
         header {
@@ -46,7 +41,7 @@
             color: var(--gold); text-decoration: none; letter-spacing: 2px;
         }
 
-        /* NAVIGARE DESKTOP */
+        /* NAVIGARE DESKTOP CU DROP-DOWNS */
         .nav-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
         .nav-menu li { position: relative; }
         .nav-menu a {
@@ -55,87 +50,152 @@
         }
         .nav-menu a:hover { color: var(--gold); }
 
-        /* DROP-DOWN */
         .dropdown-content {
             display: none; position: absolute; top: 100%; left: 0;
             background: rgba(10, 14, 20, 0.95); min-width: 240px;
-            border: 1px solid var(--glass); padding: 1rem 0;
+            border: 1px solid var(--glass); padding: 1rem 0; box-shadow: 0 10px 30px rgba(0,0,0,0.5);
         }
         .nav-menu li:hover .dropdown-content { display: block; }
-        .dropdown-content a {
-            padding: 0.8rem 1.5rem; display: block; text-transform: none;
-        }
-
-        /* MENIU MOBIL (HAMBURGER) */
-        .menu-toggle { display: none; flex-direction: column; cursor: pointer; gap: 5px; }
-        .menu-toggle span { width: 25px; height: 2px; background: var(--gold); }
+        .dropdown-content a { padding: 0.8rem 1.5rem; display: block; text-transform: none; }
+        .dropdown-content a:hover { background: var(--glass); color: var(--gold); }
 
         .hero {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
         .hero h1 {
-            font-size: 3.5rem; font-family: 'Playfair Display', serif;
-            background: linear-gradient(to bottom, #fff, var(--gold));
+            font-size: clamp(2.5rem, 8vw, 4rem); font-family: 'Playfair Display', serif;
+            margin-bottom: 1rem; background: linear-gradient(to bottom, #fff, var(--gold));
             -webkit-background-clip: text; -webkit-text-fill-color: transparent;
         }
 
+        .hero p { font-size: 1.1rem; max-width: 600px; color: #ccc; margin-bottom: 2rem; font-weight: 300; }
+
+        .cta-gold {
+            padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; text-transform: uppercase; font-size: 0.8rem;
+            letter-spacing: 2px; transition: 0.4s;
+        }
+        .cta-gold:hover { background: var(--gold); color: var(--midnight); box-shadow: 0 0 20px rgba(197,160,89,0.3); }
+
         .grid-container {
             display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-            gap: 2.5rem; padding: 4rem 2rem; max-width: 1200px; margin: 0 auto;
+            gap: 2rem; padding: 6rem 2rem; max-width: 1200px; margin: 0 auto;
         }
         .card {
             background: rgba(255,255,255,0.03); padding: 3rem 2rem; text-align: center;
-            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-decoration: none; color: white;
+            border: 1px solid rgba(255,255,255,0.1); transition: 0.4s; text-decoration: none;
+            color: white; backdrop-filter: blur(5px);
         }
-        .card:hover { border-color: var(--gold); transform: translateY(-10px); }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(255,255,255,0.06); }
+        .card h3 { font-family: 'Playfair Display', serif; margin-bottom: 1rem; font-size: 1.6rem; }
 
-        @media (max-width: 992px) {
-            .nav-menu { display: none; }
-            .menu-toggle { display: flex; }
-            .hero h1 { font-size: 2.2rem; }
-        }
+        footer { padding: 4rem 2rem; text-align: center; border-top: 1px solid var(--glass); color: #666; font-size: 0.8rem; }
     </style>
 </head>
 <body>
-    <div class="animated-bg"></div>
+
+    <canvas id="background-canvas"></canvas>
+
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <div class="menu-toggle"><span></span><span></span><span></span></div>
             <ul class="nav-menu">
                 <li><a href="index.html">Acasă</a></li>
-                <li><a href="#">Consultații ▾</a>
+                <li>
+                    <a href="programari.html">Consultații ▾</a>
                     <div class="dropdown-content">
                         <a href="business.html">Business & Bani</a>
                         <a href="personal.html">Personal</a>
-                        <a href="relatii.html">Relații</a>
-                        <a href="kids.html">Copii</a>
+                        <a href="relatii.html">Relații & Parteneriat</a>
+                        <a href="kids.html">Copii & Potențial</a>
                     </div>
                 </li>
-                <li><a href="academia.html">Academia ▾</a>
+                <li>
+                    <a href="academia.html">Academia ▾</a>
                     <div class="dropdown-content">
                         <a href="cursuri.html">Cursuri Video</a>
                         <a href="ghiduri.html">Ghiduri PDF</a>
                     </div>
                 </li>
                 <li><a href="products.html">Colecție</a></li>
-                <li><a href="club.html">Club</a></li>
+                <li><a href="club.html">Club VIP</a></li>
             </ul>
         </div>
     </header>
 
     <section class="hero">
-        <h1>Energie Pură & Echilibru</h1>
-        <p>Astrologie • NLP • Strategie de Business</p>
-        <a href="programari.html" style="padding: 1rem 2.5rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; margin-top: 2rem;">Rezervă o Sesiune</a>
+        <h1>Energie Pură • Echilibru</h1>
+        <p>Ghidare prin Astrologie, NLP și Strategie de Business pentru o stare de scalabilitate conștientă.</p>
+        <a href="programari.html" class="cta-gold">Solicită o Consultație</a>
     </section>
 
     <div class="grid-container">
-        <a href="academia.html" class="card"><h3>ACADEMIA</h3><p>Cursuri și resurse educaționale</p></a>
-        <a href="programari.html" class="card"><h3>CONSULTAȚII</h3><p>Sesiuni individuale</p></a>
-        <a href="club.html" class="card"><h3>CLUBUL</h3><p>Comunitate VIP</p></a>
-        <a href="products.html" class="card"><h3>COLECȚIE</h3><p>Obiecte cu semnificație</p></a>
+        <a href="academia.html" class="card"><h3>ACADEMIA</h3><p>Educație profundă pentru minte și spirit.</p></a>
+        <a href="programari.html" class="card"><h3>CONSULTAȚII</h3><p>Audit energetic și astro-strategie personalizată.</p></a>
+        <a href="club.html" class="card"><h3>CLUBUL</h3><p>Acces exclusiv în comunitatea de evoluție.</p></a>
+        <a href="products.html" class="card"><h3>COLECȚIE</h3><p>Obiecte energetice lucrate manual.</p></a>
     </div>
+
+    <footer>
+        <p>© 2026 ENERGETICA • ELENA SHIPKO</p>
+    </footer>
+
+    <script>
+        const canvas = document.getElementById('background-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+
+        window.addEventListener('resize', resize);
+        resize();
+
+        class Particle {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height;
+                this.size = Math.random() * 2 + 0.5;
+                this.speedX = Math.random() * 0.5 - 0.25;
+                this.speedY = Math.random() * 0.5 - 0.25;
+                this.opacity = Math.random() * 0.5 + 0.2;
+            }
+            update() {
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > canvas.width) this.x = 0;
+                if (this.x < 0) this.x = canvas.width;
+                if (this.y > canvas.height) this.y = 0;
+                if (this.y < 0) this.y = canvas.height;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
+        }
+
+        function init() {
+            for (let i = 0; i < 80; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            particles.forEach(p => {
+                p.update();
+                p.draw();
+            });
+            requestAnimationFrame(animate);
+        }
+
+        init();
+        animate();
+    </script>
 </body>
 </html>
