@@ -14,18 +14,14 @@
         @keyframes backgroundZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
         .serif { font-family: 'Playfair Display', serif; }
         
-        /* DROPDOWN ANIMATION */
         #dropdown-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; background: rgba(8, 3, 16, 0.96); backdrop-filter: blur(15px); }
-        #dropdown-menu.open { max-height: 400px; opacity: 1; }
+        #dropdown-menu.open { max-height: 600px; opacity: 1; }
         .nav-link-mobile { padding: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); width: 100%; text-align: center; display: block; }
         
-        /* SIDEBAR COȘ */
         #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px); z-index: 3000; transform: translateX(100%); transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem; display: flex; flex-direction: column; }
         #cart-sidebar.open { transform: translateX(0); }
-        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; color: white; padding: 8px; z-index: 60; }
-        .paper-bag-link i { font-size: 1.8rem; }
-        @media (min-width: 768px) { .paper-bag-link i { font-size: 2.2rem; } }
-        #cart-badge { position: absolute; bottom: 6px; left: 50%; transform: translateX(-50%); font-size: 9px; font-weight: 900; color: #080310; background: white; min-width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center; }
+        .lang-btn { font-size: 10px; border: 1px solid rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px; transition: 0.3s; }
+        .lang-btn:hover, .lang-active { background: white; color: black; border-color: white; }
     </style>
 </head>
 <body>
@@ -37,45 +33,55 @@
             <button onclick="toggleCart()" class="text-white/30 text-4xl">&times;</button>
         </div>
         <div id="cart-content" class="flex-grow overflow-y-auto"></div>
-        <div class="mt-8 pt-6 border-t border-white/10">
-            <div class="flex justify-between items-center mb-6">
-                <span class="text-stone-500 uppercase text-[10px] tracking-widest font-bold">Total</span>
-                <span id="cart-total" class="text-xl font-bold">0 RON</span>
+        <div class="mt-8 pt-6 border-t border-white/10 text-center">
+            <div class="flex justify-between items-center mb-6 px-4 font-bold tracking-widest text-xl">
+                <span>TOTAL:</span><span id="cart-total">0 RON</span>
             </div>
-            <button onclick="sendOrder()" class="w-full py-5 border border-white/20 rounded-xl text-[10px] tracking-widest font-bold uppercase hover:bg-white hover:text-black transition">Finalizare WhatsApp</button>
+            <button onclick="sendOrder()" class="w-full py-5 border border-white/20 rounded-xl text-[10px] tracking-widest font-bold uppercase hover:bg-white hover:text-black transition">WhatsApp Checkout</button>
         </div>
     </div>
 
     <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
         <div class="p-5 md:p-8 flex justify-between items-center">
-            <div class="flex items-center gap-6">
-                <button onclick="toggleDropdown()" class="lg:hidden text-2xl focus:outline-none"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
+            <div class="flex items-center gap-4">
+                <button onclick="toggleDropdown()" class="lg:hidden text-2xl"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
                 <a href="index.html" class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">Energetica</a>
             </div>
-            <div class="flex items-center gap-4 md:gap-12">
-                <div class="hidden lg:flex gap-8 items-center text-[10px] font-bold uppercase tracking-widest">
+
+            <div class="flex items-center gap-4 md:gap-10">
+                <div class="flex gap-2 mr-4">
+                    <button class="lang-btn lang-active">RO</button>
+                    <button class="lang-btn">EN</button>
+                    <button class="lang-btn">RU</button>
+                </div>
+
+                <div class="hidden lg:flex gap-6 items-center text-[10px] font-bold uppercase tracking-widest">
                     <a href="index.html" class="border-b border-white">Acasă</a>
                     <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
-                    <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
+                    <a href="academia.html" class="hover:text-stone-400 transition">Academia</a>
+                    <a href="club.html" class="hover:text-stone-400 transition">Clubul</a>
+                    <a href="programari.html" class="hover:text-stone-400 transition">Consultații</a>
                     <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
                 </div>
-                <div onclick="toggleCart()" class="paper-bag-link"><i class="fa-solid fa-bag-shopping"></i><span id="cart-badge">0</span></div>
+                <div onclick="toggleCart()" class="cursor-pointer relative"><i class="fa-solid fa-bag-shopping text-2xl"></i><span id="cart-badge" class="absolute -bottom-1 -right-1 bg-white text-black text-[9px] font-bold px-1 rounded-full">0</span></div>
             </div>
         </div>
         <div id="dropdown-menu" class="lg:hidden">
             <div class="flex flex-col items-center">
-                <a href="index.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Acasă</a>
-                <a href="products.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Colecție</a>
-                <a href="despre.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Ghid</a>
-                <a href="contact.html" class="nav-link-mobile serif text-xl italic" onclick="toggleDropdown()">Contact</a>
+                <a href="index.html" class="nav-link-mobile serif text-xl italic">Acasă</a>
+                <a href="products.html" class="nav-link-mobile serif text-xl italic">Colecție</a>
+                <a href="academia.html" class="nav-link-mobile serif text-xl italic">Academia</a>
+                <a href="club.html" class="nav-link-mobile serif text-xl italic">Clubul</a>
+                <a href="programari.html" class="nav-link-mobile serif text-xl italic">Consultații</a>
+                <a href="contact.html" class="nav-link-mobile serif text-xl italic">Contact</a>
             </div>
         </div>
     </nav>
 
     <main class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
         <h1 class="serif text-5xl md:text-8xl italic mb-4">Energetica</h1>
-        <p class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-stone-400 mb-10">Energie pură pentru echilibrul tău</p>
-        <a href="products.html" class="px-10 py-4 border border-white/30 rounded-full text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Explorează Colecția</a>
+        <p class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-stone-400 mb-10">Energie pură • Echilibru • Scalabilitate</p>
+        <a href="academia.html" class="px-10 py-4 border border-white/30 rounded-full text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Explorează Academia</a>
     </main>
 
     <script>
@@ -91,12 +97,13 @@
             const container = document.getElementById('cart-content');
             const totalEl = document.getElementById('cart-total');
             const badge = document.getElementById('cart-badge');
+            if(!container) return;
             container.innerHTML = '';
             let total = 0; let totalItems = 0;
             cart.forEach((item) => {
                 total += item.price * item.quantity;
                 totalItems += item.quantity;
-                container.innerHTML += `<div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/5"><img src="${item.img}" class="w-14 h-14 object-cover rounded-lg"><div class="flex-grow"><h4 class="text-[10px] uppercase font-bold">${item.name}</h4><p class="text-stone-400 text-[10px]">${item.quantity} buc. x ${item.price} RON</p></div><button onclick="removeFromCart('${item.name}')" class="text-white/20 text-2xl">&times;</button></div>`;
+                container.innerHTML += `<div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/5 font-bold"><div class="flex-grow"><h4 class="text-[10px] uppercase">${item.name}</h4><p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p></div><button onclick="removeFromCart('${item.name}')" class="text-white/20 text-2xl">&times;</button></div>`;
             });
             totalEl.innerText = total + " RON";
             badge.innerText = totalItems;
@@ -111,8 +118,8 @@
             if (cart.length === 0) return alert("Punga e goală!");
             const phone = "37127507367"; 
             let orderDetails = "";
-            cart.forEach(item => orderDetails += `• ${item.name} (${item.quantity} buc.) - ${item.price * item.quantity} RON\n`);
-            const baseText = `Bună! Aș dori să plasez o comandă pe Energetica:\n\n${orderDetails}\n*Total: ${document.getElementById('cart-total').innerText}*`;
+            cart.forEach(item => orderDetails += `• ${item.name} (${item.quantity} buc.)\n`);
+            const baseText = `Bună! Vreau să achiziționez resursele Energetica:\n\n${orderDetails}\n*TOTAL: ${document.getElementById('cart-total').innerText}*`;
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(baseText)}`, '_blank');
         }
         window.onload = updateCartUI;
