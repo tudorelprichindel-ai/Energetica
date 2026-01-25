@@ -35,7 +35,7 @@
         .btn-unified:hover { background-color: white; color: black; }
         .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
 
-        /* 4. PUNGA DE CUMPĂRĂTURI */
+        /* 4. PUNGA DE CUMPĂRĂTURI MĂRITĂ */
         .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: white; padding: 10px; z-index: 60; }
         .paper-bag-link i { font-size: 2.5rem; }
         
@@ -58,7 +58,7 @@
         #lightbox img { max-width: 90%; max-height: 80%; border-radius: 1rem; transform: scale(0.9); transition: 0.3s; }
         #lightbox.open img { transform: scale(1); }
 
-        /* 7. FOOTER */
+        /* 7. FOOTER (Z-INDEX RIDICAT) */
         footer { position: relative; z-index: 100; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
@@ -192,22 +192,24 @@
             badge.style.display = totalItems > 0 ? 'flex' : 'none';
         }
 
+        // FUNCȚIA WHATSAPP REPARATĂ
         function sendOrder() {
             if (cart.length === 0) return alert("Punga e goală!");
-            
-            // NUMĂRUL TĂU DE LETONIA
-            let phone = "37125507367"; 
-            
-            let message = "Bună! Aș dori să plasez o comandă pe Energetica:%0A%0A";
+
+            const phone = "37125507367"; 
+            let orderDetails = "";
             let total = 0;
+
             cart.forEach(item => {
-                let nameEncoded = encodeURIComponent(item.name);
-                message += `•%20${nameEncoded}%20(${item.quantity}%20buc.)%20-%20${item.price * item.quantity}%20RON%0A`;
-                total += item.price * item.quantity;
+                const itemTotal = item.price * item.quantity;
+                orderDetails += `• ${item.name} (${item.quantity} buc.) - ${itemTotal} RON\n`;
+                total += itemTotal;
             });
-            message += `%0A*Total:%20${total}%20RON*`;
+
+            const baseText = `Bună! Aș dori să plasez o comandă pe Energetica:\n\n${orderDetails}\n*Total: ${total} RON*`;
+            const encodedText = encodeURIComponent(baseText);
             
-            window.open("https://api.whatsapp.com/send?phone=" + phone + "&text=" + message, "_blank");
+            window.open(`https://wa.me/${phone}?text=${encodedText}`, '_blank');
         }
 
         function openLightbox(src) {
