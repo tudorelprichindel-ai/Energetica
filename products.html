@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colecția | Energetica | Elena Shipko</title>
+    <title>Colecția Completă | Energetica</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
         :root {
@@ -34,38 +34,34 @@
         
         .collection-header { text-align: center; margin-bottom: 60px; }
         .collection-header h1 { font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); margin-bottom: 15px; }
-        .collection-header p { font-weight: 300; color: #ccc; letter-spacing: 1px; }
 
-        /* CATEGORII COLECȚIE */
+        .category-section { margin-bottom: 60px; }
         .category-title { 
-            font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); 
-            margin: 40px 0 20px; border-bottom: 1px solid var(--glass); padding-bottom: 10px;
+            font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); 
+            margin-bottom: 30px; border-bottom: 1px solid var(--glass); padding-bottom: 10px;
         }
 
-        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 2rem; }
+        .products-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 2.5rem; }
         
         .item-card {
             background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass);
             padding: 0; overflow: hidden; transition: 0.4s; backdrop-filter: blur(10px);
-            text-align: center;
+            display: flex; flex-direction: column; height: 100%;
         }
         .item-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         
-        .item-img { 
-            width: 100%; height: 300px; background: rgba(255,255,255,0.05); 
-            display: flex; align-items: center; justify-content: center; font-size: 0.8rem; color: #555;
-        }
+        .item-img { width: 100%; height: 250px; background: rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; }
 
-        .item-info { padding: 1.5rem; }
-        .item-info h3 { font-family: 'Playfair Display', serif; color: var(--white); font-size: 1.2rem; margin-bottom: 10px; }
-        .item-info p { font-size: 0.8rem; color: #bbb; margin-bottom: 20px; font-weight: 300; }
+        .item-info { padding: 2rem; flex-grow: 1; display: flex; flex-direction: column; justify-content: space-between; }
+        .item-info h3 { font-family: 'Playfair Display', serif; color: var(--gold); font-size: 1.4rem; margin-bottom: 10px; }
+        .item-info p { font-size: 0.85rem; color: #ccc; margin-bottom: 20px; line-height: 1.6; }
 
-        .btn-order {
-            padding: 10px 25px; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; font-size: 0.7rem; letter-spacing: 2px;
-            text-transform: uppercase; transition: 0.3s;
+        .btn-action {
+            padding: 12px; border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; font-size: 0.75rem; letter-spacing: 2px;
+            text-transform: uppercase; transition: 0.3s; text-align: center;
         }
-        .btn-order:hover { background: var(--gold); color: var(--midnight); }
+        .btn-action:hover { background: var(--gold); color: var(--midnight); }
 
     </style>
 </head>
@@ -83,40 +79,52 @@
     <div class="content-wrapper">
         <div class="collection-header">
             <h1>Colecție cu Intenție</h1>
-            <p>Bijuterii lucrate manual, concepute pentru a ancora energia dorită în realitatea ta zilnică.</p>
+            <p>Obiecte energetice concepute pentru a ancora momentele tale sacre.</p>
         </div>
 
-        <h2 class="category-title">Brățări Morse Code</h2>
-        <div class="products-grid">
-            <div class="item-card">
-                <div class="item-img">[Imagine Brățară Morse]</div>
-                <div class="item-info">
-                    <h3>Cuvinte de Putere</h3>
-                    <p>Mesaje secrete (Love, Power, Scalability) scrise în limbaj Morse pe mătase și argint.</p>
-                    <a href="contact.html" class="btn-order">Solicită Personalizare</a>
+        <section class="category-section">
+            <h2 class="category-title">Brățări Morse: Mesaje Codificate</h2>
+            <div class="products-grid">
+                <div class="item-card">
+                    <div class="item-img">[Imagine Morse Personalizat]</div>
+                    <div class="item-info">
+                        <h3>Custom Connection</h3>
+                        <p>Codifică o <strong>dată importantă</strong> (logodnă, început de relație) sau un <strong>cuvânt semnificativ</strong> în limbaj Morse. O bijuterie discretă cu o poveste pe care doar tu o cunoști.</p>
+                        <a href="contact.html" class="btn-action">Personalizează Mesajul</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-img">[Imagine Morse Standard]</div>
+                    <div class="item-info">
+                        <h3>Cuvinte de Putere</h3>
+                        <p>Mesaje pre-definite: "IUBIRE", "PUTERE", "SCALE". Ancore zilnice scrise pe mătase naturală și argint.</p>
+                        <a href="contact.html" class="btn-action">Alege un Cuvânt</a>
+                    </div>
                 </div>
             </div>
-            <div class="item-card">
-                <div class="item-img">[Imagine Morse Special]</div>
-                <div class="item-info">
-                    <h3>Magic Days Collection</h3>
-                    <p>Brățări create special pentru zilele cu vibrație energetică înaltă.</p>
-                    <a href="contact.html" class="btn-order">Vezi Colecția</a>
-                </div>
-            </div>
-        </div>
+        </section>
 
-        <h2 class="category-title">Brățări Energetice Personale</h2>
-        <div class="products-grid">
-            <div class="item-card">
-                <div class="item-img">[Imagine Brățară Astro]</div>
-                <div class="item-info">
-                    <h3>Astro-Bracelets</h3>
-                    <p>Pietre semiprețioase alese pe baza hărții tale natale (Soare, Lună, Venus).</p>
-                    <a href="contact.html" class="btn-order">Solicită Analiză & Design</a>
+        <section class="category-section">
+            <h2 class="category-title">Brățări Energetice Personale</h2>
+            <div class="products-grid">
+                <div class="item-card">
+                    <div class="item-img">[Imagine Brățară Astro]</div>
+                    <div class="item-info">
+                        <h3>Astro-Selection</h3>
+                        <p>Pietre semiprețioase (Ametist, Citrin, Cuarț) selecționate riguros pe baza hărții tale natale pentru echilibrarea energiei Soarelui și a Lunii.</p>
+                        <a href="contact.html" class="btn-action">Solicită Analiză Personală</a>
+                    </div>
+                </div>
+                <div class="item-card">
+                    <div class="item-img">[Imagine Magic Days]</div>
+                    <div class="item-info">
+                        <h3>Magic Days Collection</h3>
+                        <p>Ediții limitate create pentru evenimente astrologice majore. Bijuterii menite să capteze vibrația momentului.</p>
+                        <a href="contact.html" class="btn-action">Vezi Edițiile Limitate</a>
+                    </div>
                 </div>
             </div>
-        </div>
+        </section>
     </div>
 
 </body>
