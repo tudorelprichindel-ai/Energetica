@@ -2,127 +2,253 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Energetica | Energie Pură</title>
-    <script src="https://cdn.tailwindcss.com"></script>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Energetica | Energie Pură & Putere de Scalare</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <style>
-        @import url('https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;1,700&display=swap');
-        body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
-        .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
-        .bg-image { width: 100%; height: 100%; background-image: url('cristale.jpg'); background-size: cover; background-position: center; filter: brightness(0.4); animation: backgroundZoom 25s infinite alternate ease-in-out; }
-        @keyframes backgroundZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
-        .serif { font-family: 'Playfair Display', serif; }
-        
-        #dropdown-menu { max-height: 0; opacity: 0; overflow: hidden; transition: max-height 0.6s cubic-bezier(0.4, 0, 0.2, 1), opacity 0.4s ease; background: rgba(8, 3, 16, 0.96); backdrop-filter: blur(15px); }
-        #dropdown-menu.open { max-height: 600px; opacity: 1; }
-        .nav-link-mobile { padding: 1.2rem; border-bottom: 1px solid rgba(255, 255, 255, 0.05); width: 100%; text-align: center; display: block; }
-        
-        #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 400px; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px); z-index: 3000; transform: translateX(100%); transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 1.5rem; display: flex; flex-direction: column; }
-        #cart-sidebar.open { transform: translateX(0); }
-        .lang-btn { font-size: 10px; border: 1px solid rgba(255,255,255,0.2); padding: 2px 6px; border-radius: 4px; transition: 0.3s; }
-        .lang-btn:hover, .lang-active { background: white; color: black; border-color: white; }
+        :root {
+            --midnight: #0a0e14;
+            --gold: #c5a059;
+            --gold-light: #e2c99d;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.05);
+        }
+
+        body {
+            margin: 0;
+            font-family: 'Montserrat', sans-serif;
+            background-color: var(--midnight);
+            color: var(--white);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        h1, h2, h3 { font-family: 'Playfair Display', serif; }
+
+        /* HEADER & NAVIGARE UNIVERSALĂ */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(10, 14, 20, 0.8);
+            backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.8rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 2px;
+        }
+
+        nav ul {
+            list-style: none;
+            display: flex;
+            gap: 2rem;
+            margin: 0;
+            padding: 0;
+        }
+
+        nav ul li { position: relative; }
+
+        nav ul li a {
+            text-decoration: none;
+            color: var(--white);
+            font-size: 0.9rem;
+            font-weight: 300;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        nav ul li a:hover { color: var(--gold); }
+
+        /* DROP-DOWN LUX */
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            top: 100%;
+            left: 0;
+            background: rgba(10, 14, 20, 0.95);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border: 1px solid var(--glass);
+            padding: 1rem 0;
+            z-index: 1001;
+        }
+
+        nav ul li:hover .dropdown-content { display: block; }
+
+        .dropdown-content a {
+            padding: 0.8rem 1.5rem;
+            display: block;
+            font-size: 0.85rem;
+        }
+
+        .dropdown-content a:hover { background: var(--glass); }
+
+        /* HERO SECTION */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            background: radial-gradient(circle at center, #1a1f26 0%, #0a0e14 100%);
+            padding: 0 20px;
+        }
+
+        .hero h1 {
+            font-size: 4rem;
+            margin-bottom: 1rem;
+            background: linear-gradient(to right, var(--white), var(--gold));
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            max-width: 600px;
+            font-weight: 300;
+            color: #a0a0a0;
+        }
+
+        .cta-gold {
+            margin-top: 2rem;
+            padding: 1rem 2.5rem;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            letter-spacing: 2px;
+            transition: 0.4s;
+        }
+
+        .cta-gold:hover {
+            background: var(--gold);
+            color: var(--midnight);
+            box-shadow: 0 0 20px rgba(197, 160, 89, 0.3);
+        }
+
+        /* BUSINESS GRID */
+        .section-padding { padding: 6rem 2rem; max-width: 1200px; margin: 0 auto; }
+
+        .grid-container {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            margin-top: 4rem;
+        }
+
+        .card {
+            background: var(--glass);
+            padding: 3rem 2rem;
+            border: 1px solid rgba(255,255,255,0.1);
+            text-align: center;
+            transition: 0.3s;
+            text-decoration: none;
+            color: white;
+        }
+
+        .card:hover {
+            border-color: var(--gold);
+            transform: translateY(-10px);
+        }
+
+        .card i { color: var(--gold); font-size: 2rem; margin-bottom: 1rem; }
+
+        @media (max-width: 768px) {
+            .hero h1 { font-size: 2.5rem; }
+            nav ul { display: none; } /* În pagina următoare facem meniul mobil complet */
+        }
     </style>
 </head>
 <body>
-    <div class="bg-container"><div class="bg-image"></div></div>
 
-    <div id="cart-sidebar">
-        <div class="flex justify-between items-center mb-10">
-            <h2 class="serif text-3xl italic">Punga ta</h2>
-            <button onclick="toggleCart()" class="text-white/30 text-4xl">&times;</button>
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ENERGETICA</a>
+            <nav>
+                <ul>
+                    <li><a href="index.html">ACASĂ</a></li>
+                    <li>
+                        <a href="programari.html">CONSULTAȚII ▾</a>
+                        <div class="dropdown-content">
+                            <a href="business.html">Business & Bani</a>
+                            <a href="personal.html">Personal (Cine sunt eu?)</a>
+                            <a href="relatii.html">Parteneriat & Relații</a>
+                            <a href="kids.html">Copii & Potențial</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="academia.html">ACADEMIA ▾</a>
+                        <div class="dropdown-content">
+                            <a href="cursuri.html">Cursuri Video</a>
+                            <a href="ghiduri.html">Ghiduri PDF</a>
+                        </div>
+                    </li>
+                    <li>
+                        <a href="products.html">COLECȚIE ▾</a>
+                        <div class="dropdown-content">
+                            <a href="bijuterii.html">Bijuterii Morse</a>
+                            <a href="bratari.html">Brățări Personalizate</a>
+                        </div>
+                    </li>
+                    <li><a href="club.html">CLUB</a></li>
+                </ul>
+            </nav>
         </div>
-        <div id="cart-content" class="flex-grow overflow-y-auto"></div>
-        <div class="mt-8 pt-6 border-t border-white/10 text-center">
-            <div class="flex justify-between items-center mb-6 px-4 font-bold tracking-widest text-xl">
-                <span>TOTAL:</span><span id="cart-total">0 RON</span>
-            </div>
-            <button onclick="sendOrder()" class="w-full py-5 border border-white/20 rounded-xl text-[10px] tracking-widest font-bold uppercase hover:bg-white hover:text-black transition">WhatsApp Checkout</button>
+    </header>
+
+    <section class="hero">
+        <h1>Energie Pură • Echilibru</h1>
+        <p>Expertiză în Astrologie, NLP și Strategie de Business pentru o evoluție conștientă și scalabilă.</p>
+        <a href="programari.html" class="cta-gold">Solicită o Sesiune de Audit</a>
+    </section>
+
+    <div class="section-padding">
+        <h2 style="text-align: center; font-size: 2.5rem;">Căile de Evoluție</h2>
+        <div class="grid-container">
+            <a href="academia.html" class="card">
+                <h3>ACADEMIA</h3>
+                <p>Educație profundă prin cursuri de Astrologie și tehnici NLP.</p>
+                <span style="color: var(--gold);">Explorează cursuri →</span>
+            </a>
+            <a href="programari.html" class="card">
+                <h3>CONSULTAȚII</h3>
+                <p>Sesiuni individuale de business, personal și parteneriate.</p>
+                <span style="color: var(--gold);">Programează-te →</span>
+            </a>
+            <a href="club.html" class="card">
+                <h3>CLUBUL VIP</h3>
+                <p>Comunitate exclusivă pentru creștere și suport continuu.</p>
+                <span style="color: var(--gold);">Alătură-te clubului →</span>
+            </a>
+            <a href="products.html" class="card">
+                <h3>COLECȚIE</h3>
+                <p>Obiecte cu semnificație: Bijuterii Morse și Brățări Energetice.</p>
+                <span style="color: var(--gold);">Vezi shop-ul →</span>
+            </a>
         </div>
     </div>
 
-    <nav class="fixed top-0 w-full z-50 bg-black/60 backdrop-blur-md border-b border-white/10">
-        <div class="p-5 md:p-8 flex justify-between items-center">
-            <div class="flex items-center gap-4">
-                <button onclick="toggleDropdown()" class="lg:hidden text-2xl"><i id="menu-icon" class="fa-solid fa-bars-staggered"></i></button>
-                <a href="index.html" class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">Energetica</a>
-            </div>
+    <footer style="padding: 4rem 2rem; border-top: 1px solid var(--glass); text-align: center; font-size: 0.8rem; color: #666;">
+        <p>© 2026 Energetica by Elena Shipko. Confidențialitate Garantată.</p>
+        <p>Astro HR • NLP Master • Business Strategy</p>
+    </footer>
 
-            <div class="flex items-center gap-4 md:gap-10">
-                <div class="flex gap-2 mr-4">
-                    <button class="lang-btn lang-active">RO</button>
-                    <button class="lang-btn">EN</button>
-                    <button class="lang-btn">RU</button>
-                </div>
-
-                <div class="hidden lg:flex gap-6 items-center text-[10px] font-bold uppercase tracking-widest">
-                    <a href="index.html" class="border-b border-white">Acasă</a>
-                    <a href="products.html" class="hover:text-stone-400 transition">Colecție</a>
-                    <a href="academia.html" class="hover:text-stone-400 transition">Academia</a>
-                    <a href="club.html" class="hover:text-stone-400 transition">Clubul</a>
-                    <a href="programari.html" class="hover:text-stone-400 transition">Consultații</a>
-                    <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
-                </div>
-                <div onclick="toggleCart()" class="cursor-pointer relative"><i class="fa-solid fa-bag-shopping text-2xl"></i><span id="cart-badge" class="absolute -bottom-1 -right-1 bg-white text-black text-[9px] font-bold px-1 rounded-full">0</span></div>
-            </div>
-        </div>
-        <div id="dropdown-menu" class="lg:hidden">
-            <div class="flex flex-col items-center">
-                <a href="index.html" class="nav-link-mobile serif text-xl italic">Acasă</a>
-                <a href="products.html" class="nav-link-mobile serif text-xl italic">Colecție</a>
-                <a href="academia.html" class="nav-link-mobile serif text-xl italic">Academia</a>
-                <a href="club.html" class="nav-link-mobile serif text-xl italic">Clubul</a>
-                <a href="programari.html" class="nav-link-mobile serif text-xl italic">Consultații</a>
-                <a href="contact.html" class="nav-link-mobile serif text-xl italic">Contact</a>
-            </div>
-        </div>
-    </nav>
-
-    <main class="h-screen flex flex-col justify-center items-center text-center px-6 relative z-10">
-        <h1 class="serif text-5xl md:text-8xl italic mb-4">Energetica</h1>
-        <p class="text-[10px] md:text-xs uppercase tracking-[0.5em] text-stone-400 mb-10">Energie pură • Echilibru • Scalabilitate</p>
-        <a href="academia.html" class="px-10 py-4 border border-white/30 rounded-full text-[10px] tracking-widest uppercase hover:bg-white hover:text-black transition">Explorează Academia</a>
-    </main>
-
-    <script>
-        function toggleDropdown() {
-            const menu = document.getElementById('dropdown-menu');
-            const icon = document.getElementById('menu-icon');
-            menu.classList.toggle('open');
-            menu.classList.contains('open') ? icon.classList.replace('fa-bars-staggered', 'fa-xmark') : icon.classList.replace('fa-xmark', 'fa-bars-staggered');
-        }
-        let cart = JSON.parse(localStorage.getItem('energetica_cart')) || [];
-        function toggleCart() { document.getElementById('cart-sidebar').classList.toggle('open'); }
-        function updateCartUI() {
-            const container = document.getElementById('cart-content');
-            const totalEl = document.getElementById('cart-total');
-            const badge = document.getElementById('cart-badge');
-            if(!container) return;
-            container.innerHTML = '';
-            let total = 0; let totalItems = 0;
-            cart.forEach((item) => {
-                total += item.price * item.quantity;
-                totalItems += item.quantity;
-                container.innerHTML += `<div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/5 font-bold"><div class="flex-grow"><h4 class="text-[10px] uppercase">${item.name}</h4><p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p></div><button onclick="removeFromCart('${item.name}')" class="text-white/20 text-2xl">&times;</button></div>`;
-            });
-            totalEl.innerText = total + " RON";
-            badge.innerText = totalItems;
-            badge.style.display = totalItems > 0 ? 'flex' : 'none';
-        }
-        function removeFromCart(name) {
-            cart = cart.filter(item => item.name !== name);
-            localStorage.setItem('energetica_cart', JSON.stringify(cart));
-            updateCartUI();
-        }
-        function sendOrder() {
-            if (cart.length === 0) return alert("Punga e goală!");
-            const phone = "37127507367"; 
-            let orderDetails = "";
-            cart.forEach(item => orderDetails += `• ${item.name} (${item.quantity} buc.)\n`);
-            const baseText = `Bună! Vreau să achiziționez resursele Energetica:\n\n${orderDetails}\n*TOTAL: ${document.getElementById('cart-total').innerText}*`;
-            window.open(`https://wa.me/${phone}?text=${encodeURIComponent(baseText)}`, '_blank');
-        }
-        window.onload = updateCartUI;
-    </script>
 </body>
 </html>
