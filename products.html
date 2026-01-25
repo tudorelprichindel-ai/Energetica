@@ -11,7 +11,7 @@
         
         body { background-color: #080310; color: white; font-family: 'Segoe UI', sans-serif; margin: 0; overflow-x: hidden; }
         
-        /* FUNDAL ZOOM LENT */
+        /* 1. FUNDAL ZOOM LENT */
         .bg-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -2; overflow: hidden; }
         .bg-image { 
             width: 100%; height: 100%; 
@@ -24,42 +24,43 @@
         
         .serif { font-family: 'Playfair Display', serif; }
 
-        /* CARDURI PRODUSE */
-        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s ease-in-out; border-radius: 2.5rem; padding: 1.5rem; text-align: center; }
-        .glass-card:hover { transform: translateY(-10px); border-color: rgba(255, 255, 255, 0.3); }
-        .img-container { width: 100%; height: 18rem; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1.5rem; cursor: zoom-in; }
+        /* 2. CARDURI PRODUSE - Adaptate pentru mobil */
+        .glass-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid rgba(255, 255, 255, 0.1); transition: 0.4s ease-in-out; border-radius: 2rem; padding: 1.25rem; text-align: center; }
+        @media (min-width: 768px) { .glass-card { border-radius: 2.5rem; padding: 1.5rem; } }
+        
+        .img-container { width: 100%; height: 15rem; overflow: hidden; border-radius: 1.5rem; margin-bottom: 1rem; cursor: zoom-in; }
+        @media (min-width: 768px) { .img-container { height: 18rem; margin-bottom: 1.5rem; } }
+        
         .product-img { width: 100%; height: 100%; object-fit: cover; transition: 0.7s; }
 
-        /* BUTOANE UNIFIED */
+        /* 3. BUTOANE UNIFIED */
         .btn-unified { border: 1px solid rgba(255, 255, 255, 0.2); background: transparent; color: white; text-transform: uppercase; font-weight: bold; transition: 0.4s ease; cursor: pointer; display: inline-flex; align-items: center; justify-content: center; gap: 10px; text-decoration: none; }
         .btn-unified:hover { background-color: white; color: black; }
-        .product-btn { width: 100%; padding: 1rem; font-size: 10px; letter-spacing: 0.3em; border-radius: 0.5rem; }
+        .product-btn { width: 100%; padding: 0.8rem; font-size: 10px; letter-spacing: 0.2em; border-radius: 0.5rem; }
 
-        /* PUNGA DE CUMPĂRĂTURI */
-        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: white; padding: 10px; z-index: 60; }
-        .paper-bag-link i { font-size: 2.5rem; }
+        /* 4. PUNGA DE CUMPĂRĂTURI - Vizibilă pe mobil */
+        .paper-bag-link { position: relative; display: flex; align-items: center; cursor: pointer; transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275); color: white; padding: 5px; z-index: 60; }
+        .paper-bag-link i { font-size: 2rem; }
+        @media (min-width: 768px) { .paper-bag-link i { font-size: 2.5rem; } }
         
         #cart-badge { 
-            position: absolute; bottom: 12px; left: 50%; transform: translateX(-50%);
-            font-size: 11px; font-weight: 900; color: #080310; background: white; 
-            min-width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
+            position: absolute; bottom: 8px; left: 50%; transform: translateX(-50%);
+            font-size: 9px; font-weight: 900; color: #080310; background: white; 
+            min-width: 15px; height: 15px; border-radius: 50%; display: flex; align-items: center; justify-content: center;
         }
+        @media (min-width: 768px) { #cart-badge { bottom: 12px; font-size: 11px; min-width: 18px; height: 18px; } }
 
-        .bump { animation: bump 0.4s ease-out; }
-        @keyframes bump { 0% { transform: scale(1); } 50% { transform: scale(1.3); } 100% { transform: scale(1); } }
-
-        /* SIDEBAR COȘ */
-        #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 350px; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px); z-index: 1100; transform: translateX(100%); transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 2.5rem; display: flex; flex-direction: column; }
+        /* 5. SIDEBAR COȘ - Mai lat pe mobil */
+        #cart-sidebar { position: fixed; top: 0; right: 0; height: 100%; width: 100%; max-width: 350px; background: rgba(8, 3, 16, 0.98); backdrop-filter: blur(25px); z-index: 1100; transform: translateX(100%); transition: 0.5s cubic-bezier(0.22, 1, 0.36, 1); border-left: 1px solid rgba(255, 255, 255, 0.1); padding: 2rem; display: flex; flex-direction: column; }
         #cart-sidebar.open { transform: translateX(0); }
-        .cart-item { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; padding-bottom: 1.5rem; border-bottom: 1px solid rgba(255,255,255,0.05); }
 
-        /* LIGHTBOX */
+        /* 6. LIGHTBOX */
         #lightbox { display: none; position: fixed; z-index: 1200; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(10px); justify-content: center; align-items: center; cursor: zoom-out; }
-        #lightbox img { max-width: 90%; max-height: 80%; border-radius: 1rem; transform: scale(0.9); transition: 0.3s; }
+        #lightbox img { max-width: 95%; max-height: 80%; border-radius: 1rem; transform: scale(0.9); transition: 0.3s; }
         #lightbox.open img { transform: scale(1); }
 
-        /* FOOTER (REPARAT Z-INDEX) */
-        footer { position: relative; z-index: 100; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 5rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
+        /* 7. FOOTER */
+        footer { position: relative; z-index: 100; background: linear-gradient(to top, rgba(8,3,16,1) 0%, rgba(8,3,16,0.8) 100%); padding: 3rem 0; border-top: 1px solid rgba(255,255,255,0.1); }
     </style>
 </head>
 <body>
@@ -69,7 +70,7 @@
     <div id="cart-sidebar">
         <div class="flex justify-between items-center mb-10">
             <h2 class="serif text-3xl italic">Punga ta</h2>
-            <button onclick="toggleCart()" class="text-white/30 hover:text-white text-2xl">&times;</button>
+            <button onclick="toggleCart()" class="text-white/30 hover:text-white text-3xl">&times;</button>
         </div>
         <div id="cart-content" class="flex-grow overflow-y-auto pr-2"></div>
         <div class="mt-8 pt-8 border-t border-white/10">
@@ -77,70 +78,76 @@
                 <span class="text-stone-500 uppercase text-[10px] tracking-widest font-bold">Total</span>
                 <span id="cart-total" class="text-xl font-bold">0 RON</span>
             </div>
-            <button onclick="sendOrder()" class="btn-unified w-full py-4 rounded-lg text-[10px] tracking-[0.3em]">Finalizare WhatsApp</button>
+            <button onclick="sendOrder()" class="btn-unified w-full py-4 rounded-lg text-[10px] tracking-[0.3em]">WhatsApp Checkout</button>
         </div>
     </div>
     
-    <nav class="fixed top-0 w-full p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
-        <div class="serif text-2xl font-bold uppercase italic tracking-tighter">Energetica</div>
-        <div class="hidden md:flex gap-12 items-center text-[10px] font-bold uppercase tracking-widest">
-            <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
-            <a href="products.html" class="border-b border-white">Colecție</a>
-            <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
-            <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
+    <nav class="fixed top-0 w-full p-6 md:p-8 flex justify-between items-center z-50 bg-black/40 backdrop-blur-md border-b border-white/10">
+        <div class="serif text-xl md:text-2xl font-bold uppercase italic tracking-tighter">Energetica</div>
+        <div class="flex items-center gap-4 md:gap-12">
+            <div class="hidden lg:flex gap-8 items-center text-[10px] font-bold uppercase tracking-widest">
+                <a href="index.html" class="hover:text-stone-400 transition">Acasă</a>
+                <a href="products.html" class="border-b border-white">Colecție</a>
+                <a href="despre.html" class="hover:text-stone-400 transition">Ghid</a>
+                <a href="contact.html" class="hover:text-stone-400 transition">Contact</a>
+            </div>
             
-            <div onclick="toggleCart()" class="paper-bag-link ml-4" id="bag-icon">
+            <div onclick="toggleCart()" class="paper-bag-link" id="bag-icon">
                 <i class="fa-solid fa-bag-shopping"></i>
                 <span id="cart-badge">0</span>
             </div>
         </div>
     </nav>
 
-    <main class="max-w-7xl mx-auto pt-48 px-10 pb-32 relative z-10">
-        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+    <main class="max-w-7xl mx-auto pt-32 md:pt-48 px-6 md:px-10 pb-24 relative z-10">
+        <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
             <div class="glass-card">
                 <div class="img-container" onclick="openLightbox('ametist.jpg')"><img src="ametist.jpg" class="product-img"></div>
-                <h3 class="serif text-2xl italic mb-2">Ochi de Tigru Gold</h3>
-                <p class="text-stone-400 font-bold mb-6 italic tracking-widest">120 RON</p>
+                <h3 class="serif text-xl md:text-2xl italic mb-2">Ochi de Tigru Gold</h3>
+                <p class="text-stone-400 font-bold mb-4 md:mb-6 italic tracking-widest">120 RON</p>
                 <button onclick="addToCart('Ochi de Tigru Gold', 120, 'ametist.jpg')" class="btn-unified product-btn">În pungă</button>
             </div>
+
             <div class="glass-card">
                 <div class="img-container" onclick="openLightbox('bratara_tripla.jpg')"><img src="bratara_tripla.jpg" class="product-img"></div>
-                <h3 class="serif text-2xl italic mb-2">Triplă Protecție Azur</h3>
-                <p class="text-stone-400 font-bold mb-6 italic tracking-widest">85 RON</p>
+                <h3 class="serif text-xl md:text-2xl italic mb-2">Triplă Protecție Azur</h3>
+                <p class="text-stone-400 font-bold mb-4 md:mb-6 italic tracking-widest">85 RON</p>
                 <button onclick="addToCart('Triplă Protecție Azur', 85, 'bratara_tripla.jpg')" class="btn-unified product-btn">În pungă</button>
             </div>
+
             <div class="glass-card">
                 <div class="img-container" onclick="openLightbox('bratara_vulcanica.jpg')"><img src="bratara_vulcanica.jpg" class="product-img"></div>
-                <h3 class="serif text-2xl italic mb-2">Energie Vulcanică</h3>
-                <p class="text-stone-400 font-bold mb-6 italic tracking-widest">85 RON</p>
+                <h3 class="serif text-xl md:text-2xl italic mb-2">Energie Vulcanică</h3>
+                <p class="text-stone-400 font-bold mb-4 md:mb-6 italic tracking-widest">85 RON</p>
                 <button onclick="addToCart('Energie Vulcanică', 85, 'bratara_vulcanica.jpg')" class="btn-unified product-btn">În pungă</button>
             </div>
+
             <div class="glass-card">
                 <div class="img-container" onclick="openLightbox('citrin.jpg')"><img src="citrin.jpg" class="product-img"></div>
-                <h3 class="serif text-2xl italic mb-2">Scut Hematit</h3>
-                <p class="text-stone-400 font-bold mb-6 italic tracking-widest">95 RON</p>
+                <h3 class="serif text-xl md:text-2xl italic mb-2">Scut Hematit</h3>
+                <p class="text-stone-400 font-bold mb-4 md:mb-6 italic tracking-widest">95 RON</p>
                 <button onclick="addToCart('Scut Hematit', 95, 'citrin.jpg')" class="btn-unified product-btn">În pungă</button>
             </div>
+
             <div class="glass-card">
                 <div class="img-container" onclick="openLightbox('cuart-roz.jpg')"><img src="cuart-roz.jpg" class="product-img"></div>
-                <h3 class="serif text-2xl italic mb-2">Spiritul Buddha</h3>
-                <p class="text-stone-400 font-bold mb-6 italic tracking-widest">85 RON</p>
+                <h3 class="serif text-xl md:text-2xl italic mb-2">Spiritul Buddha</h3>
+                <p class="text-stone-400 font-bold mb-4 md:mb-6 italic tracking-widest">85 RON</p>
                 <button onclick="addToCart('Spiritul Buddha', 85, 'cuart-roz.jpg')" class="btn-unified product-btn">În pungă</button>
             </div>
         </div>
     </main>
 
     <footer>
-        <div class="max-w-7xl mx-auto px-10 flex flex-col md:flex-row justify-between items-center gap-12">
+        <div class="max-w-7xl mx-auto px-6 flex flex-col items-center gap-8">
             <div class="serif text-2xl italic text-stone-300">Energetica</div>
             <div class="flex flex-wrap gap-4 justify-center">
-                <a href="https://instagram.com" target="_blank" class="btn-unified px-6 py-2 rounded-full text-[11px]"><i class="fa-brands fa-instagram"></i> Instagram</a>
-                <a href="https://tiktok.com" target="_blank" class="btn-unified px-6 py-2 rounded-full text-[11px]"><i class="fa-brands fa-tiktok"></i> TikTok</a>
-                <a href="https://facebook.com" target="_blank" class="btn-unified px-6 py-2 rounded-full text-[11px]"><i class="fa-brands fa-facebook-f"></i> Facebook</a>
-                <a href="https://t.me" target="_blank" class="btn-unified px-6 py-2 rounded-full text-[11px]"><i class="fa-brands fa-telegram"></i> Telegram</a>
+                <a href="https://instagram.com" target="_blank" class="btn-unified px-5 py-2 rounded-full text-[10px]"><i class="fa-brands fa-instagram"></i></a>
+                <a href="https://tiktok.com" target="_blank" class="btn-unified px-5 py-2 rounded-full text-[10px]"><i class="fa-brands fa-tiktok"></i></a>
+                <a href="https://facebook.com" target="_blank" class="btn-unified px-5 py-2 rounded-full text-[10px]"><i class="fa-brands fa-facebook-f"></i></a>
+                <a href="https://t.me" target="_blank" class="btn-unified px-5 py-2 rounded-full text-[10px]"><i class="fa-brands fa-telegram"></i></a>
             </div>
-            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-bold">© 2026 Energetica • Energie pură</p>
+            <p class="text-[9px] text-stone-500 uppercase tracking-widest font-bold">© 2026 Energetica</p>
         </div>
     </footer>
 
@@ -154,10 +161,6 @@
             if (existing) { existing.quantity += 1; } 
             else { cart.push({name, price, img, quantity: 1}); }
             localStorage.setItem('energetica_cart', JSON.stringify(cart));
-            
-            const bag = document.getElementById('bag-icon');
-            bag.classList.add('bump');
-            setTimeout(() => bag.classList.remove('bump'), 400);
             updateCartUI();
         }
 
@@ -171,20 +174,19 @@
             const container = document.getElementById('cart-content');
             const totalEl = document.getElementById('cart-total');
             const badge = document.getElementById('cart-badge');
-            if (!container || !totalEl || !badge) return;
             container.innerHTML = '';
             let total = 0; let totalItems = 0;
             cart.forEach((item) => {
                 total += item.price * item.quantity;
                 totalItems += item.quantity;
                 container.innerHTML += `
-                    <div class="cart-item">
-                        <img src="${item.img}" class="w-16 h-16 object-cover rounded-lg">
+                    <div class="flex items-center gap-4 mb-6 pb-4 border-b border-white/5">
+                        <img src="${item.img}" class="w-12 h-12 object-cover rounded-lg">
                         <div class="flex-grow">
-                            <h4 class="text-[10px] uppercase font-bold tracking-tighter">${item.name}</h4>
-                            <p class="text-stone-400 text-[10px]">${item.quantity} buc. x ${item.price} RON</p>
+                            <h4 class="text-[9px] uppercase font-bold">${item.name}</h4>
+                            <p class="text-stone-400 text-[10px]">${item.quantity} x ${item.price} RON</p>
                         </div>
-                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 hover:text-white text-xl">&times;</button>
+                        <button onclick="removeFromCart('${item.name}')" class="text-white/20 text-xl">&times;</button>
                     </div>`;
             });
             totalEl.innerText = total + " RON";
@@ -192,22 +194,12 @@
             badge.style.display = totalItems > 0 ? 'flex' : 'none';
         }
 
-        // FUNCȚIA WHATSAPP REPARATĂ PENTRU LETONIA
         function sendOrder() {
             if (cart.length === 0) return alert("Punga e goală!");
-
             const phone = "37127507367"; 
             let orderDetails = "";
-            let total = 0;
-
-            cart.forEach(item => {
-                orderDetails += `• ${item.name} (${item.quantity} buc.) - ${item.price * item.quantity} RON\n`;
-                total += item.price * item.quantity;
-            });
-
-            const baseText = `Bună! Aș dori să plasez o comandă pe Energetica:\n\n${orderDetails}\n*Total: ${total} RON*`;
-            
-            // EncodeURIComponent rezolvă eroarea 404 prin curățarea link-ului
+            cart.forEach(item => orderDetails += `• ${item.name} (${item.quantity} buc.)\n`);
+            const baseText = `Comandă Energetica:\n\n${orderDetails}\n*Total: ${document.getElementById('cart-total').innerText}*`;
             window.open(`https://wa.me/${phone}?text=${encodeURIComponent(baseText)}`, '_blank');
         }
 
@@ -217,7 +209,6 @@
             lb.style.display = 'flex';
             setTimeout(() => lb.classList.add('open'), 10);
         }
-
         function closeLightbox() {
             const lb = document.getElementById('lightbox');
             lb.classList.remove('open');
