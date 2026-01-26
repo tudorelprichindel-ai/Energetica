@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energetica | Elena Shipko</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #c5a059;
@@ -14,14 +15,19 @@
         }
 
         body, html {
-            margin: 0; padding: 0; width: 100%; height: 100%;
+            margin: 0; padding: 0; width: 100%; min-height: 100%;
             font-family: 'Montserrat', sans-serif; color: var(--white);
-            background-color: var(--midnight); overflow: hidden;
+            background-color: var(--midnight);
         }
 
-        /* FUNDAL CINEMATIC - Asigură-te că fișierul se numește cristale.jpg */
-        .cinematic-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+        /* CONTAINER FUNDAL - Aceasta metodă este cea mai stabilă */
+        .bg-fixed {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
             background: linear-gradient(rgba(10, 14, 20, 0.7), rgba(10, 14, 20, 0.7)), 
                         url('cristale.jpg') no-repeat center center;
             background-size: cover;
@@ -30,10 +36,10 @@
 
         @keyframes cinematicZoom {
             from { transform: scale(1); }
-            to { transform: scale(1.12); }
+            to { transform: scale(1.1); }
         }
 
-        /* HEADER CURAT (FĂRĂ REȚELE SOCIALE) */
+        /* HEADER CURAT - Fără social media în colț */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
@@ -68,29 +74,41 @@
             margin-bottom: 1rem; color: var(--gold); letter-spacing: 2px;
         }
 
-        .hero p { font-size: 1.1rem; max-width: 700px; font-weight: 300; line-height: 1.6; color: #ddd; }
+        .hero p { font-size: 1.1rem; max-width: 700px; font-weight: 300; line-height: 1.6; color: #ddd; margin-bottom: 2rem; }
 
         .btn-audit {
-            margin-top: 2.5rem; padding: 1.2rem 3rem; border: 1px solid var(--gold);
+            padding: 1.2rem 3rem; border: 1px solid var(--gold);
             color: var(--gold); text-decoration: none; text-transform: uppercase;
             letter-spacing: 4px; font-size: 0.75rem; transition: 0.4s;
+            background: rgba(197, 160, 89, 0.05);
         }
         .btn-audit:hover { background: var(--gold); color: var(--midnight); }
 
+        /* FOOTER CU REȚELE SOCIALE */
+        footer {
+            padding: 60px 20px; text-align: center;
+            background: rgba(10, 14, 20, 0.95); border-top: 1px solid var(--glass);
+        }
+
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 20px; }
+        .social-links a { color: var(--gold); font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { transform: translateY(-5px); color: var(--white); }
+
+        .copyright { font-size: 0.7rem; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <div class="cinematic-bg"></div>
+    <div class="bg-fixed"></div>
 
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
             <ul class="nav-menu">
-                <li><a href="index.html">Acasă</a></li>
-                <li><a href="programari.html">Consultații</a></li>
-                <li><a href="academia.html">Academia</a></li>
-                <li><a href="products.html">Colecție</a></li>
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="programari.html">CONSULTAȚII</a></li>
+                <li><a href="academia.html">ACADEMIA</a></li>
+                <li><a href="products.html">COLECȚIE</a></li>
             </ul>
         </div>
     </header>
@@ -98,8 +116,18 @@
     <section class="hero">
         <h1>Astrology Power Boutique</h1>
         <p>Elena Shipko • NLP Master • Business Strategist<br>Alchimia dintre energia subtilă și rezultate concrete.</p>
-        <a href="programari.html" class="btn-audit">Solicită Audit</a>
+        <a href="programari.html" class="btn-audit">SOLICITĂ AUDIT</a>
     </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/elenashipko" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/numarul_tau" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</div>
+    </footer>
 
 </body>
 </html>
