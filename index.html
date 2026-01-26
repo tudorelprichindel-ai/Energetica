@@ -14,35 +14,30 @@
             --glass: rgba(255, 255, 255, 0.08);
         }
 
+        /* RESET - Eliminăm orice fundal care ar putea acoperi imaginea */
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
-        body, html { 
-            width: 100%; height: 100%; 
+        html, body { 
+            width: 100%; 
+            height: 100%; 
             font-family: 'Montserrat', sans-serif; 
             color: var(--white);
-            background-color: var(--midnight);
+            background: transparent; /* Permite vizibilitatea stratului de dedesubt */
         }
 
-        /* 1. FUNDALUL TĂU ORIGINAL - RECONSTRUIT DE LA ZERO */
-        .background-zoom-container {
+        /* FUNDALUL CINEMATIC - Singurul strat cu imagine */
+        .fixed-bg {
             position: fixed;
             top: 0;
             left: 0;
             width: 100%;
             height: 100%;
-            z-index: -10; /* Se asigură că stă în spatele tuturor elementelor */
-            overflow: hidden;
-        }
-
-        .background-zoom-image {
-            width: 100%;
-            height: 100%;
-            /* Verifică să ai fișierul cristale.jpg lângă acest index.html */
-            background-image: linear-gradient(rgba(10, 14, 20, 0.7), rgba(10, 14, 20, 0.7)), url('cristale.jpg');
-            background-position: center;
-            background-repeat: no-repeat;
+            z-index: -10;
+            /* Gradientul este acum foarte subtil pentru a nu întuneca prea tare poza */
+            background: linear-gradient(rgba(10, 14, 20, 0.5), rgba(10, 14, 20, 0.5)), 
+                        url('cristale.jpg') no-repeat center center;
             background-size: cover;
-            animation: cinematicZoom 20s infinite alternate ease-in-out;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
         @keyframes cinematicZoom {
@@ -50,14 +45,14 @@
             to { transform: scale(1.15); }
         }
 
-        /* 2. HEADER CURAT */
+        /* HEADER - Curat, fără social media conform cerinței tale */
         header {
             position: fixed;
             top: 0;
             width: 100%;
             z-index: 100;
-            background: rgba(10, 14, 20, 0.8);
-            backdrop-filter: blur(10px);
+            background: rgba(10, 14, 20, 0.7);
+            backdrop-filter: blur(8px);
             border-bottom: 1px solid var(--glass);
         }
 
@@ -93,7 +88,7 @@
             letter-spacing: 2px;
         }
 
-        /* 3. HERO CONTENT */
+        /* HERO CONTENT */
         .hero {
             height: 100vh;
             display: flex;
@@ -102,6 +97,7 @@
             align-items: center;
             text-align: center;
             padding: 0 20px;
+            background: transparent;
         }
 
         .hero h1 {
@@ -113,16 +109,33 @@
 
         .hero p {
             font-size: 1rem;
-            max-width: 600px;
+            max-width: 650px;
             line-height: 1.6;
-            color: #ddd;
+            color: #eee;
         }
 
-        /* 4. FOOTER CU REȚELE SOCIALE (CONFORM INSTRUCȚIUNILOR) */
+        .btn-audit {
+            margin-top: 30px;
+            padding: 15px 40px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.7rem;
+            letter-spacing: 3px;
+            transition: 0.3s;
+        }
+
+        .btn-audit:hover {
+            background: var(--gold);
+            color: var(--midnight);
+        }
+
+        /* FOOTER - Menținut pe fiecare pagină cu linkurile sociale jos */
         footer {
             padding: 50px 20px;
             text-align: center;
-            background: rgba(10, 14, 20, 0.9);
+            background: rgba(10, 14, 20, 0.85);
             border-top: 1px solid var(--glass);
         }
 
@@ -136,26 +149,19 @@
         .social-links a {
             color: var(--gold);
             font-size: 1.3rem;
-            transition: 0.3s;
-        }
-
-        .social-links a:hover {
-            color: white;
-            transform: translateY(-3px);
         }
 
         .copyright {
             font-size: 0.65rem;
-            opacity: 0.5;
+            opacity: 0.6;
             letter-spacing: 2px;
+            text-transform: uppercase;
         }
     </style>
 </head>
 <body>
 
-    <div class="background-zoom-container">
-        <div class="background-zoom-image"></div>
-    </div>
+    <div class="fixed-bg"></div>
 
     <header>
         <div class="nav-container">
@@ -169,11 +175,13 @@
         </div>
     </header>
 
-    <section class="hero">
-        <h1>Astrology Power Boutique</h1>
-        <p>Elena Shipko • NLP Master • Business Strategist<br>Unde energia subtilă se întâlnește cu rezultate de business concrete.</p>
-        <a href="programari.html" style="margin-top: 30px; padding: 15px 40px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px;">Solicită Audit</a>
-    </section>
+    <main>
+        <section class="hero">
+            <h1>Astrology Power Boutique</h1>
+            <p>Elena Shipko • NLP Master • Business Strategist<br>Unde energia subtilă se întâlnește cu rezultate de business concrete.</p>
+            <a href="programari.html" class="btn-audit">Solicită Audit</a>
+        </section>
+    </main>
 
     <footer>
         <div class="social-links">
