@@ -14,29 +14,33 @@
             --glass: rgba(255, 255, 255, 0.08);
         }
 
-        /* RESET TOTAL */
-        html, body {
+        body, html {
             margin: 0; padding: 0; width: 100%; height: 100%;
-            background-color: var(--midnight);
-            font-family: 'Montserrat', sans-serif;
-            color: var(--white);
+            font-family: 'Montserrat', sans-serif; color: var(--white);
+            background-color: var(--midnight); overflow-x: hidden;
         }
 
-        /* FUNDALUL FORȚAT */
-        .main-container {
-            position: relative;
-            width: 100%;
-            min-height: 100vh;
-            overflow-x: hidden;
-            /* Imaginea pusă direct aici pentru siguranță */
+        /* FUNDAL CINEMATIC CU ZOOM REPARAT */
+        .cinematic-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
+            overflow: hidden;
+        }
+
+        .cinematic-bg {
+            width: 100%; height: 100%;
             background: linear-gradient(rgba(10, 14, 20, 0.7), rgba(10, 14, 20, 0.7)), 
-                        url('cristale.jpg');
-            background-attachment: fixed;
-            background-position: center;
-            background-repeat: no-repeat;
+                        url('cristale.jpg') no-repeat center center;
             background-size: cover;
+            animation: cinematicZoom 30s infinite alternate ease-in-out;
+            will-change: transform;
         }
 
+        @keyframes cinematicZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.15); }
+        }
+
+        /* HEADER */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
@@ -56,61 +60,77 @@
         .nav-menu { display: flex; gap: 2rem; list-style: none; margin: 0; padding: 0; }
         .nav-menu a {
             text-decoration: none; color: var(--white); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 2px;
+            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
         }
+        .nav-menu a:hover { color: var(--gold); }
 
+        /* HERO SECTION */
         .hero {
             height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
+            justify-content: center; align-items: center; text-align: center; padding: 0 20px;
         }
 
         .hero h1 {
             font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 7vw, 4rem);
-            color: var(--gold); margin-bottom: 1rem;
+            margin-bottom: 1rem; color: var(--gold); letter-spacing: 2px;
         }
 
+        .hero p { font-size: 1.1rem; max-width: 700px; font-weight: 300; line-height: 1.6; color: #ddd; margin-bottom: 2rem; }
+
+        .btn-audit {
+            padding: 1.2rem 3rem; border: 1px solid var(--gold);
+            color: var(--gold); text-decoration: none; text-transform: uppercase;
+            letter-spacing: 4px; font-size: 0.75rem; transition: 0.4s;
+            background: rgba(197, 160, 89, 0.05);
+        }
+        .btn-audit:hover { background: var(--gold); color: var(--midnight); }
+
+        /* FOOTER CONFORM INSTRUCȚIUNILOR */
         footer {
-            padding: 40px 20px; text-align: center;
+            padding: 60px 20px; text-align: center;
             background: rgba(10, 14, 20, 0.95); border-top: 1px solid var(--glass);
         }
 
-        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 15px; }
-        .social-links a { color: var(--gold); font-size: 1.4rem; }
-        
-        .copyright { font-size: 0.7rem; opacity: 0.5; letter-spacing: 2px; }
+        .social-links { display: flex; justify-content: center; gap: 2rem; margin-bottom: 20px; }
+        .social-links a { color: var(--gold); font-size: 1.5rem; transition: 0.3s; }
+        .social-links a:hover { transform: translateY(-5px); color: var(--white); }
+
+        .copyright { font-size: 0.7rem; opacity: 0.5; letter-spacing: 2px; text-transform: uppercase; }
     </style>
 </head>
 <body>
 
-    <div class="main-container">
-        <header>
-            <div class="nav-container">
-                <a href="index.html" class="logo">ENERGETICA</a>
-                <ul class="nav-menu">
-                    <li><a href="index.html">ACASĂ</a></li>
-                    <li><a href="programari.html">CONSULTAȚII</a></li>
-                    <li><a href="academia.html">ACADEMIA</a></li>
-                    <li><a href="products.html">COLECȚIE</a></li>
-                </ul>
-            </div>
-        </header>
-
-        <section class="hero">
-            <h1>Astrology Power Boutique</h1>
-            <p>Elena Shipko • NLP Master • Business Strategist</p>
-            <a href="programari.html" style="margin-top:2rem; padding: 1rem 3rem; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; letter-spacing: 2px; font-size: 0.8rem;">SOLICITĂ AUDIT</a>
-        </section>
-
-        <footer>
-            <div class="social-links">
-                <a href="#"><i class="fab fa-instagram"></i></a>
-                <a href="#"><i class="fab fa-facebook-f"></i></a>
-                <a href="#"><i class="fab fa-tiktok"></i></a>
-                <a href="#"><i class="fab fa-whatsapp"></i></a>
-            </div>
-            <div class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</div>
-        </footer>
+    <div class="cinematic-container">
+        <div class="cinematic-bg"></div>
     </div>
+
+    <header>
+        <div class="nav-container">
+            <a href="index.html" class="logo">ENERGETICA</a>
+            <ul class="nav-menu">
+                <li><a href="index.html">ACASĂ</a></li>
+                <li><a href="programari.html">CONSULTAȚII</a></li>
+                <li><a href="academia.html">ACADEMIA</a></li>
+                <li><a href="products.html">COLECȚIE</a></li>
+            </ul>
+        </div>
+    </header>
+
+    <section class="hero">
+        <h1>Astrology Power Boutique</h1>
+        <p>Elena Shipko • NLP Master • Business Strategist<br>Alchimia dintre energia subtilă și rezultate concrete.</p>
+        <a href="programari.html" class="btn-audit">SOLICITĂ AUDIT</a>
+    </section>
+
+    <footer>
+        <div class="social-links">
+            <a href="https://instagram.com/elenashipko" target="_blank"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-facebook-f"></i></a>
+            <a href="#" target="_blank"><i class="fab fa-tiktok"></i></a>
+            <a href="https://wa.me/numar_tau" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <div class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</div>
+    </footer>
 
 </body>
 </html>
