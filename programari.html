@@ -3,8 +3,9 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Consultații | Energetica | Elena Shipko</title>
+    <title>Consultații | Elena Shipko</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #c5a059;
@@ -13,144 +14,123 @@
             --glass: rgba(255, 255, 255, 0.08);
         }
 
-        body, html {
-            margin: 0; padding: 0; width: 100%; font-family: 'Montserrat', sans-serif;
-            color: var(--white); background-color: var(--midnight);
-        }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        html, body { width: 100%; height: 100%; font-family: 'Montserrat', sans-serif; color: var(--white); background: transparent; }
 
-        /* FUNDAL CINEMATIC IDENTIC CU LANDING PAGE */
-        .bg-zoom {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(rgba(10, 14, 20, 0.75), rgba(10, 14, 20, 0.75)), url('cristale.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicEffect 30s infinite alternate ease-in-out;
+        /* FUNDAL CINEMATIC IDENTIC CU INDEX */
+        .fixed-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -10;
+            background: linear-gradient(rgba(10, 14, 20, 0.7), rgba(10, 14, 20, 0.7)), url('cristale.jpg') no-repeat center center;
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
-        @keyframes cinematicEffect { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        /* HEADER & DROP DOWN (IDENTIC INDEX) */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(15px);
+            background: rgba(10, 14, 20, 0.85); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass);
         }
         .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; }
-
-        .content-wrapper { max-width: 1100px; margin: 120px auto 60px; padding: 0 20px; }
-        
-        .header-section { text-align: center; margin-bottom: 50px; }
-        h1 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 15px; }
-        .intro-text { font-weight: 300; color: #ccc; max-width: 700px; margin: 0 auto; line-height: 1.6; }
-
-        /* GRID CELE 4 BLOCURI */
-        .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 1.5rem; margin-bottom: 60px; }
-        .service-card {
-            background: rgba(255, 255, 255, 0.03); border: 1px solid var(--glass);
-            padding: 2.5rem 1.5rem; text-align: center; cursor: pointer; transition: 0.4s;
-            backdrop-filter: blur(10px);
+        .logo { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: bold; }
+        .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
+        .nav-menu > li { position: relative; }
+        .nav-menu a, .dropdown-trigger { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; cursor: pointer; }
+        .dropdown-menu {
+            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px);
+            background: rgba(10, 14, 20, 0.98); border: 1px solid var(--glass);
+            min-width: 240px; padding: 15px 0; list-style: none; opacity: 0; visibility: hidden; transition: 0.4s;
         }
-        .service-card:hover, .service-card.active { border-color: var(--gold); background: rgba(197, 160, 89, 0.05); transform: translateY(-5px); }
-        .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.2rem; color: var(--gold); margin-bottom: 10px; text-transform: uppercase; }
-        .service-card p { font-size: 0.8rem; color: #bbb; line-height: 1.5; margin: 0; }
+        .dropdown-menu li a { padding: 12px 25px; display: block; font-size: 0.65rem; color: var(--gold); }
+        .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(10px); }
 
-        /* SECTIUNE CALENDAR SI PLATA */
-        .booking-section {
-            background: rgba(255, 255, 255, 0.02); border: 1px solid var(--glass);
-            padding: 4rem 2rem; border-radius: 4px; backdrop-filter: blur(20px);
-            display: grid; grid-template-columns: 1fr 1fr; gap: 4rem; align-items: start;
+        /* PAGINA CONȚINUT */
+        .content-wrapper { max-width: 1100px; margin: 150px auto 100px; padding: 0 20px; text-align: center; }
+        h1 { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 5vw, 3rem); color: var(--gold); margin-bottom: 50px; letter-spacing: 3px; }
+
+        .consultatii-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: 30px; }
+        .card {
+            background: rgba(255, 255, 255, 0.03); padding: 40px 25px; border: 1px solid var(--glass);
+            backdrop-filter: blur(10px); transition: 0.4s; text-align: left;
         }
+        .card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(197, 160, 89, 0.05); }
+        .card i { color: var(--gold); font-size: 2rem; margin-bottom: 20px; }
+        .card h3 { font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 15px; letter-spacing: 1px; }
+        .card p { font-size: 0.85rem; line-height: 1.6; color: #ccc; margin-bottom: 20px; }
+        .btn-card { font-size: 0.65rem; color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 5px; text-transform: uppercase; letter-spacing: 1px; }
 
-        .calendar-placeholder {
-            background: rgba(0,0,0,0.3); border: 1px dashed var(--glass);
-            height: 400px; display: flex; align-items: center; justify-content: center;
-            color: #666; font-size: 0.9rem; text-transform: uppercase; letter-spacing: 2px;
-        }
-
-        .payment-info h2 { font-family: 'Playfair Display', serif; color: var(--gold); margin-top: 0; }
-        .payment-info ul { padding: 0; list-style: none; color: #ccc; font-size: 0.9rem; line-height: 2; }
-        .payment-info li::before { content: "• "; color: var(--gold); }
-
-        .avans-box {
-            margin-top: 30px; padding: 20px; border: 1px solid var(--gold);
-            background: rgba(197, 160, 89, 0.05);
-        }
-        .avans-box p { margin: 0; font-size: 0.85rem; line-height: 1.6; }
-        .highlight { color: var(--gold); font-weight: 600; }
-
-        .btn-pay {
-            display: inline-block; margin-top: 25px; padding: 1.2rem 3rem;
-            background: var(--gold); color: var(--midnight); text-decoration: none;
-            font-weight: 600; text-transform: uppercase; letter-spacing: 2px;
-            transition: 0.4s; width: 100%; text-align: center; box-sizing: border-box;
-        }
-        .btn-pay:hover { box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); transform: translateY(-2px); }
-
-        @media (max-width: 768px) { .booking-section { grid-template-columns: 1fr; } }
+        footer { padding: 60px 20px; text-align: center; background: rgba(10, 14, 20, 0.9); border-top: 1px solid var(--glass); }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; }
+        .social-links a { color: var(--gold); font-size: 1.3rem; }
+        .copyright { font-size: 0.65rem; color: var(--gold); opacity: 0.7; letter-spacing: 2px; }
     </style>
 </head>
 <body>
 
-    <div class="bg-zoom"></div>
+    <div class="fixed-bg"></div>
 
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <nav><a href="index.html" style="text-decoration: none; color: white; font-size: 0.7rem; text-transform: uppercase; letter-spacing: 2px;">Acasă</a></nav>
+            <ul class="nav-menu">
+                <li><a href="index.html">Acasă</a></li>
+                <li>
+                    <div class="dropdown-trigger">Servicii <i class="fas fa-chevron-down"></i></div>
+                    <ul class="dropdown-menu">
+                        <li><a href="programari.html">Consultații Astro-NLP</a></li>
+                        <li><a href="academia.html">Academia Energetica</a></li>
+                        <li><a href="products.html">Colecția Morse</a></li>
+                        <li><a href="mentoring.html">VIP Mentoring (1 loc)</a></li>
+                    </ul>
+                </li>
+                <li><a href="contact.html">Contact</a></li>
+            </ul>
         </div>
     </header>
 
     <div class="content-wrapper">
-        <div class="header-section">
-            <h1>Sesiuni Private</h1>
-            <p class="intro-text">O incursiune profundă de 150-180 minute în arhitectura ta energetică. Alege domeniul în care simți nevoia de claritate și scalabilitate.</p>
-        </div>
-
-        <div class="services-grid">
-            <div class="service-card" onclick="select(this)">
-                <h3>Business</h3>
-                <p>Astro HR, proforientare și strategia parteneriatelor profitabile.</p>
+        <h1>Servicii de Aliniere Energetică</h1>
+        
+        <div class="consultatii-grid">
+            <div class="card">
+                <i class="fas fa-chart-line"></i>
+                <h3>Business (Astro HR)</h3>
+                <p>Analiză strategică pentru echipe și scalarea afacerii. Descifrează momentul ideal pentru investiții și recalibrarea direcției comerciale.</p>
+                <a href="contact.html" class="btn-card">Află detalii</a>
             </div>
-            <div class="service-card" onclick="select(this)">
+
+            <div class="card">
+                <i class="fas fa-user-astronaut"></i>
                 <h3>Personal</h3>
-                <p>Harta natală, explorarea Umbrei și Prognoza Solară anuală.</p>
+                <p>"Cine sunt eu?" – O incursiune în harta ta natală pentru a debloca potențialul nativ și a înțelege ciclicitatea vieții tale.</p>
+                <a href="contact.html" class="btn-card">Află detalii</a>
             </div>
-            <div class="service-card" onclick="select(this)">
+
+            <div class="card">
+                <i class="fas fa-heart"></i>
                 <h3>Relații</h3>
-                <p>Analiza sinastriei și dinamica energetică a cuplului.</p>
+                <p>Analiza sinastriei și a dinamicii parteneriatelor. Descoperă punctele de evoluție comună și modul de comunicare sufletească.</p>
+                <a href="contact.html" class="btn-card">Află detalii</a>
             </div>
-            <div class="service-card" onclick="select(this)">
+
+            <div class="card">
+                <i class="fas fa-child"></i>
                 <h3>Copii</h3>
-                <p>Identificarea talentului nativ și ghidarea potențialului timpuriu.</p>
-            </div>
-        </div>
-
-        <div class="booking-section">
-            <div class="calendar-box">
-                <div class="calendar-placeholder">Interfață Calendar / Rezervare Interval</div>
-                <p style="font-size: 0.7rem; text-align: center; color: #888; margin-top: 10px;">* Durata unei sesiuni este de aproximativ 3 ore.</p>
-            </div>
-
-            <div class="payment-info">
-                <h2>Politica de Rezervare</h2>
-                <ul>
-                    <li>Confidențialitate absolută a datelor furnizate.</li>
-                    <li>Sesiune interactivă (Astrologie + NLP).</li>
-                    <li>Suport post-sesiune pentru implementare.</li>
-                </ul>
-
-                <div class="avans-box">
-                    <p>Pentru a confirma rezervarea, este necesară achitarea unui <span class="highlight">avans de 50%</span>. Această sumă garantează blocarea intervalului ales în calendar.</p>
-                    <p style="margin-top: 10px; font-size: 0.75rem; opacity: 0.8;">Restul de 50% se achită cu minim 24h înainte de data stabilită.</p>
-                </div>
-
-                <a href="#" class="btn-pay">Achită Avans și Confirmă</a>
+                <p>Ghidaj energetic pentru părinți conștienți. Înțelegerea profilului emoțional al copilului pentru o dezvoltare armonioasă.</p>
+                <a href="contact.html" class="btn-card">Află detalii</a>
             </div>
         </div>
     </div>
 
-    <script>
-        function select(el) {
-            document.querySelectorAll('.service-card').forEach(c => c.classList.remove('active'));
-            el.classList.add('active');
-        }
-    </script>
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-facebook-f"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="#"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
+    </footer>
+
 </body>
 </html>
