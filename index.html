@@ -7,58 +7,252 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #c5a059; --midnight: #0a0e14; --white: #ffffff; --glass: rgba(255, 255, 255, 0.08); }
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        /* Prioritizarea fundalului */
-        body { width: 100%; min-height: 100vh; font-family: 'Montserrat', sans-serif; color: var(--white); background: black; overflow-x: hidden; }
-
-        .fixed-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('cristale.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
+        :root {
+            --gold: #c5a059;
+            --midnight: #0a0e14;
+            --white: #ffffff;
+            --glass: rgba(255, 255, 255, 0.08);
         }
 
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
+        body { 
+            width: 100%; 
+            min-height: 100vh; 
+            font-family: 'Montserrat', sans-serif; 
+            color: var(--white); 
+            background: #000; 
+            overflow-x: hidden; 
+        }
 
-        header { position: fixed; top: 0; width: 100%; z-index: 1000; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(12px); border-bottom: 1px solid var(--glass); }
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: bold; }
+        /* FUNDAL CINEMATIC */
+        .fixed-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1; 
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('cristale.jpg') no-repeat center center;
+            background-size: cover;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes cinematicZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* HEADER */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(12px);
+            border-bottom: 1px solid var(--glass);
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            padding: 1.2rem 2rem;
+        }
+
+        .logo {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            text-decoration: none;
+            letter-spacing: 3px;
+            font-weight: bold;
+        }
+
+        /* NAVIGARE & DROPDOWN ANIMAT */
+        .nav-menu {
+            display: flex;
+            gap: 35px;
+            list-style: none;
+            align-items: center;
+        }
+
+        .nav-item { position: relative; padding: 10px 0; }
+
+        .nav-link, .dropdown-trigger {
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            transition: 0.3s;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .nav-link:hover, .nav-item:hover .dropdown-trigger { color: var(--white); }
+
+        .dropdown-menu {
+            position: absolute;
+            top: 100%;
+            left: 50%;
+            transform: translateX(-50%) translateY(15px);
+            background: rgba(10, 14, 20, 0.95);
+            border: 1px solid var(--glass);
+            min-width: 220px;
+            padding: 15px 0;
+            list-style: none;
+            backdrop-filter: blur(20px);
+            
+            /* Starea inițială pentru animație */
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.5s cubic-bezier(0.23, 1, 0.32, 1);
+        }
+
+        .nav-item:hover .dropdown-menu {
+            opacity: 1;
+            visibility: visible;
+            transform: translateX(-50%) translateY(0); /* Efectul de urcare/coborâre lină */
+        }
+
+        .dropdown-menu li a {
+            padding: 12px 25px;
+            display: block;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.65rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            transition: 0.3s;
+        }
+
+        .dropdown-menu li a:hover {
+            background: rgba(197, 160, 89, 0.1);
+            color: var(--white);
+            padding-left: 30px;
+        }
+
+        /* HERO */
+        .hero {
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif;
+            font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--gold);
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+        }
+
+        .btn-main {
+            padding: 18px 50px;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.75rem;
+            letter-spacing: 4px;
+            transition: 0.4s;
+        }
+
+        .btn-main:hover {
+            background: var(--gold);
+            color: #000;
+            box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
+        }
+
+        /* FOOTER */
+        footer {
+            padding: 50px 20px;
+            text-align: center;
+            background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid var(--glass);
+            position: relative;
+            z-index: 1;
+        }
+
+        .social-links {
+            display: flex;
+            justify-content: center;
+            gap: 25px;
+            margin-bottom: 25px;
+        }
+
+        .social-links a {
+            color: var(--gold);
+            font-size: 1.4rem;
+            transition: 0.3s;
+        }
+
+        .social-links a:hover { transform: translateY(-3px); color: white; }
+
+        .copyright {
+            font-size: 0.65rem;
+            color: var(--gold);
+            opacity: 0.7;
+            letter-spacing: 2px;
+        }
+
+        /* MOBILE */
         .mobile-menu-btn { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
-        .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
-        .nav-menu a, .dropdown-trigger { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; cursor: pointer; }
-        .dropdown-menu { position: absolute; top: 100%; left: 50%; transform: translateX(-50%) translateY(20px); background: rgba(10, 14, 20, 0.98); border: 1px solid var(--glass); min-width: 240px; padding: 15px 0; list-style: none; opacity: 0; visibility: hidden; transition: 0.4s; }
-        .nav-menu li:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) translateY(10px); }
-        .dropdown-menu li a { padding: 12px 25px; display: block; font-size: 0.65rem; }
-
-        .hero { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 20px; position: relative; z-index: 1; }
-        .hero h1 { font-family: 'Playfair Display', serif; font-size: clamp(1.8rem, 7vw, 3.5rem); color: var(--gold); margin-bottom: 20px; letter-spacing: 2px; }
-        .btn-audit { padding: 15px 40px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 3px; transition: 0.4s; }
-        .btn-audit:hover { background: var(--gold); color: #000; }
-
-        footer { padding: 40px 20px; text-align: center; background: rgba(0, 0, 0, 0.85); border-top: 1px solid var(--glass); position: relative; z-index: 1; }
-        .social-links { display: flex; justify-content: center; gap: 20px; margin-bottom: 20px; }
-        .social-links a { color: var(--gold); font-size: 1.2rem; }
-        .copyright { font-size: 0.6rem; color: var(--gold); opacity: 0.7; }
 
         @media (max-width: 768px) {
             .mobile-menu-btn { display: block; }
-            .nav-menu { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(0, 0, 0, 0.95); flex-direction: column; padding: 30px 0; gap: 20px; display: none; }
+            .nav-menu {
+                position: absolute;
+                top: 100%;
+                left: 0;
+                width: 100%;
+                background: rgba(0, 0, 0, 0.98);
+                flex-direction: column;
+                padding: 40px 0;
+                display: none;
+                gap: 20px;
+            }
             .nav-menu.active { display: flex; }
-            .dropdown-menu { position: static; transform: none; display: none; width: 100%; text-align: center; }
-            .nav-menu li:hover .dropdown-menu { display: block; }
+            .dropdown-menu {
+                position: static;
+                transform: none;
+                opacity: 1;
+                visibility: visible;
+                display: none;
+                background: transparent;
+                border: none;
+                text-align: center;
+            }
+            .nav-item:hover .dropdown-menu { display: block; }
         }
     </style>
 </head>
 <body>
+
     <div class="fixed-bg"></div>
+
     <header>
         <div class="nav-container">
             <a href="index.html" class="logo">ENERGETICA</a>
-            <div class="mobile-menu-btn" onclick="toggleMenu()"><i class="fas fa-bars"></i></div>
+            <div class="mobile-menu-btn" onclick="toggleMenu()">
+                <i class="fas fa-bars"></i>
+            </div>
             <ul class="nav-menu" id="navMenu">
-                <li><a href="index.html">Acasă</a></li>
-                <li><div class="dropdown-trigger">Servicii <i class="fas fa-chevron-down"></i></div>
+                <li class="nav-item"><a href="index.html" class="nav-link">Acasă</a></li>
+                <li class="nav-item">
+                    <div class="dropdown-trigger">Servicii <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i></div>
                     <ul class="dropdown-menu">
                         <li><a href="programari.html">Consultații Astro-NLP</a></li>
                         <li><a href="academia.html">Academia Energetica</a></li>
@@ -66,24 +260,34 @@
                         <li><a href="mentoring.html">VIP Mentoring</a></li>
                     </ul>
                 </li>
-                <li><a href="contact.html">Contact</a></li>
+                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
             </ul>
         </div>
     </header>
-    <main class="hero">
-        <h1>Astrology Power Boutique</h1>
-        <p style="color:var(--gold); margin-bottom: 40px;">Elena Shipko • NLP Master • Business Strategist</p>
-        <a href="programari.html" class="btn-audit">Solicită Audit</a>
+
+    <main>
+        <section class="hero">
+            <h1>Astrology Power Boutique</h1>
+            <p style="color: var(--gold); margin-bottom: 40px;">Elena Shipko • NLP Master • Business Strategist</p>
+            <a href="programari.html" class="btn-main">Solicită Audit</a>
+        </section>
     </main>
+
     <footer>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-facebook-f"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/37127507367" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
     </footer>
-    <script>function toggleMenu() { document.getElementById('navMenu').classList.toggle('active'); }</script>
+
+    <script>
+        function toggleMenu() {
+            document.getElementById('navMenu').classList.toggle('active');
+        }
+    </script>
+
 </body>
 </html>
