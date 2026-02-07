@@ -118,4 +118,42 @@
             backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; text-shadow: var(--text-shadow); }
-        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700
+        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 2px; margin-top: 15px; text-shadow: var(--text-shadow); }
+
+        @media (max-width: 768px) {
+            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 120px 0 0; gap: 1.5rem; }
+            .hero { padding-top: 20px; }
+            footer { position: relative; }
+        }
+    </style>
+</head>
+<body>
+    <div class="fixed-bg"></div>
+    <header></header>
+
+    <nav class="sidebar">
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="despre.html" class="nav-link">Despre</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <main>
+        <section class="hero">
+            <div class="name-top">Jelena Shipko</div>
+            <h1>The Power Boutique</h1>
+            <div class="roles-bottom">Life Realisation • Business • Astrology</div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+        </div>
+        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
+    </footer>
+</body>
+</html>
