@@ -9,7 +9,7 @@
     <style>
         :root {
             --gold: #c5a059;
-            --wine: #5e1914; /* Ton rafinat de vin roșu */
+            --wine: #5e1914;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.15);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
@@ -65,13 +65,12 @@
         }
 
         .name-top {
-            color: var(--wine); /* Accente de vin roșu */
+            color: var(--wine);
             letter-spacing: 8px; text-transform: uppercase;
             font-size: 0.9rem; font-weight: 700; margin-bottom: 20px;
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Titlul principal revine la Auriu, cu litere groase */
         .hero h1 {
             font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 4.5rem);
             color: var(--gold); margin-bottom: 25px; letter-spacing: 2px; 
@@ -83,46 +82,22 @@
 
         .roles-bottom {
             color: var(--white); letter-spacing: 5px; text-transform: uppercase;
-            font-size: 0.8rem; font-weight: 600; margin-bottom: 60px;
+            font-size: 0.8rem; font-weight: 600; 
             text-shadow: var(--text-shadow);
         }
-
-        .mini-services {
-            max-width: 600px; width: 100%; margin-bottom: 60px;
-            border-top: 2px solid var(--wine);
-            background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(12px);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
-        }
-        .service-item {
-            padding: 22px 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
-            display: flex; justify-content: space-between; align-items: center;
-            transition: 0.4s; cursor: pointer; text-decoration: none; color: var(--white);
-            font-weight: 700;
-            text-shadow: var(--text-shadow);
-        }
-        .service-item:hover { background: rgba(94, 25, 20, 0.3); padding-left: 40px; color: var(--gold); }
-        .service-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
-
-        .btn-main {
-            padding: 24px 80px; border: 2px solid var(--gold); color: var(--white);
-            text-decoration: none; text-transform: uppercase; font-size: 0.85rem;
-            letter-spacing: 6px; transition: 0.5s; font-weight: 700;
-            background: var(--wine); /* Buton de culoarea vinului */
-            text-shadow: var(--text-shadow);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
-        }
-        .btn-main:hover { background: var(--gold); color: #000; text-shadow: none; transform: scale(1.05); }
 
         footer {
-            padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.8);
+            position: fixed; bottom: 0; width: 100%;
+            padding: 30px 20px; text-align: center; background: rgba(0, 0, 0, 0.4);
             backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; text-shadow: var(--text-shadow); }
-        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 2px; margin-top: 25px; text-shadow: var(--text-shadow); }
+        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 2px; margin-top: 15px; text-shadow: var(--text-shadow); }
 
         @media (max-width: 768px) {
             .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 120px 0 0; gap: 1.5rem; }
             .hero { padding-top: 20px; }
+            footer { position: relative; }
         }
     </style>
 </head>
@@ -143,23 +118,6 @@
             <div class="name-top">Jelena Shipko</div>
             <h1>The Power Boutique</h1>
             <div class="roles-bottom">Life Realisation • Business • Astrology</div>
-            
-            <div class="mini-services">
-                <a href="programari.html" class="service-item">
-                    <span class="service-title">Analiză Natală & Business</span>
-                    <span style="color: var(--gold);">→</span>
-                </a>
-                <a href="products.html" class="service-item">
-                    <span class="service-title">Programe & Mentorat</span>
-                    <span style="color: var(--gold);">→</span>
-                </a>
-                <a href="despre.html" class="service-item">
-                    <span class="service-title">Filosofia Energetica</span>
-                    <span style="color: var(--gold);">→</span>
-                </a>
-            </div>
-
-            <a href="programari.html" class="btn-main">Începe Acum</a>
         </section>
     </main>
 
