@@ -9,11 +9,12 @@
     <style>
         :root {
             --gold: #c5a059;
+            --gold-light: #f3e5ab;
             --wine: #5e1914;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.15);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            --text-shadow: 3px 3px 12px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0,0,0,0.6);
+            --text-shadow: 3px 3px 15px rgba(0, 0, 0, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -37,6 +38,18 @@
         @keyframes cinematicZoom {
             from { transform: scale(1); }
             to { transform: scale(1.15); }
+        }
+
+        /* ANIMAȚII PENTRU TEXT */
+        @keyframes goldFlow {
+            0% { background-position: 0% 50%; }
+            50% { background-position: 100% 50%; }
+            100% { background-position: 0% 50%; }
+        }
+
+        @keyframes titleGlow {
+            0% { text-shadow: 0 0 10px rgba(197, 160, 89, 0.3), var(--text-shadow); }
+            100% { text-shadow: 0 0 25px rgba(197, 160, 89, 0.7), var(--text-shadow); }
         }
 
         header {
@@ -71,13 +84,26 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
+        /* APLICARE EFECTE HIPNOTIZANTE PE H1 */
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 4.5rem);
-            color: var(--gold); margin-bottom: 25px; letter-spacing: 2px; 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(2.2rem, 8vw, 4.5rem);
+            margin-bottom: 25px; 
+            letter-spacing: 2px; 
             font-weight: 700;
-            text-shadow: var(--text-shadow);
-            max-width: 1000px;
             line-height: 1.1;
+            max-width: 1000px;
+
+            /* Gradient animat (Liquid Gold) */
+            background: linear-gradient(90deg, var(--gold), #fff, var(--gold), var(--gold-light), var(--gold));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            
+            /* Animații: curgere și strălucire */
+            animation: 
+                goldFlow 8s linear infinite, 
+                titleGlow 3s infinite alternate ease-in-out;
         }
 
         .roles-bottom {
@@ -92,42 +118,4 @@
             backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; text-shadow: var(--text-shadow); }
-        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 2px; margin-top: 15px; text-shadow: var(--text-shadow); }
-
-        @media (max-width: 768px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 120px 0 0; gap: 1.5rem; }
-            .hero { padding-top: 20px; }
-            footer { position: relative; }
-        }
-    </style>
-</head>
-<body>
-    <div class="fixed-bg"></div>
-    <header></header>
-
-    <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
-        <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="name-top">Jelena Shipko</div>
-            <h1>The Power Boutique</h1>
-            <div class="roles-bottom">Life Realisation • Business • Astrology</div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-        </div>
-        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
-    </footer>
-</body>
-</html>
+        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700
