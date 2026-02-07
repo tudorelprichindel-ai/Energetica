@@ -9,7 +9,6 @@
     <style>
         :root {
             --gold: #c5a059;
-            --gold-light: #f3e5ab;
             --wine: #5e1914;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.15);
@@ -40,16 +39,10 @@
             to { transform: scale(1.15); }
         }
 
-        /* ANIMAȚII PENTRU TEXT */
-        @keyframes goldFlow {
-            0% { background-position: 0% 50%; }
-            50% { background-position: 100% 50%; }
-            100% { background-position: 0% 50%; }
-        }
-
+        /* ANIMAȚIE GLOW PULSAT */
         @keyframes titleGlow {
-            0% { text-shadow: 0 0 10px rgba(197, 160, 89, 0.3), var(--text-shadow); }
-            100% { text-shadow: 0 0 25px rgba(197, 160, 89, 0.7), var(--text-shadow); }
+            0% { text-shadow: 0 0 10px rgba(197, 160, 89, 0.4), var(--text-shadow); }
+            100% { text-shadow: 0 0 30px rgba(197, 160, 89, 0.8), var(--text-shadow); }
         }
 
         header {
@@ -84,26 +77,17 @@
             text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* APLICARE EFECTE HIPNOTIZANTE PE H1 */
         .hero h1 {
             font-family: 'Playfair Display', serif; 
             font-size: clamp(2.2rem, 8vw, 4.5rem);
+            color: var(--gold);
             margin-bottom: 25px; 
             letter-spacing: 2px; 
             font-weight: 700;
             line-height: 1.1;
             max-width: 1000px;
-
-            /* Gradient animat (Liquid Gold) */
-            background: linear-gradient(90deg, var(--gold), #fff, var(--gold), var(--gold-light), var(--gold));
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            
-            /* Animații: curgere și strălucire */
-            animation: 
-                goldFlow 8s linear infinite, 
-                titleGlow 3s infinite alternate ease-in-out;
+            /* Aplicare animație Glow */
+            animation: titleGlow 4s infinite alternate ease-in-out;
         }
 
         .roles-bottom {
