@@ -9,12 +9,11 @@
     <style>
         :root {
             --gold: #c5a059;
-            --burgundy: #800020;
+            --wine: #5e1914; /* Ton rafinat de vin roșu */
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.15);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            /* Umbră intensă pentru contrast pe fundal deschis */
-            --text-shadow: 3px 3px 12px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0,0,0,0.5);
+            --text-shadow: 3px 3px 12px rgba(0, 0, 0, 1), 0px 0px 10px rgba(0,0,0,0.6);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -54,8 +53,7 @@
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.7rem;
             text-transform: uppercase; letter-spacing: 3px; transition: var(--transition);
-            font-weight: 700;
-            display: block;
+            font-weight: 700; display: block;
             text-shadow: var(--text-shadow);
         }
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
@@ -67,15 +65,16 @@
         }
 
         .name-top {
-            color: var(--gold); letter-spacing: 8px; text-transform: uppercase;
+            color: var(--wine); /* Accente de vin roșu */
+            letter-spacing: 8px; text-transform: uppercase;
             font-size: 0.9rem; font-weight: 700; margin-bottom: 20px;
-            text-shadow: var(--text-shadow);
+            text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
         }
 
-        /* Titlul cu culoarea burgundi și grosime sporită */
+        /* Titlul principal revine la Auriu, cu litere groase */
         .hero h1 {
             font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 8vw, 4.5rem);
-            color: var(--burgundy); margin-bottom: 25px; letter-spacing: 2px; 
+            color: var(--gold); margin-bottom: 25px; letter-spacing: 2px; 
             font-weight: 700;
             text-shadow: var(--text-shadow);
             max-width: 1000px;
@@ -83,16 +82,16 @@
         }
 
         .roles-bottom {
-            color: var(--gold); letter-spacing: 5px; text-transform: uppercase;
-            font-size: 0.8rem; font-weight: 700; margin-bottom: 60px;
+            color: var(--white); letter-spacing: 5px; text-transform: uppercase;
+            font-size: 0.8rem; font-weight: 600; margin-bottom: 60px;
             text-shadow: var(--text-shadow);
         }
 
         .mini-services {
             max-width: 600px; width: 100%; margin-bottom: 60px;
-            border-top: 2px solid var(--gold);
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px);
-            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+            border-top: 2px solid var(--wine);
+            background: rgba(0, 0, 0, 0.45); backdrop-filter: blur(12px);
+            box-shadow: 0 15px 35px rgba(0,0,0,0.6);
         }
         .service-item {
             padding: 22px 30px; border-bottom: 1px solid rgba(255,255,255,0.1);
@@ -101,21 +100,22 @@
             font-weight: 700;
             text-shadow: var(--text-shadow);
         }
-        .service-item:hover { background: rgba(0,0,0,0.5); padding-left: 40px; color: var(--gold); }
+        .service-item:hover { background: rgba(94, 25, 20, 0.3); padding-left: 40px; color: var(--gold); }
         .service-title { font-size: 0.8rem; text-transform: uppercase; letter-spacing: 2px; }
 
         .btn-main {
             padding: 24px 80px; border: 2px solid var(--gold); color: var(--white);
             text-decoration: none; text-transform: uppercase; font-size: 0.85rem;
             letter-spacing: 6px; transition: 0.5s; font-weight: 700;
-            background: rgba(0,0,0,0.7);
+            background: var(--wine); /* Buton de culoarea vinului */
             text-shadow: var(--text-shadow);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.3);
         }
         .btn-main:hover { background: var(--gold); color: #000; text-shadow: none; transform: scale(1.05); }
 
         footer {
             padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.8);
-            backdrop-filter: blur(15px); border-top: 1px solid var(--gold);
+            backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; text-shadow: var(--text-shadow); }
         .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 2px; margin-top: 25px; text-shadow: var(--text-shadow); }
