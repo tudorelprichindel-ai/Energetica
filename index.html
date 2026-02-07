@@ -29,25 +29,35 @@
         /* FUNDAL CINEMATIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('cristale.jpg') no-repeat center center;
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* LOGO - POZIȚIONAT SUS CENTRU SAU STÂNGA */
-        .top-bar {
-            position: fixed; top: 0; left: 0; width: 100%; padding: 2rem; z-index: 1001;
-            pointer-events: none; /* Permite click-ul prin container la elementele de dedesubt */
-        }
-        .logo {
-            pointer-events: auto;
-            font-family: 'Playfair Display', serif; font-size: 1.5rem;
-            color: var(--gold); text-decoration: none; letter-spacing: 4px; font-weight: bold;
-            display: inline-block;
+        /* HEADER */
+        header {
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
         }
 
-        /* SIDEBAR MENU (STÂNGA) */
+        .nav-container {
+            max-width: 1400px; margin: 0 auto; display: flex;
+            justify-content: flex-start; align-items: center; padding: 1.2rem 2rem;
+        }
+
+        /* TITLU MUTAT IN HEADER (ÎN LOCUL LOGO-ULUI) */
+        .header-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.3rem;
+            color: var(--gold);
+            letter-spacing: 2px;
+            text-decoration: none;
+            font-weight: bold;
+        }
+
+        /* SIDEBAR (MENIU STÂNGA) */
         .sidebar {
             position: fixed;
             top: 50%;
@@ -56,26 +66,21 @@
             z-index: 1000;
             display: flex;
             flex-direction: column;
-            gap: 2rem;
-            border-left: 1px solid var(--glass);
-            padding-left: 1.5rem;
+            gap: 1.5rem;
+            padding-left: 10px;
         }
 
-        .nav-item {
-            list-style: none;
-            position: relative;
-        }
+        .nav-item { list-style: none; }
 
         .nav-link {
             text-decoration: none;
             color: var(--gold);
-            font-size: 0.8rem;
+            font-size: 0.7rem;
             text-transform: uppercase;
-            letter-spacing: 3px;
+            letter-spacing: 2px;
             transition: var(--transition);
             display: block;
-            padding: 0.5rem 0;
-            opacity: 0.7;
+            opacity: 0.8;
         }
 
         .nav-link:hover {
@@ -84,56 +89,44 @@
             transform: translateX(10px);
         }
 
-        /* HERO SECTION - AJUSTATĂ PENTRU MENIU LATERAL */
+        /* HERO */
         .hero {
-            height: 100vh;
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            text-align: center;
-            padding: 0 10% 0 15%; /* Spatiu mai mare in stanga pentru meniu */
-            position: relative;
-            z-index: 1;
+            height: 100vh; display: flex; flex-direction: column;
+            justify-content: center; align-items: center; text-align: center;
+            padding: 0 20px; position: relative; z-index: 1;
         }
 
-        .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem);
-            color: var(--gold); margin-bottom: 20px; letter-spacing: 2px;
-            line-height: 1.2;
+        .hero p {
+            color: var(--gold);
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 0.8rem;
+            margin-bottom: 30px;
         }
 
         .btn-main {
             padding: 18px 50px; border: 1px solid var(--gold); color: var(--gold);
             text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
             letter-spacing: 4px; transition: 0.4s;
-            margin-top: 30px;
         }
 
         .btn-main:hover {
             background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
         }
 
-        /* FOOTER CU REȚELE SOCIALE */
+        /* FOOTER */
         footer {
-            position: fixed;
-            bottom: 2rem;
-            right: 2rem;
-            z-index: 1000;
+            padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.9);
+            border-top: 1px solid var(--glass); position: relative; z-index: 1;
         }
 
-        .social-links { display: flex; flex-direction: column; gap: 20px; }
-        .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.6; }
-        .social-links a:hover { opacity: 1; transform: scale(1.2); color: white; }
+        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
+        .social-links a { color: var(--gold); font-size: 1.4rem; transition: 0.3s; }
+        .social-links a:hover { transform: translateY(-3px); color: white; }
+        .copyright { font-size: 0.65rem; color: var(--gold); opacity: 0.7; letter-spacing: 2px; }
 
-        /* RESPONSIVE PENTRU MOBIL */
         @media (max-width: 768px) {
-            .sidebar {
-                left: 1rem;
-                padding-left: 1rem;
-            }
-            .hero { padding: 0 20px; }
-            .nav-link { font-size: 0.7rem; letter-spacing: 1px; }
+            .sidebar { left: 1rem; }
         }
     </style>
 </head>
@@ -141,31 +134,22 @@
 
     <div class="fixed-bg"></div>
 
-    <div class="top-bar">
-        <a href="index.html" class="logo">ENERGETICA</a>
-    </div>
+    <header>
+        <div class="nav-container">
+            <div class="header-title">Astrology Power Boutique</div>
+        </div>
+    </header>
 
     <nav class="sidebar">
-        <div class="nav-item">
-            <a href="index.html" class="nav-link">Acasă</a>
-        </div>
-        <div class="nav-item">
-            <a href="programari.html" class="nav-link">Consultații Astrologice</a>
-        </div>
-        <div class="nav-item">
-            <a href="products.html" class="nav-link">Shop</a>
-        </div>
-        <div class="nav-item">
-            <a href="contact.html" class="nav-link">Contact</a>
-        </div>
+        <div class="nav-item"><a href="index.html" class="nav-link">Acasă</a></div>
+        <div class="nav-item"><a href="programari.html" class="nav-link">Consultații Astrologice</a></div>
+        <div class="nav-item"><a href="products.html" class="nav-link">Shop</a></div>
+        <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
     </nav>
 
     <main>
         <section class="hero">
-            <h1>Astrology Power Boutique</h1>
-            <p style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem;">
-                Elena Shipko • NLP Master • Business Strategist
-            </p>
+            <p>Elena Shipko • NLP Master • Business Strategist</p>
             <a href="programari.html" class="btn-main">Solicită Audit</a>
         </section>
     </main>
@@ -177,6 +161,7 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/37127507367" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
+        <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
     </footer>
 
 </body>
