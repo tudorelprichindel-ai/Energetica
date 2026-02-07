@@ -27,10 +27,9 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL ACTUALIZAT CU cristale2.jpg */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('cristale2.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale2.jpg') no-repeat center center;
             background-size: cover;
         }
 
@@ -58,15 +57,6 @@
             padding: 120px 20px 80px; position: relative;
         }
 
-        .featured-image {
-            max-width: 1050px; width: 100%; border: 1px solid var(--glass);
-            box-shadow: 0 30px 60px rgba(0,0,0,0.6); border-radius: 2px;
-            overflow: hidden; background: var(--midnight); 
-            margin-bottom: 50px; opacity: 0.8; transition: var(--transition);
-        }
-        .featured-image:hover { opacity: 1; }
-        .featured-image img { width: 100%; height: auto; display: block; }
-
         .name-top {
             color: var(--burgundy); letter-spacing: 8px; text-transform: uppercase;
             font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;
@@ -81,7 +71,6 @@
             color: var(--burgundy); letter-spacing: 4px; text-transform: uppercase;
             font-size: 0.7rem; font-weight: 600; margin-bottom: 50px;
         }
-        .roles-bottom i { font-family: 'Playfair Display', serif; font-style: italic; text-transform: lowercase; opacity: 0.8; }
 
         .mini-services {
             max-width: 600px; width: 100%; margin-bottom: 60px;
@@ -105,7 +94,7 @@
 
         footer {
             padding: 60px 20px; text-align: center; background: rgba(0, 0, 0, 0.95);
-            border-top: 1px solid var(--glass);
+            border-top: 1px solid var(--glass); position: relative; z-index: 1;
         }
         .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; }
         .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
@@ -132,13 +121,9 @@
 
     <main>
         <section class="hero">
-            <div class="featured-image">
-                <img src="Gemini_Generated_Image_iag57piag57piag5.jpeg" alt="Elena Shipko Astrology">
-            </div>
-
             <div class="name-top">Elena Shipko</div>
             <h1>Astrology Power Boutique</h1>
-            <div class="roles-bottom">Astrolog • <i>NLP</i> Master • Business Strategist</div>
+            <div class="roles-bottom">Astrolog • NLP Master • Business Strategist</div>
             
             <div class="mini-services">
                 <a href="programari.html" class="service-item">
