@@ -3,19 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Energetica | Elena Shipko</title>
+    <title>Energetica | Jelena Shipko</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #c5a059;
             --burgundy: #800020;
-            --midnight: #0a0e14;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.15);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
-            /* Umbră pentru lizibilitate pe fundal luminos */
-            --text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.8);
+            --text-shadow: 2px 2px 8px rgba(0, 0, 0, 0.9);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -29,22 +27,21 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL LUMINOS (Filtru redus la 25%) */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.25), rgba(0, 0, 0, 0.25)), url('cristale2.jpg') no-repeat center center;
             background-size: cover;
-            animation: cinematicZoom 20s infinite alternate ease-in-out;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
         @keyframes cinematicZoom {
             from { transform: scale(1); }
-            to { transform: scale(1.1); }
+            to { transform: scale(1.15); }
         }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px);
+            background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);
             border-bottom: 1px solid var(--glass);
             height: 60px;
         }
@@ -56,10 +53,10 @@
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.65rem;
             text-transform: uppercase; letter-spacing: 3px; transition: var(--transition);
-            opacity: 0.9; display: block;
+            opacity: 1; display: block;
             text-shadow: var(--text-shadow);
         }
-        .nav-link:hover { opacity: 1; transform: translateX(8px); color: var(--white); }
+        .nav-link:hover { transform: translateX(8px); color: var(--white); }
 
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
@@ -74,46 +71,48 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 7vw, 4rem);
-            color: var(--gold); margin-bottom: 15px; letter-spacing: 1px; font-weight: 400;
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 3.5rem);
+            color: var(--gold); margin-bottom: 20px; letter-spacing: 2px; font-weight: 400;
             text-shadow: var(--text-shadow);
+            max-width: 900px;
         }
 
         .roles-bottom {
             color: var(--white); letter-spacing: 4px; text-transform: uppercase;
-            font-size: 0.7rem; font-weight: 600; margin-bottom: 50px;
+            font-size: 0.7rem; font-weight: 400; margin-bottom: 60px;
             text-shadow: var(--text-shadow);
+            opacity: 0.9;
         }
 
         .mini-services {
             max-width: 600px; width: 100%; margin-bottom: 60px;
             border-top: 1px solid rgba(255,255,255,0.3);
-            background: rgba(0, 0, 0, 0.2); backdrop-filter: blur(5px);
+            background: rgba(0, 0, 0, 0.25); backdrop-filter: blur(8px);
         }
         .service-item {
-            padding: 18px 15px; border-bottom: 1px solid rgba(255,255,255,0.2);
+            padding: 20px 25px; border-bottom: 1px solid rgba(255,255,255,0.1);
             display: flex; justify-content: space-between; align-items: center;
             transition: 0.4s; cursor: pointer; text-decoration: none; color: var(--white);
             text-shadow: var(--text-shadow);
         }
-        .service-item:hover { background: rgba(255,255,255,0.1); padding-left: 25px; color: var(--gold); }
+        .service-item:hover { background: rgba(255,255,255,0.1); padding-left: 35px; color: var(--gold); }
         .service-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
 
         .btn-main {
-            padding: 20px 60px; border: 1px solid var(--gold); color: var(--gold);
+            padding: 22px 70px; border: 1px solid var(--gold); color: var(--gold);
             text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
-            letter-spacing: 5px; transition: 0.5s;
-            background: rgba(0,0,0,0.5);
+            letter-spacing: 6px; transition: 0.5s;
+            background: rgba(0,0,0,0.6);
             text-shadow: var(--text-shadow);
         }
-        .btn-main:hover { background: var(--gold); color: #000; text-shadow: none; }
+        .btn-main:hover { background: var(--gold); color: #000; text-shadow: none; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
 
         footer {
-            padding: 40px 20px; text-align: center; background: rgba(0, 0, 0, 0.6);
+            padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.7);
             backdrop-filter: blur(10px); border-top: 1px solid var(--glass);
         }
-        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.2rem; text-shadow: var(--text-shadow); }
-        .copyright { font-size: 0.6rem; color: var(--white); opacity: 0.8; letter-spacing: 2px; margin-top: 15px; text-shadow: var(--text-shadow); }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.3rem; text-shadow: var(--text-shadow); }
+        .copyright { font-size: 0.6rem; color: var(--white); opacity: 0.7; letter-spacing: 2px; margin-top: 20px; text-shadow: var(--text-shadow); }
 
         @media (max-width: 768px) {
             .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 100px 0 0; gap: 1rem; }
@@ -135,9 +134,9 @@
 
     <main>
         <section class="hero">
-            <div class="name-top">Elena Shipko</div>
-            <h1>Jelena Astral Boutique</h1>
-            <div class="roles-bottom">Astrolog • NLP Master • Business Strategist</div>
+            <div class="name-top">Jelena Shipko</div>
+            <h1>Life Realisation Boutique & Power Suite</h1>
+            <div class="roles-bottom">Business Strategist • NLP Master • Astrolog</div>
             
             <div class="mini-services">
                 <a href="programari.html" class="service-item">
@@ -154,7 +153,7 @@
                 </a>
             </div>
 
-            <a href="programari.html" class="btn-main">Solicită Audit</a>
+            <a href="programari.html" class="btn-main">Începe Transformarea</a>
         </section>
     </main>
 
@@ -164,8 +163,7 @@
             <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
         </div>
-        <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
+        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 </body>
 </html>
-
