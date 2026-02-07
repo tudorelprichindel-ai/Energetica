@@ -27,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL CINEMATIC ACTUALIZAT */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('cristale3.jpg') no-repeat center center;
@@ -87,22 +86,27 @@
             transform: translateY(-5%);
         }
 
+        /* TEXT MĂRIT: Jelena Shipko */
         .name-top {
             color: var(--wine);
-            letter-spacing: 10px; text-transform: uppercase;
-            font-size: 1rem; font-weight: 700; margin-bottom: 25px;
-            text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
+            letter-spacing: 12px; 
+            text-transform: uppercase;
+            font-size: 1.2rem; /* Mărit de la 1rem */
+            font-weight: 700; 
+            margin-bottom: 30px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
+        /* TEXT MĂRIT: The Power Boutique */
         .hero h1 {
             font-family: 'Playfair Display', serif; 
-            font-size: clamp(2.5rem, 9vw, 5rem);
+            font-size: clamp(3rem, 10vw, 6rem); /* Mărit de la 2.5rem-5rem */
             color: var(--gold);
-            margin-bottom: 30px; 
-            letter-spacing: 3px; 
+            margin-bottom: 35px; 
+            letter-spacing: 4px; 
             font-weight: 700;
             line-height: 1.1;
-            max-width: 1100px;
+            max-width: 1200px;
             text-shadow: var(--dark-glow);
         }
 
@@ -142,57 +146,4 @@
             backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links { margin-bottom: 15px; }
-        .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.6rem; transition: var(--transition); display: inline-block; }
-        .social-links a:hover { color: var(--white); transform: translateY(-5px); }
-        .copyright { font-size: 0.7rem; color: var(--white); font-weight: 700; letter-spacing: 3px; }
-
-        @media (max-width: 768px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 140px 0 0; gap: 1.5rem; }
-            .hero { min-height: auto; padding-top: 40px; transform: none; }
-            footer { position: relative; margin-top: 50px; }
-            .roles-bottom { font-size: 0.7rem; }
-        }
-    </style>
-</head>
-<body>
-    <div class="fixed-bg"></div>
-    
-    <header>
-        <a href="index.html" class="logo-header">The Power Boutique</a>
-    </header>
-
-    <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
-        <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
-    </nav>
-
-    <main>
-        <section class="hero">
-            <div class="name-top">Jelena Shipko</div>
-            <h1>The Power Boutique</h1>
-            <div class="roles-bottom">
-                <a href="programari.html">Life Realisation</a>
-                <span class="dot">•</span>
-                <a href="programari.html">Business</a>
-                <span class="dot">•</span>
-                <a href="programari.html">Astrology</a>
-                <span class="dot">•</span>
-                <a href="products.html">Energy Bracelets</a>
-            </div>
-        </section>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
-    </footer>
-</body>
-</html>
+        .social-links a { color: var(--gold
