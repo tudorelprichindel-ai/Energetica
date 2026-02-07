@@ -39,44 +39,40 @@
             to { transform: scale(1.1); }
         }
 
-        /* HEADER CU PANGLICĂ LENTĂ ȘI STILIZATĂ */
+        /* NOU HEADER: SHIMMER EFFECT */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass);
-            height: 60px;
-            overflow: hidden;
+            height: 70px;
             display: flex;
+            justify-content: center;
             align-items: center;
-        }
-
-        .marquee-wrapper {
-            display: flex;
-            white-space: nowrap;
-            will-change: transform;
-            animation: marquee 60s linear infinite; /* Viteză foarte lentă */
         }
 
         .logo-header {
             font-family: 'Playfair Display', serif;
-            color: var(--gold);
+            color: rgba(197, 160, 89, 0.8);
             text-decoration: none;
-            font-size: 1.1rem;
-            letter-spacing: 4px;
+            font-size: 1.3rem;
+            letter-spacing: 3px;
             font-weight: 700;
-            padding: 0 5rem; /* Spațiu generos între repetiții */
-            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Aură discretă și în header */
-            transition: var(--transition);
+            position: relative;
+            /* Gradientul pentru Shimmer */
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
+
+        @keyframes shimmerEffect {
+            to { background-position: 200% center; }
         }
 
         .logo-header:hover {
-            color: var(--white);
-            text-shadow: 0 0 20px var(--gold);
-        }
-
-        @keyframes marquee {
-            0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); }
+            filter: brightness(1.2);
+            text-shadow: 0 0 15px var(--gold);
         }
 
         /* NAVIGAȚIE LATERALĂ */
@@ -92,11 +88,11 @@
         }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* SECȚIUNEA HERO */
+        /* HERO SECTION */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            padding: 20px 20px 100px;
+            padding: 20px 20px 150px;
             position: relative;
             transform: translateY(-5%);
         }
@@ -126,6 +122,7 @@
             text-transform: uppercase;
             font-size: 0.85rem; 
             font-weight: 700;
+            margin-top: 10px;
             text-shadow: var(--dark-glow);
             display: flex;
             flex-wrap: wrap;
@@ -171,12 +168,7 @@
     <div class="fixed-bg"></div>
     
     <header>
-        <div class="marquee-wrapper">
-            <a href="index.html" class="logo-header">The Power Boutique</a>
-            <a href="index.html" class="logo-header">The Power Boutique</a>
-            <a href="index.html" class="logo-header">The Power Boutique</a>
-            <a href="index.html" class="logo-header">The Power Boutique</a>
-        </div>
+        <a href="index.html" class="logo-header">The Power Boutique</a>
     </header>
 
     <nav class="sidebar">
