@@ -27,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL CINEMATIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('cristale2.jpg') no-repeat center center;
@@ -40,13 +39,13 @@
             to { transform: scale(1.1); }
         }
 
-        /* HEADER CU EFECT DE PANGLICĂ (INFINITE TICKER) */
+        /* HEADER CU PANGLICĂ LENTĂ ȘI STILIZATĂ */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px);
             border-bottom: 1px solid var(--glass);
             height: 60px;
-            overflow: hidden; /* Ascunde textul care iese din cadru */
+            overflow: hidden;
             display: flex;
             align-items: center;
         }
@@ -55,24 +54,29 @@
             display: flex;
             white-space: nowrap;
             will-change: transform;
-            animation: marquee 40s linear infinite; /* Viteza de curgere */
+            animation: marquee 60s linear infinite; /* Viteză foarte lentă */
         }
 
         .logo-header {
             font-family: 'Playfair Display', serif;
             color: var(--gold);
             text-decoration: none;
-            font-size: 1rem;
-            letter-spacing: 5px;
+            font-size: 1.1rem;
+            letter-spacing: 4px;
             font-weight: 700;
-            text-transform: uppercase;
-            padding: 0 4rem; /* Spațiu între repetiții */
+            padding: 0 5rem; /* Spațiu generos între repetiții */
+            text-shadow: 0 0 15px rgba(0, 0, 0, 0.5); /* Aură discretă și în header */
             transition: var(--transition);
+        }
+
+        .logo-header:hover {
+            color: var(--white);
+            text-shadow: 0 0 20px var(--gold);
         }
 
         @keyframes marquee {
             0% { transform: translateX(0); }
-            100% { transform: translateX(-50%); } /* Se mișcă jumătate din lungimea totală */
+            100% { transform: translateX(-50%); }
         }
 
         /* NAVIGAȚIE LATERALĂ */
@@ -145,7 +149,6 @@
 
         .dot { opacity: 0.5; pointer-events: none; margin: 0 5px; }
 
-        /* FOOTER UNIFICAT */
         footer {
             position: fixed; bottom: 0; width: 100%;
             padding: 40px 20px; text-align: center; background: rgba(0, 0, 0, 0.5);
@@ -170,8 +173,6 @@
     <header>
         <div class="marquee-wrapper">
             <a href="index.html" class="logo-header">The Power Boutique</a>
-            <a href="index.html" class="logo-header">The Power Boutique</a>
-            <a href="index.html" class="nav-link logo-header">The Power Boutique</a>
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <a href="index.html" class="logo-header">The Power Boutique</a>
