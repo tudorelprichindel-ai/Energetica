@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Energetica | Elena Shipko</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
@@ -13,27 +13,26 @@
             --midnight: #0a0e14;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.08);
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
             width: 100%; 
-            min-height: 100vh; 
-            font-family: 'Montserrat', sans-serif; 
-            color: var(--white); 
             background: #000; 
-            overflow-x: hidden; 
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
 
+        /* FUNDAL CINEMATIC FIX */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
+            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('cristale.jpg') no-repeat center center;
+            background-size: cover;
         }
-
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -42,75 +41,83 @@
             height: 60px;
         }
 
+        /* SIDEBAR MINIMALIST */
         .sidebar {
             position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
-            display: flex; flex-direction: column; gap: 1.5rem; padding-left: 10px;
+            display: flex; flex-direction: column; gap: 2rem;
         }
-
-        .nav-item { list-style: none; }
         .nav-link {
-            text-decoration: none; color: var(--gold); font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: var(--transition);
-            display: block; opacity: 0.8;
+            text-decoration: none; color: var(--gold); font-size: 0.65rem;
+            text-transform: uppercase; letter-spacing: 3px; transition: var(--transition);
+            opacity: 0.6; display: block;
         }
-        .nav-link:hover { color: var(--white); opacity: 1; transform: translateX(10px); }
+        .nav-link:hover { opacity: 1; transform: translateX(8px); color: var(--white); }
 
+        /* HERO SECTION */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            padding: 100px 20px 60px; position: relative; z-index: 1;
+            padding: 120px 20px 80px; position: relative;
         }
 
-        /* STIL IMAGINE: PRIMA POZIȚIE */
         .featured-image {
-            max-width: 1100px; 
-            width: 100%; 
-            border: 1px solid var(--glass);
-            box-shadow: 0 20px 50px rgba(0,0,0,0.5); 
-            border-radius: 4px;
-            overflow: hidden; 
-            background: var(--midnight); 
-            margin-bottom: 50px; /* Spațiu între imagine și nume */
-            opacity: 0.8; 
-            transition: var(--transition);
+            max-width: 1050px; width: 100%; border: 1px solid var(--glass);
+            box-shadow: 0 30px 60px rgba(0,0,0,0.6); border-radius: 2px;
+            overflow: hidden; background: var(--midnight); 
+            margin-bottom: 60px; opacity: 0.85; transition: var(--transition);
         }
-        .featured-image:hover { opacity: 1; }
+        .featured-image:hover { opacity: 1; transform: scale(1.01); }
         .featured-image img { width: 100%; height: auto; display: block; }
 
         .name-top {
-            color: var(--burgundy); letter-spacing: 6px; text-transform: uppercase;
-            font-size: 0.9rem; font-weight: 600; margin-bottom: 10px;
+            color: var(--burgundy); letter-spacing: 8px; text-transform: uppercase;
+            font-size: 0.85rem; font-weight: 600; margin-bottom: 15px;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 4.5rem);
-            color: var(--gold); margin-bottom: 10px; letter-spacing: 2px;
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 7vw, 4rem);
+            color: var(--gold); margin-bottom: 15px; letter-spacing: 1px; font-weight: 400;
         }
 
         .roles-bottom {
-            color: var(--burgundy); letter-spacing: 3px; text-transform: uppercase;
-            font-size: 0.75rem; font-weight: 600; margin-bottom: 40px;
+            color: var(--burgundy); letter-spacing: 4px; text-transform: uppercase;
+            font-size: 0.7rem; font-weight: 600; margin-bottom: 50px;
         }
+        .roles-bottom i { font-family: 'Playfair Display', serif; font-style: italic; text-transform: lowercase; opacity: 0.8; }
+
+        /* LISTA SERVICII MINIMALISTA (Inspirată din Rudakova) */
+        .mini-services {
+            max-width: 600px; width: 100%; margin-bottom: 60px;
+            border-top: 1px solid var(--glass);
+        }
+        .service-item {
+            padding: 15px 0; border-bottom: 1px solid var(--glass);
+            display: flex; justify-content: space-between; align-items: center;
+            transition: 0.4s; cursor: pointer;
+        }
+        .service-item:hover { padding-left: 10px; color: var(--gold); }
+        .service-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
+        .service-arrow { font-size: 0.8rem; opacity: 0.5; }
 
         .btn-main {
-            padding: 18px 50px; border: 1px solid var(--gold); color: var(--gold);
-            text-decoration: none; text-transform: uppercase; font-size: 0.7rem;
-            letter-spacing: 4px; transition: 0.4s;
+            padding: 20px 60px; border: 1px solid var(--gold); color: var(--gold);
+            text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
+            letter-spacing: 5px; transition: 0.5s; position: relative;
         }
-        .btn-main:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
+        .btn-main:hover { background: var(--gold); color: #000; box-shadow: 0 0 40px rgba(197, 160, 89, 0.2); }
 
         footer {
-            padding: 40px 20px; text-align: center; background: rgba(0, 0, 0, 0.9);
-            border-top: 1px solid var(--glass); position: relative; z-index: 1;
+            padding: 60px 20px; text-align: center; background: rgba(0, 0, 0, 0.95);
+            border-top: 1px solid var(--glass);
         }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 20px; }
-        .social-links a { color: var(--gold); font-size: 1.3rem; transition: 0.3s; }
-        .social-links a:hover { transform: translateY(-3px); color: white; }
-        .copyright { font-size: 0.6rem; color: var(--gold); opacity: 0.7; letter-spacing: 2px; }
+        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; }
+        .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
+        .social-links a:hover { opacity: 1; transform: translateY(-3px); }
+        .copyright { font-size: 0.6rem; color: var(--gold); opacity: 0.5; letter-spacing: 2px; }
 
         @media (max-width: 768px) {
-            .sidebar { position: relative; top: 0; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 80px 10px 0; gap: 1rem; }
-            .hero { padding-top: 20px; }
+            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 100px 0 0; }
+            .hero { padding-top: 40px; }
         }
     </style>
 </head>
@@ -119,23 +126,38 @@
     <header></header>
 
     <nav class="sidebar">
-        <div class="nav-item"><a href="index.html" class="nav-link">Acasă</a></div>
-        <div class="nav-item"><a href="programari.html" class="nav-link">Consultații Astrologice</a></div>
-        <div class="nav-item"><a href="products.html" class="nav-link">Shop</a></div>
-        <div class="nav-item"><a href="despre.html" class="nav-link">Despre mine</a></div>
-        <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="despre.html" class="nav-link">Despre</a>
+        <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
     <main>
         <section class="hero">
             <div class="featured-image">
-                <img src="Gemini_Generated_Image_iag57piag57piag5.jpeg" alt="Astrologer Elena Shipko">
+                <img src="Gemini_Generated_Image_iag57piag57piag5.jpeg" alt="Elena Shipko Astrology">
             </div>
 
             <div class="name-top">Elena Shipko</div>
             <h1>Astrology Power Boutique</h1>
-            <div class="roles-bottom">Astrolog • NLP Master • Business Strategist</div>
+            <div class="roles-bottom">Astrolog • <i>NLP</i> Master • Business Strategist</div>
             
+            <div class="mini-services">
+                <div class="service-item">
+                    <span class="service-title">Analiză Natală & Business</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-title">Mentorat Energetic</span>
+                    <span class="service-arrow">→</span>
+                </div>
+                <div class="service-item">
+                    <span class="service-title">Workshop-uri Exclusive</span>
+                    <span class="service-arrow">→</span>
+                </div>
+            </div>
+
             <a href="programari.html" class="btn-main">Solicită Audit</a>
         </section>
     </main>
