@@ -111,25 +111,33 @@
         .social-links a:hover { color: var(--white); transform: scale(1.1); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        /* OPTIMIZARE PERFECTĂ MOBIL */
+        /* AJUSTARE MOBIL: SIDEBAR SUB HEADER */
         @media (max-width: 850px) {
             header { height: 70px; }
             .logo-header { font-size: 1.1rem; }
 
             .sidebar {
-                position: relative; top: 0; left: 0; transform: none;
-                flex-direction: row; flex-wrap: wrap; justify-content: center;
-                padding: 100px 10px 20px; gap: 1rem;
+                position: relative; 
+                top: 0; 
+                left: 0; 
+                transform: none;
+                flex-direction: row; 
+                flex-wrap: wrap; 
+                justify-content: center;
+                margin-top: 70px; /* Începe exact sub header-ul de 70px */
+                padding: 20px 10px; 
+                gap: 1rem;
+                background: rgba(0,0,0,0.2);
             }
-            .nav-link { font-size: 0.6rem; letter-spacing: 2px; }
+            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
 
-            .hero { min-height: calc(100vh - 250px); padding: 40px 15px; transform: none; }
+            .hero { min-height: auto; padding: 40px 15px 100px; transform: none; }
             .hero h1 { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 20px; }
-            .name-top { font-size: 0.8rem; letter-spacing: 5px; margin-bottom: 10px; }
+            .name-top { font-size: 0.9rem; letter-spacing: 5px; margin-bottom: 10px; }
             
-            .roles-bottom { font-size: 0.65rem; gap: 5px; }
-            .roles-bottom a { padding: 5px 8px; }
-            .dot { display: none; } /* Ascundem punctele pe mobil pentru fluiditate */
+            .roles-bottom { font-size: 0.7rem; gap: 5px; }
+            .roles-bottom a { padding: 5px 10px; }
+            .dot { display: none; }
 
             footer { position: relative; height: auto; padding: 40px 20px; }
         }
