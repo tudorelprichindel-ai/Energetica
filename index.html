@@ -68,8 +68,8 @@
             position: absolute;
             top: 100%;
             left: 50%;
-            transform: translateX(-50%) scaleY(0); /* Start de la înălțime zero */
-            transform-origin: top; /* Animația pleacă de sus în jos */
+            transform: translateX(-50%) scaleY(0);
+            transform-origin: top;
             background: rgba(10, 14, 20, 0.96);
             border: 1px solid var(--glass);
             min-width: 230px;
@@ -85,7 +85,7 @@
         .nav-item:hover .dropdown-menu {
             opacity: 1;
             visibility: visible;
-            transform: translateX(-50%) scaleY(1); /* Se deschide complet */
+            transform: translateX(-50%) scaleY(1);
         }
 
         .dropdown-menu li {
@@ -100,7 +100,6 @@
             transform: translateY(0);
         }
 
-        /* Delay secvențial pentru efectul de curgere al linkurilor */
         .dropdown-menu li:nth-child(1) { transition-delay: 0.1s; }
         .dropdown-menu li:nth-child(2) { transition-delay: 0.2s; }
         .dropdown-menu li:nth-child(3) { transition-delay: 0.3s; }
@@ -119,9 +118,9 @@
 
         /* HERO */
         .hero {
-            height: 100vh; display: flex; flex-direction: column;
+            min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
-            padding: 0 20px; position: relative; z-index: 1;
+            padding: 120px 20px 60px; position: relative; z-index: 1;
         }
 
         .hero h1 {
@@ -129,10 +128,29 @@
             color: var(--gold); margin-bottom: 20px; letter-spacing: 2px;
         }
 
+        /* STIL IMAGINE NOUA */
+        .hero-image-container {
+            margin: 30px 0;
+            max-width: 400px;
+            width: 90%;
+            border: 1px solid var(--glass);
+            padding: 10px;
+            background: rgba(255, 255, 255, 0.03);
+            border-radius: 4px;
+        }
+
+        .hero-image-container img {
+            width: 100%;
+            height: auto;
+            display: block;
+            filter: grayscale(30%) sepia(20%); /* Efect subtil pentru a se potrivi cu tema aurie */
+        }
+
         .btn-main {
             padding: 18px 50px; border: 1px solid var(--gold); color: var(--gold);
             text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
             letter-spacing: 4px; transition: 0.4s;
+            margin-top: 20px;
         }
 
         .btn-main:hover {
@@ -198,7 +216,12 @@
     <main>
         <section class="hero">
             <h1>Astrology Power Boutique</h1>
-            <p style="color: var(--gold); margin-bottom: 40px;">Elena Shipko • NLP Master • Business Strategist</p>
+            <p style="color: var(--gold);">Elena Shipko • NLP Master • Business Strategist</p>
+            
+            <div class="hero-image-container">
+                <img src="https://media.newyorker.com/photos/5909549321ed543329241517/master/w_2560,c_limit/Monkey-See-Monkey-Click.jpg" alt="Monkey See Monkey Click">
+            </div>
+
             <a href="programari.html" class="btn-main">Solicită Audit</a>
         </section>
     </main>
