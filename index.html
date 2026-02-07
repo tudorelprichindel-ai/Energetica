@@ -35,26 +35,12 @@
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER */
+        /* HEADER (ACUM GOL, DOAR BARA SUBTILA) */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass);
-        }
-
-        .nav-container {
-            max-width: 1400px; margin: 0 auto; display: flex;
-            justify-content: flex-start; align-items: center; padding: 1.2rem 2rem;
-        }
-
-        /* TITLU MUTAT IN HEADER (ÎN LOCUL LOGO-ULUI) */
-        .header-title {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem;
-            color: var(--gold);
-            letter-spacing: 2px;
-            text-decoration: none;
-            font-weight: bold;
+            height: 60px; /* Înălțime fixă pentru consistență */
         }
 
         /* SIDEBAR (MENIU STÂNGA) */
@@ -89,11 +75,16 @@
             transform: translateX(10px);
         }
 
-        /* HERO */
+        /* HERO - TEXT REVENIT IN CENTRU */
         .hero {
             height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             padding: 0 20px; position: relative; z-index: 1;
+        }
+
+        .hero h1 {
+            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem);
+            color: var(--gold); margin-bottom: 20px; letter-spacing: 2px;
         }
 
         .hero p {
@@ -101,7 +92,7 @@
             letter-spacing: 5px;
             text-transform: uppercase;
             font-size: 0.8rem;
-            margin-bottom: 30px;
+            margin-bottom: 40px;
         }
 
         .btn-main {
@@ -134,21 +125,19 @@
 
     <div class="fixed-bg"></div>
 
-    <header>
-        <div class="nav-container">
-            <div class="header-title">Astrology Power Boutique</div>
-        </div>
-    </header>
+    <header></header>
 
     <nav class="sidebar">
         <div class="nav-item"><a href="index.html" class="nav-link">Acasă</a></div>
         <div class="nav-item"><a href="programari.html" class="nav-link">Consultații Astrologice</a></div>
         <div class="nav-item"><a href="products.html" class="nav-link">Shop</a></div>
+        <div class="nav-item"><a href="despre.html" class="nav-link">Despre mine</a></div>
         <div class="nav-item"><a href="contact.html" class="nav-link">Contact</a></div>
     </nav>
 
     <main>
         <section class="hero">
+            <h1>Astrology Power Boutique</h1>
             <p>Elena Shipko • NLP Master • Business Strategist</p>
             <a href="programari.html" class="btn-main">Solicită Audit</a>
         </section>
