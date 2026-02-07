@@ -27,13 +27,14 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL CINEMATIC FIX */
+        /* FUNDAL CINEMATIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.8), rgba(0, 0, 0, 0.8)), url('cristale.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale.jpg') no-repeat center center;
             background-size: cover;
         }
 
+        /* HEADER UNITAR PE TOATE PAGINILE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
@@ -41,7 +42,7 @@
             height: 60px;
         }
 
-        /* SIDEBAR MINIMALIST */
+        /* SIDEBAR / NAVIGARE */
         .sidebar {
             position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2rem;
@@ -53,20 +54,21 @@
         }
         .nav-link:hover { opacity: 1; transform: translateX(8px); color: var(--white); }
 
-        /* HERO SECTION */
+        /* HERO SECTION - STRUCTURA IMBUNATATITA */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
             padding: 120px 20px 80px; position: relative;
         }
 
+        /* IMAGINEA MARE SI TRANSPARENTA (PRIMA) */
         .featured-image {
             max-width: 1050px; width: 100%; border: 1px solid var(--glass);
             box-shadow: 0 30px 60px rgba(0,0,0,0.6); border-radius: 2px;
             overflow: hidden; background: var(--midnight); 
-            margin-bottom: 60px; opacity: 0.85; transition: var(--transition);
+            margin-bottom: 50px; opacity: 0.8; transition: var(--transition);
         }
-        .featured-image:hover { opacity: 1; transform: scale(1.01); }
+        .featured-image:hover { opacity: 1; }
         .featured-image img { width: 100%; height: auto; display: block; }
 
         .name-top {
@@ -75,7 +77,7 @@
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 7vw, 4rem);
+            font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 7vw, 4rem);
             color: var(--gold); margin-bottom: 15px; letter-spacing: 1px; font-weight: 400;
         }
 
@@ -85,39 +87,41 @@
         }
         .roles-bottom i { font-family: 'Playfair Display', serif; font-style: italic; text-transform: lowercase; opacity: 0.8; }
 
-        /* LISTA SERVICII MINIMALISTA (Inspirată din Rudakova) */
+        /* LISTA MINIMALISTA DE SERVICII / DIRECTII */
         .mini-services {
             max-width: 600px; width: 100%; margin-bottom: 60px;
             border-top: 1px solid var(--glass);
         }
         .service-item {
-            padding: 15px 0; border-bottom: 1px solid var(--glass);
+            padding: 18px 0; border-bottom: 1px solid var(--glass);
             display: flex; justify-content: space-between; align-items: center;
-            transition: 0.4s; cursor: pointer;
+            transition: 0.4s; cursor: pointer; text-decoration: none; color: inherit;
         }
         .service-item:hover { padding-left: 10px; color: var(--gold); }
         .service-title { font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; }
-        .service-arrow { font-size: 0.8rem; opacity: 0.5; }
+        .service-arrow { font-size: 0.8rem; opacity: 0.5; color: var(--gold); }
 
         .btn-main {
             padding: 20px 60px; border: 1px solid var(--gold); color: var(--gold);
             text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
-            letter-spacing: 5px; transition: 0.5s; position: relative;
+            letter-spacing: 5px; transition: 0.5s;
         }
         .btn-main:hover { background: var(--gold); color: #000; box-shadow: 0 0 40px rgba(197, 160, 89, 0.2); }
 
+        /* FOOTER UNITAR */
         footer {
             padding: 60px 20px; text-align: center; background: rgba(0, 0, 0, 0.95);
-            border-top: 1px solid var(--glass);
+            border-top: 1px solid var(--glass); position: relative; z-index: 1;
         }
         .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; }
         .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
-        .social-links a:hover { opacity: 1; transform: translateY(-3px); }
+        .social-links a:hover { opacity: 1; transform: translateY(-3px); color: white; }
         .copyright { font-size: 0.6rem; color: var(--gold); opacity: 0.5; letter-spacing: 2px; }
 
         @media (max-width: 768px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 100px 0 0; }
+            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 100px 0 0; gap: 1rem; }
             .hero { padding-top: 40px; }
+            .featured-image { width: 95%; }
         }
     </style>
 </head>
@@ -144,18 +148,18 @@
             <div class="roles-bottom">Astrolog • <i>NLP</i> Master • Business Strategist</div>
             
             <div class="mini-services">
-                <div class="service-item">
+                <a href="programari.html" class="service-item">
                     <span class="service-title">Analiză Natală & Business</span>
                     <span class="service-arrow">→</span>
-                </div>
-                <div class="service-item">
-                    <span class="service-title">Mentorat Energetic</span>
+                </a>
+                <a href="products.html" class="service-item">
+                    <span class="service-title">Programe & Mentorat</span>
                     <span class="service-arrow">→</span>
-                </div>
-                <div class="service-item">
-                    <span class="service-title">Workshop-uri Exclusive</span>
+                </a>
+                <a href="despre.html" class="service-item">
+                    <span class="service-title">Filosofia Energetica</span>
                     <span class="service-arrow">→</span>
-                </div>
+                </a>
             </div>
 
             <a href="programari.html" class="btn-main">Solicită Audit</a>
