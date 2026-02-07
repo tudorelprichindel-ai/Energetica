@@ -9,10 +9,12 @@
     <style>
         :root {
             --gold: #c5a059;
-            --wine: #5e1914; /* Burgundi rafinat */
+            --wine: #5e1914;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.1);
             --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            /* Outer Glow întunecat pentru contrast maxim */
+            --dark-glow: 0 0 20px rgba(0, 0, 0, 0.9), 2px 2px 10px rgba(0, 0, 0, 0.8);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -70,7 +72,7 @@
             text-shadow: 1px 1px 3px rgba(0,0,0,0.3);
         }
 
-        /* TEXT PRINCIPAL CU CONTUR BURGUNDI ȘI GLOW */
+        /* TEXT PRINCIPAL DOAR CU OUTER GLOW ÎNTUNECAT */
         .hero h1 {
             font-family: 'Playfair Display', serif; 
             font-size: clamp(2.5rem, 9vw, 5rem);
@@ -80,17 +82,10 @@
             font-weight: 700;
             line-height: 1.1;
             max-width: 1100px;
-            
-            /* Conturul Burgundi (Stroke) */
-            -webkit-text-stroke: 1px var(--wine);
-            
-            /* Umbră/Glow pentru profunzime */
-            text-shadow: 
-                0 0 20px rgba(94, 25, 20, 0.4), 
-                3px 3px 15px rgba(0, 0, 0, 0.9);
+            text-shadow: var(--dark-glow);
         }
 
-        /* TEXT SECUNDAR CU CONTUR BURGUNDI */
+        /* TEXT SECUNDAR CU OUTER GLOW ÎNTUNECAT */
         .roles-bottom {
             color: var(--gold); 
             letter-spacing: 6px; 
@@ -98,11 +93,7 @@
             font-size: 0.9rem; 
             font-weight: 700;
             margin-top: 10px;
-            
-            /* Contur fin Burgundi */
-            -webkit-text-stroke: 0.5px var(--wine);
-            
-            text-shadow: 2px 4px 15px rgba(0,0,0,0.9);
+            text-shadow: var(--dark-glow);
         }
 
         footer {
