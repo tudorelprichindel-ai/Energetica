@@ -27,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL CINEMATIC CU cristale3.jpg */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.2), rgba(0, 0, 0, 0.2)), url('cristale3.jpg') no-repeat center center;
@@ -40,7 +39,6 @@
             to { transform: scale(1.1); }
         }
 
-        /* HEADER SIMETRIC (80px) */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(12px);
@@ -68,20 +66,20 @@
             to { background-position: 200% center; }
         }
 
-        /* NAVIGAȚIE SIDEBAR */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
+
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
             font-weight: 700; display: block;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
+
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO SECTION */
         .hero {
             min-height: 100vh; display: flex; flex-direction: column;
             justify-content: center; align-items: center; text-align: center;
@@ -142,7 +140,6 @@
 
         .dot { opacity: 0.5; pointer-events: none; margin: 0 5px; }
 
-        /* FOOTER SIMETRIC (80px) */
         footer {
             position: fixed; bottom: 0; width: 100%;
             height: 80px; 
@@ -153,16 +150,37 @@
             background: rgba(0, 0, 0, 0.5);
             backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
+
         .social-links { margin-bottom: 5px; }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.4rem; transition: var(--transition); display: inline-block; }
         .social-links a:hover { color: var(--white); transform: translateY(-3px); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 3px; text-transform: uppercase; }
 
+        /* AJUSTĂRI PENTRU MOBIL */
         @media (max-width: 768px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 140px 0 0; gap: 1.5rem; }
-            .hero { min-height: auto; padding-top: 40px; transform: none; }
-            .hero h1 { font-size: 2.8rem; }
-            footer { position: relative; margin-top: 50px; height: auto; padding: 20px; }
+            header { height: 70px; }
+            
+            .sidebar { 
+                position: relative; 
+                top: 0; 
+                left: 0; 
+                transform: none; 
+                flex-direction: row; 
+                flex-wrap: wrap;
+                justify-content: center; 
+                padding: 100px 20px 20px; 
+                gap: 1rem; 
+            }
+
+            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+
+            .hero { min-height: auto; padding-top: 20px; transform: none; padding-bottom: 120px; }
+            .hero h1 { font-size: 2.5rem; margin-bottom: 20px; }
+            .name-top { font-size: 0.9rem; letter-spacing: 6px; margin-bottom: 15px; }
+
+            .roles-bottom { font-size: 0.65rem; padding: 0 10px; }
+
+            footer { position: relative; height: auto; padding: 30px 20px; margin-top: 0; }
         }
     </style>
 </head>
