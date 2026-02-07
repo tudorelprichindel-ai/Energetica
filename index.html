@@ -27,7 +27,6 @@
             overflow-x: hidden; 
         }
 
-        /* FUNDAL CINEMATIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale.jpg') no-repeat center center;
@@ -36,7 +35,6 @@
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER BARA SUBTILA */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
@@ -44,7 +42,6 @@
             height: 60px;
         }
 
-        /* SIDEBAR (MENIU STÂNGA) */
         .sidebar {
             position: fixed;
             top: 50%;
@@ -76,7 +73,6 @@
             transform: translateX(10px);
         }
 
-        /* HERO - INTEGRARE POZĂ */
         .hero {
             min-height: 100vh;
             display: flex;
@@ -89,24 +85,34 @@
             z-index: 1;
         }
 
+        /* NUME POZITIONAT SUS */
+        .hero .name-top {
+            color: var(--burgundy);
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            font-weight: 600;
+            margin-bottom: 10px;
+        }
+
         .hero h1 {
             font-family: 'Playfair Display', serif; 
             font-size: clamp(2rem, 6vw, 3.5rem);
             color: var(--gold); 
-            margin-bottom: 15px; 
+            margin-bottom: 10px; 
             letter-spacing: 2px;
         }
 
-        .hero p {
+        /* FUNCTII JOS INCLUSIV ASTROLOG */
+        .hero .roles-bottom {
             color: var(--burgundy);
-            letter-spacing: 4px;
+            letter-spacing: 3px;
             text-transform: uppercase;
-            font-size: 0.75rem;
+            font-size: 0.7rem;
             font-weight: 600;
             margin-bottom: 30px;
         }
 
-        /* CONTAINER PENTRU IMAGINEA GENERATĂ */
         .featured-image {
             max-width: 800px;
             width: 100%;
@@ -141,7 +147,6 @@
             box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
         }
 
-        /* FOOTER */
         footer {
             padding: 40px 20px; 
             text-align: center; 
@@ -166,6 +171,7 @@
                 flex-wrap: wrap;
                 justify-content: center;
                 padding: 80px 10px 0;
+                gap: 1rem;
             }
             .hero { padding-top: 20px; }
         }
@@ -187,11 +193,12 @@
 
     <main>
         <section class="hero">
+            <div class="name-top">Elena Shipko</div>
             <h1>Astrology Power Boutique</h1>
-            <p>Elena Shipko • NLP Master • Business Strategist</p>
+            <div class="roles-bottom">Astrolog • NLP Master • Business Strategist</div>
             
             <div class="featured-image">
-                <img src="Gemini_Generated_Image_iag57piag57piag5.jpg" alt="Astrologer Jelena Shipko">
+                <img src="Gemini_Generated_Image_iag57piag57piag5.jpg" alt="Astrologer Elena Shipko">
             </div>
 
             <a href="programari.html" class="btn-main">Solicită Audit</a>
