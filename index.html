@@ -29,161 +29,111 @@
         /* FUNDAL CINEMATIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0.65)), url('cristale.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0.75)), url('cristale.jpg') no-repeat center center;
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass);
+        /* LOGO - POZIȚIONAT SUS CENTRU SAU STÂNGA */
+        .top-bar {
+            position: fixed; top: 0; left: 0; width: 100%; padding: 2rem; z-index: 1001;
+            pointer-events: none; /* Permite click-ul prin container la elementele de dedesubt */
         }
-
-        .nav-container {
-            max-width: 1200px; margin: 0 auto; display: flex;
-            justify-content: space-between; align-items: center; padding: 1.2rem 2rem;
-        }
-
         .logo {
-            font-family: 'Playfair Display', serif; font-size: 1.3rem;
-            color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: bold;
+            pointer-events: auto;
+            font-family: 'Playfair Display', serif; font-size: 1.5rem;
+            color: var(--gold); text-decoration: none; letter-spacing: 4px; font-weight: bold;
+            display: inline-block;
         }
 
-        /* MENIU ȘI DROPDOWN FLUID */
-        .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
-        .nav-item { position: relative; padding: 15px 0; }
-
-        .nav-link, .dropdown-trigger {
-            text-decoration: none; color: var(--gold); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 2px; transition: 0.3s;
-            cursor: pointer; display: flex; align-items: center; gap: 8px;
+        /* SIDEBAR MENU (STÂNGA) */
+        .sidebar {
+            position: fixed;
+            top: 50%;
+            left: 2rem;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 2rem;
+            border-left: 1px solid var(--glass);
+            padding-left: 1.5rem;
         }
 
-        .nav-link:hover, .nav-item:hover .dropdown-trigger { color: var(--white); }
-
-        .dropdown-menu {
-            position: absolute;
-            top: 100%;
-            left: 50%;
-            transform: translateX(-50%) scaleY(0);
-            transform-origin: top;
-            background: rgba(10, 14, 20, 0.96);
-            border: 1px solid var(--glass);
-            min-width: 230px;
-            padding: 10px 0;
+        .nav-item {
             list-style: none;
-            backdrop-filter: blur(20px);
-            opacity: 0;
-            visibility: hidden;
+            position: relative;
+        }
+
+        .nav-link {
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.8rem;
+            text-transform: uppercase;
+            letter-spacing: 3px;
             transition: var(--transition);
-            box-shadow: 0 15px 35px rgba(0,0,0,0.5);
+            display: block;
+            padding: 0.5rem 0;
+            opacity: 0.7;
         }
 
-        .nav-item:hover .dropdown-menu {
+        .nav-link:hover {
+            color: var(--white);
             opacity: 1;
-            visibility: visible;
-            transform: translateX(-50%) scaleY(1);
+            transform: translateX(10px);
         }
 
-        .dropdown-menu li {
-            opacity: 0;
-            transform: translateY(-10px);
-            transition: var(--transition);
-            transition-delay: 0.1s;
-        }
-
-        .nav-item:hover .dropdown-menu li {
-            opacity: 1;
-            transform: translateY(0);
-        }
-
-        .dropdown-menu li:nth-child(1) { transition-delay: 0.1s; }
-        .dropdown-menu li:nth-child(2) { transition-delay: 0.2s; }
-        .dropdown-menu li:nth-child(3) { transition-delay: 0.3s; }
-        .dropdown-menu li:nth-child(4) { transition-delay: 0.4s; }
-
-        .dropdown-menu li a {
-            padding: 14px 25px; display: block; text-decoration: none;
-            color: var(--gold); font-size: 0.65rem; text-transform: uppercase;
-            letter-spacing: 1px; transition: 0.3s;
-        }
-
-        .dropdown-menu li a:hover {
-            background: rgba(197, 160, 89, 0.1); color: var(--white);
-            padding-left: 30px;
-        }
-
-        /* HERO */
+        /* HERO SECTION - AJUSTATĂ PENTRU MENIU LATERAL */
         .hero {
-            min-height: 100vh; display: flex; flex-direction: column;
-            justify-content: center; align-items: center; text-align: center;
-            padding: 120px 20px 60px; position: relative; z-index: 1;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding: 0 10% 0 15%; /* Spatiu mai mare in stanga pentru meniu */
+            position: relative;
+            z-index: 1;
         }
 
         .hero h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2rem, 8vw, 4rem);
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem);
             color: var(--gold); margin-bottom: 20px; letter-spacing: 2px;
-        }
-
-        /* STIL IMAGINE NOUA */
-        .hero-image-container {
-            margin: 30px 0;
-            max-width: 400px;
-            width: 90%;
-            border: 1px solid var(--glass);
-            padding: 10px;
-            background: rgba(255, 255, 255, 0.03);
-            border-radius: 4px;
-        }
-
-        .hero-image-container img {
-            width: 100%;
-            height: auto;
-            display: block;
-            filter: grayscale(30%) sepia(20%); /* Efect subtil pentru a se potrivi cu tema aurie */
+            line-height: 1.2;
         }
 
         .btn-main {
             padding: 18px 50px; border: 1px solid var(--gold); color: var(--gold);
             text-decoration: none; text-transform: uppercase; font-size: 0.75rem;
             letter-spacing: 4px; transition: 0.4s;
-            margin-top: 20px;
+            margin-top: 30px;
         }
 
         .btn-main:hover {
             background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3);
         }
 
-        /* FOOTER */
+        /* FOOTER CU REȚELE SOCIALE */
         footer {
-            padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.9);
-            border-top: 1px solid var(--glass); position: relative; z-index: 1;
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            z-index: 1000;
         }
 
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
-        .social-links a { color: var(--gold); font-size: 1.4rem; transition: 0.3s; }
-        .social-links a:hover { transform: translateY(-3px); color: white; }
-        .copyright { font-size: 0.65rem; color: var(--gold); opacity: 0.7; letter-spacing: 2px; }
+        .social-links { display: flex; flex-direction: column; gap: 20px; }
+        .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.6; }
+        .social-links a:hover { opacity: 1; transform: scale(1.2); color: white; }
 
-        /* MOBILE */
-        .mobile-menu-btn { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; }
-
+        /* RESPONSIVE PENTRU MOBIL */
         @media (max-width: 768px) {
-            .mobile-menu-btn { display: block; }
-            .nav-menu {
-                position: absolute; top: 100%; left: 0; width: 100%;
-                background: rgba(0, 0, 0, 0.98); flex-direction: column;
-                padding: 40px 0; display: none; gap: 20px;
+            .sidebar {
+                left: 1rem;
+                padding-left: 1rem;
             }
-            .nav-menu.active { display: flex; }
-            .dropdown-menu {
-                position: static; transform: none; opacity: 1; visibility: visible;
-                display: none; background: transparent; border: none; text-align: center;
-            }
-            .nav-item:hover .dropdown-menu { display: block; }
+            .hero { padding: 0 20px; }
+            .nav-link { font-size: 0.7rem; letter-spacing: 1px; }
         }
     </style>
 </head>
@@ -191,37 +141,31 @@
 
     <div class="fixed-bg"></div>
 
-    <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo">ENERGETICA</a>
-            <div class="mobile-menu-btn" onclick="toggleMenu()">
-                <i class="fas fa-bars"></i>
-            </div>
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Acasă</a></li>
-                <li class="nav-item">
-                    <div class="dropdown-trigger">Servicii <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i></div>
-                    <ul class="dropdown-menu">
-                        <li><a href="programari.html">Consultații Astro-NLP</a></li>
-                        <li><a href="academia.html">Academia Energetica</a></li>
-                        <li><a href="products.html">Colecții Exclusive</a></li>
-                        <li><a href="mentoring.html">VIP Mentoring</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
+    <div class="top-bar">
+        <a href="index.html" class="logo">ENERGETICA</a>
+    </div>
+
+    <nav class="sidebar">
+        <div class="nav-item">
+            <a href="index.html" class="nav-link">Acasă</a>
         </div>
-    </header>
+        <div class="nav-item">
+            <a href="programari.html" class="nav-link">Consultații Astrologice</a>
+        </div>
+        <div class="nav-item">
+            <a href="products.html" class="nav-link">Shop</a>
+        </div>
+        <div class="nav-item">
+            <a href="contact.html" class="nav-link">Contact</a>
+        </div>
+    </nav>
 
     <main>
         <section class="hero">
             <h1>Astrology Power Boutique</h1>
-            <p style="color: var(--gold);">Elena Shipko • NLP Master • Business Strategist</p>
-            
-            <div class="hero-image-container">
-                <img src="https://media.newyorker.com/photos/5909549321ed543329241517/master/w_2560,c_limit/Monkey-See-Monkey-Click.jpg" alt="Monkey See Monkey Click">
-            </div>
-
+            <p style="color: var(--gold); letter-spacing: 5px; text-transform: uppercase; font-size: 0.8rem;">
+                Elena Shipko • NLP Master • Business Strategist
+            </p>
             <a href="programari.html" class="btn-main">Solicită Audit</a>
         </section>
     </main>
@@ -233,14 +177,7 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/37127507367" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
     </footer>
-
-    <script>
-        function toggleMenu() {
-            document.getElementById('navMenu').classList.toggle('active');
-        }
-    </script>
 
 </body>
 </html>
