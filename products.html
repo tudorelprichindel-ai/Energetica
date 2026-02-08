@@ -48,10 +48,17 @@
             color: var(--gold); text-transform: uppercase;
         }
 
+        /* SIDEBAR - Modificat să înceapă imediat sub header */
         .sidebar {
-            position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
-            display: flex; flex-direction: column; gap: 2.5rem;
+            position: fixed; 
+            top: 100px; /* Header-ul are 80px, deci 100px oferă un spațiu elegant sub el */
+            left: 2rem; 
+            z-index: 1000;
+            display: flex; 
+            flex-direction: column; 
+            gap: 2rem;
         }
+
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: 0.5s ease;
@@ -61,27 +68,36 @@
 
         .shop-container {
             padding: 160px 2% 120px;
-            max-width: 1550px; /* Am mărit lățimea pentru a acomoda spațiile mari */
+            max-width: 1550px;
             margin: 0 auto;
             text-align: center;
         }
 
+        /* Stil text uniformizat */
         .section-subtitle {
-            font-size: 0.8rem; letter-spacing: 8px; text-transform: uppercase;
-            color: var(--gold); margin-bottom: 10px; opacity: 0.8;
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1rem; 
+            letter-spacing: 4px; 
+            color: var(--gold); 
+            margin-bottom: 10px; 
+            opacity: 0.9;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 6vw, 4rem);
-            font-style: italic; color: var(--white);
-            margin-bottom: 80px; font-weight: 400;
+            font-style: italic; 
+            color: var(--white);
+            margin-bottom: 80px; 
+            font-weight: 400;
+            letter-spacing: 2px;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 70px; /* AM MĂRIT SPAȚIUL de la 40px la 70px */
+            gap: 70px;
             justify-content: center;
             padding: 0 40px;
         }
@@ -178,7 +194,7 @@
             .product-grid { grid-template-columns: repeat(2, 1fr); } 
         }
         @media (max-width: 850px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
+            .sidebar { position: relative; top: 0; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
             .product-grid { grid-template-columns: 1fr; padding: 0 10%; }
             .shop-container { padding: 40px 5%; }
         }
