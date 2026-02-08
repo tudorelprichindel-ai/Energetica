@@ -11,7 +11,8 @@
             --gold: #c5a059;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
-            --transition-cinematic: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
+            /* TIMP DE TRANZITIE MARIT PENTRU EFECT LENT */
+            --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
             --gold-glow: 0 0 50px rgba(197, 160, 89, 0.2);
         }
 
@@ -26,17 +27,16 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL REPARAT - Gradient mai transparent pentru a vedea imaginea */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('cristale3.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
-            animation: slowPan 30s infinite alternate ease-in-out;
+            animation: slowPan 40s infinite alternate ease-in-out;
         }
 
-        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.2); } }
+        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -71,7 +71,6 @@
             text-align: center;
         }
 
-        /* TEXTE CORECTATE CU AURIU SI CURSIV */
         .section-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -85,11 +84,10 @@
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-style: italic; 
-            color: var(--gold); /* Schimbat din alb în auriu */
+            color: var(--gold); 
             margin-bottom: 80px; 
             font-weight: 400;
             letter-spacing: 1px;
-            text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .product-grid {
@@ -128,6 +126,11 @@
         .product-media video {
             width: 100%; height: 100%; object-fit: contain; 
             transition: var(--transition-cinematic);
+        }
+
+        /* ZOOM LENT SI FIN */
+        .product-card:hover .product-media video {
+            transform: scale(1.08);
         }
 
         .product-card h3 {
@@ -191,7 +194,7 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">Atracție și Energie</div>
+        <div class="section-subtitle">O experiență hipnotică</div>
         <h1 class="section-title">The Power Shop</h1>
         
         <div class="product-grid">
