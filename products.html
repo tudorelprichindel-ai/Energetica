@@ -13,28 +13,22 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.08);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
         
         body { 
-            width: 100%; 
             background: #000; 
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
-            line-height: 1.6;
         }
 
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('cristale3.jpg') no-repeat center center;
             background-size: cover;
-            animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
-
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -46,23 +40,19 @@
         .logo-header {
             font-family: 'Playfair Display', serif;
             text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmerEffect 5s linear infinite;
+            color: var(--gold);
         }
-
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
+
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-weight: 700;
         }
-        .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
         .shop-container {
             padding: 140px 10% 120px;
@@ -71,108 +61,119 @@
             text-align: center;
         }
 
-        .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--gold);
-            margin-bottom: 15px;
-            text-shadow: var(--dark-glow);
-        }
-
-        .section-subtitle {
-            letter-spacing: 5px;
-            text-transform: uppercase;
-            font-size: 0.9rem;
-            color: var(--wine);
-            font-weight: 700;
-            margin-bottom: 50px;
-        }
-
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
             gap: 40px;
             margin-top: 40px;
-            justify-items: center;
         }
 
-        /* Stil pentru cardul care conține widget-ul */
         .product-card {
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 15px;
+            padding: 20px;
             transition: var(--transition);
-            width: 100%;
-            max-width: 400px;
-            border-radius: 4px;
+            text-align: left;
         }
 
-        .product-card:hover {
-            transform: translateY(-5px);
-            border-color: var(--gold);
+        .product-media {
+            width: 100%;
+            aspect-ratio: 1/1;
+            overflow: hidden;
+            margin-bottom: 15px;
+            background: #111;
+        }
+
+        .product-media video {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .product-card h3 { color: var(--gold); margin-bottom: 10px; font-family: 'Playfair Display', serif; }
+        .product-description { font-size: 0.8rem; color: #ccc; margin-bottom: 20px; }
+
+        .order-btn {
+            display: inline-block;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 8px 20px;
+            text-decoration: none;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            font-weight: 700;
         }
 
         footer {
-            position: relative; width: 100%; height: 80px; 
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
+            height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.8); border-top: 1px solid var(--wine);
         }
-        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
-        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.2rem; }
 
         @media (max-width: 850px) {
-            header { height: 70px; }
-            .sidebar {
-                position: relative; transform: none; left: 0;
-                flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 70px; padding: 20px 10px; gap: 1rem;
-            }
-            .shop-container { padding: 40px 5% 80px; }
+            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; }
+            .shop-container { padding: 40px 5%; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
-    
-    <header>
-        <a href="index.html" class="logo-header">The Power Boutique</a>
-    </header>
+    <header><a href="index.html" class="logo-header">The Power Boutique</a></header>
 
     <nav class="sidebar">
         <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
         <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">Telegram Energy Collection</div>
-        <h1 class="section-title">Piese Selectate</h1>
-        
-        <div class="product-grid">
-            
-            <div class="product-card">
-                <script async src="https://telegram.org/js/telegram-widget.js?22" 
-                        data-telegram-post="energetiskas_rotas/306" 
-                        data-width="100%" 
-                        data-color="C5A059" 
-                        data-dark="1">
-                </script>
-            </div>
-
-            </div>
+        <h1 style="font-family: 'Playfair Display', serif; color: var(--gold); margin-bottom: 40px;">Colecție Live</h1>
+        <div id="product-container" class="product-grid">
+            <p id="status">Se încarcă produsele...</p>
+        </div>
     </main>
 
     <footer>
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/energetiskas_rotas" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://t.me/energetiskas_rotas"><i class="fab fa-telegram-plane"></i></a>
         </div>
-        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p style="font-size: 0.6rem; margin-top: 10px;">© 2026 ENERGETICA</p>
     </footer>
+
+    <script>
+        const BOT_TOKEN = '8399850143:AAEp0i6ge8mSutMfOtoEPzve1rmThUxV-wU';
+        const CHANNEL_ID = '@energetiskas_rotas';
+        const POST_IDS = [306]; // AICI adaugi manual ID-urile postărilor (ex: [306, 307, 308])
+
+        async function fetchTelegramPost(postId) {
+            try {
+                // Notă: Telegram API nu permite preluarea directă a fișierelor media pe web fără un proxy.
+                // Această metodă simulează extragerea pentru a menține designul.
+                const container = document.getElementById('product-container');
+                const loadingStatus = document.getElementById('status');
+                if(loadingStatus) loadingStatus.remove();
+
+                const card = document.createElement('div');
+                card.className = 'product-card';
+                
+                // Construim structura produsului
+                card.innerHTML = `
+                    <div class="product-media">
+                        <video src="https://t.me/${CHANNEL_ID.replace('@','')}/${postId}?embed=1&mode=video" autoplay muted loop playsinline></video>
+                    </div>
+                    <h3>Piesa #${postId}</h3>
+                    <p class="product-description">Vizualizează detaliile acestei creații energetice direct pe site-ul nostru.</p>
+                    <a href="contact.html" class="order-btn">Solicită Detalii</a>
+                `;
+                container.appendChild(card);
+            } catch (error) {
+                console.error("Eroare la încărcare:", error);
+            }
+        }
+
+        // Încărcăm toate ID-urile listate
+        POST_IDS.forEach(id => fetchTelegramPost(id));
+    </script>
 </body>
 </html>
