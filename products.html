@@ -73,16 +73,17 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
+            font-size: clamp(2rem, 5vw, 2.5rem);
             color: var(--gold);
-            margin-bottom: 50px;
+            margin-bottom: 40px;
             text-shadow: var(--dark-glow);
         }
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            /* Am limitat lățimea maximă a coloanelor pentru ca produsele să nu fie uriașe */
+            grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
+            gap: 30px;
             justify-content: center;
         }
 
@@ -90,49 +91,52 @@
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 25px;
+            padding: 20px;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
             align-items: center;
+            border-radius: 4px;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
+            transform: translateY(-8px);
             border-color: var(--gold);
             background: rgba(255, 255, 255, 0.12);
         }
 
         .product-media {
             width: 100%; aspect-ratio: 1/1; background: rgba(0,0,0,0.3);
-            margin-bottom: 20px; border: 1px solid rgba(197, 160, 89, 0.2);
+            margin-bottom: 15px; border: 1px solid rgba(197, 160, 89, 0.2);
             overflow: hidden;
+            border-radius: 2px;
         }
 
         .product-media video {
             width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s ease;
+            transition: transform 1.2s ease; /* Tranziție mai lungă și fină */
         }
 
+        /* ZOOM SUBTIL: Modificat de la 1.1 la 1.04 pentru a nu fi deranjant */
         .product-card:hover .product-media video {
-            transform: scale(1.1);
+            transform: scale(1.04);
         }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem; color: var(--gold); margin-bottom: 15px;
+            font-size: 1.1rem; color: var(--gold); margin-bottom: 12px;
             text-transform: uppercase; letter-spacing: 1px;
         }
 
         .product-description {
-            font-size: 0.85rem; color: #ccc; margin-bottom: 25px;
-            min-height: 60px; line-height: 1.5; font-style: italic;
+            font-size: 0.8rem; color: #ccc; margin-bottom: 20px;
+            min-height: 50px; line-height: 1.4; font-weight: 400;
         }
 
         .order-btn {
             background: transparent; border: 1px solid var(--gold);
-            color: var(--gold); padding: 12px 30px; text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700; font-size: 0.75rem;
+            color: var(--gold); padding: 10px 25px; text-transform: uppercase;
+            letter-spacing: 2px; font-weight: 700; font-size: 0.7rem;
             cursor: pointer; transition: var(--transition); text-decoration: none;
         }
 
@@ -176,9 +180,9 @@
                 <div class="product-media">
                     <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
                 </div>
-                <h3>Labklājība Matērijā</h3>
+                <h3>Prosperitate în Materie</h3>
                 <p class="product-description">
-                    LABKLĀJĪBA MATĒRIJĀ (gan sievietem, gan vīriešiem). Energētiski spēcīga rota harmonijai un panākumiem.
+                    Abundență și succes în plan material (atât pentru femei, cât și pentru bărbați). O piesă energetică creată pentru armonie și realizări.
                 </p>
                 <a href="contact.html" class="order-btn">Solicită Comandă</a>
             </div>
