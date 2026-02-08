@@ -12,7 +12,8 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            --landing-shadow: 3px 3px 20px rgba(0,0,0,0.9), -2px -2px 10px rgba(0,0,0,0.5);
+            /* UMBRA DIN LANDING PAGE - MAI INTENSA */
+            --landing-shadow: 2px 2px 20px rgba(0,0,0,0.9), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -37,7 +38,7 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
-        /* HEADER IDENTIC CU LANDING PAGE */
+        /* HEADER - REPLICAT EXACT DIN LANDING PAGE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
@@ -49,17 +50,17 @@
             font-family: 'Playfair Display', serif;
             font-style: italic; /* Cursiv identic */
             text-decoration: none; 
-            font-size: 1.4rem; /* Dimensiune identica */
-            letter-spacing: 4px; 
+            font-size: 1.6rem; /* Dimensiune marita pentru impact */
+            letter-spacing: 5px; /* Spatiere intre litere identica */
             font-weight: 400;
-            color: var(--gold); /* Culoare identica */
+            color: var(--gold); 
             text-transform: uppercase;
             text-shadow: var(--landing-shadow); /* Efect identic */
         }
 
         /* SIDEBAR - Desktop Centrat Vertical */
         .sidebar {
-            position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
+            position: fixed; top: 50%; left: 2.5rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
 
@@ -67,12 +68,12 @@
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: 0.5s ease;
             font-weight: 700; opacity: 0.7;
-            text-shadow: var(--landing-shadow);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
         .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
 
         .shop-container {
-            padding: 160px 2% 120px;
+            padding: 180px 2% 120px;
             max-width: 1550px;
             margin: 0 auto;
             text-align: center;
@@ -166,7 +167,7 @@
             letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
             display: inline-block;
-            text-shadow: var(--landing-shadow);
+            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
@@ -220,11 +221,12 @@
                 border-bottom: 1px solid rgba(197, 160, 89, 0.1);
             }
             .nav-link { font-size: 0.6rem; letter-spacing: 2px; opacity: 0.9; }
-            .shop-container { padding: 160px 5% 80px; }
+            .shop-container { padding: 180px 5% 80px; }
             .product-grid { grid-template-columns: 1fr; padding: 0 5%; gap: 40px; }
             .section-title { font-size: 2.8rem; margin-bottom: 40px; }
             .overlay-content { width: 95%; }
             .close-overlay { top: -45px; font-size: 0.75rem; }
+            .logo-header { font-size: 1.2rem; letter-spacing: 3px; }
         }
     </style>
 </head>
