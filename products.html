@@ -9,11 +9,10 @@
     <style>
         :root {
             --gold: #c5a059;
-            --wine: #5e1914;
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 1.2s cubic-bezier(0.22, 1, 0.36, 1);
-            --gold-glow: 0 0 30px rgba(197, 160, 89, 0.25);
+            --gold-glow: 0 0 50px rgba(197, 160, 89, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -27,15 +26,14 @@
             line-height: 1.6;
         }
 
-        /* Fundal Cinematic îmbunătățit */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('cristale3.jpg') no-repeat center center;
+            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('cristale3.jpg') center center no-repeat;
             background-size: cover;
             animation: slowPan 30s infinite alternate ease-in-out;
         }
 
-        @keyframes slowPan { from { transform: scale(1.1) translateX(-2%); } to { transform: scale(1.2) translateX(2%); } }
+        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.25); } }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -48,7 +46,6 @@
             font-family: 'Playfair Display', serif;
             text-decoration: none; font-size: 1.4rem; letter-spacing: 4px; font-weight: 700;
             color: var(--gold); text-transform: uppercase;
-            text-shadow: 0 0 15px rgba(197, 160, 89, 0.5);
         }
 
         .sidebar {
@@ -63,121 +60,117 @@
         .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
 
         .shop-container {
-            padding: 160px 10% 120px;
-            max-width: 1300px;
+            padding: 160px 5% 120px;
+            max-width: 1600px;
             margin: 0 auto;
             text-align: center;
-            animation: fadeIn 2s ease-out;
         }
 
-        @keyframes fadeIn { from { opacity: 0; transform: translateY(20px); } to { opacity: 1; transform: translateY(0); } }
-
         .section-subtitle {
-            font-size: 0.75rem; letter-spacing: 6px; text-transform: uppercase;
+            font-size: 0.8rem; letter-spacing: 8px; text-transform: uppercase;
             color: var(--gold); margin-bottom: 10px; opacity: 0.8;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 3.5rem);
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-style: italic; color: var(--white);
-            margin-bottom: 60px; font-weight: 400;
+            margin-bottom: 80px; font-weight: 400;
         }
 
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 40px;
+            gap: 50px;
             justify-content: center;
         }
 
-        /* CARDUL HIPNOTIC */
         .product-card {
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 30px;
+            padding: 0; /* Eliminăm padding-ul pentru ca video să respire */
             transition: var(--transition-cinematic);
             display: flex;
             flex-direction: column;
             align-items: center;
             position: relative;
             overflow: hidden;
+            border-radius: 4px;
         }
 
         .product-card:hover {
             transform: translateY(-15px);
-            border-color: rgba(197, 160, 89, 0.4);
-            background: rgba(255, 255, 255, 0.08);
+            border-color: rgba(197, 160, 89, 0.5);
             box-shadow: var(--gold-glow);
         }
 
-        /* Efect de lumină care trece peste card */
-        .product-card::before {
-            content: ''; position: absolute; top: -100%; left: -100%;
-            width: 50%; height: 300%; background: linear-gradient(to right, transparent, rgba(255,255,255,0.05), transparent);
-            transform: rotate(45deg); transition: 0.8s;
-        }
-        .product-card:hover::before { left: 150%; }
-
         .product-media {
-            width: 100%; aspect-ratio: 1/1; 
-            background: #000; margin-bottom: 25px; 
-            border: 1px solid rgba(197, 160, 89, 0.1);
-            overflow: hidden; display: flex; align-items: center; justify-content: center;
+            width: 100%; 
+            aspect-ratio: 9/16; /* Format cinematic de mobil, perfect pentru Telegram */
+            background: #000; 
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
         }
 
         .product-media video {
-            width: 100%; height: 100%; object-fit: contain; 
+            width: 100%; 
+            height: 100%; 
+            object-fit: cover; /* Video umple toată caseta, fără margini negre */
             transition: var(--transition-cinematic);
-            filter: brightness(0.9) contrast(1.1);
+            filter: brightness(0.9);
         }
 
         .product-card:hover .product-media video {
-            transform: scale(1.18);
-            filter: brightness(1.1) contrast(1.1);
+            transform: scale(1.1);
+            filter: brightness(1.1);
+        }
+
+        .product-info {
+            padding: 30px;
+            width: 100%;
         }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.2rem; color: var(--gold); margin-bottom: 15px;
-            letter-spacing: 2px; font-weight: 400;
+            font-size: 1.4rem; color: var(--gold); margin-bottom: 15px;
+            letter-spacing: 2px;
         }
 
         .product-description {
-            font-size: 0.8rem; color: rgba(255,255,255,0.6); 
-            margin-bottom: 15px; min-height: 60px; font-weight: 300;
-            font-style: italic;
+            font-size: 0.85rem; color: rgba(255,255,255,0.7); 
+            margin-bottom: 15px; min-height: 50px;
+            font-weight: 300; font-style: italic;
         }
 
         .product-price {
             font-family: 'Montserrat', sans-serif;
-            color: var(--white); font-weight: 600; font-size: 1.1rem;
+            color: var(--white); font-weight: 600; font-size: 1.2rem;
             margin-bottom: 25px; letter-spacing: 1px;
         }
 
         .order-btn {
             background: transparent; border: 1px solid var(--gold);
             color: var(--gold); padding: 12px 35px; text-transform: uppercase;
-            letter-spacing: 3px; font-weight: 700; font-size: 0.65rem;
+            letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
-            position: relative; z-index: 1;
+            display: inline-block;
         }
 
-        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); }
+        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.5); }
 
         footer {
-            position: relative; width: 100%; padding: 60px 0;
+            position: relative; width: 100%; padding: 80px 0;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(94, 25, 20, 0.3);
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .social-links { margin-bottom: 20px; }
-        .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
-        .social-links a:hover { color: var(--white); text-shadow: 0 0 10px var(--gold); }
-        .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 3px; text-transform: uppercase; }
+        .social-links a { color: var(--gold); margin: 0 25px; font-size: 1.6rem; transition: 0.4s; }
+        .copyright { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; }
 
-        /* Responsivitate */
         @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 850px) {
             .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.5rem; }
@@ -202,8 +195,8 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">O călătorie a simțurilor</div>
-        <h1 class="section-title">Magazinul de Energii</h1>
+        <div class="section-subtitle">Atracție și Energie</div>
+        <h1 class="section-title">Bijuterii cu Suflet</h1>
         
         <div class="product-grid">
             
@@ -211,40 +204,48 @@
                 <div class="product-media">
                     <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
                 </div>
-                <h3>Prosperitate în Materie</h3>
-                <p class="product-description">Creată pentru a manifesta succesul și abundența în planul real.</p>
-                <div class="product-price">La cerere</div>
-                <a href="contact.html" class="order-btn">Vreau această energie</a>
+                <div class="product-info">
+                    <h3>Prosperitate în Materie</h3>
+                    <p class="product-description">Succes și abundență în plan real.</p>
+                    <div class="product-price">La cerere</div>
+                    <a href="contact.html" class="order-btn">Vreau această energie</a>
+                </div>
             </div>
 
             <div class="product-card">
                 <div class="product-media">
                     <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
                 </div>
-                <h3>Echilibru Antistres</h3>
-                <p class="product-description">O oază de liniște purtată la încheietura mâinii tale.</p>
-                <div class="product-price">72€</div>
-                <a href="contact.html" class="order-btn">Adu-mi liniștea</a>
+                <div class="product-info">
+                    <h3>Echilibru Antistres</h3>
+                    <p class="product-description">O oază de liniște purtată cu tine.</p>
+                    <div class="product-price">72€</div>
+                    <a href="contact.html" class="order-btn">Adu-mi liniștea</a>
+                </div>
             </div>
 
             <div class="product-card">
                 <div class="product-media">
                     <video src="VĒLMJU REALIZĒŠANAS ROTA.mp4" autoplay muted loop playsinline></video>
                 </div>
-                <h3>Manifestarea Dorințelor</h3>
-                <p class="product-description">Malahit și Lavă pentru a transforma gândul în realitate.</p>
-                <div class="product-price">71€</div>
-                <a href="contact.html" class="order-btn">Începe transformarea</a>
+                <div class="product-info">
+                    <h3>Realizarea Dorințelor</h3>
+                    <p class="product-description">Malahit și Lavă pentru manifestare.</p>
+                    <div class="product-price">71€</div>
+                    <a href="contact.html" class="order-btn">Începe transformarea</a>
+                </div>
             </div>
 
             <div class="product-card">
                 <div class="product-media">
                     <video src="JAUNĀ LAIKMETA VĪRIETIS.mp4" autoplay muted loop playsinline></video>
                 </div>
-                <h3>Bărbatul Noii Ere</h3>
-                <p class="product-description">Putere masculină rafinată prin Dumortierit și Lazurit.</p>
-                <div class="product-price">188€</div>
-                <a href="contact.html" class="order-btn">Descoperă puterea</a>
+                <div class="product-info">
+                    <h3>Bărbatul Noii Ere</h3>
+                    <p class="product-description">Putere masculină rafinată.</p>
+                    <div class="product-price">188€</div>
+                    <a href="contact.html" class="order-btn">Descoperă puterea</a>
+                </div>
             </div>
 
         </div>
