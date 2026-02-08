@@ -12,7 +12,7 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            /* REPLICARE EXACTA A UMBREI DIN LANDING PAGE */
+            /* UMBRA IDENTICA CU LANDING PAGE */
             --landing-shadow: 2px 2px 20px rgba(0,0,0,0.9), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
@@ -38,19 +38,12 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
-        /* HEADER IDENTIC CU LANDING PAGE */
+        /* HEADER - REPLICAT DIN LANDING PAGE */
         header {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1000;
-            background: rgba(0, 0, 0, 0.4);
-            backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-            height: 80px;
-            display: flex;
-            justify-content: center;
-            align-items: center;
+            height: 80px; display: flex; justify-content: center; align-items: center;
         }
 
         .logo-header {
@@ -67,33 +60,17 @@
 
         /* SIDEBAR IDENTIC */
         .sidebar {
-            position: fixed;
-            top: 50%;
-            left: 3rem;
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex;
-            flex-direction: column;
-            gap: 2.5rem;
+            position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
+            display: flex; flex-direction: column; gap: 2.5rem;
         }
 
         .nav-link {
-            text-decoration: none;
-            color: var(--gold);
-            font-size: 0.75rem;
-            text-transform: uppercase;
-            letter-spacing: 4px;
-            transition: 0.5s ease;
-            font-weight: 700;
-            opacity: 0.7;
+            text-decoration: none; color: var(--gold); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 4px; transition: 0.5s ease;
+            font-weight: 700; opacity: 0.7;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
-
-        .nav-link:hover {
-            opacity: 1;
-            transform: translateX(10px);
-            color: var(--white);
-        }
+        .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
 
         /* CONTINUT SHOP */
         .shop-container {
