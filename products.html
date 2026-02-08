@@ -2,116 +2,247 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Colecții | Energetica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Shop | The Power Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #c5a059;
-            --midnight: #0a0e14;
+            --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.08);
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
-        body { width: 100%; min-height: 100vh; font-family: 'Montserrat', sans-serif; color: var(--white); background: #000; overflow-x: hidden; }
-
-        .fixed-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1;
-            background: linear-gradient(rgba(0, 0, 0, 0.7), rgba(0, 0, 0, 0.7)), url('cristale.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
+        
+        body { 
+            width: 100%; 
+            background: #000; 
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+            line-height: 1.6;
         }
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        /* FUNDAL IDENTIC */
+        .fixed-bg {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('cristale3.jpg') no-repeat center center;
+            background-size: cover;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
+        }
+
+        @keyframes cinematicZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
+
+        /* HEADER IDENTIC */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass);
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
+            border-bottom: 1px solid rgba(255,255,255,0.1);
+            height: 80px;
+            display: flex; justify-content: center; align-items: center;
         }
 
-        .nav-container { max-width: 1200px; margin: 0 auto; display: flex; justify-content: space-between; align-items: center; padding: 1.2rem 2rem; }
-        .logo { font-family: 'Playfair Display', serif; font-size: 1.3rem; color: var(--gold); text-decoration: none; letter-spacing: 3px; font-weight: bold; }
-
-        .nav-menu { display: flex; gap: 35px; list-style: none; align-items: center; }
-        .nav-item { position: relative; padding: 15px 0; }
-        .nav-link, .dropdown-trigger { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 2px; transition: 0.3s; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-
-        /* DROPDOWN ANIMAT */
-        .dropdown-menu {
-            position: absolute; top: 100%; left: 50%; transform: translateX(-50%) scaleY(0);
-            transform-origin: top; background: rgba(10, 14, 20, 0.96); border: 1px solid var(--glass);
-            min-width: 230px; padding: 10px 0; list-style: none; backdrop-filter: blur(20px);
-            opacity: 0; visibility: hidden; transition: var(--transition);
+        .logo-header {
+            font-family: 'Playfair Display', serif;
+            text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
         }
-        .nav-item:hover .dropdown-menu { opacity: 1; visibility: visible; transform: translateX(-50%) scaleY(1); }
-        .dropdown-menu li { opacity: 0; transform: translateY(-10px); transition: var(--transition); }
-        .nav-item:hover .dropdown-menu li { opacity: 1; transform: translateY(0); }
-        .dropdown-menu li:nth-child(1) { transition-delay: 0.1s; }
-        .dropdown-menu li:nth-child(2) { transition-delay: 0.2s; }
-        .dropdown-menu li:nth-child(3) { transition-delay: 0.3s; }
-        .dropdown-menu li:nth-child(4) { transition-delay: 0.4s; }
-        .dropdown-menu li a { padding: 14px 25px; display: block; text-decoration: none; color: var(--gold); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 1px; transition: 0.3s; }
-        .dropdown-menu li a:hover { background: rgba(197, 160, 89, 0.1); color: var(--white); padding-left: 30px; }
 
-        /* CONTENT */
-        .container { max-width: 1100px; margin: 140px auto 80px; padding: 0 20px; position: relative; z-index: 1; }
-        .category-title { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin: 60px 0 30px; border-left: 3px solid var(--gold); padding-left: 20px; }
-        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .product-card { background: var(--glass); border: 1px solid var(--glass); padding: 30px; transition: 0.4s; text-align: center; backdrop-filter: blur(5px); }
-        .product-card:hover { border-color: var(--gold); transform: translateY(-5px); }
-        .btn-order { display: inline-block; width: 100%; padding: 15px; border: 1px solid var(--gold); color: var(--gold); text-decoration: none; text-transform: uppercase; font-size: 0.7rem; letter-spacing: 2px; margin-top: 20px; transition: 0.4s; }
-        .btn-order:hover { background: var(--gold); color: #000; }
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        footer { padding: 50px 20px; text-align: center; background: rgba(0, 0, 0, 0.9); border-top: 1px solid var(--glass); position: relative; z-index: 1; }
-        .social-links { display: flex; justify-content: center; gap: 25px; margin-bottom: 25px; }
-        .social-links a { color: var(--gold); font-size: 1.4rem; transition: 0.3s; }
-        @media (max-width: 768px) {
-            .nav-menu { position: absolute; top: 100%; left: 0; width: 100%; background: rgba(0, 0, 0, 0.98); flex-direction: column; padding: 40px 0; display: none; }
-            .nav-menu.active { display: flex; }
-            .dropdown-menu { position: static; transform: none; opacity: 1; visibility: visible; display: none; background: transparent; border: none; text-align: center; }
-            .nav-item:hover .dropdown-menu { display: block; }
+        /* SIDEBAR DESKTOP */
+        .sidebar {
+            position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
+            display: flex; flex-direction: column; gap: 2.5rem;
+        }
+        .nav-link {
+            text-decoration: none; color: var(--gold); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
+            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+        }
+        .nav-link:hover { transform: translateX(12px); color: var(--white); }
+
+        /* SHOP CONTENT */
+        .shop-container {
+            padding: 140px 10% 120px;
+            max-width: 1400px;
+            margin: 0 auto;
+            text-align: center;
+        }
+
+        .section-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 3rem;
+            color: var(--gold);
+            margin-bottom: 15px;
+            text-shadow: var(--dark-glow);
+        }
+
+        .section-subtitle {
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: var(--wine);
+            font-weight: 700;
+            margin-bottom: 50px;
+        }
+
+        .product-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 40px;
+            margin-top: 40px;
+        }
+
+        .product-card {
+            background: var(--glass);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .product-card:hover {
+            transform: translateY(-10px);
+            background: rgba(255,255,255,0.08);
+            border-color: var(--gold);
+        }
+
+        .product-img-placeholder {
+            width: 100%;
+            aspect-ratio: 1/1;
+            background: rgba(0,0,0,0.3);
+            margin-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border: 1px solid rgba(197, 160, 89, 0.2);
+        }
+
+        .product-card h3 {
+            font-family: 'Playfair Display', serif;
+            font-size: 1.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        .product-price {
+            font-weight: 700;
+            letter-spacing: 2px;
+            margin-bottom: 20px;
+        }
+
+        .buy-btn {
+            background: transparent;
+            border: 1px solid var(--gold);
+            color: var(--gold);
+            padding: 12px 30px;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+            font-weight: 700;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            text-decoration: none;
+        }
+
+        .buy-btn:hover {
+            background: var(--gold);
+            color: #000;
+        }
+
+        /* FOOTER IDENTIC */
+        footer {
+            position: relative; width: 100%; height: 80px; 
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
+            z-index: 1000;
+        }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
+        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+
+        /* RESPONSIVE PENTRU MOBIL */
+        @media (max-width: 850px) {
+            header { height: 70px; }
+            .sidebar {
+                position: relative; transform: none; left: 0;
+                flex-direction: row; flex-wrap: wrap; justify-content: center;
+                margin-top: 70px; padding: 20px 10px; gap: 1rem;
+            }
+            .shop-container { padding: 40px 5% 80px; }
+            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
+    
     <header>
-        <div class="nav-container">
-            <a href="index.html" class="logo">ENERGETICA</a>
-            <ul class="nav-menu" id="navMenu">
-                <li class="nav-item"><a href="index.html" class="nav-link">Acasă</a></li>
-                <li class="nav-item">
-                    <div class="dropdown-trigger">Servicii <i class="fas fa-chevron-down" style="font-size: 0.6rem;"></i></div>
-                    <ul class="dropdown-menu">
-                        <li><a href="programari.html">Consultații Astro-NLP</a></li>
-                        <li><a href="academia.html">Academia Energetica</a></li>
-                        <li><a href="products.html">Colecții Exclusive</a></li>
-                        <li><a href="mentoring.html">VIP Mentoring</a></li>
-                    </ul>
-                </li>
-                <li class="nav-item"><a href="contact.html" class="nav-link">Contact</a></li>
-            </ul>
-        </div>
+        <a href="index.html" class="logo-header">The Power Boutique</a>
     </header>
-    <main class="container">
-        <h2 class="category-title">Brățări Energetice</h2>
+
+    <nav class="sidebar">
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="despre.html" class="nav-link">Despre</a>
+        <a href="contact.html" class="nav-link">Contact</a>
+    </nav>
+
+    <main class="shop-container">
+        <div class="section-subtitle">Energy Bracelets</div>
+        <h1 class="section-title">Colecția Energetică</h1>
+        
         <div class="product-grid">
-            <div class="product-card"><h3>Echilibru Sacru</h3><p>Cristale pentru armonie vibrațională.</p><a href="https://wa.me/37127507367" class="btn-order">Solicită Detalii</a></div>
-        </div>
-        <h2 class="category-title">Linia Morse</h2>
-        <div class="product-grid">
-            <div class="product-card"><h3>Cod Personalizat</h3><p>Mesajul tău secret, codificat elegant.</p><a href="https://wa.me/37127507367" class="btn-order">Comandă</a></div>
+            <div class="product-card">
+                <div class="product-img-placeholder">
+                    <i class="fas fa-gem fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
+                </div>
+                <h3>Brățară Protecție</h3>
+                <p class="product-price">250 RON</p>
+                <a href="#" class="buy-btn">Detalii produs</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-placeholder">
+                    <i class="fas fa-sun fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
+                </div>
+                <h3>Brățară Abundență</h3>
+                <p class="product-price">280 RON</p>
+                <a href="#" class="buy-btn">Detalii produs</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img-placeholder">
+                    <i class="fas fa-moon fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
+                </div>
+                <h3>Brățară Intuiție</h3>
+                <p class="product-price">250 RON</p>
+                <a href="#" class="buy-btn">Detalii produs</a>
+            </div>
         </div>
     </main>
+
     <footer>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/37127507367" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
+        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 </body>
 </html>
