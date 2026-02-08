@@ -33,7 +33,7 @@
             animation: slowPan 30s infinite alternate ease-in-out;
         }
 
-        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.25); } }
+        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.2); } }
 
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
@@ -61,7 +61,7 @@
 
         .shop-container {
             padding: 160px 5% 120px;
-            max-width: 1600px;
+            max-width: 1400px; /* Lățime optimizată pentru 3 coloane medii */
             margin: 0 auto;
             text-align: center;
         }
@@ -73,7 +73,7 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-size: clamp(2.5rem, 6vw, 4rem);
             font-style: italic; color: var(--white);
             margin-bottom: 80px; font-weight: 400;
         }
@@ -81,7 +81,7 @@
         .product-grid {
             display: grid;
             grid-template-columns: repeat(3, 1fr);
-            gap: 50px;
+            gap: 40px;
             justify-content: center;
         }
 
@@ -89,93 +89,93 @@
             background: var(--glass);
             backdrop-filter: blur(15px);
             border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 0; /* Eliminăm padding-ul pentru ca video să respire */
+            padding: 25px; 
             transition: var(--transition-cinematic);
             display: flex;
             flex-direction: column;
             align-items: center;
-            position: relative;
-            overflow: hidden;
             border-radius: 4px;
         }
 
         .product-card:hover {
-            transform: translateY(-15px);
+            transform: translateY(-10px);
             border-color: rgba(197, 160, 89, 0.5);
             box-shadow: var(--gold-glow);
         }
 
         .product-media {
             width: 100%; 
-            aspect-ratio: 9/16; /* Format cinematic de mobil, perfect pentru Telegram */
-            background: #000; 
+            aspect-ratio: 1/1; /* Pătrat perfect pentru a încadra brățara complet */
+            background: rgba(0, 0, 0, 0.3); 
             overflow: hidden;
             display: flex;
             align-items: center;
             justify-content: center;
-            border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            border-radius: 2px;
+            margin-bottom: 25px;
         }
 
         .product-media video {
             width: 100%; 
             height: 100%; 
-            object-fit: cover; /* Video umple toată caseta, fără margini negre */
+            /* MODIFICARE CHEIE: 'contain' asigură vizibilitatea completă a brățării */
+            object-fit: contain; 
             transition: var(--transition-cinematic);
-            filter: brightness(0.9);
+            filter: brightness(0.95);
         }
 
         .product-card:hover .product-media video {
-            transform: scale(1.1);
+            transform: scale(1.1); /* Zoom subtil și hipnotic */
             filter: brightness(1.1);
         }
 
         .product-info {
-            padding: 30px;
             width: 100%;
+            text-align: center;
         }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.4rem; color: var(--gold); margin-bottom: 15px;
-            letter-spacing: 2px;
+            font-size: 1.3rem; color: var(--gold); margin-bottom: 12px;
+            letter-spacing: 1px;
         }
 
         .product-description {
-            font-size: 0.85rem; color: rgba(255,255,255,0.7); 
-            margin-bottom: 15px; min-height: 50px;
+            font-size: 0.8rem; color: rgba(255,255,255,0.6); 
+            margin-bottom: 15px; min-height: 45px;
             font-weight: 300; font-style: italic;
         }
 
         .product-price {
             font-family: 'Montserrat', sans-serif;
-            color: var(--white); font-weight: 600; font-size: 1.2rem;
+            color: var(--white); font-weight: 600; font-size: 1.15rem;
             margin-bottom: 25px; letter-spacing: 1px;
         }
 
         .order-btn {
             background: transparent; border: 1px solid var(--gold);
-            color: var(--gold); padding: 12px 35px; text-transform: uppercase;
-            letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
+            color: var(--gold); padding: 10px 30px; text-transform: uppercase;
+            letter-spacing: 3px; font-weight: 700; font-size: 0.65rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
             display: inline-block;
         }
 
-        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.5); }
+        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
 
         footer {
-            position: relative; width: 100%; padding: 80px 0;
+            position: relative; width: 100%; padding: 60px 0;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
             border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .social-links a { color: var(--gold); margin: 0 25px; font-size: 1.6rem; transition: 0.4s; }
-        .copyright { font-size: 0.7rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 20px; }
+        .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
+        .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
         @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 850px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.5rem; }
+            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
             .product-grid { grid-template-columns: 1fr; }
-            .shop-container { padding: 60px 8%; }
+            .shop-container { padding: 40px 8%; }
         }
     </style>
 </head>
@@ -195,8 +195,8 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">Atracție și Energie</div>
-        <h1 class="section-title">Bijuterii cu Suflet</h1>
+        <div class="section-subtitle">O experiență hipnotică</div>
+        <h1 class="section-title">Magazinul de Energii</h1>
         
         <div class="product-grid">
             
@@ -206,7 +206,7 @@
                 </div>
                 <div class="product-info">
                     <h3>Prosperitate în Materie</h3>
-                    <p class="product-description">Succes și abundență în plan real.</p>
+                    <p class="product-description">Manifestă succesul și abundența în plan real.</p>
                     <div class="product-price">La cerere</div>
                     <a href="contact.html" class="order-btn">Vreau această energie</a>
                 </div>
@@ -218,7 +218,7 @@
                 </div>
                 <div class="product-info">
                     <h3>Echilibru Antistres</h3>
-                    <p class="product-description">O oază de liniște purtată cu tine.</p>
+                    <p class="product-description">O oază de liniște purtată la încheietură.</p>
                     <div class="product-price">72€</div>
                     <a href="contact.html" class="order-btn">Adu-mi liniștea</a>
                 </div>
@@ -230,7 +230,7 @@
                 </div>
                 <div class="product-info">
                     <h3>Realizarea Dorințelor</h3>
-                    <p class="product-description">Malahit și Lavă pentru manifestare.</p>
+                    <p class="product-description">Malahit și Lavă pentru materializarea intențiilor.</p>
                     <div class="product-price">71€</div>
                     <a href="contact.html" class="order-btn">Începe transformarea</a>
                 </div>
@@ -242,7 +242,7 @@
                 </div>
                 <div class="product-info">
                     <h3>Bărbatul Noii Ere</h3>
-                    <p class="product-description">Putere masculină rafinată.</p>
+                    <p class="product-description">Putere masculină rafinată prin cristale nobile.</p>
                     <div class="product-price">188€</div>
                     <a href="contact.html" class="order-btn">Descoperă puterea</a>
                 </div>
