@@ -9,11 +9,12 @@
     <style>
         :root {
             --gold: #c5a059;
+            --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95), 2px 2px 10px rgba(0, 0, 0, 0.8);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            /* UMBRA IDENTICA CU LANDING PAGE */
-            --landing-shadow: 2px 2px 20px rgba(0,0,0,0.9), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
@@ -25,81 +26,75 @@
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
             line-height: 1.6;
+            -webkit-font-smoothing: antialiased;
         }
 
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('cristale3.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cristale3.jpg') no-repeat center center;
             background-size: cover;
-            background-position: center;
-            background-attachment: fixed;
-            animation: slowPan 40s infinite alternate ease-in-out;
+            animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
-        @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
+        @keyframes cinematicZoom {
+            from { transform: scale(1); }
+            to { transform: scale(1.1); }
+        }
 
-        /* HEADER - REPLICAT DIN LANDING PAGE */
+        /* HEADER IDENTIC CU LANDING PAGE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-            height: 80px; display: flex; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass);
+            height: 80px;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .logo-header {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            text-decoration: none;
-            font-size: 1.4rem;
-            letter-spacing: 4px;
-            font-weight: 700;
-            color: var(--gold);
-            text-transform: uppercase;
-            text-shadow: var(--landing-shadow);
+            text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
         }
 
-        /* SIDEBAR IDENTIC */
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
+
+        /* SIDEBAR DESKTOP IDENTIC */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
-
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 4px; transition: 0.5s ease;
-            font-weight: 700; opacity: 0.7;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
+            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
-        .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
+        .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* CONTINUT SHOP */
+        /* SHOP CONTAINER STILIZAT CA HERO */
         .shop-container {
-            padding: 180px 2% 120px;
+            padding: 160px 5% 120px;
             max-width: 1550px;
             margin: 0 auto;
             text-align: center;
         }
 
         .section-subtitle {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
-            font-size: 1.1rem; 
-            letter-spacing: 4px; 
-            color: var(--gold); 
-            margin-bottom: 5px;
-            text-shadow: var(--landing-shadow);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--wine); letter-spacing: 12px; text-transform: uppercase;
+            font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;
+            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(3.5rem, 8vw, 6rem); 
-            font-style: italic; 
-            color: var(--gold); 
-            margin-bottom: 80px; 
-            font-weight: 400;
-            letter-spacing: -1px;
-            text-shadow: var(--landing-shadow);
-            line-height: 1.1;
+            font-size: clamp(2.5rem, 8vw, 6rem);
+            font-style: italic;
+            color: var(--gold); margin-bottom: 80px; letter-spacing: 4px; 
+            font-weight: 700; line-height: 1.1;
+            text-shadow: var(--dark-glow);
         }
 
         .product-grid {
@@ -107,13 +102,12 @@
             grid-template-columns: repeat(3, 1fr);
             gap: 70px;
             justify-content: center;
-            padding: 0 40px;
         }
 
         .product-card {
-            background: var(--glass);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(15px);
-            border: 1px solid rgba(255, 255, 255, 0.05);
+            border: 1px solid var(--glass);
             padding: 25px; 
             transition: var(--transition-cinematic);
             display: flex;
@@ -146,7 +140,7 @@
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem; color: var(--gold); margin-bottom: 12px;
             letter-spacing: 1px; font-style: italic;
-            text-shadow: var(--landing-shadow);
+            text-shadow: var(--dark-glow);
         }
 
         .product-description {
@@ -159,7 +153,7 @@
             font-family: 'Montserrat', sans-serif;
             color: var(--white); font-weight: 600; font-size: 1.25rem;
             margin-bottom: 25px; letter-spacing: 1px;
-            text-shadow: var(--landing-shadow);
+            text-shadow: var(--dark-glow);
         }
 
         .order-btn {
@@ -168,7 +162,6 @@
             letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
             display: inline-block;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
 
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
@@ -180,54 +173,47 @@
             z-index: 3000; display: none; justify-content: center; align-items: center;
             opacity: 0; transition: opacity 0.8s ease;
         }
-
         .video-overlay.active { display: flex; opacity: 1; }
-
         .overlay-content {
             width: 90%; max-width: 900px; 
             position: relative; transform: scale(0.9); transition: transform 0.8s ease;
             display: flex; justify-content: center; align-items: center;
         }
-
         .video-overlay.active .overlay-content { transform: scale(1); }
-
-        .overlay-content video { 
-            width: 100%; height: auto; max-height: 80vh; 
-            object-fit: contain; filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.2));
-        }
-
+        .overlay-content video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
         .close-overlay {
-            position: absolute; top: -60px; right: 0;
-            color: var(--gold); font-size: 0.9rem; letter-spacing: 4px;
-            text-transform: uppercase; cursor: pointer; font-weight: 700;
-            padding: 15px; transition: 0.4s; z-index: 3100;
+            position: absolute; top: -60px; right: 0; color: var(--gold); 
+            font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; 
+            cursor: pointer; font-weight: 700; padding: 15px; z-index: 3100;
         }
 
+        /* FOOTER IDENTIC CU LANDING PAGE */
         footer {
-            position: relative; width: 100%; padding: 60px 0;
+            position: relative; width: 100%; padding: 40px 20px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); 
+            border-top: 1px solid var(--wine);
         }
-        .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
-        .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--white); transform: scale(1.1); }
+        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        /* RESPONSIVITATE MOBIL */
+        /* RESPONSIVITATE MOBIL - COPIAT DIN LANDING */
         @media (max-width: 850px) {
             header { height: 70px; }
-            .sidebar { 
-                position: fixed; top: 70px; left: 0; width: 100%; transform: none; 
-                flex-direction: row; justify-content: center; padding: 15px 0; gap: 1rem;
-                background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);
-                border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            .logo-header { font-size: 1.1rem; }
+            .sidebar {
+                position: relative; top: 0; left: 0; transform: none;
+                flex-direction: row; flex-wrap: wrap; justify-content: center;
+                margin-top: 70px; padding: 20px 10px; gap: 1rem;
+                background: rgba(0,0,0,0.2);
             }
-            .nav-link { font-size: 0.6rem; letter-spacing: 2px; opacity: 0.9; }
-            .shop-container { padding: 180px 5% 80px; }
-            .product-grid { grid-template-columns: 1fr; padding: 0 5%; gap: 40px; }
-            .section-title { font-size: 2.8rem; margin-bottom: 40px; }
+            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            .shop-container { padding: 40px 15px 100px; }
+            .product-grid { grid-template-columns: 1fr; gap: 40px; }
+            .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
             .overlay-content { width: 95%; }
             .close-overlay { top: -45px; font-size: 0.75rem; }
-            .logo-header { font-size: 1.2rem; letter-spacing: 3px; }
         }
     </style>
 </head>
@@ -240,7 +226,7 @@
 
     <nav class="sidebar">
         <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Programări</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
         <a href="products.html" class="nav-link">Shop</a>
         <a href="despre.html" class="nav-link">Despre</a>
         <a href="contact.html" class="nav-link">Contact</a>
@@ -312,7 +298,7 @@
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/energetiskas_rotas" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
