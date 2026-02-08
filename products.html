@@ -12,7 +12,6 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            /* UMBRA IDENTICA CU LANDING PAGE */
             --landing-shadow: 3px 3px 20px rgba(0,0,0,0.9), -2px -2px 10px rgba(0,0,0,0.5);
         }
 
@@ -38,7 +37,6 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
-        /* HEADER IDENTIC */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
@@ -54,9 +52,16 @@
             text-shadow: var(--landing-shadow);
         }
 
+        /* SIDEBAR - REINTEGRAT CENTRAT VERTICAL CA PE LANDING PAGE */
         .sidebar {
-            position: fixed; top: 100px; left: 2rem; z-index: 1000;
-            display: flex; flex-direction: column; gap: 2rem;
+            position: fixed; 
+            top: 50%; 
+            left: 2rem; 
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex; 
+            flex-direction: column; 
+            gap: 2.5rem;
         }
 
         .nav-link {
@@ -74,7 +79,6 @@
             text-align: center;
         }
 
-        /* TITLURI - REPLICARE EXACTA LANDING PAGE */
         .section-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -87,7 +91,6 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            /* Marime marita pentru a egala impactul vizual */
             font-size: clamp(3.5rem, 8vw, 6rem); 
             font-style: italic; 
             color: var(--gold); 
@@ -175,13 +178,15 @@
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
             border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
+        .social-links { margin-bottom: 20px; }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
+        .social-links a:hover { color: var(--white); text-shadow: 0 0 10px var(--gold); }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
         @media (max-width: 1200px) { .product-grid { gap: 40px; } }
         @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 850px) {
-            .sidebar { position: relative; top: 0; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
+            .sidebar { position: relative; top: 0; left: 0; transform: none; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
             .product-grid { grid-template-columns: 1fr; padding: 0 10%; }
         }
     </style>
@@ -217,7 +222,7 @@
                     <a href="contact.html" class="order-btn">Vreau această energie</a>
                 </div>
             </div>
-            
+
             <div class="product-card">
                 <div class="product-media">
                     <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
