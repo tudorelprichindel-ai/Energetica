@@ -35,6 +35,7 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.2); } }
 
+        /* HEADER - Replica fidelă Landing Page */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
@@ -44,14 +45,15 @@
 
         .logo-header {
             font-family: 'Playfair Display', serif;
-            text-decoration: none; font-size: 1.4rem; letter-spacing: 4px; font-weight: 700;
+            font-style: italic; /* Stil cursiv ca pe landing page */
+            text-decoration: none; font-size: 1.4rem; letter-spacing: 4px; font-weight: 400;
             color: var(--gold); text-transform: uppercase;
         }
 
-        /* SIDEBAR - Modificat să înceapă imediat sub header */
+        /* SIDEBAR - Aliniat sub logo */
         .sidebar {
             position: fixed; 
-            top: 100px; /* Header-ul are 80px, deci 100px oferă un spațiu elegant sub el */
+            top: 100px; 
             left: 2rem; 
             z-index: 1000;
             display: flex; 
@@ -73,25 +75,24 @@
             text-align: center;
         }
 
-        /* Stil text uniformizat */
+        /* TITLURI - Stil cursiv Landing Page */
         .section-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1rem; 
+            font-size: 1.1rem; 
             letter-spacing: 4px; 
             color: var(--gold); 
-            margin-bottom: 10px; 
-            opacity: 0.9;
+            margin-bottom: 10px;
         }
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 6vw, 4rem);
-            font-style: italic; 
+            font-size: clamp(2.5rem, 6vw, 4.5rem);
+            font-style: italic; /* Stil cursiv conform imaginii tale */
             color: var(--white);
             margin-bottom: 80px; 
             font-weight: 400;
-            letter-spacing: 2px;
+            letter-spacing: 1px;
         }
 
         .product-grid {
@@ -137,23 +138,13 @@
             height: 100%; 
             object-fit: contain; 
             transition: var(--transition-cinematic);
-            filter: brightness(0.95);
-        }
-
-        .product-card:hover .product-media video {
-            transform: scale(1.1); 
-            filter: brightness(1.1);
-        }
-
-        .product-info {
-            width: 100%;
-            text-align: center;
         }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem; color: var(--gold); margin-bottom: 12px;
             letter-spacing: 1px;
+            font-style: italic;
         }
 
         .product-description {
@@ -187,16 +178,11 @@
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
-        @media (max-width: 1200px) { 
-            .product-grid { gap: 40px; }
-        }
-        @media (max-width: 1100px) { 
-            .product-grid { grid-template-columns: repeat(2, 1fr); } 
-        }
+        @media (max-width: 1200px) { .product-grid { gap: 40px; } }
+        @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
         @media (max-width: 850px) {
             .sidebar { position: relative; top: 0; left: 0; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
             .product-grid { grid-template-columns: 1fr; padding: 0 10%; }
-            .shop-container { padding: 40px 5%; }
         }
     </style>
 </head>
@@ -220,7 +206,6 @@
         <h1 class="section-title">Magazinul de Energii</h1>
         
         <div class="product-grid">
-            
             <div class="product-card">
                 <div class="product-media">
                     <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
@@ -268,7 +253,6 @@
                     <a href="contact.html" class="order-btn">Descoperă puterea</a>
                 </div>
             </div>
-
         </div>
     </main>
 
