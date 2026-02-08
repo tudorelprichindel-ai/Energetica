@@ -52,16 +52,9 @@
             text-shadow: var(--landing-shadow);
         }
 
-        /* SIDEBAR - REINTEGRAT CENTRAT VERTICAL CA PE LANDING PAGE */
         .sidebar {
-            position: fixed; 
-            top: 50%; 
-            left: 2rem; 
-            transform: translateY(-50%);
-            z-index: 1000;
-            display: flex; 
-            flex-direction: column; 
-            gap: 2.5rem;
+            position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
+            display: flex; flex-direction: column; gap: 2.5rem;
         }
 
         .nav-link {
@@ -132,6 +125,7 @@
             background: rgba(0, 0, 0, 0.3); overflow: hidden;
             display: flex; align-items: center; justify-content: center;
             border-radius: 2px; margin-bottom: 25px;
+            cursor: zoom-in; /* Indicator vizual pentru click */
         }
 
         .product-media video {
@@ -171,6 +165,26 @@
         }
 
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
+
+        /* MODAL - Fereastra detaliu video */
+        .video-modal {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95); z-index: 2000;
+            display: none; justify-content: center; align-items: center;
+            backdrop-filter: blur(10px);
+        }
+
+        .modal-content {
+            width: 80%; max-width: 900px; aspect-ratio: 1/1;
+            position: relative;
+        }
+
+        .modal-content video { width: 100%; height: 100%; object-fit: contain; }
+
+        .close-modal {
+            position: absolute; top: -50px; right: 0;
+            color: var(--gold); font-size: 2rem; cursor: pointer;
+        }
 
         footer {
             position: relative; width: 100%; padding: 60px 0;
@@ -212,7 +226,7 @@
         
         <div class="product-grid">
             <div class="product-card">
-                <div class="product-media">
+                <div class="product-media" onclick="openVideo('Rota ir pieejama.mp4')">
                     <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
                 </div>
                 <div class="product-info">
@@ -224,7 +238,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-media">
+                <div class="product-media" onclick="openVideo('ANTISTRESS.mp4')">
                     <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
                 </div>
                 <div class="product-info">
@@ -236,7 +250,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-media">
+                <div class="product-media" onclick="openVideo('VĒLMJU REALIZĒŠANAS ROTA.mp4')">
                     <video src="VĒLMJU REALIZĒŠANAS ROTA.mp4" autoplay muted loop playsinline></video>
                 </div>
                 <div class="product-info">
@@ -248,7 +262,7 @@
             </div>
 
             <div class="product-card">
-                <div class="product-media">
+                <div class="product-media" onclick="openVideo('JAUNĀ LAIKMETA VĪRIETIS.mp4')">
                     <video src="JAUNĀ LAIKMETA VĪRIETIS.mp4" autoplay muted loop playsinline></video>
                 </div>
                 <div class="product-info">
@@ -261,6 +275,13 @@
         </div>
     </main>
 
+    <div id="videoModal" class="video-modal" onclick="closeVideo()">
+        <div class="modal-content" onclick="event.stopPropagation()">
+            <span class="close-modal">&times;</span>
+            <video id="modalVideo" src="" autoplay loop controls></video>
+        </div>
+    </div>
+
     <footer>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram"></i></a>
@@ -270,5 +291,21 @@
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
+
+    <script>
+        function openVideo(src) {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            video.src = src;
+            modal.style.display = 'flex';
+        }
+
+        function closeVideo() {
+            const modal = document.getElementById('videoModal');
+            const video = document.getElementById('modalVideo');
+            modal.style.display = 'none';
+            video.src = '';
+        }
+    </script>
 </body>
 </html>
