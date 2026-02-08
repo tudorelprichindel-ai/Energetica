@@ -75,8 +75,8 @@
         .section-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
-            font-size: 1.2rem; 
-            letter-spacing: 6px; 
+            font-size: 1.1rem; 
+            letter-spacing: 4px; 
             color: var(--gold); 
             margin-bottom: 5px;
             text-shadow: var(--landing-shadow);
@@ -134,8 +134,6 @@
             pointer-events: none;
         }
 
-        .product-card:hover .product-media video { transform: scale(1.08); }
-
         .product-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.5rem; color: var(--gold); margin-bottom: 12px;
@@ -165,9 +163,7 @@
             text-shadow: var(--landing-shadow);
         }
 
-        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
-
-        /* --- OVERLAY CINEMATIC FARA BENZI NEGRE --- */
+        /* --- VIZUALIZATOR CINEMATIC --- */
         .video-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
@@ -178,18 +174,21 @@
         .video-overlay.active { display: flex; opacity: 1; }
 
         .overlay-content {
-            width: 90%; max-width: 800px; aspect-ratio: 1/1;
-            position: relative; transform: scale(0.8); transition: transform 0.8s ease;
-            box-shadow: 0 0 100px rgba(197, 160, 89, 0.2);
-            border: 1px solid rgba(197, 160, 89, 0.3);
-            background: #000;
-            overflow: hidden; /* Asigura taierea continutului care depaseste */
+            width: 90%; max-width: 900px; /* Dimensiune echilibrata */
+            position: relative; transform: scale(0.9); transition: transform 0.8s ease;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .video-overlay.active .overlay-content { transform: scale(1); }
 
-        /* MODIFICARE CHEIE: object-fit: cover pentru a elimina partile negre */
-        .overlay-content video { width: 100%; height: 100%; object-fit: cover; }
+        /* MODIFICARE CHEIE: Contain pentru bratara completa, fara fundal negru vizibil */
+        .overlay-content video { 
+            width: 100%; 
+            height: auto; 
+            max-height: 80vh; 
+            object-fit: contain; 
+            filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.2));
+        }
 
         .close-overlay {
             position: absolute; top: -60px; right: 0;
@@ -206,19 +205,15 @@
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px);
             border-top: 1px solid rgba(197, 160, 89, 0.2);
         }
-        .social-links { margin-bottom: 20px; }
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
-        @media (max-width: 1200px) { .product-grid { gap: 40px; } }
-        @media (max-width: 1100px) { .product-grid { grid-template-columns: repeat(2, 1fr); } }
-        
         @media (max-width: 850px) {
             .sidebar { position: relative; top: 0; left: 0; transform: none; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
             .product-grid { grid-template-columns: 1fr; padding: 0 10%; }
-            .section-title { font-size: 3rem; margin-bottom: 40px; }
-            .overlay-content { width: 95%; max-width: none; }
-            .close-overlay { top: -45px; font-size: 0.75rem; letter-spacing: 2px; }
+            .section-title { font-size: 3rem; }
+            .overlay-content { width: 95%; }
+            .close-overlay { top: -45px; font-size: 0.75rem; }
         }
     </style>
 </head>
@@ -323,16 +318,11 @@
             const overlay = document.getElementById('visualizerOverlay');
             const video = document.getElementById('visualizerVideo');
             overlay.classList.remove('active');
-            setTimeout(() => { 
-                overlay.style.display = 'none'; 
-                video.src = ''; 
-            }, 800);
+            setTimeout(() => { overlay.style.display = 'none'; video.src = ''; }, 800);
             window.removeEventListener('keydown', handleEsc);
         }
 
-        function handleEsc(e) {
-            if (e.key === 'Escape') closeVisualizer();
-        }
+        function handleEsc(e) { if (e.key === 'Escape') closeVisualizer(); }
     </script>
 </body>
 </html>
