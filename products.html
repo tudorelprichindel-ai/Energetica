@@ -12,7 +12,7 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            /* UMBRA DIN LANDING PAGE - MAI INTENSA */
+            /* Umbra exactă din Landing Page */
             --landing-shadow: 2px 2px 20px rgba(0,0,0,0.9), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
@@ -38,40 +38,65 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
-        /* HEADER - REPLICAT EXACT DIN LANDING PAGE */
+        /* HEADER - COD COPIAT DIN LANDING PAGE */
         header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1000;
+            background: rgba(0, 0, 0, 0.4);
+            backdrop-filter: blur(20px);
             border-bottom: 1px solid rgba(197, 160, 89, 0.15);
-            height: 80px; display: flex; justify-content: center; align-items: center;
+            height: 80px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .logo-header {
             font-family: 'Playfair Display', serif;
-            font-style: italic; /* Cursiv identic */
-            text-decoration: none; 
-            font-size: 1.6rem; /* Dimensiune marita pentru impact */
-            letter-spacing: 5px; /* Spatiere intre litere identica */
-            font-weight: 400;
-            color: var(--gold); 
+            text-decoration: none;
+            font-size: 1.4rem;
+            letter-spacing: 4px;
+            font-weight: 700;
+            color: var(--gold);
             text-transform: uppercase;
-            text-shadow: var(--landing-shadow); /* Efect identic */
+            /* Aplicăm cursivitatea și umbra cerută */
+            font-style: italic;
+            text-shadow: var(--landing-shadow);
         }
 
-        /* SIDEBAR - Desktop Centrat Vertical */
+        /* SIDEBAR - COD COPIAT DIN LANDING PAGE */
         .sidebar {
-            position: fixed; top: 50%; left: 2.5rem; transform: translateY(-50%); z-index: 1000;
-            display: flex; flex-direction: column; gap: 2.5rem;
+            position: fixed;
+            top: 50%;
+            left: 3rem;
+            transform: translateY(-50%);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            gap: 2.5rem;
         }
 
         .nav-link {
-            text-decoration: none; color: var(--gold); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 4px; transition: 0.5s ease;
-            font-weight: 700; opacity: 0.7;
+            text-decoration: none;
+            color: var(--gold);
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 4px;
+            transition: 0.5s ease;
+            font-weight: 700;
+            opacity: 0.7;
             text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
-        .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
 
+        .nav-link:hover {
+            opacity: 1;
+            transform: translateX(10px);
+            color: var(--white);
+        }
+
+        /* CONTAINER SHOP */
         .shop-container {
             padding: 180px 2% 120px;
             max-width: 1550px;
@@ -211,7 +236,7 @@
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
-        /* RESPONSIVITATE MOBIL */
+        /* RESPONSIVITATE MOBIL - ADAPTAT DUPA LANDING */
         @media (max-width: 850px) {
             header { height: 70px; }
             .sidebar { 
