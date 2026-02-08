@@ -80,75 +80,45 @@
         }
 
         .section-subtitle {
-            letter-spacing: 5px; text-transform: uppercase; font-size: 0.9rem;
-            color: var(--wine); font-weight: 700; margin-bottom: 50px;
+            letter-spacing: 5px;
+            text-transform: uppercase;
+            font-size: 0.9rem;
+            color: var(--wine);
+            font-weight: 700;
+            margin-bottom: 50px;
         }
 
-        /* Containerul unde vor apărea produsele */
-        #telegram-products-grid {
+        .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
             gap: 40px;
             margin-top: 40px;
+            justify-items: center;
         }
 
-        /* Stil pentru cardurile generate */
+        /* Stil pentru cardul care conține widget-ul */
         .product-card {
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 25px;
+            padding: 15px;
             transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 4px;
         }
 
         .product-card:hover {
-            transform: translateY(-10px);
-            background: rgba(255, 255, 255, 0.12);
+            transform: translateY(-5px);
             border-color: var(--gold);
         }
-
-        .product-media {
-            width: 100%; aspect-ratio: 1/1; background: rgba(0,0,0,0.3);
-            margin-bottom: 20px; border: 1px solid rgba(197, 160, 89, 0.2);
-            overflow: hidden;
-        }
-
-        .product-media img, .product-media video {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 0.8s ease;
-        }
-
-        .product-card:hover .product-media img,
-        .product-card:hover .product-media video { transform: scale(1.1); }
-
-        .product-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 1.3rem; color: var(--gold); margin-bottom: 10px;
-        }
-
-        .product-description {
-            font-size: 0.85rem; color: #ccc; margin-bottom: 20px;
-            min-height: 50px;
-        }
-
-        .buy-btn {
-            background: transparent; border: 1px solid var(--gold);
-            color: var(--gold); padding: 10px 25px; text-transform: uppercase;
-            letter-spacing: 2px; font-weight: 700; font-size: 0.75rem;
-            cursor: pointer; transition: var(--transition); text-decoration: none;
-        }
-
-        .buy-btn:hover { background: var(--gold); color: #000; }
 
         footer {
             position: relative; width: 100%; height: 80px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
-        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
         @media (max-width: 850px) {
@@ -178,12 +148,21 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">Energy Selection</div>
-        <h1 class="section-title">Colecția de pe Telegram</h1>
+        <div class="section-subtitle">Telegram Energy Collection</div>
+        <h1 class="section-title">Piese Selectate</h1>
         
-        <div id="telegram-products-grid">
-            <p id="loading-text">Se încarcă produsele selectate...</p>
-        </div>
+        <div class="product-grid">
+            
+            <div class="product-card">
+                <script async src="https://telegram.org/js/telegram-widget.js?22" 
+                        data-telegram-post="energetiskas_rotas/306" 
+                        data-width="100%" 
+                        data-color="C5A059" 
+                        data-dark="1">
+                </script>
+            </div>
+
+            </div>
     </main>
 
     <footer>
@@ -195,43 +174,5 @@
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
-
-    <script>
-        // CONFIGURARE CUSTOM IDs
-        // Adaugă aici ID-urile postărilor tale de pe Telegram (ex: 124, 125, 128)
-        const selectedPostIds = [1, 2, 3]; 
-        const channelName = 'energetiskas_rotas';
-
-        function loadTelegramProducts() {
-            const grid = document.getElementById('telegram-products-grid');
-            const loadingText = document.getElementById('loading-text');
-
-            if (selectedPostIds.length === 0) {
-                loadingText.innerText = "Nu au fost selectate produse.";
-                return;
-            }
-
-            loadingText.style.display = 'none';
-
-            selectedPostIds.forEach(id => {
-                // Notă: API-ul public Telegram Widget este folosit pentru a prelua previzualizarea
-                // Într-o variantă avansată cu Bot Token, procesul este mai dinamic.
-                const card = document.createElement('div');
-                card.className = 'product-card';
-                
-                card.innerHTML = `
-                    <div class="product-media">
-                        <img src="https://telemetr.io/post/img/${channelName}/${id}" alt="Produs ${id}" onerror="this.src='ametist.jpg'">
-                    </div>
-                    <h3>Produs #${id}</h3>
-                    <p class="product-description">Vizualizați detaliile complete și prețul direct pe canalul nostru oficial.</p>
-                    <a href="https://t.me/${channelName}/${id}" target="_blank" class="buy-btn">Vezi pe Telegram</a>
-                `;
-                grid.appendChild(card);
-            });
-        }
-
-        window.onload = loadTelegramProducts;
-    </script>
 </body>
 </html>
