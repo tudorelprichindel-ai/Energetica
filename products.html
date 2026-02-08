@@ -12,7 +12,7 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
-            /* Umbra exactă din Landing Page */
+            /* REPLICARE EXACTA A UMBREI DIN LANDING PAGE */
             --landing-shadow: 2px 2px 20px rgba(0,0,0,0.9), 0 0 15px rgba(197, 160, 89, 0.2);
         }
 
@@ -38,7 +38,7 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
-        /* HEADER - COD COPIAT DIN LANDING PAGE */
+        /* HEADER IDENTIC CU LANDING PAGE */
         header {
             position: fixed;
             top: 0;
@@ -55,18 +55,17 @@
 
         .logo-header {
             font-family: 'Playfair Display', serif;
+            font-style: italic;
             text-decoration: none;
             font-size: 1.4rem;
             letter-spacing: 4px;
             font-weight: 700;
             color: var(--gold);
             text-transform: uppercase;
-            /* Aplicăm cursivitatea și umbra cerută */
-            font-style: italic;
             text-shadow: var(--landing-shadow);
         }
 
-        /* SIDEBAR - COD COPIAT DIN LANDING PAGE */
+        /* SIDEBAR IDENTIC */
         .sidebar {
             position: fixed;
             top: 50%;
@@ -96,7 +95,7 @@
             color: var(--white);
         }
 
-        /* CONTAINER SHOP */
+        /* CONTINUT SHOP */
         .shop-container {
             padding: 180px 2% 120px;
             max-width: 1550px;
@@ -236,7 +235,7 @@
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
-        /* RESPONSIVITATE MOBIL - ADAPTAT DUPA LANDING */
+        /* RESPONSIVITATE MOBIL */
         @media (max-width: 850px) {
             header { height: 70px; }
             .sidebar { 
