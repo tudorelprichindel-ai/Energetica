@@ -11,7 +11,7 @@
             --gold: #c5a059;
             --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
+            --glass: rgba(255, 255, 255, 0.08);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95);
         }
@@ -27,7 +27,6 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL IDENTIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('cristale3.jpg') no-repeat center center;
@@ -35,18 +34,13 @@
             animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
-        @keyframes cinematicZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER IDENTIC */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
             border-bottom: 1px solid rgba(255,255,255,0.1);
-            height: 80px;
-            display: flex; justify-content: center; align-items: center;
+            height: 80px; display: flex; justify-content: center; align-items: center;
         }
 
         .logo-header {
@@ -59,7 +53,6 @@
 
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* SIDEBAR DESKTOP */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -71,7 +64,6 @@
         }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* SHOP CONTENT */
         .shop-container {
             padding: 140px 10% 120px;
             max-width: 1400px;
@@ -81,7 +73,7 @@
 
         .section-title {
             font-family: 'Playfair Display', serif;
-            font-size: 3rem;
+            font-size: clamp(2rem, 5vw, 3rem);
             color: var(--gold);
             margin-bottom: 15px;
             text-shadow: var(--dark-glow);
@@ -98,8 +90,8 @@
 
         .product-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 40px;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 30px;
             margin-top: 40px;
         }
 
@@ -107,7 +99,7 @@
             background: var(--glass);
             backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px;
+            padding: 25px;
             transition: var(--transition);
             display: flex;
             flex-direction: column;
@@ -116,11 +108,11 @@
 
         .product-card:hover {
             transform: translateY(-10px);
-            background: rgba(255,255,255,0.08);
+            background: rgba(255,255,255,0.12);
             border-color: var(--gold);
         }
 
-        .product-img-placeholder {
+        .product-img {
             width: 100%;
             aspect-ratio: 1/1;
             background: rgba(0,0,0,0.3);
@@ -129,51 +121,57 @@
             align-items: center;
             justify-content: center;
             border: 1px solid rgba(197, 160, 89, 0.2);
+            overflow: hidden;
         }
+
+        .product-img img { width: 100%; height: 100%; object-fit: cover; }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
-            font-size: 1.5rem;
+            font-size: 1.3rem;
             color: var(--gold);
             margin-bottom: 10px;
+        }
+
+        .product-meta {
+            font-size: 0.75rem;
+            color: #ccc;
+            margin-bottom: 15px;
+            font-style: italic;
+            min-height: 40px;
         }
 
         .product-price {
             font-weight: 700;
             letter-spacing: 2px;
             margin-bottom: 20px;
+            color: var(--white);
         }
 
         .buy-btn {
             background: transparent;
             border: 1px solid var(--gold);
             color: var(--gold);
-            padding: 12px 30px;
+            padding: 10px 25px;
             text-transform: uppercase;
             letter-spacing: 2px;
             font-weight: 700;
-            font-size: 0.8rem;
+            font-size: 0.75rem;
             cursor: pointer;
             transition: var(--transition);
             text-decoration: none;
         }
 
-        .buy-btn:hover {
-            background: var(--gold);
-            color: #000;
-        }
+        .buy-btn:hover { background: var(--gold); color: #000; }
 
-        /* FOOTER IDENTIC */
         footer {
             position: relative; width: 100%; height: 80px; 
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
-            z-index: 1000;
         }
         .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        /* RESPONSIVE PENTRU MOBIL */
         @media (max-width: 850px) {
             header { height: 70px; }
             .sidebar {
@@ -182,7 +180,6 @@
                 margin-top: 70px; padding: 20px 10px; gap: 1rem;
             }
             .shop-container { padding: 40px 5% 80px; }
-            .section-title { font-size: 2rem; }
         }
     </style>
 </head>
@@ -202,33 +199,46 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">Energy Bracelets</div>
-        <h1 class="section-title">Colecția Energetică</h1>
+        <div class="section-subtitle">Energy Collection</div>
+        <h1 class="section-title">Brățări din Cristale Naturale</h1>
         
         <div class="product-grid">
             <div class="product-card">
-                <div class="product-img-placeholder">
-                    <i class="fas fa-gem fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
-                </div>
-                <h3>Brățară Protecție</h3>
+                <div class="product-img"><img src="cuart-roz.jpg" alt="Cuarț Roz"></div>
+                <h3>Cuarț Roz</h3>
+                <p class="product-meta">Iubire necondiționată și vindecare emoțională</p>
                 <p class="product-price">250 RON</p>
                 <a href="#" class="buy-btn">Detalii produs</a>
             </div>
 
             <div class="product-card">
-                <div class="product-img-placeholder">
-                    <i class="fas fa-sun fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
-                </div>
-                <h3>Brățară Abundență</h3>
+                <div class="product-img"><img src="bratara_vulcanica.jpg" alt="Rocă Vulcanică"></div>
+                <h3>Rocă Vulcanică</h3>
+                <p class="product-meta">Stabilitate, forță și ancorare energetică</p>
+                <p class="product-price">230 RON</p>
+                <a href="#" class="buy-btn">Detalii produs</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="citrin.jpg" alt="Citrin"></div>
+                <h3>Citrin</h3>
+                <p class="product-meta">Abundență, succes și energie solară</p>
                 <p class="product-price">280 RON</p>
                 <a href="#" class="buy-btn">Detalii produs</a>
             </div>
 
             <div class="product-card">
-                <div class="product-img-placeholder">
-                    <i class="fas fa-moon fa-3x" style="color: var(--gold); opacity: 0.5;"></i>
-                </div>
-                <h3>Brățară Intuiție</h3>
+                <div class="product-img"><img src="bratara_tripla.jpg" alt="Protecție Triplă"></div>
+                <h3>Protecție Triplă</h3>
+                <p class="product-meta">Echilibru spiritual și scut împotriva energiilor joase</p>
+                <p class="product-price">290 RON</p>
+                <a href="#" class="buy-btn">Detalii produs</a>
+            </div>
+
+            <div class="product-card">
+                <div class="product-img"><img src="ametist.jpg" alt="Ametist"></div>
+                <h3>Ametist</h3>
+                <p class="product-meta">Liniște interioară, intuiție și protecție spirituală</p>
                 <p class="product-price">250 RON</p>
                 <a href="#" class="buy-btn">Detalii produs</a>
             </div>
