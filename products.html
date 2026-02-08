@@ -37,6 +37,7 @@
 
         @keyframes slowPan { from { transform: scale(1.1); } to { transform: scale(1.15); } }
 
+        /* HEADER IDENTIC CU LANDING PAGE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px);
@@ -46,12 +47,17 @@
 
         .logo-header {
             font-family: 'Playfair Display', serif;
-            font-style: italic;
-            text-decoration: none; font-size: 1.4rem; letter-spacing: 4px; font-weight: 400;
-            color: var(--gold); text-transform: uppercase;
-            text-shadow: var(--landing-shadow);
+            font-style: italic; /* Cursiv identic */
+            text-decoration: none; 
+            font-size: 1.4rem; /* Dimensiune identica */
+            letter-spacing: 4px; 
+            font-weight: 400;
+            color: var(--gold); /* Culoare identica */
+            text-transform: uppercase;
+            text-shadow: var(--landing-shadow); /* Efect identic */
         }
 
+        /* SIDEBAR - Desktop Centrat Vertical */
         .sidebar {
             position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -163,7 +169,9 @@
             text-shadow: var(--landing-shadow);
         }
 
-        /* --- VIZUALIZATOR CINEMATIC --- */
+        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
+
+        /* VIZUALIZATOR CINEMATIC */
         .video-overlay {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
             background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
@@ -174,30 +182,24 @@
         .video-overlay.active { display: flex; opacity: 1; }
 
         .overlay-content {
-            width: 90%; max-width: 900px; /* Dimensiune echilibrata */
+            width: 90%; max-width: 900px; 
             position: relative; transform: scale(0.9); transition: transform 0.8s ease;
             display: flex; justify-content: center; align-items: center;
         }
 
         .video-overlay.active .overlay-content { transform: scale(1); }
 
-        /* MODIFICARE CHEIE: Contain pentru bratara completa, fara fundal negru vizibil */
         .overlay-content video { 
-            width: 100%; 
-            height: auto; 
-            max-height: 80vh; 
-            object-fit: contain; 
-            filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.2));
+            width: 100%; height: auto; max-height: 80vh; 
+            object-fit: contain; filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.2));
         }
 
         .close-overlay {
             position: absolute; top: -60px; right: 0;
             color: var(--gold); font-size: 0.9rem; letter-spacing: 4px;
             text-transform: uppercase; cursor: pointer; font-weight: 700;
-            padding: 15px; transition: 0.4s;
-            z-index: 3100;
+            padding: 15px; transition: 0.4s; z-index: 3100;
         }
-        .close-overlay:hover { color: var(--white); text-shadow: 0 0 10px var(--gold); }
 
         footer {
             position: relative; width: 100%; padding: 60px 0;
@@ -208,10 +210,19 @@
         .social-links a { color: var(--gold); margin: 0 20px; font-size: 1.5rem; transition: 0.4s; }
         .copyright { font-size: 0.65rem; color: rgba(255,255,255,0.4); letter-spacing: 4px; text-transform: uppercase; margin-top: 15px; }
 
+        /* RESPONSIVITATE MOBIL */
         @media (max-width: 850px) {
-            .sidebar { position: relative; top: 0; left: 0; transform: none; flex-direction: row; justify-content: center; margin-top: 100px; gap: 1.2rem; }
-            .product-grid { grid-template-columns: 1fr; padding: 0 10%; }
-            .section-title { font-size: 3rem; }
+            header { height: 70px; }
+            .sidebar { 
+                position: fixed; top: 70px; left: 0; width: 100%; transform: none; 
+                flex-direction: row; justify-content: center; padding: 15px 0; gap: 1rem;
+                background: rgba(0, 0, 0, 0.3); backdrop-filter: blur(10px);
+                border-bottom: 1px solid rgba(197, 160, 89, 0.1);
+            }
+            .nav-link { font-size: 0.6rem; letter-spacing: 2px; opacity: 0.9; }
+            .shop-container { padding: 160px 5% 80px; }
+            .product-grid { grid-template-columns: 1fr; padding: 0 5%; gap: 40px; }
+            .section-title { font-size: 2.8rem; margin-bottom: 40px; }
             .overlay-content { width: 95%; }
             .close-overlay { top: -45px; font-size: 0.75rem; }
         }
