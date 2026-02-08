@@ -26,10 +26,10 @@
             line-height: 1.6;
         }
 
-        /* FUNDAL - Verifică dacă cristale3.jpg există în GitHub */
+        /* FUNDAL REPARAT - Gradient mai transparent pentru a vedea imaginea */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.8)), url('cristale3.jpg');
+            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.5)), url('cristale3.jpg');
             background-size: cover;
             background-position: center;
             background-attachment: fixed;
@@ -53,13 +53,8 @@
         }
 
         .sidebar {
-            position: fixed; 
-            top: 100px; 
-            left: 2rem; 
-            z-index: 1000;
-            display: flex; 
-            flex-direction: column; 
-            gap: 2rem;
+            position: fixed; top: 100px; left: 2rem; z-index: 1000;
+            display: flex; flex-direction: column; gap: 2rem;
         }
 
         .nav-link {
@@ -76,6 +71,7 @@
             text-align: center;
         }
 
+        /* TEXTE CORECTATE CU AURIU SI CURSIV */
         .section-subtitle {
             font-family: 'Playfair Display', serif;
             font-style: italic;
@@ -89,10 +85,11 @@
             font-family: 'Playfair Display', serif;
             font-size: clamp(2.5rem, 6vw, 4.5rem);
             font-style: italic; 
-            color: var(--white);
+            color: var(--gold); /* Schimbat din alb în auriu */
             margin-bottom: 80px; 
             font-weight: 400;
             letter-spacing: 1px;
+            text-shadow: 0 0 20px rgba(0,0,0,0.5);
         }
 
         .product-grid {
@@ -122,29 +119,21 @@
         }
 
         .product-media {
-            width: 100%; 
-            aspect-ratio: 1/1; 
-            background: rgba(0, 0, 0, 0.3); 
-            overflow: hidden;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            border-radius: 2px;
-            margin-bottom: 25px;
+            width: 100%; aspect-ratio: 1/1; 
+            background: rgba(0, 0, 0, 0.3); overflow: hidden;
+            display: flex; align-items: center; justify-content: center;
+            border-radius: 2px; margin-bottom: 25px;
         }
 
         .product-media video {
-            width: 100%; 
-            height: 100%; 
-            object-fit: contain; 
+            width: 100%; height: 100%; object-fit: contain; 
             transition: var(--transition-cinematic);
         }
 
         .product-card h3 {
             font-family: 'Playfair Display', serif;
             font-size: 1.3rem; color: var(--gold); margin-bottom: 12px;
-            letter-spacing: 1px;
-            font-style: italic;
+            letter-spacing: 1px; font-style: italic;
         }
 
         .product-description {
@@ -202,8 +191,8 @@
     </nav>
 
     <main class="shop-container">
-        <div class="section-subtitle">O experiență hipnotică</div>
-        <h1 class="section-title">Magazinul de Energii</h1>
+        <div class="section-subtitle">Atracție și Energie</div>
+        <h1 class="section-title">The Power Shop</h1>
         
         <div class="product-grid">
             <div class="product-card">
@@ -217,7 +206,7 @@
                     <a href="contact.html" class="order-btn">Vreau această energie</a>
                 </div>
             </div>
-            
+
             <div class="product-card">
                 <div class="product-media">
                     <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
