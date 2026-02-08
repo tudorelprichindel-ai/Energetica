@@ -107,7 +107,7 @@
         .product-media {
             width: 100%; 
             aspect-ratio: 1/1; 
-            background: rgba(0, 0, 0, 0.4); /* Fundal mai închis pentru contrast */
+            background: rgba(0, 0, 0, 0.4);
             margin-bottom: 15px; 
             border: 1px solid rgba(197, 160, 89, 0.2);
             overflow: hidden;
@@ -120,7 +120,6 @@
         .product-media video {
             width: 100%; 
             height: 100%; 
-            /* MODIFICARE CHEIE: 'contain' asigură că vedem tot video-ul fără să fie tăiat */
             object-fit: contain; 
             transition: transform 1.2s ease;
         }
@@ -136,8 +135,16 @@
         }
 
         .product-description {
-            font-size: 0.8rem; color: #ccc; margin-bottom: 20px;
+            font-size: 0.8rem; color: #ccc; margin-bottom: 10px;
             min-height: 50px; line-height: 1.4; font-weight: 400;
+        }
+
+        .product-price {
+            color: var(--gold);
+            font-weight: 700;
+            font-size: 1rem;
+            margin-bottom: 20px;
+            font-family: 'Playfair Display', serif;
         }
 
         .order-btn {
@@ -183,16 +190,31 @@
         <h1 class="section-title">Produse în Stoc</h1>
         
         <div class="product-grid">
+            
             <div class="product-card">
                 <div class="product-media">
                     <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
                 </div>
                 <h3>Prosperitate în Materie</h3>
                 <p class="product-description">
-                    Abundență și succes în plan material (atât pentru femei, cât și pentru bărbați). O piesă energetică creată pentru armonie și realizări profesionale.
+                    Abundență și succes în plan material. O piesă energetică creată pentru armonie și realizări profesionale.
                 </p>
+                <div class="product-price">La cerere</div>
                 <a href="contact.html" class="order-btn">Solicită Comandă</a>
             </div>
+
+            <div class="product-card">
+                <div class="product-media">
+                    <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
+                </div>
+                <h3>Colecția Antistress</h3>
+                <p class="product-description">
+                    Creată special pentru echilibru emoțional și liniște interioară. Reducerea stresului prin puterea cristalelor.
+                </p>
+                <div class="product-price">72€</div>
+                <a href="contact.html" class="order-btn">Solicită Comandă</a>
+            </div>
+
         </div>
     </main>
 
