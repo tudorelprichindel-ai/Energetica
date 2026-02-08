@@ -11,49 +11,36 @@
             --gold: #c5a059;
             --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.1);
+            --glass: rgba(255, 255, 255, 0.05);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
             --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95), 2px 2px 10px rgba(0, 0, 0, 0.8);
-            --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            width: 100%; 
-            background: #000; 
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.6;
-            -webkit-font-smoothing: antialiased;
+            width: 100%; background: #000; color: var(--white);
+            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
 
-        /* FUNDAL ANIMAT IDENTIC */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cristale3.jpg') no-repeat center center;
-            background-size: cover;
-            animation: cinematicZoom 25s infinite alternate ease-in-out;
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
-        @keyframes cinematicZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER IDENTIC */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass);
-            height: 80px;
+            border-bottom: 1px solid var(--glass); height: 80px;
             display: flex; justify-content: center; align-items: center;
         }
 
         .logo-header {
-            font-family: 'Playfair Display', serif;
-            font-style: italic;
+            font-family: 'Playfair Display', serif; font-style: italic;
             text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
@@ -62,7 +49,6 @@
 
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* SIDEBAR DESKTOP IDENTIC */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -74,12 +60,8 @@
         }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* SECTIUNE CONSULTATII */
         .consultation-container {
-            padding: 180px 5% 120px;
-            max-width: 1550px;
-            margin: 0 auto;
-            text-align: center;
+            padding: 180px 5% 120px; max-width: 1550px; margin: 0 auto; text-align: center;
         }
 
         .section-subtitle {
@@ -89,156 +71,82 @@
         }
 
         .section-title {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2.5rem, 8vw, 6rem);
-            font-style: italic;
-            color: var(--gold); margin-bottom: 80px; letter-spacing: 4px; 
-            font-weight: 700; line-height: 1.1;
-            text-shadow: var(--dark-glow);
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
+            font-style: italic; color: var(--gold); margin-bottom: 80px; letter-spacing: 4px; 
+            font-weight: 700; line-height: 1.1; text-shadow: var(--dark-glow);
         }
 
         .consultation-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-            gap: 70px;
-            justify-content: center;
+            display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 50px; justify-content: center;
         }
 
         .consultation-card {
-            background: rgba(255, 255, 255, 0.05); /* Glassmorphism */
-            backdrop-filter: blur(15px);
-            border: 1px solid var(--glass);
-            padding: 40px; 
-            transition: var(--transition);
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            border-radius: 8px;
-            position: relative;
-            overflow: hidden;
-            box-shadow: 0 0 30px rgba(0,0,0,0.5);
+            background: rgba(255, 255, 255, 0.03); /* Mai transparent */
+            backdrop-filter: blur(10px); border: 1px solid var(--glass);
+            padding: 50px 30px; transition: var(--transition);
+            display: flex; flex-direction: column; align-items: center;
+            border-radius: 4px; position: relative; overflow: hidden;
         }
 
+        /* IMAGINI MAI VIZIBILE */
         .consultation-card::before {
-            content: '';
-            position: absolute;
-            top: 0; left: 0;
-            width: 100%; height: 100%;
-            background-size: cover;
-            background-position: center;
-            opacity: 0.1;
-            z-index: -1;
-            transition: opacity 0.5s ease;
+            content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
+            background-size: cover; background-position: center;
+            opacity: 0.4; /* Mărit de la 0.1 la 0.4 pentru vizibilitate */
+            z-index: -1; transition: opacity 0.5s ease;
         }
-        /* Imagini de fundal subtile pentru carduri */
         .consultation-card:nth-child(1)::before { background-image: url('consultation-life.jpg'); }
         .consultation-card:nth-child(2)::before { background-image: url('consultation-business.jpg'); }
         .consultation-card:nth-child(3)::before { background-image: url('consultation-astrology.jpg'); }
 
         .consultation-card:hover {
-            transform: translateY(-15px) scale(1.02);
-            border-color: rgba(197, 160, 89, 0.5);
-            box-shadow: 0 0 50px rgba(197, 160, 89, 0.25);
+            transform: translateY(-10px); border-color: rgba(197, 160, 89, 0.4);
+            background: rgba(255, 255, 255, 0.07);
         }
-        .consultation-card:hover::before {
-            opacity: 0.15;
-        }
+        .consultation-card:hover::before { opacity: 0.6; }
 
-        .card-icon {
-            font-size: 3.5rem;
-            color: var(--gold);
-            margin-bottom: 25px;
-            text-shadow: var(--dark-glow);
-        }
+        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; text-shadow: var(--dark-glow); }
 
         .consultation-card h3 {
-            font-family: 'Playfair Display', serif;
-            font-size: 2rem; color: var(--gold); margin-bottom: 15px;
-            letter-spacing: 1px; font-style: italic;
-            text-shadow: var(--dark-glow);
+            font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); 
+            margin-bottom: 15px; font-style: italic; text-shadow: var(--dark-glow);
         }
 
         .consultation-card p {
-            font-size: 1rem; color: rgba(255,255,255,0.7); 
-            margin-bottom: 30px;
-            font-weight: 300;
-            line-height: 1.7;
+            font-size: 0.95rem; color: rgba(255,255,255,0.85); 
+            margin-bottom: 35px; font-weight: 400; text-shadow: 1px 1px 5px rgba(0,0,0,1);
         }
 
         .book-btn {
-            background: transparent; border: 1px solid var(--gold);
-            color: var(--gold); padding: 15px 40px; text-transform: uppercase;
-            letter-spacing: 4px; font-weight: 700; font-size: 0.8rem;
+            background: rgba(0, 0, 0, 0.5); border: 1px solid var(--gold);
+            color: var(--gold); padding: 12px 30px; text-transform: uppercase;
+            letter-spacing: 3px; font-weight: 700; font-size: 0.75rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
-            display: inline-block;
-            position: relative;
-            overflow: hidden;
-            border-radius: 4px;
-            text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            border-radius: 2px;
         }
 
-        .book-btn::before {
-            content: '';
-            position: absolute;
-            top: 50%; left: 50%;
-            width: 0; height: 0;
-            background: rgba(197, 160, 89, 0.4); /* Glow effect */
-            border-radius: 50%;
-            transition: width 0.6s ease, height 0.6s ease, top 0.6s ease, left 0.6s ease;
-            transform: translate(-50%, -50%);
-            z-index: 0;
-            opacity: 0;
-        }
+        .book-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); }
 
-        .book-btn:hover::before {
-            width: 300%; height: 300%;
-            opacity: 1;
-        }
-
-        .book-btn span {
-            position: relative;
-            z-index: 1;
-        }
-        .book-btn:hover {
-            color: #000;
-            border-color: var(--white);
-        }
-
-        /* FOOTER IDENTIC */
         footer {
             position: relative; width: 100%; padding: 40px 20px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); 
-            border-top: 1px solid var(--wine);
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
         .social-links a:hover { color: var(--white); transform: scale(1.1); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        /* RESPONSIVITATE MOBIL IDENTICA */
         @media (max-width: 850px) {
-            header { height: 70px; }
-            .logo-header { font-size: 1.1rem; }
-            .sidebar {
-                position: relative; top: 0; left: 0; transform: none;
-                flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 70px; padding: 20px 10px; gap: 1rem;
-                background: rgba(0,0,0,0.2);
-            }
-            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            .sidebar { position: relative; top: 0; left: 0; transform: none; flex-direction: row; justify-content: center; margin-top: 70px; padding: 20px; gap: 1rem; }
             .consultation-container { padding: 40px 15px 100px; }
-            .consultation-grid { grid-template-columns: 1fr; gap: 40px; }
-            .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
-            .card-icon { font-size: 2.5rem; margin-bottom: 15px; }
-            .consultation-card h3 { font-size: 1.7rem; }
-            .consultation-card p { font-size: 0.9rem; }
-            .book-btn { padding: 12px 30px; font-size: 0.7rem; }
+            .consultation-grid { grid-template-columns: 1fr; }
+            .section-title { font-size: 2.2rem; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
-    
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
     </header>
@@ -252,29 +160,29 @@
     </nav>
 
     <main class="consultation-container">
-        <div class="section-subtitle">Ghidare Divină pentru Calea Ta</div>
+        <div class="section-subtitle">Ghidare Divină</div>
         <h1 class="section-title">Servicii de Consultații</h1>
         
         <div class="consultation-grid">
             <div class="consultation-card">
                 <i class="fas fa-gem card-icon"></i>
                 <h3>Life Realisation</h3>
-                <p>Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău. Oferim ghidare personalizată pentru a-ți atinge obiectivele de viață și a-ți manifesta visurile. O călătorie spre autodefinire și împlinire.</p>
-                <a href="contact.html" class="book-btn"><span>Programează o sesiune</span></a>
+                <p>Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău. Oferim ghidare personalizată pentru a-ți atinge obiectivele de viață.</p>
+                <a href="contact.html" class="book-btn">Programează</a>
             </div>
 
             <div class="consultation-card">
                 <i class="fas fa-chart-line card-icon"></i>
                 <h3>Business & Cariera</h3>
-                <p>Maximizează-ți succesul profesional cu strategii energetice. Îmbunătățește-ți intuiția în afaceri, atrage prosperitatea și ia decizii inspirate pentru creșterea carierei și a companiei tale.</p>
-                <a href="contact.html" class="book-btn"><span>Consultă un expert</span></a>
+                <p>Maximizează-ți succesul profesional cu strategii energetice. Îmbunătățește-ți intuiția în afaceri și atrage prosperitatea.</p>
+                <a href="contact.html" class="book-btn">Consultă</a>
             </div>
 
             <div class="consultation-card">
                 <i class="fas fa-star card-icon"></i>
                 <h3>Astrologie & Destin</h3>
-                <p>Dezvăluie secretele hărții tale natale și înțelege influențele cosmice. Oferim analize astrologice aprofundate pentru a-ți ghida alegerile și a te pregăti pentru evenimentele importante din viață.</p>
-                <a href="contact.html" class="book-btn"><span>Descoperă-ți stelele</span></a>
+                <p>Dezvăluie secretele hărții tale natale și înțelege influențele cosmice. Oferim analize astrologice aprofundate.</p>
+                <a href="contact.html" class="book-btn">Descoperă</a>
             </div>
         </div>
     </main>
@@ -288,5 +196,10 @@
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
+
+    <script>
+        // Sincronizare Esc pentru modale dacă va fi cazul pe viitor
+        window.addEventListener('keydown', (e) => { if (e.key === 'Escape') { /* logică viitoare */ } });
+    </script>
 </body>
 </html>
