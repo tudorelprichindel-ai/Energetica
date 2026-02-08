@@ -81,7 +81,6 @@
 
         .product-grid {
             display: grid;
-            /* Am limitat lățimea maximă a coloanelor pentru ca produsele să nu fie uriașe */
             grid-template-columns: repeat(auto-fit, minmax(280px, 350px));
             gap: 30px;
             justify-content: center;
@@ -106,18 +105,26 @@
         }
 
         .product-media {
-            width: 100%; aspect-ratio: 1/1; background: rgba(0,0,0,0.3);
-            margin-bottom: 15px; border: 1px solid rgba(197, 160, 89, 0.2);
+            width: 100%; 
+            aspect-ratio: 1/1; 
+            background: rgba(0, 0, 0, 0.4); /* Fundal mai închis pentru contrast */
+            margin-bottom: 15px; 
+            border: 1px solid rgba(197, 160, 89, 0.2);
             overflow: hidden;
             border-radius: 2px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
         }
 
         .product-media video {
-            width: 100%; height: 100%; object-fit: cover;
-            transition: transform 1.2s ease; /* Tranziție mai lungă și fină */
+            width: 100%; 
+            height: 100%; 
+            /* MODIFICARE CHEIE: 'contain' asigură că vedem tot video-ul fără să fie tăiat */
+            object-fit: contain; 
+            transition: transform 1.2s ease;
         }
 
-        /* ZOOM SUBTIL: Modificat de la 1.1 la 1.04 pentru a nu fi deranjant */
         .product-card:hover .product-media video {
             transform: scale(1.04);
         }
@@ -182,7 +189,7 @@
                 </div>
                 <h3>Prosperitate în Materie</h3>
                 <p class="product-description">
-                    Abundență și succes în plan material (atât pentru femei, cât și pentru bărbați). O piesă energetică creată pentru armonie și realizări.
+                    Abundență și succes în plan material (atât pentru femei, cât și pentru bărbați). O piesă energetică creată pentru armonie și realizări profesionale.
                 </p>
                 <a href="contact.html" class="order-btn">Solicită Comandă</a>
             </div>
