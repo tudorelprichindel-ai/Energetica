@@ -15,20 +15,15 @@
             * { cursor: none; }
         }
 
-        /* STARDUST PARTICLES */
-        .stardust {
+        /* CANVAS PENTRU NORUL DE FUM */
+        #smoke-canvas {
             position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
             pointer-events: none;
             z-index: 9999;
-            background: var(--gold);
-            border-radius: 50%;
-            box-shadow: 0 0 4px var(--gold);
-            animation: stardustFade 1.5s ease-out forwards;
-        }
-
-        @keyframes stardustFade {
-            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
-            100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -42,13 +37,12 @@
 
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
-
+        
         .lang-dropdown { position: relative; display: flex; align-items: center; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); height: 40px; width: 90px; }
         .lang-list { position: absolute; top: calc(100% + 15px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); width: 90px; display: none; flex-direction: column; z-index: 2100; }
         .lang-list.show { display: flex; }
-        .lang-btn { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+        .lang-btn { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; width: 100%; }
 
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
@@ -82,6 +76,7 @@
     </style>
 </head>
 <body>
+    <canvas id="smoke-canvas"></canvas>
     <div class="fixed-bg"></div>
 
     <header>
@@ -137,41 +132,83 @@
     </footer>
 
     <script>
-        // STARDUST DYNAMIC TRAIL
-        function createStardust(x, y) {
-            const particle = document.createElement('div');
-            particle.className = 'stardust';
-            
-            // Random sizes for organic feel
-            const size = Math.random() * 4 + 1 + 'px';
-            particle.style.width = size;
-            particle.style.height = size;
-            
-            particle.style.left = x + 'px';
-            particle.style.top = y + 'px';
-            
-            // Random dispersion (the magic feel)
-            const dx = (Math.random() - 0.5) * 80 + 'px';
-            const dy = (Math.random() - 0.5) * 80 + 'px';
-            particle.style.setProperty('--dx', dx);
-            particle.style.setProperty('--dy', dy);
-            
-            document.body.appendChild(particle);
-            setTimeout(() => particle.remove(), 1500);
+        const canvas = document.getElementById('smoke-canvas');
+        const ctx = canvas.getContext('2d');
+        let particles = [];
+        const mouse = { x: undefined, y: undefined, vx: 0, vy: 0, lastX: undefined, lastY: undefined };
+
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
+        window.addEventListener('resize', resize);
+        resize();
+
+        class SmokeParticle {
+            constructor(x, y, vx, vy) {
+                this.x = x;
+                this.y = y;
+                // Viteza este influențată de mișcarea mouse-ului (efectul de "suflat")
+                this.vx = vx * 0.5 + (Math.random() - 0.5) * 1;
+                this.vy = vy * 0.5 + (Math.random() - 0.5) * 1;
+                this.size = Math.random() * 5 + 2;
+                this.alpha = 0.8;
+                this.decay = Math.random() * 0.01 + 0.005;
+            }
+            update() {
+                this.x += this.vx;
+                this.y += this.vy;
+                this.vx *= 0.98; // Fricțiune aer
+                this.vy *= 0.98;
+                this.alpha -= this.decay;
+                if (this.alpha < 0) this.alpha = 0;
+            }
+            draw() {
+                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
+                ctx.beginPath();
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+            }
         }
 
-        document.addEventListener('mousemove', (e) => {
-            createStardust(e.clientX, e.clientY);
-        });
+        function handleParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+                particles[i].draw();
+                if (particles[i].alpha <= 0) {
+                    particles.splice(i, 1);
+                    i--;
+                }
+            }
+        }
 
-        document.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            createStardust(touch.clientX, touch.clientY);
-        }, { passive: true });
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            handleParticles();
+            requestAnimationFrame(animate);
+        }
+        animate();
 
-        // Traduceri și Dropdown
+        function onMove(x, y) {
+            if (mouse.lastX !== undefined) {
+                mouse.vx = x - mouse.lastX;
+                mouse.vy = y - mouse.lastY;
+                
+                // Generăm particule care moștenesc viteza cursorului
+                for (let i = 0; i < 2; i++) {
+                    particles.push(new SmokeParticle(x, y, mouse.vx, mouse.vy));
+                }
+            }
+            mouse.lastX = x;
+            mouse.lastY = y;
+        }
+
+        window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
+        window.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
+
+        // Traduceri
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Află Povestea" },
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.</p>", btn: "Află Povestea" },
             ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
         };
 
