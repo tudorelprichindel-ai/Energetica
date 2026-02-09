@@ -22,23 +22,23 @@
             html, body, a, button { cursor: none !important; } 
         }
 
-        /* CURSOR ULTRA-SUBTIL */
+        /* CURSOR MODIFICAT - SUBTIL ȘI MIC */
         #cursor-dot {
             position: fixed; width: 3px; height: 3px; background: var(--gold);
             border-radius: 50%; pointer-events: none; z-index: 10001;
-            transform: translate(-50%, -50%); transition: transform 0.08s ease-out;
+            transform: translate(-50%, -50%); transition: transform 0.1s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
         }
         #cursor-aura {
             position: fixed; width: 20px; height: 20px;
-            background: radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 75%);
+            background: radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 70%);
             border-radius: 50%; pointer-events: none; z-index: 10000;
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s;
-            animation: breathe 5s infinite ease-in-out;
+            transition: width 0.3s, height 0.3s, background 0.3s;
+            animation: pulseAura 4s infinite ease-in-out;
         }
-        @keyframes breathe {
-            0%, 100% { opacity: 0.3; transform: translate(-50%, -50%) scale(1); }
-            50% { opacity: 0.15; transform: translate(-50%, -50%) scale(1.1); }
+        @keyframes pulseAura {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
+            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.2; }
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -53,15 +53,15 @@
         /* SMOKE EFFECT */
         .smoke-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
         .smoke-cloud {
-            position: absolute; width: 100px; height: 100px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.3) 0%, rgba(94, 25, 20, 0.15) 50%, rgba(94, 25, 20, 0) 80%);
-            border-radius: 50%; filter: blur(25px); pointer-events: none;
-            animation: smokeDissolve 3s ease-out forwards;
+            position: absolute; width: 120px; height: 120px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.5) 0%, rgba(94, 25, 20, 0.3) 50%, rgba(94, 25, 20, 0) 80%);
+            border-radius: 50%; filter: blur(20px); pointer-events: none;
+            animation: smokeDissolve 2.8s ease-out forwards;
         }
         @keyframes smokeDissolve {
             0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
-            15% { opacity: 0.5; }
-            100% { opacity: 0; transform: translate(-50%, -100%) scale(3); }
+            20% { opacity: 0.8; }
+            100% { opacity: 0; transform: translate(-50%, -120%) scale(3.5); }
         }
 
         /* HEADER */
@@ -81,6 +81,7 @@
         }
         .lang-list.show { display: flex; }
         .lang-item { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; cursor: pointer; text-align: center; width: 100%; }
+        .lang-item:hover { background: var(--burgundy); color: var(--gold); }
 
         /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
@@ -98,6 +99,7 @@
         
         .about-text-card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--burgundy); }
         .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+        .about-text-card p { line-height: 1.8; margin-bottom: 25px; color: rgba(255,255,255,0.9); }
 
         .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); display: inline-block; }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 25px; }
@@ -110,6 +112,7 @@
             #cursor-dot, #cursor-aura { display: none; }
             header { height: 70px; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 15px 5px; gap: 20px; background: #000; width: 100%; z-index: 1900; }
+            .hero-section { padding-top: 180px; }
             .about-hero { grid-template-columns: 1fr; text-align: center; }
             .about-text-card { border-left: none; border-top: 2px solid var(--burgundy); }
         }
@@ -183,20 +186,20 @@
             dot.style.top = y + 'px';
             aura.style.left = x + 'px';
             aura.style.top = y + 'px';
-            if (Math.random() > 0.75) createSmoke(x, y);
+            if (Math.random() > 0.6) createSmoke(x, y);
         });
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                aura.style.width = '45px';
-                aura.style.height = '45px';
-                aura.style.background = 'radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(197, 160, 89, 0) 70%)';
+                aura.style.width = '50px';
+                aura.style.height = '50px';
+                aura.style.background = 'radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0) 70%)';
                 dot.style.transform = 'translate(-50%, -50%) scale(2)';
             });
             el.addEventListener('mouseleave', () => {
                 aura.style.width = '20px';
                 aura.style.height = '20px';
-                aura.style.background = 'radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 75%)';
+                aura.style.background = 'radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 70%)';
                 dot.style.transform = 'translate(-50%, -50%) scale(1)';
             });
         });
