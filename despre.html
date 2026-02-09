@@ -31,7 +31,6 @@
             background-size: cover;
         }
 
-        /* HEADER ȘI FOOTER SIMETRIC */
         header, footer {
             width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
             display: flex; align-items: center; justify-content: center; z-index: 2000;
@@ -43,9 +42,9 @@
         /* SELECTOR LIMBI */
         .lang-selector { display: flex; gap: 15px; }
         .lang-btn { 
-            text-decoration: none; color: var(--white); font-size: 0.65rem; 
+            background: none; border: none; color: var(--white); font-size: 0.65rem; 
             letter-spacing: 2px; text-transform: uppercase; font-weight: 600; 
-            opacity: 0.5; transition: var(--transition); 
+            opacity: 0.5; transition: var(--transition); cursor: pointer;
         }
         .lang-btn:hover, .lang-btn.active { opacity: 1; color: var(--gold); }
 
@@ -73,7 +72,6 @@
             -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
             mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
         }
-
         .about-image-wrapper img { width: 100%; max-width: 550px; display: block; filter: contrast(1.1); }
 
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 50px; border-left: 2px solid var(--gold); }
@@ -91,16 +89,7 @@
 
         @media (max-width: 850px) {
             header { height: 70px !important; flex-direction: column; justify-content: center; gap: 5px; padding: 10px; }
-            footer { height: 70px !important; padding: 10px 0; }
-            .lang-selector { gap: 10px; }
-            .sidebar {
-                position: fixed; top: 70px; left: 0; transform: none;
-                flex-direction: row; justify-content: center;
-                padding: 15px; gap: 1rem;
-                background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
-                width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
-            }
-            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             .about-container { padding: 140px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
             .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); text-align: center; }
@@ -112,33 +101,33 @@
     <header>
         <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
         <div class="lang-selector">
-            <a href="#" class="lang-btn">RU</a>
-            <a href="#" class="lang-btn">LV</a>
-            <a href="#" class="lang-btn">EN</a>
-            <a href="#" class="lang-btn active">RO</a>
+            <button onclick="changeLang('ru')" class="lang-btn" id="btn-ru">RU</button>
+            <button onclick="changeLang('lv')" class="lang-btn" id="btn-lv">LV</button>
+            <button onclick="changeLang('en')" class="lang-btn" id="btn-en">EN</button>
+            <button onclick="changeLang('ro')" class="lang-btn" id="btn-ro">RO</button>
         </div>
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
-        <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
+        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
     <main class="about-container">
         <div class="about-hero">
-            <div class="about-image-wrapper">
-                <img src="6.jpg" alt="Jelena Shipko">
-            </div>
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-content">
                 <div class="about-text-card">
-                    <span class="section-subtitle">Viziune & Creație</span>
-                    <h1 class="section-title shimmer-element">Inima Din Spatele Puterii</h1>
-                    <p>Fiecare pas pe care îl facem este o oportunitate de a ne alinia cu frecvența succesului. Prin <span class="highlight-gold">The Power Boutique</span>, am creat o punte între dorința de a străluci și instrumentele energetice necesare.</p>
-                    <p>Misiunea mea capătă formă prin <span class="highlight-gold">brățările energetice</span> pe care le proiectez personal. Înțelegând profund efectul fiecărui cristal, realizez piese unice menite să armonizeze vibrația purtătorului.</p>
-                    <p>Mă concentrez pe detalii și pe acea încredere neclintită care vine atunci când știi cine ești. Sunt aici să te ghidez în această călătorie, unde luxul se întâlnește cu intenția.</p>
+                    <span class="section-subtitle" id="sub-title">Viziune & Creație</span>
+                    <h1 class="section-title shimmer-element" id="main-title">Inima Din Spatele Puterii</h1>
+                    <div id="text-content">
+                        <p>Fiecare pas pe care îl facem este o oportunitate de a ne alinia cu frecvența succesului. Prin <span class="highlight-gold">The Power Boutique</span>, am creat o punte între dorința de a străluci și instrumentele energetice necesare.</p>
+                        <p>Misiunea mea capătă formă prin <span class="highlight-gold">brățările energetice</span> pe care le proiectez personal. Înțelegând profund efectul fiecărui cristal, realizez piese unice menite să armonizeze vibrația purtătorului.</p>
+                        <p>Mă concentrez pe detalii și pe acea încredere neclintită care vine atunci când știi cine ești. Sunt aici să te ghidez în această călătorie, unde luxul se întâlnește cu intenția.</p>
+                    </div>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
@@ -154,5 +143,57 @@
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
+
+    <script>
+        const translations = {
+            ro: {
+                home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact",
+                sub: "Viziune & Creație", title: "Inima Din Spatele Puterii",
+                content: `<p>Fiecare pas pe care îl facem este o oportunitate de a ne alinia cu frecvența succesului. Prin <span class="highlight-gold">The Power Boutique</span>, am creat o punte între dorința de a străluci și instrumentele energetice necesare.</p>
+                          <p>Misiunea mea capătă formă prin <span class="highlight-gold">brățările energetice</span> pe care le proiectez personal. Înțelegând profund efectul fiecărui cristal, realizez piese unice menite să armonizeze vibrația purtătorului.</p>
+                          <p>Mă concentrez pe detalii și pe acea încredere neclintită care vine atunci când știi cine ești. Sunt aici să te ghidez în această călătorie, unde luxul se întâlnește cu intenția.</p>`
+            },
+            ru: {
+                home: "Главная", consult: "Консультации", shop: "Магазин", about: "Обо мне", contact: "Контакт",
+                sub: "Видение и Творчество", title: "Сердце за Силой",
+                content: `<p>Каждый наш шаг — это возможность настроиться на частоту успеха. Через <span class="highlight-gold">The Power Boutique</span> я создала мост между желанием сиять и необходимыми энергетическими инструментами.</p>
+                          <p>Моя миссия обретает форму в <span class="highlight-gold">энергетических браслетах</span>, которые я проектирую лично. Глубоко понимая эффект каждого кристалла, я создаю уникальные изделия для гармонизации вибраций.</p>
+                          <p>Я фокусируюсь на деталях и непоколебимой уверенности. Я здесь, чтобы направить вас в этом путешествии, где роскошь встречается с чистым намерением.</p>`
+            },
+            en: {
+                home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact",
+                sub: "Vision & Creation", title: "The Heart Behind Power",
+                content: `<p>Every step we take is an opportunity to align with the frequency of success. Through <span class="highlight-gold">The Power Boutique</span>, I created a bridge between the desire to shine and the necessary energy tools.</p>
+                          <p>My mission takes shape through the <span class="highlight-gold">energy bracelets</span> I personally design. Deeply understanding each crystal's effect, I create unique pieces to harmonize the wearer's vibration.</p>
+                          <p>I focus on details and unwavering confidence. I am here to guide you on this journey, where luxury meets pure intention.</p>`
+            },
+            lv: {
+                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mani", contact: "Kontakti",
+                sub: "Vīzija un jaunrade", title: "Sirds aiz spēka",
+                content: `<p>Katrs mūsu solis ir iespēja pieskaņoties panākumu frekvencei. Ar <span class="highlight-gold">The Power Boutique</span> esmu radījusi tiltu starp vēlmi mirdzēt un nepieciešamajiem enerģijas rīkiem.</p>
+                          <p>Mana misija izpaužas <span class="highlight-gold">enerģētiskajās aprocēs</span>, kuras es pati izstrādāju. Padziļināti izprotot katra kristāla iedarbību, es radu unikālus darbus harmonijai.</p>
+                          <p>Es koncentrējos uz detaļām un nelokāmu pārliecību. Esmu šeit, lai vadītu jūs šajā ceļojumā, kur greznība satiekas ar tīru nodomu.</p>`
+            }
+        };
+
+        function changeLang(lang) {
+            // Actualizează butoanele
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            // Actualizează textele
+            document.getElementById('nav-home').innerText = translations[lang].home;
+            document.getElementById('nav-consult').innerText = translations[lang].consult;
+            document.getElementById('nav-shop').innerText = translations[lang].shop;
+            document.getElementById('nav-about').innerText = translations[lang].about;
+            document.getElementById('nav-contact').innerText = translations[lang].contact;
+            document.getElementById('sub-title').innerText = translations[lang].sub;
+            document.getElementById('main-title').innerText = translations[lang].title;
+            document.getElementById('text-content').innerHTML = translations[lang].content;
+        }
+
+        // Setează limba implicită (Română în acest exemplu)
+        changeLang('ro');
+    </script>
 </body>
 </html>
