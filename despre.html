@@ -33,7 +33,7 @@
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header {
-            position: fixed; top: 0; width: 100%; z-index: 1000;
+            position: fixed; top: 0; width: 100%; z-index: 2000;
             background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass); height: 80px;
             display: flex; justify-content: center; align-items: center;
@@ -49,6 +49,7 @@
 
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* SIDEBAR DESKTOP */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -68,19 +69,16 @@
             display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center;
         }
 
+        /* EFECT RADIAL PENTRU INTEGRARE PERFECTA */
         .about-image-container {
             position: relative;
             display: flex; justify-content: center;
-            /* Mască subtilă pentru a asigura pierderea marginilor negre în negrul site-ului */
-            mask-image: radial-gradient(circle, black 70%, transparent 100%);
-            -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
+            mask-image: radial-gradient(circle, black 65%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle, black 65%, transparent 100%);
         }
 
         .about-image-container img {
-            width: 100%; 
-            max-width: 650px;
-            display: block;
-            border: none;
+            width: 100%; max-width: 650px; display: block; border: none;
             filter: contrast(1.1);
         }
 
@@ -123,17 +121,32 @@
         .social-links a:hover { color: var(--white); transform: scale(1.1); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
+        /* AJUSTARI COMPLETE MOBIL */
         @media (max-width: 850px) {
             header { height: 70px; }
+            .logo-header { font-size: 1.1rem; }
+            
+            /* Sidebar mobil complet vizibil */
             .sidebar {
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 80px; padding: 20px; gap: 1rem; background: rgba(0,0,0,0.4);
+                margin-top: 85px; padding: 20px 10px; gap: 1rem; 
+                background: rgba(0,0,0,0.5); z-index: 1500;
+                border-bottom: 1px solid var(--glass);
             }
-            .about-container { padding: 40px 20px 80px; }
-            .about-hero { grid-template-columns: 1fr; gap: 10px; }
+            
+            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+
+            .about-container { padding: 30px 20px 80px; }
+            .about-hero { grid-template-columns: 1fr; gap: 20px; }
+            
+            /* Efectul radial mentinut pe mobil */
+            .about-image-container { 
+                mask-image: radial-gradient(circle, black 75%, transparent 100%);
+                -webkit-mask-image: radial-gradient(circle, black 75%, transparent 100%);
+            }
             .about-image-container img { max-width: 100%; }
-            .about-image-container { mask-image: none; -webkit-mask-image: none; }
+            
             .about-content { padding: 10px 0; text-align: center; }
             .about-text-card { padding: 30px 20px; border-left: none; border-top: 2px solid var(--gold); }
             .section-title { font-size: 2.2rem; }
