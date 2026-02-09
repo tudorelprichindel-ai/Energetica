@@ -11,12 +11,16 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* FUNDAL CU PARTICULE */
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
-        
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.3; filter: blur(2px); animation: float linear infinite; }
+        /* FUNDAL CU CINEMATIC ZOOM SI PARTICULE */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
+        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.3; filter: blur(1px); animation: float linear infinite; }
         @keyframes float {
             0% { transform: translateY(0) translateX(0); opacity: 0; }
             50% { opacity: 0.4; }
@@ -59,19 +63,21 @@
             padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; 
             font-weight: 700; font-size: 0.75rem; cursor: pointer; 
             transition: var(--transition); position: relative; text-decoration: none;
-            display: inline-block;
+            display: inline-block; margin-bottom: 20px;
         }
         .aura-btn:hover { 
             background: var(--gold); color: #000; 
-            box-shadow: 0 0 20px 2px rgba(197, 160, 89, 0.4), 0 0 40px 10px rgba(197, 160, 89, 0.1);
-            transform: translateY(-2px);
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.6);
+            transform: translateY(-3px);
         }
 
-        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 30px; }
+        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 10px; }
 
-        footer { height: 100px; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); }
-        .social-links { display: flex; gap: 25px; margin-bottom: 10px; font-size: 1.4rem; }
-        .social-links a { color: var(--gold); text-decoration: none; }
+        /* FOOTER COMPLET */
+        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); }
+        .social-links { display: flex; gap: 25px; margin-bottom: 15px; font-size: 1.5rem; }
+        .social-links a { color: var(--gold); text-decoration: none; transition: 0.3s; }
+        .social-links a:hover { color: var(--white); transform: scale(1.1); }
 
         @media (max-width: 850px) {
             header { height: 70px; }
@@ -112,7 +118,7 @@
 
     <main>
         <section class="hero-section">
-            <h1 class="hero-title shimmer-element">The Power Boutique</h1>
+            <h1 class="hero-title">The Power Boutique</h1>
             <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
         </section>
 
@@ -122,7 +128,7 @@
                 <div class="about-content">
                     <div class="about-text-card">
                         <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.8rem;display:block;margin-bottom:20px;">Viziune & Creație</span>
-                        <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-style:italic;margin-bottom:30px;">Inima Din Spatele Puterii</h2>
+                        <h2 id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-style:italic;margin-bottom:30px;color:var(--gold);">Inima Din Spatele Puterii</h2>
                         <div id="about-text"></div>
                         <a href="contact.html" class="aura-btn" id="about-btn">Descoperă mai mult</a>
                         <div class="signature">Jelena Shipko</div>
@@ -139,22 +145,21 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6);">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
-        // GENERATOR PARTICULE
         function createParticles() {
             const container = document.getElementById('particle-container');
-            for (let i = 0; i < 40; i++) {
+            for (let i = 0; i < 30; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
-                const size = Math.random() * 3 + 1 + 'px';
+                const size = Math.random() * 2 + 1 + 'px';
                 p.style.width = size;
                 p.style.height = size;
                 p.style.left = Math.random() * 100 + 'vw';
                 p.style.top = Math.random() * 100 + 'vh';
-                p.style.animationDuration = Math.random() * 10 + 10 + 's';
+                p.style.animationDuration = Math.random() * 15 + 10 + 's';
                 p.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(p);
             }
@@ -173,7 +178,10 @@
             changeLang(lang);
         }
         function changeLang(lang) {
-            ['home','consult','shop','about','contact'].forEach(id => document.getElementById('nav-'+id).innerText = translations[lang][id]);
+            ['home','consult','shop','about','contact'].forEach(id => {
+                const el = document.getElementById('nav-'+id);
+                if(el) el.innerText = translations[lang][id];
+            });
             document.getElementById('hero-sub').innerText = translations[lang].sub;
             document.getElementById('about-sub').innerText = translations[lang].aSub;
             document.getElementById('about-title').innerText = translations[lang].aTitle;
