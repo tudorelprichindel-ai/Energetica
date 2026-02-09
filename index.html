@@ -48,6 +48,7 @@
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
+
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         .lang-dropdown { position: relative; }
@@ -74,8 +75,21 @@
         .main-container { padding: 120px 5% 60px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         .hero-section { text-align: center; margin-bottom: 40px; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: 4rem; font-style: italic; color: var(--gold); }
-        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; }
+        
+        /* TITLU PRINCIPAL MODIFICAT */
+        .hero-title { 
+            font-family: 'Playfair Display', serif; 
+            font-size: clamp(3rem, 8vw, 6rem); 
+            font-style: italic; 
+            margin-bottom: 10px;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent; 
+            animation: shimmerEffect 5s linear infinite;
+        }
+
+        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
 
         .about-hero { 
             display: grid; 
@@ -144,7 +158,7 @@
         </section>
 
         <section class="about-hero">
-            <div class="about-image-wrapper"><img src="6.jpg"></div>
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-text-card">
                 <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
                 <h2 id="about-title">Inima Din Spatele Puterii</h2>
@@ -181,8 +195,25 @@
             document.getElementById('active-flag').src = flagSrc;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
-            // Logica traduceri...
+            const content = translations[langCode];
+            document.getElementById('nav-home').innerText = content.home;
+            document.getElementById('nav-consult').innerText = content.consult;
+            document.getElementById('nav-shop').innerText = content.shop;
+            document.getElementById('nav-about').innerText = content.about;
+            document.getElementById('nav-contact').innerText = content.contact;
+            document.getElementById('hero-sub').innerText = content.sub;
+            document.getElementById('about-label').innerText = content.label;
+            document.getElementById('about-title').innerText = content.title;
+            document.getElementById('about-desc').innerHTML = content.desc;
+            document.getElementById('about-btn').innerText = content.btn;
         }
+
+        const translations = {
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
+        };
 
         window.onclick = function(event) {
             if (!event.target.closest('.lang-dropdown')) {
