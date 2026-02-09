@@ -13,19 +13,67 @@
         
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
         
-        /* HEADER CU DROPDOWN LIMBI */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
 
-        /* LOGICA DROPDOWN */
+        /* DROPDOWN LIMBI INTUITIV */
         .lang-dropdown { position: relative; display: inline-block; }
-        .lang-current { background: none; border: 1px solid var(--gold); color: var(--gold); padding: 5px 15px; font-size: 0.7rem; font-weight: 700; letter-spacing: 2px; cursor: pointer; text-transform: uppercase; transition: 0.3s; }
-        .lang-list { position: absolute; top: 100%; right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--glass); min-width: 80px; display: none; flex-direction: column; z-index: 2100; }
-        .lang-list.show { display: flex; }
-        .lang-btn { background: none; border: none; color: var(--white); padding: 10px; font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; transition: 0.3s; text-align: center; }
-        .lang-btn:hover { background: var(--gold); color: #000; }
+        
+        .lang-current { 
+            background: rgba(255,255,255,0.03); 
+            border: 1px solid var(--gold); 
+            color: var(--gold); 
+            padding: 8px 15px; 
+            font-size: 0.75rem; 
+            font-weight: 700; 
+            letter-spacing: 2px; 
+            cursor: pointer; 
+            text-transform: uppercase; 
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            /* Cele 3 linii sugestive la baza butonului */
+            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
+            transition: var(--transition);
+        }
 
-        /* SIDEBAR - REPOZITIONAT PENTRU VIZIBILITATE */
+        .lang-current img { width: 18px; filter: sepia(1) saturate(2); }
+
+        .lang-list { 
+            position: absolute; 
+            top: calc(100% + 10px); 
+            right: 0; 
+            background: rgba(0, 0, 0, 0.95); 
+            border: 1px solid var(--gold); 
+            min-width: 120px; 
+            display: none; 
+            flex-direction: column; 
+            z-index: 2100;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8);
+        }
+        
+        .lang-list.show { display: flex; }
+
+        .lang-btn { 
+            background: none; 
+            border: none; 
+            color: var(--white); 
+            padding: 12px 15px; 
+            font-size: 0.7rem; 
+            letter-spacing: 2px; 
+            text-transform: uppercase; 
+            cursor: pointer; 
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            transition: 0.3s;
+        }
+
+        .lang-btn img { width: 16px; opacity: 0.6; filter: grayscale(1); transition: 0.3s; }
+        .lang-btn:hover { background: rgba(197, 160, 89, 0.2); color: var(--gold); }
+        .lang-btn:hover img { opacity: 1; filter: grayscale(0); }
+
+        /* SIDEBAR - REPOZITIONAT */
         .sidebar { position: fixed; top: 120px; left: 2rem; z-index: 1000; display: flex; flex-direction: column; gap: 1.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; transition: var(--transition); }
         .nav-link:hover { color: var(--white); transform: translateX(5px); }
@@ -37,6 +85,7 @@
         .about-hero { display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center; }
         .about-image-wrapper { -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 500px; filter: contrast(1.1); }
+        
         .about-text-card { background: rgba(255, 255, 255, 0.07); backdrop-filter: blur(20px); padding: 40px; border-left: 2px solid var(--gold); }
         .about-text-card p { font-size: 1rem; margin-bottom: 20px; line-height: 1.7; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
@@ -56,13 +105,17 @@
     <div class="fixed-bg"></div>
     <header>
         <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
+        
         <div class="lang-dropdown">
-            <button class="lang-current" id="current-lang" onclick="toggleLangList()">RO</button>
+            <button class="lang-current" id="current-lang-btn" onclick="toggleLangList()">
+                <span id="current-lang-text">RO</span>
+                <i class="fas fa-chevron-down" style="font-size: 0.6rem; opacity: 0.7;"></i>
+            </button>
             <div class="lang-list" id="lang-list">
-                <button onclick="selectLang('ru')" class="lang-btn">RU</button>
-                <button onclick="selectLang('lv')" class="lang-btn">LV</button>
-                <button onclick="selectLang('en')" class="lang-btn">EN</button>
-                <button onclick="selectLang('ro')" class="lang-btn">RO</button>
+                <button onclick="selectLang('ru')" class="lang-btn">RU <img src="https://flagcdn.com/w20/ru.png" alt="RU"></button>
+                <button onclick="selectLang('lv')" class="lang-btn">LV <img src="https://flagcdn.com/w20/lv.png" alt="LV"></button>
+                <button onclick="selectLang('en')" class="lang-btn">EN <img src="https://flagcdn.com/w20/gb.png" alt="EN"></button>
+                <button onclick="selectLang('ro')" class="lang-btn">RO <img src="https://flagcdn.com/w20/ro.png" alt="RO"></button>
             </div>
         </div>
     </header>
@@ -100,10 +153,10 @@
 
     <script>
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"Viziune & Creație", title:"Inima Din Spatele Puterii", content:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și instrumentele energetice necesare.</p><p>Misiunea mea capătă formă prin brățările energetice pe care le proiectez personal pentru a armoniza vibrația purtătorului.</p>" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"Видение и Творчество", title:"Сердце за Силой", content:"<p>Каждый наш шаг — это возможность настроиться на частоту успеха. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и инструментами.</p><p>Моя миссия воплощается в энергетических браслетах, которые я создаю лично.</p>" },
-            lv: { home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", sub:"Vīzija un jaunrade", title:"Sirds aiz spēka", content:"<p>Katrs mūsu solis ir iespēja pieskaņoties panākumu frekvencei. Ar <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi un rīkiem.</p><p>Mana misija izpaužas enerģētiskajās aprocēs, kuras es pati izstrādāju harmonijai.</p>" },
-            en: { home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", sub:"Vision & Creation", title:"The Heart Behind Power", content:"<p>Every step we take is an opportunity to align with the frequency of success. Through <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, I created a bridge between desire and energy tools.</p><p>My mission takes shape through the energy bracelets I personally design to harmonize the wearer's vibration.</p>" }
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"Viziune & Creație", title:"Inima Din Spatele Puterii", content:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și instrumentele energetice necesare.</p><p>Misiunea mea capătă formă prin brățările energetice pe care le proiectez personal.</p>" },
+            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"Видение и Творчество", title:"Сердце за Силой", content:"<p>Каждый шаг — это возможность настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p><p>Моя миссия воплощается в энергетических браслетах, которые я создаю лично.</p>" },
+            lv: { home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", sub:"Vīzija un jaunrade", title:"Sirds aiz spēka", content:"<p>Katrs mūsu solis ir iespēja pieskaņoties panākumu frekvencei. Ar <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi un rīkiem.</p><p>Mana misija izpaužas enerģētiskajās aprocēs harmonijai.</p>" },
+            en: { home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", sub:"Vision & Creation", title:"The Heart Behind Power", content:"<p>Every step we take is an opportunity to align with the frequency of success. Through <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, I created a bridge between desire and energy.</p><p>I design energy bracelets to harmonize the wearer's vibration.</p>" }
         };
 
         function toggleLangList() {
@@ -111,7 +164,7 @@
         }
 
         function selectLang(lang) {
-            document.getElementById('current-lang').innerText = lang.toUpperCase();
+            document.getElementById('current-lang-text').innerText = lang.toUpperCase();
             document.getElementById('lang-list').classList.remove('show');
             changeLang(lang);
         }
@@ -127,16 +180,9 @@
             document.getElementById('text-content').innerHTML = translations[lang].content;
         }
 
-        // Închide dropdown dacă dai click afară
         window.onclick = function(event) {
-            if (!event.target.matches('.lang-current')) {
-                var dropdowns = document.getElementsByClassName("lang-list");
-                for (var i = 0; i < dropdowns.length; i++) {
-                    var openDropdown = dropdowns[i];
-                    if (openDropdown.classList.contains('show')) {
-                        openDropdown.classList.remove('show');
-                    }
-                }
+            if (!event.target.closest('.lang-dropdown')) {
+                document.getElementById('lang-list').classList.remove('show');
             }
         }
 
