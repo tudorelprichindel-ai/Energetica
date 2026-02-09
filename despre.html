@@ -7,22 +7,22 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        /* CSS Identic cu index.html pentru Header/Footer/Sidebar */
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; }
+        body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass); min-height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; flex-wrap: wrap; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
         .lang-selector { display: flex; gap: 15px; }
         .lang-btn { background: none; border: none; color: var(--white); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.5; transition: var(--transition); cursor: pointer; }
         .lang-btn.active { opacity: 1; color: var(--gold); }
+
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .shimmer-element, .social-links a i { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
-        
-        /* Specific Despre */
+
         .about-container { padding: 180px 8% 100px; max-width: 1600px; margin: 0 auto; width: 100%; }
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
@@ -37,6 +37,7 @@
 
         @media (max-width: 850px) {
             header { min-height: 70px; justify-content: center; gap: 10px; }
+            .logo-header { width: 100%; text-align: center; }
             .sidebar { position: fixed; top: 110px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.85); width: 100%; border-bottom: 1px solid var(--glass); }
             .about-container { padding: 220px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
@@ -85,17 +86,46 @@
     </footer>
     <script>
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"Viziune & Creație", title:"Inima Din Spatele Puterii", content:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span class='highlight-gold'>The Power Boutique</span>, am creat o punte între dorință și instrumentele energetice.</p><p>Misiunea mea capătă formă prin <span class='highlight-gold'>brățările energetice</span> pe care le proiectez personal pentru a armoniza vibrația purtătorului.</p>" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"Видение и Творчество", title:"Сердце за Силой", content:"<p>Каждый шаг — это возможность настроиться на частоту успеха. С <span class='highlight-gold'>The Power Boutique</span> я создала мост между желанием и инструментами.</p><p>Моя миссия воплощается в <span class='highlight-gold'>энергетических браслетах</span>, которые я создаю для гармонии.</p>" }
+            ro: { 
+                home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", 
+                sub:"Viziune & Creație", title:"Inima Din Spatele Puterii", 
+                content:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span class='highlight-gold'>The Power Boutique</span>, am creat o punte între dorință și instrumentele energetice.</p><p>Misiunea mea capătă formă prin <span class='highlight-gold'>brățările energetice</span> pe care le proiectez personal pentru a armoniza vibrația purtătorului.</p>" 
+            },
+            ru: { 
+                home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", 
+                sub:"Видение и Творчество", title:"Сердце за Силой", 
+                content:"<p>Каждый шаг — это возможность настроиться на частоту успеха. С <span class='highlight-gold'>The Power Boutique</span> я создала мост между желанием и инструментами.</p><p>Моя миссия воплощается в <span class='highlight-gold'>энергетических браслетах</span>, которые я создаю для гармонии.</p>" 
+            },
+            lv: { 
+                home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", 
+                sub:"Vīzija un jaunrade", title:"Sirds aiz spēka", 
+                content:"<p>Katrs solis ir iespēja pieskaņoties panākumu frekvencei. Ar <span class='highlight-gold'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi mirdzēt un enerģijas rīkiem.</p><p>Mana misija izpaužas <span class='highlight-gold'>enerģētiskajās aprocēs</span>, kuras es pati izstrādāju harmonijai.</p>" 
+            },
+            en: { 
+                home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", 
+                sub:"Vision & Creation", title:"The Heart Behind Power", 
+                content:"<p>Every step is an opportunity to align with the frequency of success. Through <span class='highlight-gold'>The Power Boutique</span>, I created a bridge between desire and energy tools.</p><p>My mission takes shape through the <span class='highlight-gold'>energy bracelets</span> I personally design to harmonize the wearer's vibration.</p>" 
+            }
         };
+
         function changeLang(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-'+lang).classList.add('active');
-            ['home','consult','shop','about','contact'].forEach(id => document.getElementById('nav-'+id).innerText = translations[lang][id]);
+            const activeBtn = document.getElementById('btn-' + lang);
+            if(activeBtn) activeBtn.classList.add('active');
+            
+            // Navigație
+            ['home','consult','shop','about','contact'].forEach(id => {
+                const el = document.getElementById('nav-'+id);
+                if(el) el.innerText = translations[lang][id];
+            });
+            
+            // Conținut
             document.getElementById('sub-title').innerText = translations[lang].sub;
             document.getElementById('main-title').innerText = translations[lang].title;
             document.getElementById('text-content').innerHTML = translations[lang].content;
         }
+
+        // Inițializare pe Română
         changeLang('ro');
     </script>
 </body>
