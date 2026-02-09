@@ -51,12 +51,12 @@
             animation: shimmerEffect 5s linear infinite; 
         }
 
-        /* SELECTOR LIMBA UNIFICAT COMPLET */
+        /* LANG SELECTOR - RE-FIXED FOR ALL DEVICES */
         .lang-dropdown { position: relative; z-index: 3000; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
             padding: 0.5rem 0.8rem; font-size: 0.75rem; font-weight: 700; cursor: pointer; 
-            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 6px; 
+            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; 
             box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); min-width: 6.5rem;
         }
         .lang-list { 
@@ -72,7 +72,14 @@
             width: 100%;
         }
         .lang-item:hover { background: var(--burgundy); color: var(--gold); }
-        .flag-icon { font-size: 1.2rem; pointer-events: none; line-height: 1; }
+        
+        .flag-img { 
+            width: 18px; 
+            height: 12px; 
+            object-fit: cover; 
+            border-radius: 1px;
+            display: block; /* Asigură randarea */
+        }
 
         .sidebar { 
             position: fixed; top: 50%; left: 4%; transform: translateY(-50%); 
@@ -169,15 +176,15 @@
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
             <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                <span class="flag-icon" id="active-flag">🇷🇴</span>
+                <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO">
                 <span id="active-lang">RO</span> 
                 <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button class="lang-item" onclick="changeLang('ro', 'RO', '🇷🇴')"><span class="flag-icon">🇷🇴</span> RO</button>
-                <button class="lang-item" onclick="changeLang('ru', 'RU', '🇷🇺')"><span class="flag-icon">🇷🇺</span> RU</button>
-                <button class="lang-item" onclick="changeLang('lv', 'LV', '🇱🇻')"><span class="flag-icon">🇱🇻</span> LV</button>
-                <button class="lang-item" onclick="changeLang('en', 'EN', '🇬🇧')"><span class="flag-icon">🇬🇧</span> EN</button>
+                <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img"> RO</button>
+                <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')"><img src="https://flagcdn.com/w20/ru.png" class="flag-img"> RU</button>
+                <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img"> LV</button>
+                <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img"> EN</button>
             </div>
         </div>
     </header>
@@ -224,41 +231,17 @@
 
     <script>
         const translations = {
-            'ro': {
-                home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact",
-                sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii",
-                desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.",
-                btn: "Află Povestea"
-            },
-            'ru': {
-                home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт",
-                sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой",
-                desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.",
-                btn: "Наша История"
-            },
-            'lv': {
-                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti",
-                sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka",
-                desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.",
-                btn: "Uzzini stāstu"
-            },
-            'en': {
-                home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact",
-                sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power",
-                desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.",
-                btn: "Discover Story"
-            }
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
         };
 
-        function changeLang(langCode, label, flag) {
-            // Actualizăm steagul și textul din butonul vizibil
-            document.getElementById('active-flag').innerText = flag;
+        function changeLang(langCode, label, flagSrc) {
+            document.getElementById('active-flag').src = flagSrc;
             document.getElementById('active-lang').innerText = label;
-            
-            // Închidem lista
             document.getElementById('lang-list').classList.remove('show');
             
-            // Actualizăm restul conținutului
             const content = translations[langCode];
             document.getElementById('nav-home').innerText = content.home;
             document.getElementById('nav-consult').innerText = content.consult;
