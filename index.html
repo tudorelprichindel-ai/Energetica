@@ -15,7 +15,6 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* RESET - CURSOR STANDARD */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: auto !important; }
         
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -32,16 +31,18 @@
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* LANG SELECTOR STACKED */
         .lang-dropdown { position: relative; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
             padding: 8px 18px; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; 
             display: flex; align-items: center; justify-content: center; gap: 8px; 
-            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
+            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); min-width: 90px;
         }
         .lang-list { position: absolute; top: calc(100% + 15px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); width: 100%; display: none; flex-direction: column; }
         .lang-list.show { display: flex; }
-        .lang-item { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; cursor: pointer; text-align: center; }
+        .lang-item { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; cursor: pointer; text-align: center; text-transform: uppercase; }
+        .lang-item:hover { background: var(--burgundy); color: var(--gold); }
 
         /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
@@ -55,25 +56,12 @@
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 10px; color: var(--gold); }
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; margin-bottom: 20px; }
 
-        /* SECTIUNE SIMETRICA */
+        /* ABOUT SECTION */
         .about-hero { display: grid; grid-template-columns: 1fr 1.2fr; gap: 80px; align-items: center; padding: 0 8% 100px; }
-        
         .about-image-wrapper { width: 100%; display: flex; justify-content: center; }
-        .about-image-wrapper img { 
-            width: 100%; 
-            max-width: 650px; 
-            height: auto;
-            display: block; 
-            filter: contrast(1.05) brightness(1.1);
-            -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%);
-        }
+        .about-image-wrapper img { width: 100%; max-width: 650px; height: auto; display: block; filter: contrast(1.05) brightness(1.1); -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%); }
         
-        .about-text-card { 
-            background: rgba(0, 0, 0, 0.4); 
-            backdrop-filter: blur(20px); 
-            padding: 60px; 
-            border-left: 2px solid var(--burgundy); 
-        }
+        .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 60px; border-left: 2px solid var(--burgundy); }
         .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.8rem; color: var(--gold); margin-bottom: 25px; font-style: italic; }
         .about-text-card p { line-height: 2; margin-bottom: 35px; color: rgba(255,255,255,0.95); font-size: 1.1rem; }
 
@@ -107,25 +95,26 @@
                 <span id="active-lang">RO</span> <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button class="lang-item" onclick="changeLang('RO')">RO</button>
-                <button class="lang-item" onclick="changeLang('RU')">RU</button>
-                <button class="lang-item" onclick="changeLang('EN')">EN</button>
+                <button class="lang-item" onclick="changeLang('ro', 'RO')">RO</button>
+                <button class="lang-item" onclick="changeLang('ru', 'RU')">RU</button>
+                <button class="lang-item" onclick="changeLang('lv', 'LV')">LV</button>
+                <button class="lang-item" onclick="changeLang('en', 'EN')">EN</button>
             </div>
         </div>
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
-        <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
+        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
     <main class="main-container">
         <section class="hero-section">
             <h1 class="hero-title">The Power Boutique</h1>
-            <p class="hero-sub">BY JELENA SHIPKO</p>
+            <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
         </section>
 
         <section class="about-hero">
@@ -134,10 +123,10 @@
             </div>
             <div class="about-content">
                 <div class="about-text-card">
-                    <span style="color:var(--gold); letter-spacing:10px; text-transform:uppercase; font-size:0.75rem; display:block; margin-bottom:20px; opacity:0.8;">Viziune & Creație</span>
-                    <h2>Inima Din Spatele Puterii</h2>
-                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
-                    <a href="despre.html" class="aura-btn">Află Povestea</a>
+                    <span id="about-label" style="color:var(--gold); letter-spacing:10px; text-transform:uppercase; font-size:0.75rem; display:block; margin-bottom:20px; opacity:0.8;">Viziune & Creație</span>
+                    <h2 id="about-title">Inima Din Spatele Puterii</h2>
+                    <p id="about-desc">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
+                    <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
@@ -155,9 +144,48 @@
     </footer>
 
     <script>
-        function changeLang(label) {
+        const translations = {
+            'ro': {
+                home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact",
+                sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii",
+                desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.",
+                btn: "Află Povestea"
+            },
+            'ru': {
+                home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт",
+                sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой",
+                desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией, предлагая инструменты для вашего развития.",
+                btn: "Наша История"
+            },
+            'lv': {
+                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti",
+                sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka",
+                desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju, piedāvājot rīkus jūsu izaugsmei.",
+                btn: "Uzzini stāstu"
+            },
+            'en': {
+                home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact",
+                sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power",
+                desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy, offering tools to empower your evolution.",
+                btn: "Discover Story"
+            }
+        };
+
+        function changeLang(langCode, label) {
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
+            
+            const content = translations[langCode];
+            document.getElementById('nav-home').innerText = content.home;
+            document.getElementById('nav-consult').innerText = content.consult;
+            document.getElementById('nav-shop').innerText = content.shop;
+            document.getElementById('nav-about').innerText = content.about;
+            document.getElementById('nav-contact').innerText = content.contact;
+            document.getElementById('hero-sub').innerText = content.sub;
+            document.getElementById('about-label').innerText = content.label;
+            document.getElementById('about-title').innerText = content.title;
+            document.getElementById('about-desc').innerHTML = content.desc;
+            document.getElementById('about-btn').innerText = content.btn;
         }
 
         window.onclick = function(event) {
