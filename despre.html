@@ -29,9 +29,10 @@
             background-size: cover;
         }
 
+        /* HEADER CORECTAT PENTRU UNIFORMITATE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px);
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass); height: 80px;
             display: flex; justify-content: center; align-items: center;
         }
@@ -54,10 +55,10 @@
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.7rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700; opacity: 0.7;
+            font-weight: 700;
         }
 
-        .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
+        .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
         .about-container {
             padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto;
@@ -124,7 +125,8 @@
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
                 margin: 90px auto 0; padding: 20px; gap: 1.5rem;
-                background: rgba(255,255,255,0.05); width: 95%; z-index: 1500;
+                background: rgba(0,0,0,0.5); width: 95%; z-index: 1500;
+                border-bottom: 1px solid var(--glass);
             }
             .about-hero { grid-template-columns: 1fr; gap: 30px; }
             .about-container { padding: 40px 20px 100px; }
