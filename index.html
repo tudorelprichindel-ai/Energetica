@@ -8,26 +8,41 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none; }
+        
+        /* CURSOR & STARDUST LOGIC */
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        
+        @media (min-width: 951px) {
+            * { cursor: none; }
+        }
+
+        #dot-cursor {
+            position: fixed; width: 6px; height: 6px; background: var(--gold);
+            border-radius: 50%; pointer-events: none; z-index: 10000;
+            transform: translate(-50%, -50%); display: none;
+            box-shadow: 0 0 10px var(--gold);
+        }
+
+        .stardust-particle {
+            position: fixed; pointer-events: none; z-index: 9999;
+            background: var(--gold); border-radius: 50%;
+            animation: moveParticle 0.8s ease-out forwards;
+        }
+
+        @keyframes moveParticle {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            100% { transform: translate(var(--mx), var(--my)) scale(0); opacity: 0; }
+        }
+
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* CURSOR PERSONALIZAT */
-        #custom-cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: transform 0.1s; }
-        #custom-cursor-follower { position: fixed; width: 35px; height: 35px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform 0.15s ease-out; }
-
-        /* URMA AURIE (TRAIL PARTICLES) */
-        .cursor-trail { position: fixed; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9997; animation: trailFade 0.8s forwards; }
-        @keyframes trailFade { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(0); opacity: 0; } }
-
-        /* FUNDAL & PARTICULE FUNDAL */
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; }
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
+        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        .bg-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .bg-particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.2; animation: bgFloat linear infinite; }
-        @keyframes bgFloat { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 0.3; } 100% { transform: translateY(-100vh); opacity: 0; } }
-
-        /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
@@ -39,12 +54,10 @@
         .lang-btn { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
         .lang-btn img { width: 16px; }
 
-        /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -64,8 +77,6 @@
         .social-links a { color: var(--gold); text-decoration: none; }
 
         @media (max-width: 950px) {
-            * { cursor: auto; }
-            #custom-cursor, #custom-cursor-follower { display: none; }
             header { height: 70px; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             .hero-section { padding-top: 160px; }
@@ -76,10 +87,8 @@
     </style>
 </head>
 <body>
-    <div id="custom-cursor"></div>
-    <div id="custom-cursor-follower"></div>
+    <div id="dot-cursor"></div>
     <div class="fixed-bg"></div>
-    <div class="bg-particles" id="bg-particle-container"></div>
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
@@ -114,7 +123,7 @@
             <div class="about-content">
                 <div class="about-text-card">
                     <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
-                    <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
+                    <h2 id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
                     <div id="about-text"></div>
                     <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
@@ -134,56 +143,48 @@
     </footer>
 
     <script>
-        // CURSOR & TRAIL LOGIC
-        const cursor = document.getElementById('custom-cursor');
-        const follower = document.getElementById('custom-cursor-follower');
+        const dot = document.getElementById('dot-cursor');
         
-        document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            
-            cursor.style.left = x + 'px';
-            cursor.style.top = y + 'px';
-            follower.style.left = x + 'px';
-            follower.style.top = y + 'px';
-            
-            // Create trail particle
-            createTrail(x, y);
-        });
-
-        function createTrail(x, y) {
-            const trail = document.createElement('div');
-            trail.className = 'cursor-trail';
-            trail.style.left = x + 'px';
-            trail.style.top = y + 'px';
-            document.body.appendChild(trail);
-            
-            setTimeout(() => { trail.remove(); }, 800);
-        }
-
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; follower.style.transform = 'scale(0)'; });
-            el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; follower.style.transform = 'scale(1)'; });
-        });
-
-        // BG PARTICLES
-        function createBgParticles() {
-            const container = document.getElementById('bg-particle-container');
-            for (let i = 0; i < 30; i++) {
-                const p = document.createElement('div');
-                p.className = 'bg-particle';
-                const size = Math.random() * 3 + 1 + 'px';
-                p.style.width = size; p.style.height = size;
-                p.style.left = Math.random() * 100 + 'vw';
-                p.style.top = Math.random() * 100 + 'vh';
-                p.style.animationDuration = Math.random() * 10 + 10 + 's';
-                p.style.animationDelay = Math.random() * 5 + 's';
-                container.appendChild(p);
+        function createStardust(x, y) {
+            for (let i = 0; i < 3; i++) { // Creăm 3 particule per mișcare pentru efect dens
+                const particle = document.createElement('div');
+                particle.className = 'stardust-particle';
+                
+                const size = Math.random() * 4 + 1 + 'px';
+                particle.style.width = size;
+                particle.style.height = size;
+                
+                particle.style.left = x + 'px';
+                particle.style.top = y + 'px';
+                
+                // Direcție random pentru explozie
+                const moveX = (Math.random() - 0.5) * 60 + 'px';
+                const moveY = (Math.random() - 0.5) * 60 + 'px';
+                particle.style.setProperty('--mx', moveX);
+                particle.style.setProperty('--my', moveY);
+                
+                document.body.appendChild(particle);
+                setTimeout(() => particle.remove(), 800);
             }
         }
-        createBgParticles();
 
-        // LANGUAGES
+        document.addEventListener('mousemove', (e) => {
+            dot.style.display = 'block';
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            createStardust(e.clientX, e.clientY);
+        });
+
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            createStardust(touch.clientX, touch.clientY);
+        }, { passive: true });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => { dot.style.width = '20px'; dot.style.height = '20px'; dot.style.opacity = '0.5'; });
+            el.addEventListener('mouseleave', () => { dot.style.width = '6px'; dot.style.height = '6px'; dot.style.opacity = '1'; });
+        });
+
         const translations = {
             ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Află Povestea" },
             ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
