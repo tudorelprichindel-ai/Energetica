@@ -11,12 +11,12 @@
             --gold: #c5a059;
             --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass: rgba(255, 255, 255, 0.1);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
         html, body { height: 100%; width: 100%; }
 
         body { 
@@ -29,14 +29,10 @@
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
             background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cristale3.jpg') no-repeat center center;
-            background-size: cover;
-            animation: cinematicZoom 25s infinite alternate ease-in-out;
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
-        @keyframes cinematicZoom {
-            from { transform: scale(1); }
-            to { transform: scale(1.1); }
-        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header, footer {
             width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
@@ -44,18 +40,11 @@
         }
 
         header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); }
-        
-        footer { 
-            margin-top: auto; height: 80px; border-top: 1px solid var(--wine); 
-            flex-direction: column; background: rgba(0, 0, 0, 0.4);
-        }
+        footer { margin-top: auto; height: 80px; border-top: 1px solid var(--wine); flex-direction: column; background: rgba(0, 0, 0, 0.4); }
 
-        /* EFECTUL SHIMMER IDENTIC CU MAIN PAGE */
         .shimmer-element, .social-links a i {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent;
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: shimmerEffect 5s linear infinite;
         }
 
@@ -73,7 +62,7 @@
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-weight: 700;
         }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
@@ -82,14 +71,13 @@
         .section-subtitle {
             color: var(--wine); letter-spacing: 12px; text-transform: uppercase;
             font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
-        /* TITLU CORECTAT - ELIMINAT COLOR: VAR(--GOLD) PENTRU SHIMMER PUR */
+        /* TITLU CURĂȚAT FĂRĂ UMBRE PENTRU SHIMMER PUR */
         .section-title {
             font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
             font-style: italic; margin-bottom: 80px; letter-spacing: 4px; 
-            font-weight: 700; line-height: 1.1; text-shadow: var(--dark-glow);
+            font-weight: 700; line-height: 1.1;
         }
 
         .product-grid {
@@ -117,12 +105,12 @@
 
         .product-card h3 {
             font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 12px;
-            letter-spacing: 1px; font-style: italic; text-shadow: var(--dark-glow);
+            letter-spacing: 1px; font-style: italic;
         }
 
         .product-description { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 15px; min-height: 45px; font-weight: 300; font-style: italic; }
 
-        .product-price { font-family: 'Montserrat', sans-serif; color: var(--white); font-weight: 600; font-size: 1.25rem; margin-bottom: 25px; letter-spacing: 1px; text-shadow: var(--dark-glow); }
+        .product-price { font-family: 'Montserrat', sans-serif; color: var(--white); font-weight: 600; font-size: 1.25rem; margin-bottom: 25px; letter-spacing: 1px; }
 
         .order-btn {
             background: transparent; border: 1px solid var(--gold);
@@ -153,8 +141,7 @@
             header, footer { height: 70px !important; }
             .logo-header { font-size: 1.1rem; }
             .sidebar {
-                position: fixed;
-                top: 70px; left: 0; transform: none;
+                position: fixed; top: 70px; left: 0; transform: none;
                 flex-direction: row; justify-content: center;
                 padding: 15px; gap: 1rem;
                 background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
@@ -172,7 +159,6 @@
 </head>
 <body>
     <div class="fixed-bg"></div>
-    
     <header>
         <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
     </header>
@@ -249,10 +235,10 @@
 
     <footer>
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram shimmer-element"></i></a>
+            <a href="#"><i class="fab fa-tiktok shimmer-element"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane shimmer-element"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp shimmer-element"></i></a>
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
