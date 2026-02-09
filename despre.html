@@ -65,24 +65,26 @@
         }
 
         .about-hero {
-            display: grid; grid-template-columns: 0.9fr 1.1fr; gap: 40px; align-items: center;
+            display: grid; grid-template-columns: 1fr 1.2fr; gap: 40px; align-items: center;
         }
 
         .about-image-container {
             position: relative;
             display: flex; justify-content: center;
+            /* Mască subtilă pentru a asigura pierderea marginilor negre în negrul site-ului */
+            mask-image: radial-gradient(circle, black 70%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle, black 70%, transparent 100%);
         }
 
         .about-image-container img {
             width: 100%; 
-            max-width: 550px;
+            max-width: 650px;
             display: block;
-            /* Eliminăm bordura pentru integrare fluidă a aurei */
             border: none;
-            filter: drop-shadow(0 0 30px rgba(197, 160, 89, 0.2));
+            filter: contrast(1.1);
         }
 
-        .about-content { padding: 40px; text-align: left; }
+        .about-content { padding: 20px; text-align: left; }
 
         .section-subtitle {
             color: var(--gold); letter-spacing: 8px; text-transform: uppercase;
@@ -96,9 +98,9 @@
         }
 
         .about-text-card {
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            padding: 50px; border-left: 3px solid var(--gold);
-            box-shadow: 20px 20px 60px rgba(0,0,0,0.8);
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px);
+            padding: 45px; border-left: 3px solid var(--gold);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.7);
         }
 
         .about-text-card p {
@@ -129,10 +131,11 @@
                 margin-top: 80px; padding: 20px; gap: 1rem; background: rgba(0,0,0,0.4);
             }
             .about-container { padding: 40px 20px 80px; }
-            .about-hero { grid-template-columns: 1fr; gap: 20px; }
+            .about-hero { grid-template-columns: 1fr; gap: 10px; }
             .about-image-container img { max-width: 100%; }
-            .about-content { padding: 20px 0; text-align: center; }
-            .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); }
+            .about-image-container { mask-image: none; -webkit-mask-image: none; }
+            .about-content { padding: 10px 0; text-align: center; }
+            .about-text-card { padding: 30px 20px; border-left: none; border-top: 2px solid var(--gold); }
             .section-title { font-size: 2.2rem; }
         }
     </style>
@@ -154,17 +157,17 @@
     <main class="about-container">
         <div class="about-hero">
             <div class="about-image-container">
-                <img src="5.jpg" alt="Jelena Shipko">
+                <img src="6.jpg" alt="Jelena Shipko">
             </div>
             
             <div class="about-content">
-                <div class="section-subtitle">Viziune & Putere</div>
-                <h1 class="section-title">Ghidul Tău Spre Manifestare</h1>
+                <div class="section-subtitle">Viziune & Energie</div>
+                <h1 class="section-title">Inima Din Spatele Puterii</h1>
                 
                 <div class="about-text-card">
-                    <p>Fiecare om poartă în interiorul său un univers de posibilități. Misiunea mea prin The Power Boutique este să fiu puntea dintre realitatea ta actuală și cea mai înaltă versiune a ta.</p>
-                    <p>Prin combinarea rigurozității consultanței de business cu profunzimea astrologiei și energia cristalelor, am creat un sistem unic de ghidare pentru succes și echilibru.</p>
-                    <p>Te invit să descoperi cum poți transforma intenția în rezultat și dorința în realitate tangibilă.</p>
+                    <p>Fiecare pas pe care îl facem este o oportunitate de a ne alinia cu frecvența succesului. Prin The Power Boutique, am creat o punte între dorința de a străluci și instrumentele energetice necesare pentru a face acest lucru realitate.</p>
+                    <p>Mă concentrez pe detalii, pe vibrație și pe acea încredere neclintită care vine atunci când știi exact cine ești și ce meriți.</p>
+                    <p>Sunt aici să te ghidez în această călătorie a manifestării, unde luxul se întâlnește cu intenția pură.</p>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
