@@ -15,7 +15,7 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* STRUCTURĂ PENTRU FORȚAREA FOOTER-ULUI JOS */
+        /* STRUCTURA PENTRU FOOTER LA BAZĂ */
         html, body { height: 100%; }
         body { 
             display: flex; flex-direction: column;
@@ -30,25 +30,46 @@
             background-size: cover;
         }
 
-        /* HEADER IDENTIC PE TOATE PAGINILE */
-        header {
-            position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass); height: 80px;
-            display: flex; justify-content: center; align-items: center;
+        /* HEADER & FOOTER - DIMENSIUNI ȘI STIL SIMETRIC */
+        header, footer {
+            width: 100%;
+            background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(15px);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: var(--transition);
         }
+
+        header {
+            position: fixed; top: 0; z-index: 2000;
+            height: 80px; border-bottom: 1px solid var(--glass);
+        }
+
+        footer {
+            margin-top: auto; /* Împinge footer-ul jos */
+            padding: 30px 0;
+            flex-direction: column;
+            border-top: 1px solid var(--wine);
+        }
+
+        /* EFECTUL SHIMMER (AUR STRALUCITOR) */
+        .shimmer-text, .social-links a i {
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
+
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         .logo-header {
             font-family: 'Playfair Display', serif; font-style: italic;
             text-decoration: none; font-size: 1.3rem; letter-spacing: 4px; font-weight: 700;
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmer 5s linear infinite;
         }
 
-        @keyframes shimmer { to { background-position: 200% center; } }
-
-        /* SIDEBAR / NAV */
+        /* SIDEBAR */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -60,10 +81,9 @@
         }
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
-        /* ELEMENTUL MAIN ÎMPINGE FOOTER-UL JOS */
-        main { flex: 1; padding-top: 180px; }
+        /* CONTINUT PRINCIPAL */
+        main { flex: 1; padding: 180px 8% 80px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-        .contact-container { padding: 0 8% 80px; max-width: 1200px; margin: 0 auto; }
         .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
 
         .contact-info h1 {
@@ -88,37 +108,33 @@
         }
         .submit-btn:hover { background: var(--gold); color: #000; }
 
-        /* FOOTER RAFINAT: MAI MIC ȘI MAI TRANSPARENT */
-        footer {
-            width: 100%; padding: 30px 20px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); border-top: 1px solid var(--wine);
-        }
-        .social-links { margin-bottom: 10px; }
-        .social-links a { color: var(--gold); margin: 0 12px; font-size: 1.3rem; transition: 0.3s; }
-        .social-links a:hover { color: #fff; transform: scale(1.1); }
+        /* SOCIAL LINKS FOOTER */
+        .social-links { display: flex; gap: 25px; margin-bottom: 15px; }
+        .social-links a { text-decoration: none; font-size: 1.5rem; transition: var(--transition); }
+        .social-links a:hover { transform: scale(1.2); }
+
         .copyright { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
 
+        /* RESPONSIVITATE */
         @media (max-width: 900px) {
             header { height: 70px; }
             .sidebar {
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 80px; padding: 20px 10px; gap: 1rem;
+                margin-top: 80px; padding: 25px 15px; gap: 1rem;
                 background: rgba(0, 0, 0, 0.4); width: 100%; z-index: 1500;
                 border-bottom: 1px solid var(--glass);
             }
-            main { padding-top: 40px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
-            .contact-info { text-align: center; }
-            footer { padding: 25px 15px; }
+            main { padding: 40px 20px 60px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
+    
     <header>
-        <a href="index.html" class="logo-header">The Power Boutique</a>
+        <a href="index.html" class="logo-header shimmer-text">The Power Boutique</a>
     </header>
 
     <nav class="sidebar">
@@ -130,23 +146,21 @@
     </nav>
 
     <main>
-        <div class="contact-container">
-            <div class="contact-grid">
-                <div class="contact-info">
-                    <h1>Contact</h1>
-                    <p style="margin-bottom: 30px; font-weight: 300; opacity: 0.8;">Transformă-ți intenția în dialog.</p>
-                    <p style="font-size: 0.9rem;">WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">Link Direct</a></p>
-                    <p style="font-size: 0.9rem;">Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
-                </div>
+        <div class="contact-grid">
+            <div class="contact-info">
+                <h1>Contact</h1>
+                <p style="margin-bottom: 30px; font-weight: 300; opacity: 0.8;">Transformă-ți intenția în dialog direct.</p>
+                <p style="font-size: 0.9rem;">WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">Link Către Energie</a></p>
+                <p style="font-size: 0.9rem; margin-top: 10px;">Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
+            </div>
 
-                <div class="contact-form-card">
-                    <form>
-                        <input type="text" class="form-control" placeholder="Nume">
-                        <input type="email" class="form-control" placeholder="Email">
-                        <textarea class="form-control" placeholder="Mesaj" style="height: 120px; resize: none;"></textarea>
-                        <button type="submit" class="submit-btn">Trimite mesajul</button>
-                    </form>
-                </div>
+            <div class="contact-form-card">
+                <form>
+                    <input type="text" class="form-control" placeholder="Nume">
+                    <input type="email" class="form-control" placeholder="Email">
+                    <textarea class="form-control" placeholder="Mesaj" style="height: 120px; resize: none;"></textarea>
+                    <button type="submit" class="submit-btn">Trimite</button>
+                </form>
             </div>
         </div>
     </main>
