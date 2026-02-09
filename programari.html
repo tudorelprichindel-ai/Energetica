@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Servicii de Consultatii | Home</title>
+    <title>Servicii de Consultatii | The Power Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -13,7 +13,6 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.05);
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-            --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95), 2px 2px 10px rgba(0, 0, 0, 0.8);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -40,13 +39,8 @@
         }
 
         header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); }
-        
-        footer { 
-            margin-top: auto; height: 80px; border-top: 1px solid var(--wine); 
-            flex-direction: column; background: rgba(0, 0, 0, 0.4);
-        }
+        footer { margin-top: auto; height: 80px; border-top: 1px solid var(--wine); flex-direction: column; background: rgba(0, 0, 0, 0.4); }
 
-        /* EFECT SHIMMER IDENTIC PE TOATE PAGINILE */
         .shimmer-element, .social-links a i {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
             background-size: 200% auto; 
@@ -69,7 +63,7 @@
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.75rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            font-weight: 700;
         }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
@@ -80,14 +74,13 @@
         .section-subtitle {
             color: var(--wine); letter-spacing: 12px; text-transform: uppercase;
             font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;
-            text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
-        /* TITLU CORECTAT PENTRU SHIMMER PUR */
+        /* ELIMINAT TEXT-SHADOW PENTRU A FI IDENTIC CU LANDING PAGE */
         .section-title {
             font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
             font-style: italic; margin-bottom: 80px; letter-spacing: 4px; 
-            font-weight: 700; line-height: 1.1; text-shadow: var(--dark-glow);
+            font-weight: 700; line-height: 1.1;
         }
 
         .consultation-grid {
@@ -118,16 +111,16 @@
         }
         .consultation-card:hover::before { opacity: 0.6; }
 
-        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; text-shadow: var(--dark-glow); }
+        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
 
         .consultation-card h3 {
             font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); 
-            margin-bottom: 15px; font-style: italic; text-shadow: var(--dark-glow);
+            margin-bottom: 15px; font-style: italic;
         }
 
         .consultation-card p {
             font-size: 0.95rem; color: rgba(255,255,255,0.85); 
-            margin-bottom: 40px; font-weight: 400; text-shadow: 1px 1px 5px rgba(0,0,0,1);
+            margin-bottom: 40px; font-weight: 400;
         }
 
         .book-btn {
@@ -135,9 +128,8 @@
             color: var(--gold); padding: 12px 35px; text-transform: uppercase;
             letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
             cursor: pointer; transition: 0.5s ease; text-decoration: none;
-            display: inline-block; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
+            display: inline-block;
         }
-
         .book-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
 
         .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
