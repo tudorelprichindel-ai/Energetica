@@ -8,15 +8,15 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* Cursor ascuns doar pe desktop pentru a lăsa efectul să strălucească */
+        /* Dezactivăm cursorul pe desktop pentru efectul WebGL */
         @media (min-width: 951px) { * { cursor: none; } }
 
+        /* CANVAS PENTRU FLUID SIMULATION */
         #fluid-canvas {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999; mix-blend-mode: screen;
+            pointer-events: none; z-index: 9999;
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -28,32 +28,29 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER & SELECTOR LIMBI */
+        /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        .lang-dropdown { position: relative; }
+        .lang-dropdown { position: relative; display: flex; align-items: center; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 -2px var(--gold); }
-        .lang-list { position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); display: none; flex-direction: column; width: 80px; }
-        .lang-list.show { display: flex; }
-        .lang-btn { background: none; border: none; color: #fff; padding: 10px; font-size: 0.65rem; cursor: pointer; text-align: center; }
 
-        /* SIDEBAR NAV */
+        /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT */
+        /* HERO & ABOUT INTEGRAT SUB TITLE */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; text-align: left; }
         .about-image-wrapper { position: relative; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
-        .about-image-wrapper img { width: 100%; max-width: 480px; filter: contrast(1.1); }
+        .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; }
+        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
 
         .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; display: inline-block; transition: var(--transition); }
         .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
@@ -65,7 +62,7 @@
 
         @media (max-width: 950px) {
             header { height: 70px; }
-            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: #000; width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             .hero-section { padding-top: 160px; }
             .about-hero { grid-template-columns: 1fr; text-align: center; }
             .about-text-card { border-left: none; border-top: 2px solid var(--gold); }
@@ -79,12 +76,7 @@
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
-            <div class="lang-current" id="current-lang-btn" onclick="toggleLangList()">RO</div>
-            <div class="lang-list" id="lang-list">
-                <button onclick="selectLang('ru')" class="lang-btn">RU</button>
-                <button onclick="selectLang('en')" class="lang-btn">EN</button>
-                <button onclick="selectLang('ro')" class="lang-btn">RO</button>
-            </div>
+            <div class="lang-current" id="current-lang-btn">RO</div>
         </div>
     </header>
 
@@ -104,10 +96,10 @@
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-content">
                 <div class="about-text-card">
-                    <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
-                    <h2 id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                    <div id="about-text"></div>
-                    <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
+                    <span style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
+                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
+                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
+                    <a href="despre.html" class="aura-btn">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
@@ -127,76 +119,67 @@
     <script>
         const canvas = document.getElementById('fluid-canvas');
         const ctx = canvas.getContext('2d');
-        let particles = [];
-        const mouse = { x: -100, y: -100, lastX: -100, lastY: -100, vx: 0, vy: 0 };
+        let fluidParticles = [];
+        const mouse = { x: -100, y: -100, active: false };
 
-        function resize() { canvas.width = window.innerWidth; canvas.height = window.innerHeight; }
+        function resize() {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        }
         window.addEventListener('resize', resize);
         resize();
 
-        class FluidParticle {
-            constructor(x, y, vx, vy) {
-                this.x = x; this.y = y;
-                this.vx = vx; this.vy = vy;
-                this.size = Math.random() * 8 + 2;
-                this.alpha = 0.5;
-                this.decay = 0.005 + Math.random() * 0.01;
+        class Smoke {
+            constructor(x, y) {
+                this.x = x;
+                this.y = y;
+                this.size = Math.random() * 30 + 10;
+                this.vx = (Math.random() - 0.5) * 1.5;
+                this.vy = (Math.random() - 0.5) * 1.5;
+                this.alpha = 0.4;
             }
             update() {
-                this.x += this.vx; this.y += this.vy;
-                this.vx *= 0.96; this.vy *= 0.96;
-                this.alpha -= this.decay;
+                this.x += this.vx;
+                this.y += this.vy;
+                this.alpha -= 0.005;
+                this.size += 0.5;
             }
             draw() {
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
-                ctx.shadowBlur = 15; ctx.shadowColor = "#c5a059";
-                ctx.beginPath(); ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2); ctx.fill();
+                ctx.save();
+                ctx.beginPath();
+                ctx.globalAlpha = this.alpha;
+                ctx.fillStyle = "#c5a059";
+                ctx.filter = "blur(15px)"; // Efectul de fum fluid
+                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+                ctx.fill();
+                ctx.restore();
             }
         }
 
         function animate() {
             ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (Math.abs(mouse.vx) > 0.1 || Math.abs(mouse.vy) > 0.1) {
-                for(let i=0; i<3; i++) particles.push(new FluidParticle(mouse.x, mouse.y, mouse.vx * 0.5, mouse.vy * 0.5));
+            if (mouse.active) {
+                for(let i=0; i<2; i++) fluidParticles.push(new Smoke(mouse.x, mouse.y));
             }
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update(); particles[i].draw();
-                if (particles[i].alpha <= 0) { particles.splice(i, 1); i--; }
+            for (let i = 0; i < fluidParticles.length; i++) {
+                fluidParticles[i].update();
+                fluidParticles[i].draw();
+                if (fluidParticles[i].alpha <= 0) {
+                    fluidParticles.splice(i, 1);
+                    i--;
+                }
             }
             requestAnimationFrame(animate);
         }
         animate();
 
-        const handleMove = (e) => {
-            const x = e.clientX || e.touches[0].clientX;
-            const y = e.clientY || e.touches[0].clientY;
-            mouse.vx = x - mouse.lastX; mouse.vy = y - mouse.lastY;
-            mouse.x = x; mouse.y = y;
-            mouse.lastX = x; mouse.lastY = y;
+        const moveHandler = (e) => {
+            mouse.active = true;
+            mouse.x = e.clientX || (e.touches && e.touches[0].clientX);
+            mouse.y = e.clientY || (e.touches && e.touches[0].clientY);
         };
-        window.addEventListener('mousemove', handleMove);
-        window.addEventListener('touchmove', handleMove, { passive: false });
-
-        const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.</p>", btn: "Află Povestea" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
-        };
-
-        function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
-        function selectLang(lang) {
-            document.getElementById('current-lang-btn').innerText = lang.toUpperCase();
-            document.getElementById('lang-list').classList.remove('show');
-            changeLang(lang);
-        }
-        function changeLang(lang) {
-            ['home','consult','shop','about','contact'].forEach(id => document.getElementById('nav-'+id).innerText = translations[lang][id]);
-            document.getElementById('hero-sub').innerText = translations[lang].sub;
-            document.getElementById('about-sub').innerText = translations[lang].aSub;
-            document.getElementById('about-title').innerText = translations[lang].aTitle;
-            document.getElementById('about-text').innerHTML = translations[lang].aText;
-            document.getElementById('about-btn').innerText = translations[lang].btn;
-        }
-        window.onload = () => selectLang('ro');
+        window.addEventListener('mousemove', moveHandler);
+        window.addEventListener('touchmove', moveHandler, { passive: true });
     </script>
 </body>
 </html>
