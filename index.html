@@ -34,7 +34,6 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER RESPONSIV */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 2000; 
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); 
@@ -52,12 +51,13 @@
         }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* LANG SELECTOR CU STEAGURI */
         .lang-dropdown { position: relative; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
-            padding: 8px 15px; font-size: 0.7rem; font-weight: 700; cursor: pointer; 
-            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; 
-            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
+            padding: 8px 12px; font-size: 0.7rem; font-weight: 700; cursor: pointer; 
+            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 5px; 
+            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); min-width: 100px;
         }
         .lang-list { 
             position: absolute; top: calc(100% + 15px); right: 0; 
@@ -65,9 +65,14 @@
             width: 100%; display: none; flex-direction: column; 
         }
         .lang-list.show { display: flex; }
-        .lang-item { background: none; border: none; color: var(--white); padding: 10px; font-size: 0.65rem; cursor: pointer; text-align: center; text-transform: uppercase; }
+        .lang-item { 
+            background: none; border: none; color: var(--white); padding: 10px; 
+            font-size: 0.65rem; cursor: pointer; text-align: center; 
+            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 5px;
+        }
+        .lang-item:hover { background: var(--burgundy); color: var(--gold); }
+        .flag-icon { font-size: 0.9rem; line-height: 1; }
 
-        /* SIDEBAR / NAV MOBIL */
         .sidebar { 
             position: fixed; top: 50%; left: 3vw; transform: translateY(-50%); 
             z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; 
@@ -79,7 +84,6 @@
         }
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
-        /* CONTAINER PRINCIPAL */
         .main-container { 
             padding: 100px 5% 60px; 
             width: 100%; 
@@ -98,7 +102,6 @@
             opacity: 0.8; 
         }
 
-        /* LAYOUT FLUID PENTRU SECTIUNEA DESPRE */
         .about-hero { 
             display: grid; 
             grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); 
@@ -136,7 +139,6 @@
         }
         .signature { font-family: 'Playfair Display', serif; font-size: clamp(1.5rem, 3vw, 2.5rem); color: var(--gold); font-style: italic; margin-top: 30px; }
 
-        /* FOOTER */
         footer { 
             padding: 60px 5%; border-top: 1px solid var(--burgundy); 
             display: flex; flex-direction: column; align-items: center; 
@@ -145,7 +147,6 @@
         .social-links { display: flex; gap: clamp(20px, 5vw, 40px); margin-bottom: 25px; font-size: 1.6rem; }
         .social-links a { color: var(--gold); }
 
-        /* ADAPTARE MOBIL */
         @media (max-width: 950px) {
             header { height: 70px; }
             .sidebar { 
@@ -167,13 +168,15 @@
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
             <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                <span id="active-lang">RO</span> <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
+                <span class="flag-icon" id="active-flag">🇷🇴</span>
+                <span id="active-lang">RO</span> 
+                <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button class="lang-item" onclick="changeLang('ro', 'RO')">RO</button>
-                <button class="lang-item" onclick="changeLang('ru', 'RU')">RU</button>
-                <button class="lang-item" onclick="changeLang('lv', 'LV')">LV</button>
-                <button class="lang-item" onclick="changeLang('en', 'EN')">EN</button>
+                <button class="lang-item" onclick="changeLang('ro', 'RO', '🇷🇴')"><span>🇷🇴</span> RO</button>
+                <button class="lang-item" onclick="changeLang('ru', 'RU', '🇷🇺')"><span>🇷🇺</span> RU</button>
+                <button class="lang-item" onclick="changeLang('lv', 'LV', '🇱🇻')"><span>🇱🇻</span> LV</button>
+                <button class="lang-item" onclick="changeLang('en', 'EN', '🇬🇧')"><span>🇬🇧</span> EN</button>
             </div>
         </div>
     </header>
@@ -246,8 +249,9 @@
             }
         };
 
-        function changeLang(langCode, label) {
+        function changeLang(langCode, label, flag) {
             document.getElementById('active-lang').innerText = label;
+            document.getElementById('active-flag').innerText = flag;
             document.getElementById('lang-list').classList.remove('show');
             const content = translations[langCode];
             document.getElementById('nav-home').innerText = content.home;
