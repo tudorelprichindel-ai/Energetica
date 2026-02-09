@@ -15,12 +15,13 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        html, body { height: 100%; }
+        /* RESET & BASE */
+        html, body { height: 100%; margin: 0; padding: 0; }
         body { 
             display: flex; flex-direction: column;
             width: 100%; background: #000; color: var(--white);
             font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-            line-height: 1.8; -webkit-font-smoothing: antialiased;
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
 
         .fixed-bg {
@@ -29,107 +30,83 @@
             background-size: cover;
         }
 
-        /* HEADER & FOOTER - SIMETRIE PERFECTA */
+        /* HEADER & FOOTER UNIFORM */
         header, footer {
             width: 100%;
             height: 80px;
             background: rgba(0, 0, 0, 0.6); 
             backdrop-filter: blur(15px);
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            display: flex; align-items: center; justify-content: center;
             z-index: 2000;
         }
 
         header { position: fixed; top: 0; border-bottom: 1px solid var(--glass); }
+        footer { margin-top: auto; border-top: 1px solid var(--wine); flex-direction: column; padding: 10px 0; }
 
-        footer {
-            margin-top: auto; 
-            border-top: 1px solid var(--wine);
-            flex-direction: column;
-            padding: 10px 0;
-        }
-
-        /* EFECTUL SHIMMER */
+        /* SHIMMER EFFECT */
         .shimmer-element {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto;
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
             animation: shimmerEffect 5s linear infinite;
         }
-
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        .logo-header {
-            font-family: 'Playfair Display', serif; font-style: italic;
-            text-decoration: none; font-size: 1.3rem; letter-spacing: 4px; font-weight: 700;
-        }
+        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 4px; font-weight: 700; }
 
-        /* SIDEBAR DESKTOP */
+        /* SIDEBAR (DESKTOP) */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
-        .nav-link {
-            text-decoration: none; color: var(--gold); font-size: 0.7rem;
-            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700;
-        }
+        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
-        /* CONTINUT */
-        main { flex: 1; padding: 160px 8% 80px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        /* CONTENT WRAPPER */
+        main { flex: 1; padding: 140px 5% 60px; max-width: 1400px; margin: 0 auto; width: 100%; }
 
+        /* GRID RESPONSIV */
         .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
 
-        .contact-info h1 {
-            font-family: 'Playfair Display', serif; font-size: 3rem; 
-            color: var(--gold); font-style: italic; margin-bottom: 25px;
-        }
+        .contact-info h1 { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); color: var(--gold); font-style: italic; margin-bottom: 20px; }
 
-        .contact-form-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            padding: 40px; border: 1px solid var(--glass);
-        }
+        .contact-form-card { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px); padding: 40px; border: 1px solid var(--glass); box-shadow: 20px 20px 50px rgba(0,0,0,0.5); }
 
-        .form-control {
-            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass);
-            padding: 12px; color: var(--white); margin-bottom: 15px; font-family: 'Montserrat';
-        }
+        .form-control { width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass); padding: 15px; color: var(--white); margin-bottom: 20px; font-family: 'Montserrat'; outline: none; transition: 0.3s; }
+        .form-control:focus { border-color: var(--gold); background: rgba(0,0,0,0.5); }
 
-        .submit-btn {
-            width: 100%; background: none; border: 1px solid var(--gold);
-            color: var(--gold); padding: 15px; text-transform: uppercase;
-            letter-spacing: 5px; cursor: pointer; transition: 0.3s; font-weight: 700;
-        }
+        .submit-btn { width: 100%; background: none; border: 1px solid var(--gold); color: var(--gold); padding: 18px; text-transform: uppercase; letter-spacing: 5px; cursor: pointer; transition: 0.3s; font-weight: 700; }
         .submit-btn:hover { background: var(--gold); color: #000; }
 
-        .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
-        .social-links a { text-decoration: none; font-size: 1.2rem; transition: var(--transition); }
-        .copyright { font-size: 0.55rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .social-links { display: flex; gap: 25px; margin-bottom: 5px; }
+        .social-links a { text-decoration: none; font-size: 1.4rem; transition: var(--transition); }
+        .copyright { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
 
-        /* OPTIMIZARE MOBILA */
-        @media (max-width: 900px) {
+        /* TABLETA (max-width: 1024px) */
+        @media (max-width: 1024px) {
+            .sidebar { left: 1.5rem; gap: 2rem; }
+            .contact-grid { gap: 40px; }
+            main { padding: 140px 3% 60px; }
+        }
+
+        /* MOBIL (max-width: 850px) */
+        @media (max-width: 850px) {
             header, footer { height: 70px; }
             
+            /* Sidebar devine meniu orizontal sub header */
             .sidebar {
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 80px; padding: 20px 10px; gap: 1rem;
+                margin-top: 80px; padding: 15px; gap: 1rem;
                 background: rgba(0, 0, 0, 0.4); width: 100%;
                 border-bottom: 1px solid var(--glass);
             }
             
-            main { padding: 30px 20px 60px; }
+            main { padding: 20px 20px 40px; }
+            .contact-grid { grid-template-columns: 1fr; text-align: center; }
             
-            .contact-grid { grid-template-columns: 1fr; gap: 40px; text-align: center; }
-            
-            .contact-info h1 { font-size: 2.5rem; }
-            
+            .contact-info h1 { font-size: 2.2rem; }
             .contact-form-card { padding: 30px 20px; }
-            
-            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            .nav-link { font-size: 0.6rem; letter-spacing: 2px; }
         }
     </style>
 </head>
@@ -151,22 +128,22 @@
     <main>
         <div class="contact-grid">
             <div class="contact-info">
-                <h1>Contact</h1>
-                <p style="margin-bottom: 20px; font-weight: 300; opacity: 0.8;">Alege canalul tău de manifestare.</p>
-                <div style="font-size: 0.9rem; margin-bottom: 10px;">
-                    <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">WhatsApp Direct</a>
+                <h1 class="shimmer-element">Contact</h1>
+                <p style="margin-bottom: 25px; font-weight: 300; opacity: 0.8;">Energia ta merită un răspuns pe măsură.</p>
+                <div style="font-size: 0.9rem; margin-bottom: 15px;">
+                    <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 4px;">WhatsApp Contact</a>
                 </div>
                 <div style="font-size: 0.9rem;">
-                    <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">Telegram: @elena_shipko</a>
+                    <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none; border-bottom: 1px solid var(--gold); padding-bottom: 4px;">Telegram: @elena_shipko</a>
                 </div>
             </div>
 
             <div class="contact-form-card">
                 <form>
-                    <input type="text" class="form-control" placeholder="Nume">
-                    <input type="email" class="form-control" placeholder="Email">
-                    <textarea class="form-control" placeholder="Mesajul tău" style="height: 100px; resize: none;"></textarea>
-                    <button type="submit" class="submit-btn">Trimite Intenția</button>
+                    <input type="text" class="form-control" placeholder="Numele tău">
+                    <input type="email" class="form-control" placeholder="Email-ul tău">
+                    <textarea class="form-control" placeholder="Mesajul sau intenția ta" style="height: 120px; resize: none;"></textarea>
+                    <button type="submit" class="submit-btn">Trimite</button>
                 </form>
             </div>
         </div>
