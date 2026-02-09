@@ -58,14 +58,13 @@
         .about-container { padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto; width: 100%; }
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 
-        /* AJUSTARE MASCĂ PENTRU CLARITATEA PĂRULUI */
         .about-image-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
-            /* Am mutat centrul măștii la 35% de sus pentru a lăsa părul vizibil */
-            -webkit-mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 90%);
-            mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 90%);
+            /* Masca ridicată la 30% pentru a lăsa părul vizibil [cite: 2026-01-26, 2026-02-09] */
+            -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
+            mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
         }
 
         .about-image-wrapper img { 
@@ -112,10 +111,6 @@
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
             .about-container { padding: 140px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
-            .about-image-wrapper {
-                -webkit-mask-image: radial-gradient(circle at 50% 30%, black 55%, transparent 95%);
-                mask-image: radial-gradient(circle at 50% 30%, black 55%, transparent 95%);
-            }
             .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); text-align: center; }
         }
     </style>
