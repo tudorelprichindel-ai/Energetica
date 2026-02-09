@@ -14,7 +14,7 @@
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* FUNDAL */
+        /* FUNDAL CINEMATIC */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
@@ -22,27 +22,24 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* EFECT FUM (SMOKE) */
-        .smoke-particle {
-            position: fixed; pointer-events: none; z-index: 9999;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
-            border-radius: 50%; filter: blur(15px);
-            transform: translate(-50%, -50%);
-            animation: smokeMove 2s ease-out forwards;
-            will-change: transform, opacity;
+        /* EFECTUL DE FUM AURIU (SVG BLUR) */
+        .smoke-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+        .smoke-leaf {
+            position: absolute; width: 100px; height: 100px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.5) 0%, rgba(197, 160, 89, 0) 70%);
+            border-radius: 50%; filter: url(#smoke-filter);
+            transform: translate(-50%, -50%); pointer-events: none;
+            animation: smokeRise 2s ease-out forwards;
         }
-        @keyframes smokeMove {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.7; }
-            100% { transform: translate(-40%, -120%) scale(3); opacity: 0; }
+        @keyframes smokeRise {
+            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.5); }
+            100% { opacity: 0; transform: translate(-50%, -150%) scale(2.5); }
         }
 
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
-
-        .lang-dropdown { position: relative; }
-        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 -2px var(--gold); }
 
         /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
@@ -58,19 +55,17 @@
         .about-image-wrapper { position: relative; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
-
+        
         .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; display: inline-block; transition: var(--transition); }
-        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
+        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); }
         .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
         .social-links a { color: var(--gold); }
 
         @media (max-width: 950px) {
             header { height: 70px; }
-            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: #000; width: 100%; z-index: 1900; }
             .hero-section { padding-top: 160px; }
             .about-hero { grid-template-columns: 1fr; text-align: center; }
             .about-text-card { border-left: none; border-top: 2px solid var(--gold); }
@@ -78,13 +73,22 @@
     </style>
 </head>
 <body>
+    <svg style="display:none;">
+        <defs>
+            <filter id="smoke-filter">
+                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
+                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="smoke" />
+                <feComposite in="SourceGraphic" in2="smoke" operator="atop" />
+            </filter>
+        </defs>
+    </svg>
+
     <div class="fixed-bg"></div>
+    <div class="smoke-container" id="smoke-container"></div>
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div class="lang-dropdown">
-            <div class="lang-current" id="current-lang-btn">RO</div>
-        </div>
+        <div style="color:var(--gold); font-weight:700; font-size:0.8rem; border:1px solid var(--gold); padding:5px 15px;">RO</div>
     </header>
 
     <nav class="sidebar">
@@ -105,8 +109,8 @@
                 <div class="about-text-card">
                     <span style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
                     <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
-                    <a href="despre.html" class="aura-btn">Află Povestea</a>
+                    <p style="line-height:1.7; color:rgba(255,255,255,0.9);">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
+                    <a href="despre.html" class="aura-btn" style="margin-top:25px;">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
@@ -124,29 +128,24 @@
     </footer>
 
     <script>
-        function createSmoke(x, y) {
-            const smoke = document.createElement('div');
-            smoke.className = 'smoke-particle';
-            
-            const size = Math.random() * 60 + 40 + 'px';
-            smoke.style.width = size;
-            smoke.style.height = size;
-            smoke.style.left = x + 'px';
-            smoke.style.top = y + 'px';
-            
-            document.body.appendChild(smoke);
-            setTimeout(() => smoke.remove(), 2000);
+        const container = document.getElementById('smoke-container');
+
+        function createSmokeLeaf(x, y) {
+            const leaf = document.createElement('div');
+            leaf.className = 'smoke-leaf';
+            leaf.style.left = x + 'px';
+            leaf.style.top = y + 'px';
+            container.appendChild(leaf);
+            setTimeout(() => leaf.remove(), 2000);
         }
 
-        // Desktop
         window.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.7) createSmoke(e.clientX, e.clientY);
+            createSmokeLeaf(e.clientX, e.clientY);
         });
 
-        // Mobil
         window.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
-            createSmoke(touch.clientX, touch.clientY);
+            createSmokeLeaf(touch.clientX, touch.clientY);
         }, { passive: true });
     </script>
 </body>
