@@ -11,6 +11,7 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
+            --hermes-terracotta: rgba(211, 84, 0, 0.8); /* Culoare Hermes Transparenta */
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
@@ -48,10 +49,8 @@
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
-
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* SELECTOR LIMBA RE-DESIGNED (Verificat de 2 ori) */
         .lang-dropdown { position: relative; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
@@ -59,25 +58,12 @@
             display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px;
         }
         .lang-list { 
-            position: absolute; 
-            top: 100%; 
-            left: 0; 
-            width: 100%; /* Aceeasi latime cu butonul */
-            background: #000; 
-            border: 1px solid var(--gold); 
-            border-top: none; /* Elimina suprapunerea de bordura */
-            display: none; 
-            flex-direction: column; 
-            z-index: 2100;
+            position: absolute; top: 100%; left: 0; width: 100%; background: #000; 
+            border: 1px solid var(--gold); border-top: none; display: none; 
+            flex-direction: column; z-index: 2100;
         }
         .lang-list.show { display: flex; }
-        .lang-item { 
-            background: none; border: none; color: var(--white); 
-            padding: 12px; font-size: 0.7rem; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 8px;
-            transition: 0.3s;
-        }
-        .lang-item:hover { background: var(--burgundy); color: var(--gold); }
+        .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .flag-img { width: 18px; height: 12px; object-fit: cover; }
 
         .sidebar { 
@@ -98,9 +84,7 @@
             font-style: italic; 
             margin-bottom: 10px;
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
-            background-size: 200% auto; 
-            -webkit-background-clip: text; 
-            -webkit-text-fill-color: transparent; 
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
@@ -151,12 +135,14 @@
                 width: 100%; 
                 padding: 15px 10px; 
                 gap: 15px; 
-                background: transparent;
+                background: var(--hermes-terracotta); /* Background Hermes Transparent */
+                backdrop-filter: blur(5px);
+                z-index: 1999;
             }
             .nav-link { 
                 font-size: 0.85rem; 
                 letter-spacing: 2px; 
-                text-shadow: 1px 1px 0px var(--burgundy), -1px -1px 0px var(--burgundy), 1px -1px 0px var(--burgundy), -1px 1px 0px var(--burgundy), 0px 2px 4px rgba(0,0,0,0.8);
+                text-shadow: 1px 1px 0px var(--burgundy), -1px -1px 0px var(--burgundy), 1px -1px 0px var(--burgundy), -1px 1px 0px var(--burgundy);
             }
             .main-container { padding-top: 160px; }
         }
