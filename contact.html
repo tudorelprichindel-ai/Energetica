@@ -15,7 +15,7 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* STRUCTURA PENTRU FOOTER JOS */
+        /* STRUCTURĂ PENTRU FORȚAREA FOOTER-ULUI JOS */
         html, body { height: 100%; }
         body { 
             display: flex; flex-direction: column;
@@ -30,7 +30,7 @@
             background-size: cover;
         }
 
-        /* HEADER UNIFORMIZAT */
+        /* HEADER IDENTIC PE TOATE PAGINILE */
         header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
@@ -60,54 +60,58 @@
         }
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
-        /* CONTAINERUL PRINCIPAL PINGE FOOTERUL */
+        /* ELEMENTUL MAIN ÎMPINGE FOOTER-UL JOS */
         main { flex: 1; padding-top: 180px; }
 
-        .contact-container {
-            padding: 0 8% 100px; max-width: 1200px; margin: 0 auto;
+        .contact-container { padding: 0 8% 80px; max-width: 1200px; margin: 0 auto; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
+
+        .contact-info h1 {
+            font-family: 'Playfair Display', serif; font-size: 3rem; 
+            color: var(--gold); font-style: italic; margin-bottom: 25px;
         }
 
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
-
-        /* FOOTER UNIFORMIZAT */
-        footer {
-            width: 100%; padding: 60px 20px;
-            display: flex; flex-direction: column; justify-content: center; align-items: center;
-            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
-        }
-        .social-links { margin-bottom: 20px; }
-        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.5rem; transition: 0.3s; }
-        .social-links a:hover { color: #fff; transform: scale(1.1); }
-        .copyright { font-size: 0.65rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
-
-        /* FORMULAR STILIZAT */
         .contact-form-card {
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            padding: 50px; border: 1px solid var(--glass);
+            padding: 40px; border: 1px solid var(--glass);
         }
+
         .form-control {
             width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass);
-            padding: 15px; color: var(--white); margin-bottom: 25px;
+            padding: 15px; color: var(--white); margin-bottom: 20px; font-family: 'Montserrat';
         }
+
         .submit-btn {
             width: 100%; background: none; border: 1px solid var(--gold);
-            color: var(--gold); padding: 20px; text-transform: uppercase;
-            letter-spacing: 5px; cursor: pointer; transition: 0.3s;
+            color: var(--gold); padding: 18px; text-transform: uppercase;
+            letter-spacing: 5px; cursor: pointer; transition: 0.3s; font-weight: 700;
         }
         .submit-btn:hover { background: var(--gold); color: #000; }
 
-        /* RESPONSIVITATE UNIFORMA */
+        /* FOOTER RAFINAT: MAI MIC ȘI MAI TRANSPARENT */
+        footer {
+            width: 100%; padding: 30px 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(10px); border-top: 1px solid var(--wine);
+        }
+        .social-links { margin-bottom: 10px; }
+        .social-links a { color: var(--gold); margin: 0 12px; font-size: 1.3rem; transition: 0.3s; }
+        .social-links a:hover { color: #fff; transform: scale(1.1); }
+        .copyright { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+
         @media (max-width: 900px) {
             header { height: 70px; }
             .sidebar {
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 80px; padding: 25px 15px; gap: 1.2rem;
-                background: rgba(0, 0, 0, 0.5); width: 100%; z-index: 1500;
+                margin-top: 80px; padding: 20px 10px; gap: 1rem;
+                background: rgba(0, 0, 0, 0.4); width: 100%; z-index: 1500;
                 border-bottom: 1px solid var(--glass);
             }
             main { padding-top: 40px; }
-            .contact-grid { grid-template-columns: 1fr; gap: 50px; }
+            .contact-grid { grid-template-columns: 1fr; gap: 40px; }
+            .contact-info { text-align: center; }
+            footer { padding: 25px 15px; }
         }
     </style>
 </head>
@@ -129,18 +133,18 @@
         <div class="contact-container">
             <div class="contact-grid">
                 <div class="contact-info">
-                    <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); font-style: italic; margin-bottom: 30px;">Contact</h1>
-                    <p style="margin-bottom: 40px; font-weight: 300; opacity: 0.8;">Aștept cu drag mesajul tău pentru a începe călătoria manifestării.</p>
-                    <p>WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">+40 7XX XXX XXX</a></p>
-                    <p>Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
+                    <h1>Contact</h1>
+                    <p style="margin-bottom: 30px; font-weight: 300; opacity: 0.8;">Transformă-ți intenția în dialog.</p>
+                    <p style="font-size: 0.9rem;">WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">Link Direct</a></p>
+                    <p style="font-size: 0.9rem;">Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
                 </div>
 
                 <div class="contact-form-card">
                     <form>
                         <input type="text" class="form-control" placeholder="Nume">
                         <input type="email" class="form-control" placeholder="Email">
-                        <textarea class="form-control" placeholder="Mesaj" style="height: 150px; resize: none;"></textarea>
-                        <button type="submit" class="submit-btn">Trimite</button>
+                        <textarea class="form-control" placeholder="Mesaj" style="height: 120px; resize: none;"></textarea>
+                        <button type="submit" class="submit-btn">Trimite mesajul</button>
                     </form>
                 </div>
             </div>
