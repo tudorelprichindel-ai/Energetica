@@ -13,25 +13,49 @@
         
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
         
-        /* HEADER CU DROPDOWN IN COLTUL DREAPTA */
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 0 0 5%; /* Am scos padding-ul din dreapta */ }
+        header { 
+            position: fixed; top: 0; width: 100%; z-index: 2000; 
+            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); 
+            border-bottom: 1px solid var(--glass); height: 80px; 
+            display: flex; justify-content: space-between; align-items: center; 
+            padding: 0 20px 0 5%; /* 20px padding dreapta (aprox 5mm) */
+        }
+        
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
 
-        .lang-dropdown { position: relative; height: 100%; display: flex; align-items: center; margin-right: 0; }
+        /* SELECTOR LIMBI SIMETRIC */
+        .lang-dropdown { position: relative; display: flex; align-items: center; }
+        
         .lang-current { 
-            background: rgba(255,255,255,0.03); border: 1px solid var(--gold); border-right: none; /* Aspect lipit de margine */
-            color: var(--gold); padding: 8px 15px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; 
-            text-transform: uppercase; display: flex; align-items: center; gap: 8px;
+            background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
+            padding: 8px 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; 
+            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px;
             box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
-            height: 45px;
+            height: 40px; width: 90px; /* Lățime fixă pentru simetrie */
+            transition: var(--transition);
         }
-        .lang-list { position: absolute; top: 80px; right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 100px; display: none; flex-direction: column; z-index: 2100; box-shadow: -5px 10px 30px rgba(0,0,0,0.8); }
+
+        .lang-list { 
+            position: absolute; top: calc(100% + 15px); right: 0; 
+            background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); 
+            width: 90px; /* Aceeași lățime cu butonul principal */
+            display: none; flex-direction: column; z-index: 2100; 
+            box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
+        }
+        
         .lang-list.show { display: flex; }
-        .lang-btn { background: none; border: none; color: var(--white); padding: 12px 15px; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; gap: 10px; transition: 0.3s; width: 100%; }
+        
+        .lang-btn { 
+            background: none; border: none; color: var(--white); 
+            padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; 
+            text-transform: uppercase; cursor: pointer; 
+            display: flex; align-items: center; justify-content: center; gap: 8px; 
+            transition: 0.3s; width: 100%; 
+        }
         .lang-btn img { width: 16px; }
         .lang-btn:hover { background: rgba(197, 160, 89, 0.2); color: var(--gold); }
 
-        /* SIDEBAR - RECENTRAT */
+        /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
@@ -39,6 +63,7 @@
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* CONTINUT */
         .about-container { padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto; width: 100%; }
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
@@ -50,8 +75,7 @@
         footer { height: 80px; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); }
 
         @media (max-width: 850px) {
-            header { height: 70px; padding: 0 0 0 5%; }
-            .lang-list { top: 70px; }
+            header { height: 70px; padding: 0 15px 0 5%; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.85); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             .about-container { padding: 140px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
@@ -66,7 +90,7 @@
         <div class="lang-dropdown">
             <button class="lang-current" id="current-lang-btn" onclick="toggleLangList()">
                 <span id="current-lang-text">RO</span>
-                <i class="fas fa-chevron-down" style="font-size: 0.6rem; opacity: 0.6;"></i>
+                <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
             </button>
             <div class="lang-list" id="lang-list">
                 <button onclick="selectLang('ru')" class="lang-btn"><img src="https://flagcdn.com/w20/ru.png" alt=""> RU</button>
@@ -123,7 +147,10 @@
             changeLang(lang);
         }
         function changeLang(lang) {
-            ['home','consult','shop','about','contact'].forEach(id => document.getElementById('nav-'+id).innerText = translations[lang][id]);
+            ['home','consult','shop','about','contact'].forEach(id => {
+                const el = document.getElementById('nav-'+id);
+                if(el) el.innerText = translations[lang][id];
+            });
             document.getElementById('sub-title').innerText = translations[lang].sub;
             document.getElementById('main-title').innerText = translations[lang].title;
             document.getElementById('text-content').innerHTML = translations[lang].content;
