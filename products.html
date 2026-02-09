@@ -31,18 +31,13 @@
             background-size: cover;
         }
 
+        /* HEADER ȘI FOOTER SIMETRIC */
         header, footer {
-            width: 100%; height: 80px; 
-            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            display: flex; align-items: center; justify-content: center; z-index: 2000;
+            width: 100%; background: rgba(0, 0, 0, 0.6); 
+            backdrop-filter: blur(15px); display: flex; align-items: center; justify-content: center; z-index: 2000;
         }
-
-        header { position: fixed; top: 0; border-bottom: 1px solid var(--glass); }
-        
-        footer { 
-            margin-top: auto; border-top: 1px solid var(--wine); 
-            flex-direction: column; background: rgba(0, 0, 0, 0.4);
-        }
+        header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); }
+        footer { margin-top: auto; height: 80px; border-top: 1px solid var(--wine); flex-direction: column; background: rgba(0, 0, 0, 0.4); }
 
         .shimmer-element {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
@@ -59,8 +54,32 @@
         }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
 
-        main { flex: 1; padding: 140px 5% 60px; max-width: 1400px; margin: 0 auto; width: 100%; }
+        /* SHOP CONTENT */
+        main { flex: 1; padding: 140px 8% 60px; max-width: 1400px; margin: 0 auto; width: 100%; }
+        
+        .shop-title { text-align: center; margin-bottom: 60px; }
+        .shop-title h1 { font-family: 'Playfair Display', serif; font-size: 3.5rem; font-style: italic; color: var(--gold); }
 
+        .products-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            gap: 40px;
+        }
+
+        .product-card {
+            background: rgba(255,255,255,0.03);
+            border: 1px solid var(--glass);
+            padding: 20px;
+            text-align: center;
+            transition: var(--transition);
+        }
+        .product-card:hover { transform: translateY(-10px); border-color: var(--gold); }
+        .product-card img { width: 100%; height: 350px; object-fit: cover; margin-bottom: 20px; }
+        .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 10px; }
+        .product-card p { font-weight: 300; font-size: 0.9rem; opacity: 0.8; margin-bottom: 15px; }
+        .price { color: var(--gold); font-weight: 700; letter-spacing: 2px; }
+
+        /* FOOTER SOCIALS */
         .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
         .social-links a { text-decoration: none; font-size: 1.3rem; }
         .copyright { font-size: 0.55rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
@@ -75,14 +94,15 @@
                 width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
             }
             main { padding: 40px 5%; }
+            .shop-title h1 { font-size: 2.5rem; }
             .nav-link { font-size: 0.6rem; letter-spacing: 2px; }
-            footer { padding: 10px 0; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
     <header><a href="index.html" class="logo-header shimmer-element">The Power Boutique</a></header>
+    
     <nav class="sidebar">
         <a href="index.html" class="nav-link">Acasă</a>
         <a href="programari.html" class="nav-link">Consultații</a>
@@ -90,9 +110,37 @@
         <a href="despre.html" class="nav-link">Despre</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
+
     <main>
-        <h1 class="shimmer-element" style="font-family: 'Playfair Display', serif; font-size: 3rem; font-style: italic; text-align: center; color: var(--gold);">Shop</h1>
+        <div class="shop-title">
+            <h1 class="shimmer-element">Colecția Energetică</h1>
+            <p style="text-transform: uppercase; letter-spacing: 4px; font-size: 0.8rem; margin-top: 10px;">Instrumente pentru manifestare</p>
+        </div>
+
+        <div class="products-grid">
+            <div class="product-card">
+                <img src="bratara1.jpg" alt="Bratara Energie">
+                <h3>Brățară Intuition</h3>
+                <p>Lapis Lazuli și Argint 925 pentru claritate mentală.</p>
+                <div class="price">180 RON</div>
+            </div>
+
+            <div class="product-card">
+                <img src="bratara2.jpg" alt="Bratara Succes">
+                <h3>Brățară Abundance</h3>
+                <p>Citrin și Pirita pentru atragerea succesului.</p>
+                <div class="price">210 RON</div>
+            </div>
+
+            <div class="product-card">
+                <img src="bratara3.jpg" alt="Bratara Protectie">
+                <h3>Brățară Protection</h3>
+                <p>Turmalină neagră pentru ecranare energetică.</p>
+                <div class="price">195 RON</div>
+            </div>
+        </div>
     </main>
+
     <footer>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram shimmer-element"></i></a>
