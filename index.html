@@ -15,26 +15,33 @@
             * { cursor: none; }
         }
 
-        /* CANVAS PENTRU EFECTUL FLUID */
-        #fluid-canvas {
+        /* EFECT DE FUM AURIEU */
+        .smoke-particle {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
             pointer-events: none;
             z-index: 9999;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+            border-radius: 50%;
+            filter: blur(8px);
+            animation: smokeFade 2.5s ease-out forwards;
+        }
+
+        @keyframes smokeFade {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.6; }
+            50% { opacity: 0.3; }
+            100% { transform: translate(-50%, -80%) scale(3); opacity: 0; }
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
+            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        /* HEADER & SIDEBAR - Păstrate conform preferințelor tale */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
@@ -49,6 +56,7 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
+        /* HERO & DESPRE SUB TITLE */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -77,7 +85,6 @@
     </style>
 </head>
 <body>
-    <canvas id="fluid-canvas"></canvas>
     <div class="fixed-bg"></div>
 
     <header>
@@ -133,103 +140,46 @@
     </footer>
 
     <script>
-        const canvas = document.getElementById('fluid-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        let mouse = { x: -100, y: -100 };
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Particle {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 2 + 1;
-                this.baseX = x;
-                this.baseY = y;
-                this.density = (Math.random() * 20) + 5;
-                this.alpha = 1;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.closePath();
-                ctx.fill();
-            }
-            update() {
-                let dx = mouse.x - this.x;
-                let dy = mouse.y - this.y;
-                let distance = Math.sqrt(dx * dx + dy * dy);
-                let forceDirectionX = dx / distance;
-                let forceDirectionY = dy / distance;
-                let maxDistance = 150;
-                let force = (maxDistance - distance) / maxDistance;
-                let directionX = forceDirectionX * force * this.density;
-                let directionY = forceDirectionY * force * this.density;
-
-                if (distance < maxDistance) {
-                    this.x += directionX;
-                    this.y += directionY;
-                    this.alpha = 0.8;
-                } else {
-                    if (this.x !== this.baseX) {
-                        let dx = this.x - this.baseX;
-                        this.x -= dx / 15;
-                    }
-                    if (this.y !== this.baseY) {
-                        let dy = this.y - this.baseY;
-                        this.y -= dy / 15;
-                    }
-                    this.alpha = 0.3;
-                }
-            }
+        // EFECT DE FUM LENT (SMOKE TRAIL)
+        function createSmoke(x, y) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke-particle';
+            
+            // Dimensiune variabilă pentru realism
+            const size = Math.random() * 40 + 20 + 'px';
+            smoke.style.width = size;
+            smoke.style.height = size;
+            
+            smoke.style.left = x + 'px';
+            smoke.style.top = y + 'px';
+            
+            document.body.appendChild(smoke);
+            
+            // Eliminare după animație
+            setTimeout(() => smoke.remove(), 2500);
         }
 
-        function init() {
-            particles = [];
-            // Umplem ecranul cu un nor fin de particule care vor reacționa
-            for (let i = 0; i < 150; i++) {
-                let x = Math.random() * canvas.width;
-                let y = Math.random() * canvas.height;
-                particles.push(new Particle(x, y));
-            }
-        }
-        init();
+        // Limităm frecvența pentru a fi mai "lent" și mai puțin obositor
+        let lastX = 0;
+        let lastY = 0;
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].draw();
-                particles[i].update();
+        document.addEventListener('mousemove', (e) => {
+            const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
+            if (dist > 15) { // Creează fum doar dacă mouse-ul s-a mișcat suficient
+                createSmoke(e.clientX, e.clientY);
+                lastX = e.clientX;
+                lastY = e.clientY;
             }
-            // Adăugăm particule noi sub mouse pentru urma fluidă
-            if (mouse.x > 0) {
-                particles.push(new Particle(mouse.x + (Math.random()-0.5)*10, mouse.y + (Math.random()-0.5)*10));
-                if (particles.length > 300) particles.shift();
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX;
-            mouse.y = e.clientY;
         });
 
-        window.addEventListener('touchmove', (e) => {
-            mouse.x = e.touches[0].clientX;
-            mouse.y = e.touches[0].clientY;
+        document.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            createSmoke(touch.clientX, touch.clientY);
         }, { passive: true });
 
-        // Limbă și restul funcțiilor rămân neschimbate
+        // Traduceri și Dropdown
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.</p>", btn: "Află Povestea" },
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Află Povestea" },
             ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
         };
 
