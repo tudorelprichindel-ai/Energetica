@@ -8,40 +8,33 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* FUNDAL & PARTICULE */
-        .fixed-bg { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
-        }
+        /* CURSOR PERSONALIZAT */
+        #custom-cursor { position: fixed; width: 10px; height: 10px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9999; mix-blend-mode: difference; transition: transform 0.1s; }
+        #custom-cursor-follower { position: fixed; width: 35px; height: 35px; border: 1px solid var(--gold); border-radius: 50%; pointer-events: none; z-index: 9998; transition: transform 0.15s ease-out; }
+
+        /* URMA AURIE (TRAIL PARTICLES) */
+        .cursor-trail { position: fixed; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 9997; animation: trailFade 0.8s forwards; }
+        @keyframes trailFade { 0% { transform: scale(1); opacity: 0.6; } 100% { transform: scale(0); opacity: 0; } }
+
+        /* FUNDAL & PARTICULE FUNDAL */
+        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.2; filter: blur(1px); animation: float linear infinite; }
-        @keyframes float {
-            0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.3; }
-            100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
-        }
+        .bg-particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .bg-particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.2; animation: bgFloat linear infinite; }
+        @keyframes bgFloat { 0% { transform: translateY(0); opacity: 0; } 50% { opacity: 0.3; } 100% { transform: translateY(-100vh); opacity: 0; } }
 
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
-        
-        .logo-header { 
-            font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; 
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmerEffect 5s linear infinite;
-        }
+        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* DROPDOWN LIMBI */
         .lang-dropdown { position: relative; display: flex; align-items: center; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px; box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); height: 40px; width: 90px; }
-        .lang-list { position: absolute; top: calc(100% + 15px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); width: 90px; display: none; flex-direction: column; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .lang-list { position: absolute; top: calc(100% + 15px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); width: 90px; display: none; flex-direction: column; z-index: 2100; }
         .lang-list.show { display: flex; }
         .lang-btn { background: none; border: none; color: var(--white); padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
         .lang-btn img { width: 16px; }
@@ -51,46 +44,28 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT INTEGRAT SUB TITLE */
+        /* HERO & ABOUT */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
-        
-        .hero-title { 
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px;
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmerEffect 5s linear infinite;
-        }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; text-align: left; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
-        
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
         .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
 
-        /* AURA GLOW BTN */
-        .aura-btn { 
-            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
-            padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; 
-            font-weight: 700; font-size: 0.7rem; cursor: pointer; 
-            transition: var(--transition); text-decoration: none;
-            display: inline-block;
-        }
-        .aura-btn:hover { 
-            background: var(--gold); color: #000; 
-            box-shadow: 0 0 25px rgba(197, 160, 89, 0.5);
-            transform: translateY(-2px);
-        }
+        .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-block; }
+        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); transform: translateY(-2px); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
-        /* FOOTER */
         footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
         .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
-        .social-links a { color: var(--gold); text-decoration: none; transition: 0.3s; }
-        .social-links a:hover { color: var(--white); transform: scale(1.1); }
+        .social-links a { color: var(--gold); text-decoration: none; }
 
         @media (max-width: 950px) {
+            * { cursor: auto; }
+            #custom-cursor, #custom-cursor-follower { display: none; }
             header { height: 70px; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             .hero-section { padding-top: 160px; }
@@ -101,8 +76,10 @@
     </style>
 </head>
 <body>
+    <div id="custom-cursor"></div>
+    <div id="custom-cursor-follower"></div>
     <div class="fixed-bg"></div>
-    <div class="particles" id="particle-container"></div>
+    <div class="bg-particles" id="bg-particle-container"></div>
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
@@ -128,24 +105,22 @@
         <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
-    <main>
-        <section class="hero-section">
-            <h1 class="hero-title">The Power Boutique</h1>
-            <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
+    <main class="hero-section">
+        <h1 class="hero-title">The Power Boutique</h1>
+        <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
 
-            <div class="about-hero">
-                <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
-                <div class="about-content">
-                    <div class="about-text-card">
-                        <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
-                        <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                        <div id="about-text"></div>
-                        <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
-                        <div class="signature">Jelena Shipko</div>
-                    </div>
+        <div class="about-hero">
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
+            <div class="about-content">
+                <div class="about-text-card">
+                    <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
+                    <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
+                    <div id="about-text"></div>
+                    <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
+                    <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
-        </section>
+        </div>
     </main>
 
     <footer>
@@ -159,27 +134,59 @@
     </footer>
 
     <script>
-        function createParticles() {
-            const container = document.getElementById('particle-container');
-            for (let i = 0; i < 40; i++) {
+        // CURSOR & TRAIL LOGIC
+        const cursor = document.getElementById('custom-cursor');
+        const follower = document.getElementById('custom-cursor-follower');
+        
+        document.addEventListener('mousemove', (e) => {
+            const x = e.clientX;
+            const y = e.clientY;
+            
+            cursor.style.left = x + 'px';
+            cursor.style.top = y + 'px';
+            follower.style.left = x + 'px';
+            follower.style.top = y + 'px';
+            
+            // Create trail particle
+            createTrail(x, y);
+        });
+
+        function createTrail(x, y) {
+            const trail = document.createElement('div');
+            trail.className = 'cursor-trail';
+            trail.style.left = x + 'px';
+            trail.style.top = y + 'px';
+            document.body.appendChild(trail);
+            
+            setTimeout(() => { trail.remove(); }, 800);
+        }
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => { cursor.style.transform = 'scale(2.5)'; follower.style.transform = 'scale(0)'; });
+            el.addEventListener('mouseleave', () => { cursor.style.transform = 'scale(1)'; follower.style.transform = 'scale(1)'; });
+        });
+
+        // BG PARTICLES
+        function createBgParticles() {
+            const container = document.getElementById('bg-particle-container');
+            for (let i = 0; i < 30; i++) {
                 const p = document.createElement('div');
-                p.className = 'particle';
-                const size = Math.random() * 2 + 1 + 'px';
+                p.className = 'bg-particle';
+                const size = Math.random() * 3 + 1 + 'px';
                 p.style.width = size; p.style.height = size;
                 p.style.left = Math.random() * 100 + 'vw';
                 p.style.top = Math.random() * 100 + 'vh';
-                p.style.animationDuration = Math.random() * 12 + 8 + 's';
+                p.style.animationDuration = Math.random() * 10 + 10 + 's';
                 p.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(p);
             }
         }
-        createParticles();
+        createBgParticles();
 
+        // LANGUAGES
         const translations = {
             ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Află Povestea" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p>", btn: "Узнать больше" },
-            lv: { home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", sub:"JELENA SHIPKO", aSub:"Vīzija un jaunrade", aTitle:"Sirds aiz spēka", aText:"<p>Katrs solis este o oportunitate de a ne alinia ar panākumiem. Ar <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi un rīkiem.</p>", btn: "Uzzināt vairāk" },
-            en: { home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Vision & Creation", aTitle:"The Heart Behind Power", aText:"<p>Every step we take is an opportunity to align with success. Through <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, I created a bridge between desire and energy tools.</p>", btn: "Discover more" }
+            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
         };
 
         function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
