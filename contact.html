@@ -15,9 +15,10 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        
+        /* STRUCTURA PENTRU FOOTER JOS */
+        html, body { height: 100%; }
         body { 
+            display: flex; flex-direction: column;
             width: 100%; background: #000; color: var(--white);
             font-family: 'Montserrat', sans-serif; overflow-x: hidden;
             line-height: 1.8; -webkit-font-smoothing: antialiased;
@@ -29,6 +30,7 @@
             background-size: cover;
         }
 
+        /* HEADER UNIFORMIZAT */
         header {
             position: fixed; top: 0; width: 100%; z-index: 2000;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
@@ -46,80 +48,55 @@
 
         @keyframes shimmer { to { background-position: 200% center; } }
 
+        /* SIDEBAR / NAV */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
         }
-
         .nav-link {
             text-decoration: none; color: var(--gold); font-size: 0.7rem;
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
             font-weight: 700;
         }
-
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
+        /* CONTAINERUL PRINCIPAL PINGE FOOTERUL */
+        main { flex: 1; padding-top: 180px; }
+
         .contact-container {
-            padding: 180px 8% 100px; max-width: 1200px; margin: 0 auto;
-            min-height: 100vh;
+            padding: 0 8% 100px; max-width: 1200px; margin: 0 auto;
         }
 
-        .contact-grid {
-            display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start;
-        }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 80px; align-items: start; }
 
-        .contact-info h1 {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem);
-            font-style: italic; color: var(--gold); margin-bottom: 30px; line-height: 1.1;
-        }
-
-        .contact-method { margin-bottom: 40px; }
-        .contact-method h3 { color: var(--gold); text-transform: uppercase; letter-spacing: 3px; font-size: 0.8rem; margin-bottom: 15px; }
-        .contact-method p { font-weight: 300; opacity: 0.9; }
-        .contact-method a { color: var(--white); text-decoration: none; transition: var(--transition); border-bottom: 1px solid var(--wine); padding-bottom: 2px; }
-        .contact-method a:hover { color: var(--gold); border-bottom-color: var(--gold); }
-
-        .contact-form-card {
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
-            padding: 50px; border: 1px solid var(--glass);
-            box-shadow: 30px 30px 60px rgba(0,0,0,0.5);
-        }
-
-        .form-group { margin-bottom: 25px; position: relative; }
-        
-        .form-group label {
-            display: block; font-size: 0.65rem; text-transform: uppercase;
-            letter-spacing: 3px; color: var(--gold); margin-bottom: 10px; font-weight: 700;
-        }
-
-        .form-control {
-            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass);
-            padding: 15px; color: var(--white); font-family: 'Montserrat', sans-serif;
-            font-size: 0.9rem; transition: var(--transition); outline: none;
-        }
-
-        .form-control:focus { border-color: var(--gold); background: rgba(0,0,0,0.5); }
-
-        textarea.form-control { min-height: 150px; resize: none; }
-
-        .submit-btn {
-            width: 100%; background: none; border: 1px solid var(--gold);
-            color: var(--gold); padding: 20px; text-transform: uppercase;
-            letter-spacing: 5px; font-weight: 700; cursor: pointer;
-            transition: var(--transition); margin-top: 20px;
-        }
-
-        .submit-btn:hover { background: var(--gold); color: #000; }
-
+        /* FOOTER UNIFORMIZAT */
         footer {
-            padding: 60px 20px; display: flex; flex-direction: column; align-items: center;
-            background: rgba(0, 0, 0, 0.9); border-top: 1px solid var(--wine);
+            width: 100%; padding: 60px 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
         .social-links { margin-bottom: 20px; }
         .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.5rem; transition: 0.3s; }
-        .social-links a:hover { color: #fff; }
-        .copyright { font-size: 0.65rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); }
+        .social-links a:hover { color: #fff; transform: scale(1.1); }
+        .copyright { font-size: 0.65rem; letter-spacing: 3px; color: rgba(255,255,255,0.5); text-transform: uppercase; }
 
+        /* FORMULAR STILIZAT */
+        .contact-form-card {
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(20px);
+            padding: 50px; border: 1px solid var(--glass);
+        }
+        .form-control {
+            width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass);
+            padding: 15px; color: var(--white); margin-bottom: 25px;
+        }
+        .submit-btn {
+            width: 100%; background: none; border: 1px solid var(--gold);
+            color: var(--gold); padding: 20px; text-transform: uppercase;
+            letter-spacing: 5px; cursor: pointer; transition: 0.3s;
+        }
+        .submit-btn:hover { background: var(--gold); color: #000; }
+
+        /* RESPONSIVITATE UNIFORMA */
         @media (max-width: 900px) {
             header { height: 70px; }
             .sidebar {
@@ -129,17 +106,13 @@
                 background: rgba(0, 0, 0, 0.5); width: 100%; z-index: 1500;
                 border-bottom: 1px solid var(--glass);
             }
-            .contact-container { padding: 40px 20px 80px; }
+            main { padding-top: 40px; }
             .contact-grid { grid-template-columns: 1fr; gap: 50px; }
-            .contact-form-card { padding: 30px 20px; }
-            .contact-info { text-align: center; }
-            .contact-info h1 { font-size: 2.5rem; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
-    
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
     </header>
@@ -152,44 +125,24 @@
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
-    <main class="contact-container">
-        <div class="contact-grid">
-            <div class="contact-info">
-                <h1>Contactează Universul Tău</h1>
-                <p style="margin-bottom: 40px; font-weight: 300; opacity: 0.8;">Sunt aici să ascult și să te ghidez. Alege modalitatea cea mai potrivită pentru tine de a intra în dialog.</p>
-                
-                <div class="contact-method">
-                    <h3>Mesaj Rapid</h3>
-                    <p><a href="https://wa.me/407XXXXXXXX" target="_blank">WhatsApp Direct</a></p>
-                </div>
-                
-                <div class="contact-method">
-                    <h3>Comunitate & Energie</h3>
-                    <p><a href="https://t.me/elena_shipko" target="_blank">Telegram Channel</a></p>
+    <main>
+        <div class="contact-container">
+            <div class="contact-grid">
+                <div class="contact-info">
+                    <h1 style="font-family: 'Playfair Display', serif; font-size: 3rem; color: var(--gold); font-style: italic; margin-bottom: 30px;">Contact</h1>
+                    <p style="margin-bottom: 40px; font-weight: 300; opacity: 0.8;">Aștept cu drag mesajul tău pentru a începe călătoria manifestării.</p>
+                    <p>WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">+40 7XX XXX XXX</a></p>
+                    <p>Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
                 </div>
 
-                <div class="contact-method">
-                    <h3>Social Media</h3>
-                    <p>Urmărește călătoria pe <a href="#">Instagram</a></p>
+                <div class="contact-form-card">
+                    <form>
+                        <input type="text" class="form-control" placeholder="Nume">
+                        <input type="email" class="form-control" placeholder="Email">
+                        <textarea class="form-control" placeholder="Mesaj" style="height: 150px; resize: none;"></textarea>
+                        <button type="submit" class="submit-btn">Trimite</button>
+                    </form>
                 </div>
-            </div>
-
-            <div class="contact-form-card">
-                <form id="contactForm">
-                    <div class="form-group">
-                        <label>Nume Complet</label>
-                        <input type="text" class="form-control" placeholder="Cum te numești?" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Email</label>
-                        <input type="email" class="form-control" placeholder="adresa.ta@email.com" required>
-                    </div>
-                    <div class="form-group">
-                        <label>Mesajul Tău sau Intenția</label>
-                        <textarea class="form-control" placeholder="Cu ce te pot ajuta astăzi?"></textarea>
-                    </div>
-                    <button type="submit" class="submit-btn">Trimite Intenția</button>
-                </form>
             </div>
         </div>
     </main>
