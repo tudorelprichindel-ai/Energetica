@@ -7,73 +7,87 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        :root { 
+            --gold: #c5a059; 
+            --burgundy: #5e1914; 
+            --white: #ffffff; 
+            --glass: rgba(255, 255, 255, 0.05); 
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* Ascundem cursorul pe desktop pentru a vedea efectul de fum */
         @media (min-width: 951px) { * { cursor: none; } }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* EFECT FUM AURIU - FOARTE STABIL */
+        /* EFECT FUM COMBINAT: AURIU & BURGUNDI */
         .smoke-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
         .smoke-cloud {
             position: absolute;
-            width: 80px; height: 80px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+            width: 120px; height: 120px;
+            /* Mix de culori: centru auriu, margini burgundi */
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.6) 0%, rgba(94, 25, 20, 0.4) 50%, rgba(94, 25, 20, 0) 80%);
             border-radius: 50%;
-            filter: blur(15px);
+            filter: blur(20px);
             pointer-events: none;
             transform: translate(-50%, -50%);
-            animation: smokeDissolve 2.5s ease-out forwards;
+            animation: smokeDissolve 2.8s ease-out forwards;
+            will-change: transform, opacity;
         }
         @keyframes smokeDissolve {
-            0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.5); }
-            100% { opacity: 0; transform: translate(-50%, -100%) scale(4); }
+            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+            20% { opacity: 1; }
+            100% { opacity: 0; transform: translate(-50%, -120%) scale(3.5); }
         }
 
         /* HEADER */
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
+        
+        .lang-indicator { color: var(--gold); border: 1px solid var(--gold); padding: 5px 15px; font-weight: 700; font-size: 0.8rem; }
 
         /* SIDEBAR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
-        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
+        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT INTEGRAT */
+        /* HERO & ABOUT */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; color: var(--gold); }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; text-align: left; }
         .about-image-wrapper { position: relative; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
-        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+        
+        .about-text-card { background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--burgundy); border-right: 1px solid var(--glass); }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+        .about-text-card p { line-height: 1.8; margin-bottom: 25px; color: rgba(255,255,255,0.9); }
 
-        .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; display: inline-block; transition: var(--transition); }
-        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
-        .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
+        .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); display: inline-block; }
+        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+        
+        .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 25px; }
 
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
-        .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
-        .social-links a { color: var(--gold); }
+        footer { padding: 50px 0; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.8); }
+        .social-links { display: flex; gap: 35px; margin-bottom: 20px; font-size: 1.6rem; }
+        .social-links a { color: var(--gold); transition: 0.3s; }
+        .social-links a:hover { transform: translateY(-5px); color: var(--white); }
 
         @media (max-width: 950px) {
             header { height: 70px; }
-            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; }
-            .hero-section { padding-top: 160px; }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 15px 5px; gap: 20px; background: #000; width: 100%; z-index: 1900; }
+            .hero-section { padding-top: 180px; }
             .about-hero { grid-template-columns: 1fr; text-align: center; }
-            .about-text-card { border-left: none; border-top: 2px solid var(--gold); }
+            .about-text-card { border-left: none; border-top: 2px solid var(--burgundy); }
         }
     </style>
 </head>
@@ -83,7 +97,7 @@
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div style="color:var(--gold); border:1px solid var(--gold); padding:5px 15px; font-weight:700;">RO</div>
+        <div class="lang-indicator">RO</div>
     </header>
 
     <nav class="sidebar">
@@ -98,18 +112,18 @@
         <h1 class="hero-title">The Power Boutique</h1>
         <p class="hero-sub">BY JELENA SHIPKO</p>
 
-        <div class="about-hero">
+        <section class="about-hero">
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-content">
                 <div class="about-text-card">
-                    <span style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.75rem; display:block; margin-bottom:15px;">Viziune & Creație</span>
-                    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-style:italic; margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
+                    <span style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px;">Viziune & Creație</span>
+                    <h2>Inima Din Spatele Puterii</h2>
+                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
                     <a href="despre.html" class="aura-btn">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
-        </div>
+        </section>
     </main>
 
     <footer>
@@ -119,7 +133,7 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p style="font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; opacity: 0.7;">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
@@ -130,14 +144,28 @@
             smoke.className = 'smoke-cloud';
             smoke.style.left = x + 'px';
             smoke.style.top = y + 'px';
+            
+            // Adăugăm o rotație random pentru un aspect mai natural de nor
+            const rotation = Math.random() * 360;
+            smoke.style.transform = `translate(-50%, -50%) rotate(${rotation}deg)`;
+            
             wrap.appendChild(smoke);
-            setTimeout(() => smoke.remove(), 2500);
+            
+            // Eliminare după finalizarea animației
+            setTimeout(() => {
+                smoke.remove();
+            }, 2800);
         }
 
+        // Desktop: generare la mișcare
         window.addEventListener('mousemove', (e) => {
-            if (Math.random() > 0.8) createSmoke(e.clientX, e.clientY);
+            // Generăm nori mai des (șansă de 40% la fiecare eveniment de mișcare)
+            if (Math.random() > 0.6) {
+                createSmoke(e.clientX, e.clientY);
+            }
         });
 
+        // Mobil: generare la atingere/glisare
         window.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
             createSmoke(touch.clientX, touch.clientY);
