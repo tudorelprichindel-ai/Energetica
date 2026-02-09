@@ -11,20 +11,21 @@
         
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        @media (min-width: 951px) {
-            * { cursor: none; }
-        }
-
-        /* CANVAS PENTRU NORUL DE FUM */
-        #smoke-canvas {
+        /* CURSOR AURA - SIMPLU ȘI LENT */
+        #aura-smoke {
             position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            width: 150px;
+            height: 150px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.15) 0%, rgba(197, 160, 89, 0) 70%);
+            border-radius: 50%;
             pointer-events: none;
             z-index: 9999;
+            transform: translate(-50%, -50%);
+            filter: blur(20px);
+            transition: left 0.3s ease-out, top 0.3s ease-out; /* Delay-ul care dă senzația de fum/gaz */
         }
+
+        @media (min-width: 951px) { body { cursor: none; } }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
@@ -35,6 +36,7 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        /* HEADER & SIDEBAR - Păstrate intacte */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         
@@ -48,6 +50,7 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
+        /* HERO & ABOUT INTEGRAT SUB TITLE */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -55,182 +58,4 @@
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; text-align: left; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
-        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
-
-        .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: var(--transition); text-decoration: none; display: inline-block; }
-        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); transform: translateY(-2px); }
-        .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
-
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
-        .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
-        .social-links a { color: var(--gold); text-decoration: none; }
-
-        @media (max-width: 950px) {
-            header { height: 70px; }
-            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
-            .hero-section { padding-top: 160px; }
-            .about-hero { grid-template-columns: 1fr; text-align: center; }
-            .about-text-card { padding: 30px 20px; border-left: none; border-top: 2px solid var(--gold); }
-        }
-    </style>
-</head>
-<body>
-    <canvas id="smoke-canvas"></canvas>
-    <div class="fixed-bg"></div>
-
-    <header>
-        <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div class="lang-dropdown">
-            <button class="lang-current" id="current-lang-btn" onclick="toggleLangList()">
-                <span id="current-lang-text">RO</span>
-                <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
-            </button>
-            <div class="lang-list" id="lang-list">
-                <button onclick="selectLang('ru')" class="lang-btn">RU</button>
-                <button onclick="selectLang('lv')" class="lang-btn">LV</button>
-                <button onclick="selectLang('en')" class="lang-btn">EN</button>
-                <button onclick="selectLang('ro')" class="lang-btn">RO</button>
-            </div>
-        </div>
-    </header>
-
-    <nav class="sidebar">
-        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
-        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
-        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
-        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
-        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
-    </nav>
-
-    <main class="hero-section">
-        <h1 class="hero-title">The Power Boutique</h1>
-        <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
-
-        <div class="about-hero">
-            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
-            <div class="about-content">
-                <div class="about-text-card">
-                    <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
-                    <h2 id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                    <div id="about-text"></div>
-                    <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
-                    <div class="signature">Jelena Shipko</div>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
-    </footer>
-
-    <script>
-        const canvas = document.getElementById('smoke-canvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-        const mouse = { x: undefined, y: undefined, vx: 0, vy: 0, lastX: undefined, lastY: undefined };
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class SmokeParticle {
-            constructor(x, y, vx, vy) {
-                this.x = x;
-                this.y = y;
-                // Viteza este influențată de mișcarea mouse-ului (efectul de "suflat")
-                this.vx = vx * 0.5 + (Math.random() - 0.5) * 1;
-                this.vy = vy * 0.5 + (Math.random() - 0.5) * 1;
-                this.size = Math.random() * 5 + 2;
-                this.alpha = 0.8;
-                this.decay = Math.random() * 0.01 + 0.005;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.vx *= 0.98; // Fricțiune aer
-                this.vy *= 0.98;
-                this.alpha -= this.decay;
-                if (this.alpha < 0) this.alpha = 0;
-            }
-            draw() {
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.alpha})`;
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-            }
-        }
-
-        function handleParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-                particles[i].draw();
-                if (particles[i].alpha <= 0) {
-                    particles.splice(i, 1);
-                    i--;
-                }
-            }
-        }
-
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            handleParticles();
-            requestAnimationFrame(animate);
-        }
-        animate();
-
-        function onMove(x, y) {
-            if (mouse.lastX !== undefined) {
-                mouse.vx = x - mouse.lastX;
-                mouse.vy = y - mouse.lastY;
-                
-                // Generăm particule care moștenesc viteza cursorului
-                for (let i = 0; i < 2; i++) {
-                    particles.push(new SmokeParticle(x, y, mouse.vx, mouse.vy));
-                }
-            }
-            mouse.lastX = x;
-            mouse.lastY = y;
-        }
-
-        window.addEventListener('mousemove', (e) => onMove(e.clientX, e.clientY));
-        window.addEventListener('touchmove', (e) => onMove(e.touches[0].clientX, e.touches[0].clientY), { passive: true });
-
-        // Traduceri
-        const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.</p>", btn: "Află Povestea" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех.</p>", btn: "Узнать больше" }
-        };
-
-        function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
-        function selectLang(lang) {
-            document.getElementById('current-lang-text').innerText = lang.toUpperCase();
-            document.getElementById('lang-list').classList.remove('show');
-            changeLang(lang);
-        }
-        function changeLang(lang) {
-            ['home','consult','shop','about','contact'].forEach(id => {
-                const el = document.getElementById('nav-'+id);
-                if(el) el.innerText = translations[lang][id];
-            });
-            document.getElementById('hero-sub').innerText = translations[lang].sub;
-            document.getElementById('about-sub').innerText = translations[lang].aSub;
-            document.getElementById('about-title').innerText = translations[lang].aTitle;
-            document.getElementById('about-text').innerHTML = translations[lang].aText;
-            document.getElementById('about-btn').innerText = translations[lang].btn;
-        }
-        window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
-        window.onload = () => selectLang('ro');
-    </script>
-</body>
-</html>
+        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px
