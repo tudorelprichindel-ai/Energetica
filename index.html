@@ -11,7 +11,6 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
-            --glass: rgba(255, 255, 255, 0.05); 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
@@ -23,6 +22,7 @@
             color: var(--white);
             font-family: 'Montserrat', sans-serif;
             overflow-x: hidden;
+            background: #000;
         }
 
         .fixed-bg { 
@@ -35,7 +35,7 @@
         header { 
             position: fixed; top: 0; width: 100%; z-index: 2000; 
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); 
-            border-bottom: 1px solid var(--glass); height: 80px; 
+            border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; 
             display: flex; justify-content: space-between; align-items: center; 
             padding: 0 5%; 
         }
@@ -75,8 +75,6 @@
         .main-container { padding: 120px 5% 60px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         .hero-section { text-align: center; margin-bottom: 40px; }
-        
-        /* TITLU PRINCIPAL MODIFICAT */
         .hero-title { 
             font-family: 'Playfair Display', serif; 
             font-size: clamp(3rem, 8vw, 6rem); 
@@ -88,7 +86,6 @@
             -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
-
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
 
         .about-hero { 
@@ -123,7 +120,7 @@
         }
     </style>
 </head>
-<body id="master-body">
+<body>
     <div class="fixed-bg"></div>
 
     <header>
@@ -180,16 +177,12 @@
     </footer>
 
     <script>
-        function fixZoom() {
-            if (window.innerWidth > 1024) {
-                const master = document.getElementById('master-body');
-                if (window.devicePixelRatio > 1) {
-                    master.style.zoom = (1 / window.devicePixelRatio) * 1.25;
-                }
-            }
-        }
-        window.addEventListener('resize', fixZoom);
-        window.addEventListener('load', fixZoom);
+        const translations = {
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
+        };
 
         function changeLang(langCode, label, flagSrc) {
             document.getElementById('active-flag').src = flagSrc;
@@ -207,13 +200,6 @@
             document.getElementById('about-desc').innerHTML = content.desc;
             document.getElementById('about-btn').innerText = content.btn;
         }
-
-        const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
-        };
 
         window.onclick = function(event) {
             if (!event.target.closest('.lang-dropdown')) {
