@@ -2,172 +2,177 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Despre Elena Shipko | Energetica</title>
-    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600&display=swap" rel="stylesheet">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Despre | The Power Boutique</title>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root {
             --gold: #c5a059;
-            --burgundy: #800020;
-            --midnight: #0a0e14;
+            --wine: #5e1914;
             --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.08);
-            --transition: all 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+            --glass: rgba(255, 255, 255, 0.05);
+            --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+            --dark-glow: 0 0 25px rgba(0, 0, 0, 0.95), 2px 2px 10px rgba(0, 0, 0, 0.8);
         }
 
-        * { margin: 0; padding: 0; box-sizing: border-box; }
+        * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
         body { 
-            width: 100%; 
-            background: #000; 
-            color: var(--white);
-            font-family: 'Montserrat', sans-serif;
-            overflow-x: hidden;
-            line-height: 1.8;
+            width: 100%; background: #000; color: var(--white);
+            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
+            line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
 
+        /* FUNDAL ANIMAT */
         .fixed-bg {
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.85), rgba(0, 0, 0, 0.85)), url('cristale.jpg') no-repeat center center;
-            background-size: cover;
+            background: linear-gradient(rgba(0, 0, 0, 0.4), rgba(0, 0, 0, 0.4)), url('cristale3.jpg') no-repeat center center;
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
         }
 
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        /* HEADER IDENTIC */
         header {
             position: fixed; top: 0; width: 100%; z-index: 1000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(15px);
-            border-bottom: 1px solid var(--glass);
-            height: 60px;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
+            border-bottom: 1px solid var(--glass); height: 80px;
+            display: flex; justify-content: center; align-items: center;
         }
 
+        .logo-header {
+            font-family: 'Playfair Display', serif; font-style: italic;
+            text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
+
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
+
+        /* SIDEBAR IDENTIC */
         .sidebar {
-            position: fixed; top: 50%; left: 2rem; transform: translateY(-50%); z-index: 1000;
-            display: flex; flex-direction: column; gap: 2rem;
+            position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
+            display: flex; flex-direction: column; gap: 2.5rem;
         }
         .nav-link {
-            text-decoration: none; color: var(--gold); font-size: 0.65rem;
-            text-transform: uppercase; letter-spacing: 3px; transition: var(--transition);
-            opacity: 0.6; display: block;
+            text-decoration: none; color: var(--gold); font-size: 0.75rem;
+            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
+            font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8);
         }
-        .nav-link:hover { opacity: 1; transform: translateX(8px); }
+        .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        .about-content {
-            max-width: 900px;
-            margin: 0 auto;
-            padding: 150px 20px 100px;
-            text-align: center;
+        /* CONTINUT DESPRE */
+        .about-container {
+            padding: 160px 5% 100px; max-width: 1400px; margin: 0 auto;
         }
 
-        .about-image {
-            width: 100%;
-            max-width: 500px;
-            border-radius: 2px;
-            border: 1px solid var(--glass);
-            margin-bottom: 50px;
-            opacity: 0.9;
+        .about-hero {
+            display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center;
         }
 
-        .name-burgundy {
-            color: var(--burgundy);
-            text-transform: uppercase;
-            letter-spacing: 6px;
-            font-size: 0.9rem;
-            font-weight: 600;
-            margin-bottom: 20px;
+        .about-image-container {
+            position: relative;
+            /* Efect de estompare pentru integrare in fundalul negru */
+            mask-image: linear-gradient(to right, black 85%, transparent 100%);
+            -webkit-mask-image: linear-gradient(to right, black 85%, transparent 100%);
         }
 
-        h2 {
-            font-family: 'Playfair Display', serif;
-            font-size: clamp(2rem, 5vw, 3rem);
-            color: var(--gold);
-            margin-bottom: 40px;
-            font-weight: 400;
+        .about-image-container img {
+            width: 100%; border-radius: 4px; border: 1px solid rgba(197, 160, 89, 0.1);
+            filter: contrast(1.05);
         }
 
-        .story-text {
-            font-size: 1rem;
-            font-weight: 300;
-            color: rgba(255, 255, 255, 0.85);
-            margin-bottom: 30px;
-            text-align: justify;
+        .about-content { padding: 40px; text-align: left; }
+
+        .section-subtitle {
+            color: var(--gold); letter-spacing: 6px; text-transform: uppercase;
+            font-size: 0.8rem; font-weight: 700; margin-bottom: 15px; opacity: 0.8;
         }
 
-        .story-text i {
-            font-family: 'Playfair Display', serif;
-            color: var(--gold);
+        .section-title {
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4.5rem);
+            font-style: italic; color: var(--gold); margin-bottom: 40px; 
+            line-height: 1.1; text-shadow: var(--dark-glow);
         }
 
-        .highlight-box {
-            background: var(--glass);
-            padding: 40px;
-            border-left: 2px solid var(--gold);
-            margin: 60px 0;
-            text-align: left;
+        .about-text-card {
+            background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(15px);
+            padding: 45px; border-left: 3px solid var(--gold);
+            box-shadow: 20px 20px 60px rgba(0,0,0,0.7);
         }
 
-        .highlight-box h3 {
-            color: var(--gold);
-            font-size: 0.8rem;
-            text-transform: uppercase;
-            letter-spacing: 3px;
-            margin-bottom: 20px;
+        .about-text-card p {
+            font-size: 1.1rem; color: rgba(255,255,255,0.95); margin-bottom: 25px;
+            font-weight: 300; line-height: 1.9;
         }
 
+        .signature {
+            font-family: 'Playfair Display', serif; font-size: 2.5rem;
+            color: var(--gold); font-style: italic; margin-top: 40px;
+            text-shadow: var(--dark-glow);
+        }
+
+        /* FOOTER IDENTIC */
         footer {
-            padding: 60px 20px; text-align: center; background: rgba(0, 0, 0, 0.95);
-            border-top: 1px solid var(--glass);
+            position: relative; width: 100%; padding: 40px 20px;
+            display: flex; flex-direction: column; justify-content: center; align-items: center;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
-        .social-links { display: flex; justify-content: center; gap: 30px; margin-bottom: 25px; }
-        .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; opacity: 0.7; }
-        .social-links a:hover { opacity: 1; transform: translateY(-3px); color: white; }
-        .copyright { font-size: 0.6rem; color: var(--gold); opacity: 0.5; letter-spacing: 2px; }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
+        .social-links a:hover { color: var(--white); transform: scale(1.1); }
+        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
-        @media (max-width: 768px) {
-            .sidebar { position: relative; transform: none; left: 0; flex-direction: row; justify-content: center; padding: 100px 0 0; gap: 1rem; }
-            .about-content { padding-top: 50px; }
+        /* RESPONSIVITATE MOBIL */
+        @media (max-width: 1024px) {
+            header { height: 70px; }
+            .about-hero { grid-template-columns: 1fr; gap: 40px; }
+            .sidebar {
+                position: relative; top: 0; left: 0; transform: none;
+                flex-direction: row; flex-wrap: wrap; justify-content: center;
+                margin-top: 70px; padding: 20px; gap: 1rem; background: rgba(0,0,0,0.2);
+            }
+            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            .about-container { padding: 40px 20px 100px; }
+            .about-image-container { mask-image: none; -webkit-mask-image: none; }
+            .section-title { font-size: 2.8rem; }
         }
     </style>
 </head>
 <body>
     <div class="fixed-bg"></div>
-    <header></header>
+    
+    <header>
+        <a href="index.html" class="logo-header">The Power Boutique</a>
+    </header>
 
     <nav class="sidebar">
         <a href="index.html" class="nav-link">Acasă</a>
         <a href="programari.html" class="nav-link">Consultații</a>
         <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link" style="opacity: 1;">Despre</a>
+        <a href="despre.html" class="nav-link">Despre</a>
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
-    <main class="about-content">
-        <img src="Gemini_Generated_Image_iag57piag57piag5.jpeg" alt="Elena Shipko" class="about-image" style="opacity: 0.7;">
-        
-        <div class="name-burgundy">Elena Shipko</div>
-        <h2>Filosofia din spatele <i>Energetica</i></h2>
-
-        <p class="story-text">
-            Sunt un explorator al potențialului uman, situat la intersecția dintre <i>știința strategiilor de business</i> și <i>misticul astrologiei evolutive</i>. Experiența mea ca NLP Master și Business Strategist mi-a arătat că cifrele și succesul material sunt doar jumătate din ecuație. 
-        </p>
-
-        <p class="story-text">
-            Prin Energetica, am creat un spațiu boutique unde astrologia nu este doar predicție, ci un instrument de recalibrare. Ajut liderii și vizionarii să își descifreze codul cosmic pentru a acționa în armonie cu propria lor energie, transformând haosul în claritate strategică.
-        </p>
-
-        <div class="highlight-box">
-            <h3>Expertiza Mea</h3>
-            <p class="story-text" style="margin-bottom: 0;">
-                • <strong>Astrologie Evolutivă:</strong> Decodificarea hărții natale pentru aliniere personală.<br>
-                • <strong>NLP Master:</strong> Reprogramarea tiparelor mentale pentru performanță.<br>
-                • <strong>Business Strategist:</strong> Structurarea viziunii tale într-un model sustenabil.
-            </p>
+    <main class="about-container">
+        <div class="about-hero">
+            <div class="about-image-container">
+                <img src="5.jpg" alt="Jelena Shipko">
+            </div>
+            
+            <div class="about-content">
+                <div class="section-subtitle">Viziune & Energie</div>
+                <h1 class="section-title">Ghidul Tău Spre Manifestare</h1>
+                
+                <div class="about-text-card">
+                    <p>Fiecare obiect din universul The Power Boutique și fiecare sesiune de ghidare sunt infuzate cu o singură misiune: să te ajut să recunoști și să porți cu mândrie propria ta coroană interioară.</p>
+                    <p>Cred cu tărie că succesul nu este o destinație, ci o vibrație pe care o cultivăm zilnic prin alegerile noastre, prin cristalele pe care le atingem și prin claritatea cu care ne privim destinul.</p>
+                    <p>Sunt aici să îți ofer nu doar un produs sau o consultație, ci o experiență transformațională care să îți reamintească de puterea ta nativă de a crea realitatea pe care o meriți.</p>
+                    <div class="signature">Jelena Shipko</div>
+                </div>
+            </div>
         </div>
-
-        <p class="story-text" style="text-align: center;">
-            <i>„Succesul nu este o destinație, ci o stare de frecvență.”</i>
-        </p>
-
-        <a href="contact.html" class="btn-main" style="text-decoration: none; padding: 20px 60px; border: 1px solid var(--gold); color: var(--gold); text-transform: uppercase; font-size: 0.75rem; letter-spacing: 5px; transition: 0.5s; display: inline-block; margin-top: 40px;">Să începem</a>
     </main>
 
     <footer>
@@ -175,9 +180,9 @@
             <a href="#"><i class="fab fa-instagram"></i></a>
             <a href="#"><i class="fab fa-tiktok"></i></a>
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/37127507367" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p class="copyright">© 2026 ENERGETICA • ELENA SHIPKO</p>
+        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 </body>
 </html>
