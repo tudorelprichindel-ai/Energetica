@@ -11,7 +11,7 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
-            --hermes-terracotta: rgba(211, 84, 0, 0.8); /* Culoare Hermes Transparenta */
+            --hermes-terracotta: rgba(211, 84, 0, 0.4); /* Opacitate redusa la 0.4 pentru discretie */
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
@@ -135,8 +135,8 @@
                 width: 100%; 
                 padding: 15px 10px; 
                 gap: 15px; 
-                background: var(--hermes-terracotta); /* Background Hermes Transparent */
-                backdrop-filter: blur(5px);
+                background: var(--hermes-terracotta); /* Opacitate setata la 0.4 */
+                backdrop-filter: blur(3px);
                 z-index: 1999;
             }
             .nav-link { 
@@ -207,7 +207,7 @@
     <script>
         const translations = {
             'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроiться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
             'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
             'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
         };
