@@ -56,30 +56,23 @@
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
         .about-container { padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto; width: 100%; }
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 
-        .about-hero { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            gap: 60px; 
-            align-items: center;
-        }
-
-        /* EFECTUL DE BLUR ȘI TRANSPARENȚĂ PE MARGINI */
+        /* AJUSTARE MASCĂ PENTRU CLARITATEA PĂRULUI */
         .about-image-wrapper {
             position: relative;
             display: flex;
             justify-content: center;
-            /* Creăm masca radială care face marginile transparente */
-            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
-            mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+            /* Am mutat centrul măștii la 35% de sus pentru a lăsa părul vizibil */
+            -webkit-mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 90%);
+            mask-image: radial-gradient(circle at 50% 35%, black 45%, transparent 90%);
         }
 
         .about-image-wrapper img { 
             width: 100%; 
             max-width: 550px; 
             display: block; 
-            filter: contrast(1.1) brightness(1) blur(0px);
-            transition: var(--transition);
+            filter: contrast(1.1);
         }
 
         .about-text-card { 
@@ -119,10 +112,9 @@
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
             .about-container { padding: 140px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
-            /* Pe mobil, ajustăm masca să fie mai subtilă pentru a nu tăia prea mult din poză */
             .about-image-wrapper {
-                -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
-                mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+                -webkit-mask-image: radial-gradient(circle at 50% 30%, black 55%, transparent 95%);
+                mask-image: radial-gradient(circle at 50% 30%, black 55%, transparent 95%);
             }
             .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); text-align: center; }
         }
