@@ -15,21 +15,20 @@
             * { cursor: none; }
         }
 
-        /* EFECT DE FUM AURIEU */
-        .smoke-particle {
+        /* STARDUST PARTICLES */
+        .stardust {
             position: fixed;
             pointer-events: none;
             z-index: 9999;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+            background: var(--gold);
             border-radius: 50%;
-            filter: blur(8px);
-            animation: smokeFade 2.5s ease-out forwards;
+            box-shadow: 0 0 4px var(--gold);
+            animation: stardustFade 1.5s ease-out forwards;
         }
 
-        @keyframes smokeFade {
-            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.6; }
-            50% { opacity: 0.3; }
-            100% { transform: translate(-50%, -80%) scale(3); opacity: 0; }
+        @keyframes stardustFade {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.8; }
+            100% { transform: translate(var(--dx), var(--dy)) scale(0); opacity: 0; }
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -41,7 +40,6 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER & SIDEBAR - Păstrate conform preferințelor tale */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
@@ -56,7 +54,6 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & DESPRE SUB TITLE */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -140,41 +137,36 @@
     </footer>
 
     <script>
-        // EFECT DE FUM LENT (SMOKE TRAIL)
-        function createSmoke(x, y) {
-            const smoke = document.createElement('div');
-            smoke.className = 'smoke-particle';
+        // STARDUST DYNAMIC TRAIL
+        function createStardust(x, y) {
+            const particle = document.createElement('div');
+            particle.className = 'stardust';
             
-            // Dimensiune variabilă pentru realism
-            const size = Math.random() * 40 + 20 + 'px';
-            smoke.style.width = size;
-            smoke.style.height = size;
+            // Random sizes for organic feel
+            const size = Math.random() * 4 + 1 + 'px';
+            particle.style.width = size;
+            particle.style.height = size;
             
-            smoke.style.left = x + 'px';
-            smoke.style.top = y + 'px';
+            particle.style.left = x + 'px';
+            particle.style.top = y + 'px';
             
-            document.body.appendChild(smoke);
+            // Random dispersion (the magic feel)
+            const dx = (Math.random() - 0.5) * 80 + 'px';
+            const dy = (Math.random() - 0.5) * 80 + 'px';
+            particle.style.setProperty('--dx', dx);
+            particle.style.setProperty('--dy', dy);
             
-            // Eliminare după animație
-            setTimeout(() => smoke.remove(), 2500);
+            document.body.appendChild(particle);
+            setTimeout(() => particle.remove(), 1500);
         }
 
-        // Limităm frecvența pentru a fi mai "lent" și mai puțin obositor
-        let lastX = 0;
-        let lastY = 0;
-
         document.addEventListener('mousemove', (e) => {
-            const dist = Math.hypot(e.clientX - lastX, e.clientY - lastY);
-            if (dist > 15) { // Creează fum doar dacă mouse-ul s-a mișcat suficient
-                createSmoke(e.clientX, e.clientY);
-                lastX = e.clientX;
-                lastY = e.clientY;
-            }
+            createStardust(e.clientX, e.clientY);
         });
 
         document.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
-            createSmoke(touch.clientX, touch.clientY);
+            createStardust(touch.clientX, touch.clientY);
         }, { passive: true });
 
         // Traduceri și Dropdown
