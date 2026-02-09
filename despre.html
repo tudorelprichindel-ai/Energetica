@@ -31,13 +31,23 @@
             background-size: cover;
         }
 
+        /* HEADER ȘI FOOTER SIMETRIC */
         header, footer {
             width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
             display: flex; align-items: center; justify-content: center; z-index: 2000;
         }
 
-        header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); }
+        header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); display: flex; justify-content: space-between; padding: 0 5%; }
         footer { margin-top: auto; height: 80px; border-top: 1px solid var(--wine); flex-direction: column; background: rgba(0, 0, 0, 0.4); }
+
+        /* SELECTOR LIMBI */
+        .lang-selector { display: flex; gap: 15px; }
+        .lang-btn { 
+            text-decoration: none; color: var(--white); font-size: 0.65rem; 
+            letter-spacing: 2px; text-transform: uppercase; font-weight: 600; 
+            opacity: 0.5; transition: var(--transition); 
+        }
+        .lang-btn:hover, .lang-btn.active { opacity: 1; color: var(--gold); }
 
         .shimmer-element, .social-links a i {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
@@ -59,39 +69,19 @@
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
 
         .about-image-wrapper {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            /* Masca ridicată la 30% pentru a lăsa părul vizibil [cite: 2026-01-26, 2026-02-09] */
+            position: relative; display: flex; justify-content: center;
             -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
             mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%);
         }
 
-        .about-image-wrapper img { 
-            width: 100%; 
-            max-width: 550px; 
-            display: block; 
-            filter: contrast(1.1);
-        }
+        .about-image-wrapper img { width: 100%; max-width: 550px; display: block; filter: contrast(1.1); }
 
-        .about-text-card { 
-            background: rgba(255, 255, 255, 0.08); 
-            backdrop-filter: blur(25px); 
-            padding: 50px; 
-            border-left: 2px solid var(--gold);
-        }
+        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 50px; border-left: 2px solid var(--gold); }
 
         .section-subtitle { color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; margin-bottom: 20px; display: block; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 5vw, 4rem); font-style: italic; margin-bottom: 30px; line-height: 1.1; }
         
-        .about-text-card p {
-            font-size: 1.05rem; 
-            color: #fff;
-            margin-bottom: 20px;
-            font-weight: 400;
-            text-shadow: 1px 1px 2px rgba(0,0,0,0.5);
-        }
-
+        .about-text-card p { font-size: 1.05rem; color: #fff; margin-bottom: 20px; font-weight: 400; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
         .highlight-gold { color: var(--gold); font-weight: 600; }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 30px; }
 
@@ -100,7 +90,9 @@
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
         @media (max-width: 850px) {
-            header, footer { height: 70px !important; }
+            header { height: 70px !important; flex-direction: column; justify-content: center; gap: 5px; padding: 10px; }
+            footer { height: 70px !important; padding: 10px 0; }
+            .lang-selector { gap: 10px; }
             .sidebar {
                 position: fixed; top: 70px; left: 0; transform: none;
                 flex-direction: row; justify-content: center;
@@ -119,6 +111,12 @@
     <div class="fixed-bg"></div>
     <header>
         <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
+        <div class="lang-selector">
+            <a href="#" class="lang-btn">RU</a>
+            <a href="#" class="lang-btn">LV</a>
+            <a href="#" class="lang-btn">EN</a>
+            <a href="#" class="lang-btn active">RO</a>
+        </div>
     </header>
 
     <nav class="sidebar">
