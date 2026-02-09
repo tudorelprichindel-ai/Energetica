@@ -13,147 +13,51 @@
             --white: #ffffff;
             --glass: rgba(255, 255, 255, 0.1);
             --transition: all 0.5s cubic-bezier(0.16, 1, 0.3, 1);
-            --transition-cinematic: all 2.5s cubic-bezier(0.15, 1, 0.3, 1);
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         html, body { height: 100%; width: 100%; }
+        body { display: flex; flex-direction: column; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; -webkit-font-smoothing: antialiased; }
+        
+        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
 
-        body { 
-            display: flex; flex-direction: column;
-            width: 100%; background: #000; color: var(--white);
-            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-            line-height: 1.6; -webkit-font-smoothing: antialiased;
-        }
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
+        
+        .lang-selector { display: flex; gap: 15px; }
+        .lang-btn { background: none; border: none; color: var(--white); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.5; transition: var(--transition); cursor: pointer; }
+        .lang-btn:hover, .lang-btn.active { opacity: 1; color: var(--gold); }
 
-        .fixed-bg {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; 
-            background: linear-gradient(rgba(0, 0, 0, 0.3), rgba(0, 0, 0, 0.3)), url('cristale3.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
-        }
-
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
-
-        header, footer {
-            width: 100%; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
-            display: flex; align-items: center; justify-content: center; z-index: 2000;
-        }
-
-        header { position: fixed; top: 0; height: 80px; border-bottom: 1px solid var(--glass); }
-        footer { margin-top: auto; height: 80px; border-top: 1px solid var(--wine); flex-direction: column; background: rgba(0, 0, 0, 0.4); }
-
-        .shimmer-element, .social-links a i {
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
-            animation: shimmerEffect 5s linear infinite;
-        }
-
+        .shimmer-element, .social-links a i { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        .logo-header {
-            font-family: 'Playfair Display', serif; font-style: italic;
-            text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700;
-        }
+        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
 
-        .sidebar {
-            position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
-            display: flex; flex-direction: column; gap: 2.5rem;
-        }
-        .nav-link {
-            text-decoration: none; color: var(--gold); font-size: 0.75rem;
-            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition);
-            font-weight: 700;
-        }
+        .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
+        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
         main { flex: 1; padding: 180px 5% 120px; max-width: 1550px; margin: 0 auto; width: 100%; text-align: center; }
+        .section-subtitle { color: var(--wine); letter-spacing: 12px; text-transform: uppercase; font-size: 1.2rem; font-weight: 700; margin-bottom: 20px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 80px; letter-spacing: 4px; font-weight: 700; line-height: 1.1; }
 
-        .section-subtitle {
-            color: var(--wine); letter-spacing: 12px; text-transform: uppercase;
-            font-size: 1.2rem; font-weight: 700; margin-bottom: 20px;
-        }
+        .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; }
+        .product-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--glass); padding: 25px; border-radius: 4px; display: flex; flex-direction: column; align-items: center; }
+        .product-media { width: 100%; aspect-ratio: 1/1; background: rgba(0, 0, 0, 0.3); overflow: hidden; margin-bottom: 25px; cursor: zoom-in; }
+        .product-media video { width: 100%; height: 100%; object-fit: contain; }
+        .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 12px; font-style: italic; }
+        .product-description { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 15px; min-height: 45px; }
+        .product-price { font-family: 'Montserrat', sans-serif; color: var(--white); font-weight: 600; font-size: 1.25rem; margin-bottom: 25px; }
+        .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.5s ease; text-decoration: none; }
+        .order-btn:hover { background: var(--gold); color: #000; }
 
-        /* TITLU CURĂȚAT FĂRĂ UMBRE PENTRU SHIMMER PUR */
-        .section-title {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
-            font-style: italic; margin-bottom: 80px; letter-spacing: 4px; 
-            font-weight: 700; line-height: 1.1;
-        }
-
-        .product-grid {
-            display: grid; grid-template-columns: repeat(3, 1fr); gap: 70px; justify-content: center;
-        }
-
-        .product-card {
-            background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px);
-            border: 1px solid var(--glass); padding: 25px; transition: var(--transition-cinematic);
-            display: flex; flex-direction: column; align-items: center; border-radius: 4px;
-        }
-
-        .product-card:hover {
-            transform: translateY(-10px); border-color: rgba(197, 160, 89, 0.5);
-            box-shadow: 0 0 40px rgba(197, 160, 89, 0.15);
-        }
-
-        .product-media {
-            width: 100%; aspect-ratio: 1/1; background: rgba(0, 0, 0, 0.3); overflow: hidden;
-            display: flex; align-items: center; justify-content: center;
-            border-radius: 2px; margin-bottom: 25px; cursor: zoom-in;
-        }
-
-        .product-media video { width: 100%; height: 100%; object-fit: contain; pointer-events: none; }
-
-        .product-card h3 {
-            font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 12px;
-            letter-spacing: 1px; font-style: italic;
-        }
-
-        .product-description { font-size: 0.85rem; color: rgba(255,255,255,0.6); margin-bottom: 15px; min-height: 45px; font-weight: 300; font-style: italic; }
-
-        .product-price { font-family: 'Montserrat', sans-serif; color: var(--white); font-weight: 600; font-size: 1.25rem; margin-bottom: 25px; letter-spacing: 1px; }
-
-        .order-btn {
-            background: transparent; border: 1px solid var(--gold);
-            color: var(--gold); padding: 12px 35px; text-transform: uppercase;
-            letter-spacing: 4px; font-weight: 700; font-size: 0.7rem;
-            cursor: pointer; transition: 0.5s ease; text-decoration: none;
-            display: inline-block;
-        }
-        .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
-
-        .video-overlay {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.85); backdrop-filter: blur(15px);
-            z-index: 3000; display: none; justify-content: center; align-items: center;
-            opacity: 0; transition: opacity 0.8s ease;
-        }
-        .video-overlay.active { display: flex; opacity: 1; }
-        .overlay-content { width: 90%; max-width: 900px; position: relative; transform: scale(0.9); transition: transform 0.8s ease; display: flex; justify-content: center; align-items: center; }
-        .video-overlay.active .overlay-content { transform: scale(1); }
-        .overlay-content video { width: 100%; height: auto; max-height: 80vh; object-fit: contain; }
-        .close-overlay { position: absolute; top: -60px; right: 0; color: var(--gold); font-size: 0.9rem; letter-spacing: 4px; text-transform: uppercase; cursor: pointer; font-weight: 700; padding: 15px; z-index: 3100; }
-
+        footer { height: 80px; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); }
         .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
-        .social-links a { text-decoration: none; font-size: 1.4rem; transition: var(--transition); }
-        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
+        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
 
         @media (max-width: 850px) {
-            header, footer { height: 70px !important; }
-            .logo-header { font-size: 1.1rem; }
-            .sidebar {
-                position: fixed; top: 70px; left: 0; transform: none;
-                flex-direction: row; justify-content: center;
-                padding: 15px; gap: 1rem;
-                background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
-                width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
-            }
-            .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
+            header { height: 70px !important; flex-direction: column; justify-content: center; gap: 5px; padding: 10px; }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
             main { padding: 140px 15px 100px; }
-            .product-grid { grid-template-columns: 1fr; gap: 40px; }
-            .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
-            .overlay-content { width: 95%; }
-            .close-overlay { top: -45px; font-size: 0.75rem; }
-            footer { padding: 10px 0; }
         }
     </style>
 </head>
@@ -161,77 +65,28 @@
     <div class="fixed-bg"></div>
     <header>
         <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
+        <div class="lang-selector">
+            <button onclick="changeLang('ru')" class="lang-btn" id="btn-ru">RU</button>
+            <button onclick="changeLang('lv')" class="lang-btn" id="btn-lv">LV</button>
+            <button onclick="changeLang('en')" class="lang-btn" id="btn-en">EN</button>
+            <button onclick="changeLang('ro')" class="lang-btn active" id="btn-ro">RO</button>
+        </div>
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
-        <a href="products.html" class="nav-link">Shop</a>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
+        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
     <main>
-        <div class="section-subtitle">O experiență hipnotică</div>
-        <h1 class="section-title shimmer-element">The Power Shop</h1>
-        
-        <div class="product-grid">
-            <div class="product-card">
-                <div class="product-media" onclick="openVisualizer('Rota ir pieejama.mp4')">
-                    <video src="Rota ir pieejama.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="product-info">
-                    <h3>Prosperitate în Materie</h3>
-                    <p class="product-description">Manifestă succesul și abundența în plan real.</p>
-                    <div class="product-price">La cerere</div>
-                    <a href="contact.html" class="order-btn">Vreau această energie</a>
-                </div>
+        <div class="section-subtitle" id="sub-title">O experiență hipnotică</div>
+        <h1 class="section-title shimmer-element" id="main-title">The Power Shop</h1>
+        <div class="product-grid" id="product-grid">
             </div>
-
-            <div class="product-card">
-                <div class="product-media" onclick="openVisualizer('ANTISTRESS.mp4')">
-                    <video src="ANTISTRESS.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="product-info">
-                    <h3>Echilibru Antistres</h3>
-                    <p class="product-description">O oază de liniște purtată la încheietură.</p>
-                    <div class="product-price">72€</div>
-                    <a href="contact.html" class="order-btn">Adu-mi liniștea</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-media" onclick="openVisualizer('VĒLMJU REALIZĒŠANAS ROTA.mp4')">
-                    <video src="VĒLMJU REALIZĒŠANAS ROTA.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="product-info">
-                    <h3>Realizarea Dorințelor</h3>
-                    <p class="product-description">Malahit și Lavă pentru materializarea intențiilor.</p>
-                    <div class="product-price">71€</div>
-                    <a href="contact.html" class="order-btn">Începe transformarea</a>
-                </div>
-            </div>
-
-            <div class="product-card">
-                <div class="product-media" onclick="openVisualizer('JAUNĀ LAIKMETA VĪRIETIS.mp4')">
-                    <video src="JAUNĀ LAIKMETA VĪRIETIS.mp4" autoplay muted loop playsinline></video>
-                </div>
-                <div class="product-info">
-                    <h3>Bărbatul Noii Ere</h3>
-                    <p class="product-description">Putere masculină rafinată prin cristale nobile.</p>
-                    <div class="product-price">188€</div>
-                    <a href="contact.html" class="order-btn">Descoperă puterea</a>
-                </div>
-            </div>
-        </div>
     </main>
-
-    <div id="visualizerOverlay" class="video-overlay" onclick="closeVisualizer()">
-        <div class="overlay-content" onclick="event.stopPropagation()">
-            <div class="close-overlay" onclick="closeVisualizer()">Închide [x]</div>
-            <video id="visualizerVideo" src="" autoplay loop playsinline></video>
-        </div>
-    </div>
 
     <footer>
         <div class="social-links">
@@ -244,24 +99,54 @@
     </footer>
 
     <script>
-        function openVisualizer(src) {
-            const overlay = document.getElementById('visualizerOverlay');
-            const video = document.getElementById('visualizerVideo');
-            video.src = src;
-            overlay.style.display = 'flex';
-            setTimeout(() => { overlay.classList.add('active'); }, 10);
-            window.addEventListener('keydown', handleEsc);
-        }
+        const translations = {
+            ro: {
+                home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact",
+                sub: "O experiență hipnotică", title: "The Power Shop", order: "Vreau această energie",
+                products: [
+                    { name: "Prosperitate în Materie", desc: "Manifestă succesul și abundența în plan real.", price: "La cerere", video: "Rota ir pieejama.mp4" },
+                    { name: "Echilibru Antistres", desc: "O oază de liniște purtată la încheietură.", price: "72€", video: "ANTISTRESS.mp4" },
+                    { name: "Realizarea Dorințelor", desc: "Malahit și Lavă pentru materializarea intențiilor.", price: "71€", video: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                    { name: "Bărbatul Noii Ere", desc: "Putere masculină rafinată prin cristale nobile.", price: "188€", video: "JAUNĀ LAIKMETA VĪRIETIS.mp4" }
+                ]
+            },
+            ru: {
+                home: "Главная", consult: "Консультации", shop: "Магазин", about: "Обо мне", contact: "Контакт",
+                sub: "Гипнотический опыт", title: "The Power Shop", order: "Я хочу эту энергию",
+                products: [
+                    { name: "Процветание в материи", desc: "Проявите успех и изобилие в реальности.", price: "По запросу", video: "Rota ir pieejama.mp4" },
+                    { name: "Антистрессовый баланс", desc: "Оазис спокойствия на вашем запястье.", price: "72€", video: "ANTISTRESS.mp4" },
+                    { name: "Исполнение желаний", desc: "Малахит и лава для материализации намерений.", price: "71€", video: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                    { name: "Мужчина новой эры", desc: "Мужская сила, изысканная благородными кристаллами.", price: "188€", video: "JAUNĀ LAIKMETA VĪRIETIS.mp4" }
+                ]
+            }
+            // LV și EN vor urma aceeași structură în dicționar
+        };
 
-        function closeVisualizer() {
-            const overlay = document.getElementById('visualizerOverlay');
-            const video = document.getElementById('visualizerVideo');
-            overlay.classList.remove('active');
-            setTimeout(() => { overlay.style.display = 'none'; video.src = ''; }, 800);
-            window.removeEventListener('keydown', handleEsc);
-        }
+        function changeLang(lang) {
+            document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
+            document.getElementById('btn-' + lang).classList.add('active');
+            
+            document.getElementById('nav-home').innerText = translations[lang].home;
+            document.getElementById('nav-consult').innerText = translations[lang].consult;
+            document.getElementById('nav-shop').innerText = translations[lang].shop;
+            document.getElementById('nav-about').innerText = translations[lang].about;
+            document.getElementById('nav-contact').innerText = translations[lang].contact;
+            document.getElementById('sub-title').innerText = translations[lang].sub;
+            document.getElementById('main-title').innerText = translations[lang].title;
 
-        function handleEsc(e) { if (e.key === 'Escape') closeVisualizer(); }
+            const grid = document.getElementById('product-grid');
+            grid.innerHTML = translations[lang].products.map(p => `
+                <div class="product-card">
+                    <div class="product-media"><video src="${p.video}" autoplay muted loop playsinline></video></div>
+                    <h3>${p.name}</h3>
+                    <p class="product-description">${p.desc}</p>
+                    <div class="product-price">${p.price}</div>
+                    <a href="contact.html" class="order-btn">${translations[lang].order}</a>
+                </div>
+            `).join('');
+        }
+        changeLang('ro');
     </script>
 </body>
 </html>
