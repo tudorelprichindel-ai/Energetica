@@ -11,25 +11,31 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* FUNDAL CU CINEMATIC ZOOM SI PARTICULE */
+        /* FUNDAL & PARTICULE */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
         .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.3; filter: blur(1px); animation: float linear infinite; }
+        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.2; filter: blur(1px); animation: float linear infinite; }
         @keyframes float {
             0% { transform: translateY(0) translateX(0); opacity: 0; }
-            50% { opacity: 0.4; }
-            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+            50% { opacity: 0.3; }
+            100% { transform: translateY(-100vh) translateX(30px); opacity: 0; }
         }
 
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
-        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        
+        .logo-header { 
+            font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; 
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         /* DROPDOWN LIMBI */
@@ -45,46 +51,52 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT */
-        .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 10px; text-shadow: 0 0 25px rgba(0,0,0,0.8); }
-        .hero-sub { letter-spacing: 10px; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; }
+        /* HERO & ABOUT INTEGRAT SUB TITLE */
+        .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
+        
+        .hero-title { 
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
+        .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
 
-        .about-section { padding: 100px 8%; max-width: 1600px; margin: 0 auto; width: 100%; }
-        .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1400px; margin: 0 auto; text-align: left; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
-        .about-image-wrapper img { width: 100%; max-width: 550px; display: block; filter: contrast(1.1); }
-        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 50px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1.05rem; margin-bottom: 30px; line-height: 1.8; }
+        .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
+        
+        .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
+        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
 
-        /* BUTON CU AURA GLOW */
+        /* AURA GLOW BTN */
         .aura-btn { 
             background: transparent; border: 1px solid var(--gold); color: var(--gold); 
-            padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; 
-            font-weight: 700; font-size: 0.75rem; cursor: pointer; 
-            transition: var(--transition); position: relative; text-decoration: none;
-            display: inline-block; margin-bottom: 20px;
+            padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; 
+            font-weight: 700; font-size: 0.7rem; cursor: pointer; 
+            transition: var(--transition); text-decoration: none;
+            display: inline-block;
         }
         .aura-btn:hover { 
             background: var(--gold); color: #000; 
-            box-shadow: 0 0 25px rgba(197, 160, 89, 0.6);
-            transform: translateY(-3px);
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.5);
+            transform: translateY(-2px);
         }
+        .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
-        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 10px; }
-
-        /* FOOTER COMPLET */
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(10px); }
-        .social-links { display: flex; gap: 25px; margin-bottom: 15px; font-size: 1.5rem; }
+        /* FOOTER */
+        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
+        .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
         .social-links a { color: var(--gold); text-decoration: none; transition: 0.3s; }
         .social-links a:hover { color: var(--white); transform: scale(1.1); }
 
-        @media (max-width: 850px) {
+        @media (max-width: 950px) {
             header { height: 70px; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
-            .hero-section { padding-top: 140px; }
-            .about-hero { grid-template-columns: 1fr; }
-            .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); text-align: center; }
+            .hero-section { padding-top: 160px; }
+            .about-hero { grid-template-columns: 1fr; text-align: center; }
+            .about-text-card { padding: 30px 20px; border-left: none; border-top: 2px solid var(--gold); }
+            .about-image-wrapper img { max-width: 350px; }
         }
     </style>
 </head>
@@ -120,17 +132,15 @@
         <section class="hero-section">
             <h1 class="hero-title">The Power Boutique</h1>
             <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
-        </section>
 
-        <section class="about-section">
             <div class="about-hero">
                 <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
                 <div class="about-content">
                     <div class="about-text-card">
-                        <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.8rem;display:block;margin-bottom:20px;">Viziune & Creație</span>
-                        <h2 id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-style:italic;margin-bottom:30px;color:var(--gold);">Inima Din Spatele Puterii</h2>
+                        <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
+                        <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
                         <div id="about-text"></div>
-                        <a href="contact.html" class="aura-btn" id="about-btn">Descoperă mai mult</a>
+                        <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
                         <div class="signature">Jelena Shipko</div>
                     </div>
                 </div>
@@ -145,21 +155,20 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase; color: rgba(255,255,255,0.6);">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
         function createParticles() {
             const container = document.getElementById('particle-container');
-            for (let i = 0; i < 30; i++) {
+            for (let i = 0; i < 40; i++) {
                 const p = document.createElement('div');
                 p.className = 'particle';
                 const size = Math.random() * 2 + 1 + 'px';
-                p.style.width = size;
-                p.style.height = size;
+                p.style.width = size; p.style.height = size;
                 p.style.left = Math.random() * 100 + 'vw';
                 p.style.top = Math.random() * 100 + 'vh';
-                p.style.animationDuration = Math.random() * 15 + 10 + 's';
+                p.style.animationDuration = Math.random() * 12 + 8 + 's';
                 p.style.animationDelay = Math.random() * 5 + 's';
                 container.appendChild(p);
             }
@@ -167,8 +176,10 @@
         createParticles();
 
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Descoperă mai mult" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p>", btn: "Узнать больше" }
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Află Povestea" },
+            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p>", btn: "Узнать больше" },
+            lv: { home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", sub:"JELENA SHIPKO", aSub:"Vīzija un jaunrade", aTitle:"Sirds aiz spēka", aText:"<p>Katrs solis este o oportunitate de a ne alinia ar panākumiem. Ar <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi un rīkiem.</p>", btn: "Uzzināt vairāk" },
+            en: { home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Vision & Creation", aTitle:"The Heart Behind Power", aText:"<p>Every step we take is an opportunity to align with success. Through <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, I created a bridge between desire and energy tools.</p>", btn: "Discover more" }
         };
 
         function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
