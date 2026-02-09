@@ -11,8 +11,18 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
+        /* FUNDAL CU PARTICULE */
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
         
+        .particles { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
+        .particle { position: absolute; background: var(--gold); border-radius: 50%; opacity: 0.3; filter: blur(2px); animation: float linear infinite; }
+
+        @keyframes float {
+            0% { transform: translateY(0) translateX(0); opacity: 0; }
+            50% { opacity: 0.4; }
+            100% { transform: translateY(-100vh) translateX(20px); opacity: 0; }
+        }
+
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
@@ -31,18 +41,32 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* MAIN LANDING */
+        /* HERO & ABOUT */
         .hero-section { height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; text-align: center; padding: 0 5%; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 10px; text-shadow: 0 0 25px rgba(0,0,0,0.8); }
         .hero-sub { letter-spacing: 10px; text-transform: uppercase; font-size: 0.8rem; opacity: 0.8; }
 
-        /* SECTIUNEA DESPRE INTEGRATA */
         .about-section { padding: 100px 8%; max-width: 1600px; margin: 0 auto; width: 100%; }
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         .about-image-wrapper { position: relative; display: flex; justify-content: center; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 550px; display: block; filter: contrast(1.1); }
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 50px; border-left: 2px solid var(--gold); }
-        .about-text-card p { font-size: 1.05rem; margin-bottom: 20px; line-height: 1.8; text-shadow: 1px 1px 2px rgba(0,0,0,0.5); }
+        .about-text-card p { font-size: 1.05rem; margin-bottom: 30px; line-height: 1.8; }
+
+        /* BUTON CU AURA GLOW */
+        .aura-btn { 
+            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
+            padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; 
+            font-weight: 700; font-size: 0.75rem; cursor: pointer; 
+            transition: var(--transition); position: relative; text-decoration: none;
+            display: inline-block;
+        }
+        .aura-btn:hover { 
+            background: var(--gold); color: #000; 
+            box-shadow: 0 0 20px 2px rgba(197, 160, 89, 0.4), 0 0 40px 10px rgba(197, 160, 89, 0.1);
+            transform: translateY(-2px);
+        }
+
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 30px; }
 
         footer { height: 100px; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); }
@@ -60,6 +84,8 @@
 </head>
 <body>
     <div class="fixed-bg"></div>
+    <div class="particles" id="particle-container"></div>
+
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
@@ -98,6 +124,7 @@
                         <span id="about-sub" style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.8rem;display:block;margin-bottom:20px;">Viziune & Creație</span>
                         <h2 class="shimmer-element" id="about-title" style="font-family:'Playfair Display',serif;font-size:clamp(2rem,5vw,3.5rem);font-style:italic;margin-bottom:30px;">Inima Din Spatele Puterii</h2>
                         <div id="about-text"></div>
+                        <a href="contact.html" class="aura-btn" id="about-btn">Descoperă mai mult</a>
                         <div class="signature">Jelena Shipko</div>
                     </div>
                 </div>
@@ -107,20 +134,36 @@
 
     <footer>
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram shimmer-element"></i></a>
-            <a href="#"><i class="fab fa-tiktok shimmer-element"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane shimmer-element"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp shimmer-element"></i></a>
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p style="font-size: 0.6rem; letter-spacing: 2px; text-transform: uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
+        // GENERATOR PARTICULE
+        function createParticles() {
+            const container = document.getElementById('particle-container');
+            for (let i = 0; i < 40; i++) {
+                const p = document.createElement('div');
+                p.className = 'particle';
+                const size = Math.random() * 3 + 1 + 'px';
+                p.style.width = size;
+                p.style.height = size;
+                p.style.left = Math.random() * 100 + 'vw';
+                p.style.top = Math.random() * 100 + 'vh';
+                p.style.animationDuration = Math.random() * 10 + 10 + 's';
+                p.style.animationDelay = Math.random() * 5 + 's';
+                container.appendChild(p);
+            }
+        }
+        createParticles();
+
         const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>" },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p>" },
-            lv: { home:"Sākums", consult:"Konsultācijas", shop:"Veikals", about:"Par mani", contact:"Kontakti", sub:"JELENA SHIPKO", aSub:"Vīzija un jaunrade", aTitle:"Sirds aiz spēka", aText:"<p>Katrs solis este o oportunitate de a ne alinia ar panākumiem. Ar <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> esmu radījusi tiltu starp vēlmi un rīkiem.</p>" },
-            en: { home:"Home", consult:"Consultations", shop:"Shop", about:"About", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Vision & Creation", aTitle:"The Heart Behind Power", aText:"<p>Every step we take is an opportunity to align with success. Through <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, I created a bridge between desire and energy tools.</p>" }
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"BY JELENA SHIPKO", aSub:"Viziune & Creație", aTitle:"Inima Din Spatele Puterii", aText:"<p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span>, am creat o punte între dorință și energie.</p>", btn: "Descoperă mai mult" },
+            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"ЕЛЕНА ШИПКО", aSub:"Видение и Творчество", aTitle:"Сердце за Силой", aText:"<p>Каждый шаг — это шанс настроиться на успех. С <span style='color:var(--gold);font-weight:600;'>The Power Boutique</span> я создала мост между желанием и силой.</p>", btn: "Узнать больше" }
         };
 
         function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
@@ -135,6 +178,7 @@
             document.getElementById('about-sub').innerText = translations[lang].aSub;
             document.getElementById('about-title').innerText = translations[lang].aTitle;
             document.getElementById('about-text').innerHTML = translations[lang].aText;
+            document.getElementById('about-btn').innerText = translations[lang].btn;
         }
         window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
         window.onload = () => selectLang('ro');
