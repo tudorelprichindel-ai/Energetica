@@ -22,7 +22,6 @@
             width: 100%; background: #000; color: var(--white);
             font-family: 'Montserrat', sans-serif; overflow-x: hidden;
             line-height: 1.6; -webkit-font-smoothing: antialiased;
-            display: flex; flex-direction: column; min-height: 100vh;
         }
 
         .fixed-bg {
@@ -33,13 +32,12 @@
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER - SELECTOR COMPACT DREAPTA */
+        /* HEADER */
         header {
-            position: fixed; top: 0; width: 100%; z-index: 2000;
-            background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px);
+            position: fixed; top: 0; width: 100%; z-index: 1000;
+            background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px);
             border-bottom: 1px solid var(--glass); height: 80px;
-            display: flex; justify-content: space-between; align-items: center;
-            padding: 0 20px 0 5%;
+            display: flex; justify-content: center; align-items: center;
         }
 
         .logo-header {
@@ -52,32 +50,7 @@
 
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* DROPDOWN LIMBI SIMETRIC */
-        .lang-dropdown { position: relative; display: flex; align-items: center; }
-        .lang-current { 
-            background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
-            padding: 8px 0; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; 
-            text-transform: uppercase; display: flex; align-items: center; justify-content: center; gap: 8px;
-            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
-            height: 40px; width: 90px;
-        }
-        .lang-list { 
-            position: absolute; top: calc(100% + 15px); right: 0; 
-            background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); 
-            width: 90px; display: none; flex-direction: column; z-index: 2100; 
-            box-shadow: 0 10px 30px rgba(0,0,0,0.8); 
-        }
-        .lang-list.show { display: flex; }
-        .lang-btn { 
-            background: none; border: none; color: var(--white); 
-            padding: 10px 0; font-size: 0.65rem; letter-spacing: 1px; 
-            text-transform: uppercase; cursor: pointer; 
-            display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; 
-        }
-        .lang-btn img { width: 16px; }
-        .lang-btn:hover { background: rgba(197, 160, 89, 0.2); color: var(--gold); }
-
-        /* SIDEBAR - REPOZITIONARE MOBIL */
+        /* SIDEBAR DESKTOP - Aceleași setări ca în Shop/Landing */
         .sidebar {
             position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000;
             display: flex; flex-direction: column; gap: 2.5rem;
@@ -115,7 +88,7 @@
             backdrop-filter: blur(10px); border: 1px solid var(--glass);
             padding: 60px 35px; transition: var(--transition);
             display: flex; flex-direction: column; align-items: center;
-            border-radius: 4px; position: relative; overflow: hidden; min-height: 450px;
+            border-radius: 4px; position: relative; overflow: hidden;
         }
 
         .consultation-card::before {
@@ -123,7 +96,6 @@
             background-size: cover; background-position: center;
             opacity: 0.4; z-index: -1; transition: opacity 0.5s ease;
         }
-        /* IMAGINILE TALE ORIGINALE */
         .consultation-card:nth-child(1)::before { background-image: url('consultation-life.jpg'); }
         .consultation-card:nth-child(2)::before { background-image: url('consultation-business.jpg'); }
         .consultation-card:nth-child(3)::before { background-image: url('consultation-astrology.jpg'); }
@@ -157,25 +129,26 @@
         .book-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); }
 
         footer {
-            width: 100%; padding: 40px 20px;
+            position: relative; width: 100%; padding: 40px 20px;
             display: flex; flex-direction: column; justify-content: center; align-items: center;
             background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-top: 1px solid var(--wine);
         }
-        .social-links { display: flex; gap: 25px; margin-bottom: 10px; font-size: 1.4rem; }
-        .social-links a { color: var(--gold); transition: var(--transition); }
+        .social-links a { color: var(--gold); margin: 0 15px; font-size: 1.4rem; transition: var(--transition); }
         .social-links a:hover { color: var(--white); transform: scale(1.1); }
         .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; margin-top: 5px; }
 
+        /* RESPONSIVITATE MOBIL IDENTICĂ CU LANDING/SHOP */
         @media (max-width: 850px) {
-            header { height: 70px; padding: 0 15px 0 5%; }
+            header { height: 70px; }
+            .logo-header { font-size: 1.1rem; }
             .sidebar {
-                position: fixed; top: 70px; left: 0; transform: none;
+                position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9);
-                width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
+                margin-top: 70px; padding: 20px 10px; gap: 1rem;
+                background: rgba(0,0,0,0.2);
             }
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
-            .consultation-container { padding: 160px 15px 100px; }
+            .consultation-container { padding: 40px 15px 100px; }
             .consultation-grid { grid-template-columns: 1fr; gap: 40px; }
             .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
         }
@@ -185,34 +158,42 @@
     <div class="fixed-bg"></div>
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div class="lang-dropdown">
-            <button class="lang-current" id="current-lang-btn" onclick="toggleLangList()">
-                <span id="current-lang-text">RO</span>
-                <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6;"></i>
-            </button>
-            <div class="lang-list" id="lang-list">
-                <button onclick="selectLang('ru')" class="lang-btn"><img src="https://flagcdn.com/w20/ru.png" alt=""> RU</button>
-                <button onclick="selectLang('lv')" class="lang-btn"><img src="https://flagcdn.com/w20/lv.png" alt=""> LV</button>
-                <button onclick="selectLang('en')" class="lang-btn"><img src="https://flagcdn.com/w20/gb.png" alt=""> EN</button>
-                <button onclick="selectLang('ro')" class="lang-btn"><img src="https://flagcdn.com/w20/ro.png" alt=""> RO</button>
-            </div>
-        </div>
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
-        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
-        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
-        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
-        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="despre.html" class="nav-link">Despre</a>
+        <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
     <main class="consultation-container">
-        <div class="section-subtitle" id="sub-title">Ghidare Divină</div>
-        <h1 class="section-title shimmer-element" id="main-title">Servicii de Consultații</h1>
+        <div class="section-subtitle">Ghidare Divină</div>
+        <h1 class="section-title">Servicii de Consultații</h1>
         
-        <div class="consultation-grid" id="services-grid">
+        <div class="consultation-grid">
+            <div class="consultation-card">
+                <i class="fas fa-gem card-icon"></i>
+                <h3>Life Realisation</h3>
+                <p>Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău. Oferim ghidare personalizată pentru a-ți atinge obiectivele de viață.</p>
+                <a href="contact.html" class="book-btn">Programează</a>
             </div>
+
+            <div class="consultation-card">
+                <i class="fas fa-chart-line card-icon"></i>
+                <h3>Business & Cariera</h3>
+                <p>Maximizează-ți succesul profesional cu strategii energetice. Îmbunătățește-ți intuiția în afaceri și atrage prosperitatea.</p>
+                <a href="contact.html" class="book-btn">Consultă</a>
+            </div>
+
+            <div class="consultation-card">
+                <i class="fas fa-star card-icon"></i>
+                <h3>Astrologie & Destin</h3>
+                <p>Dezvăluie secretele hărții tale natale și înțelege influențele cosmice. Oferim analize astrologice aprofundate.</p>
+                <a href="contact.html" class="book-btn">Descoperă</a>
+            </div>
+        </div>
     </main>
 
     <footer>
@@ -224,37 +205,5 @@
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
-
-    <script>
-        const translations = {
-            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", sub:"Ghidare Divină", title:"Servicii de Consultații", book:"Programează", items:[{t:"Life Realisation", d:"Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău. Oferim ghidare personalizată.", i:"fa-gem"},{t:"Business & Cariera", d:"Maximizează-ți succesul profesional cu strategii energetice. Atrage prosperitatea.", i:"fa-chart-line"},{t:"Astrologie & Destin", d:"Dezvăluie secretele hărții tale natale și înțelege influențele cosmice.", i:"fa-star"}] },
-            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", sub:"Божественное руководство", title:"Консультации", book:"Записаться", items:[{t:"Самореализация", d:"Раскройте свой скрытый потенциал и сонастройтесь со своей судьбой.", i:"fa-gem"},{t:"Бизнес и Карьера", d:"Максимизируйте профессиональный успех с помощью энергетических стратегий.", i:"fa-chart-line"},{t:"Астрология и Судьба", d:"Раскройте секреты своей натальной карты и космических влияний.", i:"fa-star"}] }
-        };
-
-        function toggleLangList() { document.getElementById('lang-list').classList.toggle('show'); }
-        function selectLang(lang) {
-            document.getElementById('current-lang-text').innerText = lang.toUpperCase();
-            document.getElementById('lang-list').classList.remove('show');
-            changeLang(lang);
-        }
-        function changeLang(lang) {
-            ['home','consult','shop','about','contact'].forEach(id => {
-                const el = document.getElementById('nav-'+id);
-                if(el) el.innerText = translations[lang][id];
-            });
-            document.getElementById('sub-title').innerText = translations[lang].sub;
-            document.getElementById('main-title').innerText = translations[lang].title;
-            document.getElementById('services-grid').innerHTML = translations[lang].items.map(s => `
-                <div class="consultation-card">
-                    <i class="fas ${s.i} card-icon"></i>
-                    <h3>${s.t}</h3>
-                    <p>${s.d}</p>
-                    <a href="contact.html" class="book-btn">${translations[lang].book}</a>
-                </div>
-            `).join('');
-        }
-        window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
-        window.onload = () => selectLang('ro');
-    </script>
 </body>
 </html>
