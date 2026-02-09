@@ -10,17 +10,11 @@
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
-        /* Dezactivăm cursorul pe desktop pentru efectul WebGL */
         @media (min-width: 951px) { * { cursor: none; } }
-
-        /* CANVAS PENTRU FLUID SIMULATION */
-        #fluid-canvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
-            pointer-events: none; z-index: 9999;
-        }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
+        /* FUNDAL */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
@@ -28,12 +22,26 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
+        /* EFECT FUM (SMOKE) */
+        .smoke-particle {
+            position: fixed; pointer-events: none; z-index: 9999;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+            border-radius: 50%; filter: blur(15px);
+            transform: translate(-50%, -50%);
+            animation: smokeMove 2s ease-out forwards;
+            will-change: transform, opacity;
+        }
+        @keyframes smokeMove {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0.7; }
+            100% { transform: translate(-40%, -120%) scale(3); opacity: 0; }
+        }
+
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        .lang-dropdown { position: relative; display: flex; align-items: center; }
+        .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 15px; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; box-shadow: 0 4px 0 -2px var(--gold); }
 
         /* SIDEBAR */
@@ -41,7 +49,7 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT INTEGRAT SUB TITLE */
+        /* HERO & ABOUT */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -56,7 +64,7 @@
         .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); }
+        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
         .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
         .social-links a { color: var(--gold); }
 
@@ -70,7 +78,6 @@
     </style>
 </head>
 <body>
-    <canvas id="fluid-canvas"></canvas>
     <div class="fixed-bg"></div>
 
     <header>
@@ -81,16 +88,16 @@
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
-        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
-        <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
-        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
-        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+        <a href="index.html" class="nav-link">Acasă</a>
+        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="products.html" class="nav-link">Shop</a>
+        <a href="despre.html" class="nav-link">Despre</a>
+        <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
     <main class="hero-section">
         <h1 class="hero-title">The Power Boutique</h1>
-        <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
+        <p class="hero-sub">BY JELENA SHIPKO</p>
 
         <div class="about-hero">
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
@@ -117,69 +124,30 @@
     </footer>
 
     <script>
-        const canvas = document.getElementById('fluid-canvas');
-        const ctx = canvas.getContext('2d');
-        let fluidParticles = [];
-        const mouse = { x: -100, y: -100, active: false };
-
-        function resize() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resize);
-        resize();
-
-        class Smoke {
-            constructor(x, y) {
-                this.x = x;
-                this.y = y;
-                this.size = Math.random() * 30 + 10;
-                this.vx = (Math.random() - 0.5) * 1.5;
-                this.vy = (Math.random() - 0.5) * 1.5;
-                this.alpha = 0.4;
-            }
-            update() {
-                this.x += this.vx;
-                this.y += this.vy;
-                this.alpha -= 0.005;
-                this.size += 0.5;
-            }
-            draw() {
-                ctx.save();
-                ctx.beginPath();
-                ctx.globalAlpha = this.alpha;
-                ctx.fillStyle = "#c5a059";
-                ctx.filter = "blur(15px)"; // Efectul de fum fluid
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fill();
-                ctx.restore();
-            }
+        function createSmoke(x, y) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke-particle';
+            
+            const size = Math.random() * 60 + 40 + 'px';
+            smoke.style.width = size;
+            smoke.style.height = size;
+            smoke.style.left = x + 'px';
+            smoke.style.top = y + 'px';
+            
+            document.body.appendChild(smoke);
+            setTimeout(() => smoke.remove(), 2000);
         }
 
-        function animate() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            if (mouse.active) {
-                for(let i=0; i<2; i++) fluidParticles.push(new Smoke(mouse.x, mouse.y));
-            }
-            for (let i = 0; i < fluidParticles.length; i++) {
-                fluidParticles[i].update();
-                fluidParticles[i].draw();
-                if (fluidParticles[i].alpha <= 0) {
-                    fluidParticles.splice(i, 1);
-                    i--;
-                }
-            }
-            requestAnimationFrame(animate);
-        }
-        animate();
+        // Desktop
+        window.addEventListener('mousemove', (e) => {
+            if (Math.random() > 0.7) createSmoke(e.clientX, e.clientY);
+        });
 
-        const moveHandler = (e) => {
-            mouse.active = true;
-            mouse.x = e.clientX || (e.touches && e.touches[0].clientX);
-            mouse.y = e.clientY || (e.touches && e.touches[0].clientY);
-        };
-        window.addEventListener('mousemove', moveHandler);
-        window.addEventListener('touchmove', moveHandler, { passive: true });
+        // Mobil
+        window.addEventListener('touchmove', (e) => {
+            const touch = e.touches[0];
+            createSmoke(touch.clientX, touch.clientY);
+        }, { passive: true });
     </script>
 </body>
 </html>
