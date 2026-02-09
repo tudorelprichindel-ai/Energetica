@@ -22,23 +22,18 @@
             html, body, a, button { cursor: none !important; } 
         }
 
-        /* CURSOR MODIFICAT - SUBTIL ȘI MIC */
+        /* CURSOR MODIFICAT - AURA REDUSA */
         #cursor-dot {
             position: fixed; width: 3px; height: 3px; background: var(--gold);
             border-radius: 50%; pointer-events: none; z-index: 10001;
-            transform: translate(-50%, -50%); transition: transform 0.1s ease-out, width 0.3s, height 0.3s, opacity 0.3s;
+            transform: translate(-50%, -50%); transition: transform 0.1s ease-out;
         }
         #cursor-aura {
-            position: fixed; width: 20px; height: 20px;
-            background: radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 70%);
+            position: fixed; width: 12px; height: 12px;
+            background: radial-gradient(circle, rgba(94, 25, 20, 0.6) 0%, rgba(94, 25, 20, 0) 80%);
             border-radius: 50%; pointer-events: none; z-index: 10000;
             transform: translate(-50%, -50%);
             transition: width 0.3s, height 0.3s, background 0.3s;
-            animation: pulseAura 4s infinite ease-in-out;
-        }
-        @keyframes pulseAura {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.4; }
-            50% { transform: translate(-50%, -50%) scale(1.1); opacity: 0.2; }
         }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
@@ -67,6 +62,7 @@
         /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 20px 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         .lang-dropdown { position: relative; display: flex; align-items: center; }
         .lang-current { 
@@ -182,24 +178,26 @@
         document.addEventListener('mousemove', (e) => {
             const x = e.clientX;
             const y = e.clientY;
+            
             dot.style.left = x + 'px';
             dot.style.top = y + 'px';
             aura.style.left = x + 'px';
             aura.style.top = y + 'px';
+
             if (Math.random() > 0.6) createSmoke(x, y);
         });
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => {
-                aura.style.width = '50px';
-                aura.style.height = '50px';
-                aura.style.background = 'radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, rgba(197, 160, 89, 0) 70%)';
+                aura.style.width = '30px';
+                aura.style.height = '30px';
+                aura.style.background = 'radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%)';
                 dot.style.transform = 'translate(-50%, -50%) scale(2)';
             });
             el.addEventListener('mouseleave', () => {
-                aura.style.width = '20px';
-                aura.style.height = '20px';
-                aura.style.background = 'radial-gradient(circle, rgba(94, 25, 20, 0.4) 0%, rgba(94, 25, 20, 0) 70%)';
+                aura.style.width = '12px';
+                aura.style.height = '12px';
+                aura.style.background = 'radial-gradient(circle, rgba(94, 25, 20, 0.6) 0%, rgba(94, 25, 20, 0) 80%)';
                 dot.style.transform = 'translate(-50%, -50%) scale(1)';
             });
         });
