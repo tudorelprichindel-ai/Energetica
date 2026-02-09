@@ -15,7 +15,7 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
         }
 
-        /* STRUCTURA PENTRU FOOTER LA BAZĂ */
+        /* STRUCTURA PENTRU FOOTER LA BAZA */
         html, body { height: 100%; }
         body { 
             display: flex; flex-direction: column;
@@ -30,31 +30,32 @@
             background-size: cover;
         }
 
-        /* HEADER & FOOTER - DIMENSIUNI ȘI STIL SIMETRIC */
+        /* HEADER & FOOTER - SIMETRIE PERFECTA A GROSIMII */
         header, footer {
             width: 100%;
+            height: 80px; /* Grosime identica */
             background: rgba(0, 0, 0, 0.6); 
             backdrop-filter: blur(15px);
             display: flex;
-            justify-content: center;
             align-items: center;
-            transition: var(--transition);
+            justify-content: center;
+            z-index: 2000;
         }
 
         header {
-            position: fixed; top: 0; z-index: 2000;
-            height: 80px; border-bottom: 1px solid var(--glass);
+            position: fixed; top: 0;
+            border-bottom: 1px solid var(--glass);
         }
 
         footer {
-            margin-top: auto; /* Împinge footer-ul jos */
-            padding: 30px 0;
-            flex-direction: column;
+            margin-top: auto; 
             border-top: 1px solid var(--wine);
+            flex-direction: column;
+            padding: 10px 0; /* Padding minim pentru a mentine inaltimea fixa */
         }
 
-        /* EFECTUL SHIMMER (AUR STRALUCITOR) */
-        .shimmer-text, .social-links a i {
+        /* EFECTUL SHIMMER PENTRU TEXT SI ICONITE */
+        .shimmer-element {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
             background-size: 200% auto;
             -webkit-background-clip: text;
@@ -82,9 +83,9 @@
         .nav-link:hover { transform: translateX(10px); color: var(--white); }
 
         /* CONTINUT PRINCIPAL */
-        main { flex: 1; padding: 180px 8% 80px; max-width: 1200px; margin: 0 auto; width: 100%; }
+        main { flex: 1; padding: 160px 8% 80px; max-width: 1200px; margin: 0 auto; width: 100%; }
 
-        .contact-grid { display: grid; grid-template-columns: 1fr 1.5fr; gap: 60px; align-items: start; }
+        .contact-grid { display: grid; grid-template-columns: 1fr 1.2fr; gap: 60px; align-items: start; }
 
         .contact-info h1 {
             font-family: 'Playfair Display', serif; font-size: 3rem; 
@@ -98,31 +99,30 @@
 
         .form-control {
             width: 100%; background: rgba(0,0,0,0.3); border: 1px solid var(--glass);
-            padding: 15px; color: var(--white); margin-bottom: 20px; font-family: 'Montserrat';
+            padding: 12px; color: var(--white); margin-bottom: 15px; font-family: 'Montserrat';
         }
 
         .submit-btn {
             width: 100%; background: none; border: 1px solid var(--gold);
-            color: var(--gold); padding: 18px; text-transform: uppercase;
+            color: var(--gold); padding: 15px; text-transform: uppercase;
             letter-spacing: 5px; cursor: pointer; transition: 0.3s; font-weight: 700;
         }
         .submit-btn:hover { background: var(--gold); color: #000; }
 
-        /* SOCIAL LINKS FOOTER */
-        .social-links { display: flex; gap: 25px; margin-bottom: 15px; }
-        .social-links a { text-decoration: none; font-size: 1.5rem; transition: var(--transition); }
-        .social-links a:hover { transform: scale(1.2); }
-
-        .copyright { font-size: 0.6rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        /* FOOTER CONTENT */
+        .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
+        .social-links a { text-decoration: none; font-size: 1.2rem; transition: var(--transition); }
+        
+        .copyright { font-size: 0.55rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
 
         /* RESPONSIVITATE */
         @media (max-width: 900px) {
-            header { height: 70px; }
+            header, footer { height: 70px; }
             .sidebar {
                 position: relative; top: 0; left: 0; transform: none;
                 flex-direction: row; flex-wrap: wrap; justify-content: center;
-                margin-top: 80px; padding: 25px 15px; gap: 1rem;
-                background: rgba(0, 0, 0, 0.4); width: 100%; z-index: 1500;
+                margin-top: 80px; padding: 20px 10px; gap: 1rem;
+                background: rgba(0, 0, 0, 0.4); width: 100%;
                 border-bottom: 1px solid var(--glass);
             }
             main { padding: 40px 20px 60px; }
@@ -134,7 +134,7 @@
     <div class="fixed-bg"></div>
     
     <header>
-        <a href="index.html" class="logo-header shimmer-text">The Power Boutique</a>
+        <a href="index.html" class="logo-header shimmer-element">The Power Boutique</a>
     </header>
 
     <nav class="sidebar">
@@ -149,17 +149,17 @@
         <div class="contact-grid">
             <div class="contact-info">
                 <h1>Contact</h1>
-                <p style="margin-bottom: 30px; font-weight: 300; opacity: 0.8;">Transformă-ți intenția în dialog direct.</p>
-                <p style="font-size: 0.9rem;">WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">Link Către Energie</a></p>
-                <p style="font-size: 0.9rem; margin-top: 10px;">Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
+                <p style="margin-bottom: 20px; font-weight: 300; opacity: 0.8;">Începe dialogul cu energia ta.</p>
+                <p style="font-size: 0.85rem;">WhatsApp: <a href="https://wa.me/407XXXXXXXX" style="color: var(--gold); text-decoration: none;">Link Către Tine</a></p>
+                <p style="font-size: 0.85rem; margin-top: 5px;">Telegram: <a href="https://t.me/elena_shipko" style="color: var(--gold); text-decoration: none;">@elena_shipko</a></p>
             </div>
 
             <div class="contact-form-card">
                 <form>
                     <input type="text" class="form-control" placeholder="Nume">
                     <input type="email" class="form-control" placeholder="Email">
-                    <textarea class="form-control" placeholder="Mesaj" style="height: 120px; resize: none;"></textarea>
-                    <button type="submit" class="submit-btn">Trimite</button>
+                    <textarea class="form-control" placeholder="Mesaj" style="height: 100px; resize: none;"></textarea>
+                    <button type="submit" class="submit-btn">Trimite mesajul</button>
                 </form>
             </div>
         </div>
@@ -167,10 +167,10 @@
 
     <footer>
         <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="#"><i class="fab fa-instagram shimmer-element"></i></a>
+            <a href="#"><i class="fab fa-tiktok shimmer-element"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane shimmer-element"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp shimmer-element"></i></a>
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
