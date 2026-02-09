@@ -16,21 +16,20 @@
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
 
-        /* DROPDOWN LIMBI ELEGANT */
+        /* DROPDOWN LIMBI COMPACT CU STEAG APROPIAT */
         .lang-dropdown { position: relative; display: inline-block; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
-            padding: 8px 15px; font-size: 0.75rem; font-weight: 700; letter-spacing: 2px; cursor: pointer; 
-            text-transform: uppercase; display: flex; align-items: center; gap: 10px;
+            padding: 8px 12px; font-size: 0.7rem; font-weight: 700; letter-spacing: 1px; cursor: pointer; 
+            text-transform: uppercase; display: flex; align-items: center; gap: 6px;
             box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
         }
-        .lang-list { position: absolute; top: calc(100% + 10px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 130px; display: none; flex-direction: column; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
+        .lang-list { position: absolute; top: calc(100% + 12px); right: 0; background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 90px; display: none; flex-direction: column; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.8); }
         .lang-list.show { display: flex; }
-        .lang-btn { background: none; border: none; color: var(--white); padding: 12px 15px; font-size: 0.7rem; letter-spacing: 2px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: space-between; transition: 0.3s; }
-        .lang-btn img { width: 18px; opacity: 0.7; }
+        .lang-btn { background: none; border: none; color: var(--white); padding: 10px 12px; font-size: 0.65rem; letter-spacing: 1px; text-transform: uppercase; cursor: pointer; display: flex; align-items: center; justify-content: flex-start; gap: 8px; transition: 0.3s; }
+        .lang-btn img { width: 16px; opacity: 0.8; }
         .lang-btn:hover { background: rgba(197, 160, 89, 0.2); color: var(--gold); }
 
-        /* SIDEBAR - REVENIRE LA STILUL IMPUNATOR */
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
@@ -38,7 +37,6 @@
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* REVENIRE LA DIMENSIUNI MARI */
         .about-container { padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto; width: 100%; }
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; }
         
@@ -67,13 +65,13 @@
         <div class="lang-dropdown">
             <button class="lang-current" id="current-lang-btn" onclick="toggleLangList()">
                 <span id="current-lang-text">RO</span>
-                <i class="fas fa-chevron-down" style="font-size: 0.6rem; opacity: 0.7;"></i>
+                <i class="fas fa-chevron-down" style="font-size: 0.6rem; opacity: 0.6;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button onclick="selectLang('ru')" class="lang-btn">RU <img src="https://flagcdn.com/w20/ru.png" alt="RU"></button>
-                <button onclick="selectLang('lv')" class="lang-btn">LV <img src="https://flagcdn.com/w20/lv.png" alt="LV"></button>
-                <button onclick="selectLang('en')" class="lang-btn">EN <img src="https://flagcdn.com/w20/gb.png" alt="EN"></button>
-                <button onclick="selectLang('ro')" class="lang-btn">RO <img src="https://flagcdn.com/w20/ro.png" alt="RO"></button>
+                <button onclick="selectLang('ru')" class="lang-btn"><img src="https://flagcdn.com/w20/ru.png" alt=""> RU</button>
+                <button onclick="selectLang('lv')" class="lang-btn"><img src="https://flagcdn.com/w20/lv.png" alt=""> LV</button>
+                <button onclick="selectLang('en')" class="lang-btn"><img src="https://flagcdn.com/w20/gb.png" alt=""> EN</button>
+                <button onclick="selectLang('ro')" class="lang-btn"><img src="https://flagcdn.com/w20/ro.png" alt=""> RO</button>
             </div>
         </div>
     </header>
