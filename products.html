@@ -52,9 +52,12 @@
             flex-direction: column; background: rgba(0, 0, 0, 0.4);
         }
 
+        /* EFECTUL SHIMMER IDENTIC CU MAIN PAGE */
         .shimmer-element, .social-links a i {
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            background-size: 200% auto; 
+            -webkit-background-clip: text; 
+            -webkit-text-fill-color: transparent;
             animation: shimmerEffect 5s linear infinite;
         }
 
@@ -84,6 +87,7 @@
             text-shadow: 2px 2px 5px rgba(0,0,0,0.5);
         }
 
+        /* TITLU CORECTAT - ELIMINAT COLOR: VAR(--GOLD) PENTRU SHIMMER PUR */
         .section-title {
             font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
             font-style: italic; margin-bottom: 80px; letter-spacing: 4px; 
@@ -150,19 +154,16 @@
         @media (max-width: 850px) {
             header, footer { height: 70px !important; }
             .logo-header { font-size: 1.1rem; }
-            
-            /* MODIFICARE PENTRU FIXARE PERMANENTA PE MOBIL */
             .sidebar {
-                position: fixed; /* Schimbat din sticky in fixed pentru siguranta scrolului */
+                position: fixed;
                 top: 70px; left: 0; transform: none;
                 flex-direction: row; justify-content: center;
                 padding: 15px; gap: 1rem;
                 background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
                 width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
             }
-            
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
-            main { padding: 140px 15px 100px; } /* Crestem padding-ul de sus pentru a nu fi acoperit de sidebar-ul fixed */
+            main { padding: 140px 15px 100px; }
             .product-grid { grid-template-columns: 1fr; gap: 40px; }
             .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
             .overlay-content { width: 95%; }
