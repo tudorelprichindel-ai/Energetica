@@ -7,59 +7,30 @@
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --gold: #c5a059;
-            --wine: #5e1914;
-            --white: #ffffff;
-            --glass: rgba(255, 255, 255, 0.05);
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
-        }
-
+        /* CSS Identic cu index.html pentru Header/Footer/Sidebar */
+        :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
-        html, body { height: 100%; width: 100%; }
-        body { display: flex; flex-direction: column; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
-        
+        body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; }
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
-
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
-        
-        .lang-selector { display: flex; gap: 12px; }
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(15px); border-bottom: 1px solid var(--glass); min-height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 10px 5%; flex-wrap: wrap; }
+        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; }
+        .lang-selector { display: flex; gap: 15px; }
         .lang-btn { background: none; border: none; color: var(--white); font-size: 0.65rem; letter-spacing: 2px; text-transform: uppercase; font-weight: 600; opacity: 0.5; transition: var(--transition); cursor: pointer; }
-        .lang-btn:hover, .lang-btn.active { opacity: 1; color: var(--gold); }
-
-        .shimmer-element, .social-links a i { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
-
-        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.2rem; letter-spacing: 2px; font-weight: 700; }
-
+        .lang-btn.active { opacity: 1; color: var(--gold); }
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
-        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; transition: var(--transition); font-weight: 700; }
-        .nav-link:hover { transform: translateX(10px); color: var(--white); }
-
-        main { flex: 1; padding: 160px 8% 100px; max-width: 1400px; margin: 0 auto; width: 100%; }
-        .page-title { font-family: 'Playfair Display', serif; font-size: clamp(2rem, 6vw, 4rem); font-style: italic; text-align: center; margin-bottom: 60px; }
-
+        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
+        .shimmer-element, .social-links a i { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        
+        main { flex: 1; padding: 180px 8% 100px; max-width: 1400px; margin: 0 auto; width: 100%; }
         .services-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: 30px; }
-        .service-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid var(--glass); padding: 40px; border-radius: 2px; transition: var(--transition); display: flex; flex-direction: column; height: 100%; }
-        .service-card:hover { border-color: var(--gold); background: rgba(255, 255, 255, 0.08); transform: translateY(-5px); }
-        
+        .service-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(20px); border: 1px solid var(--glass); padding: 40px; text-align: center; }
         .service-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
-        .service-card p { font-size: 0.95rem; color: rgba(255,255,255,0.8); margin-bottom: 30px; flex-grow: 1; }
-        
-        .book-btn { align-self: flex-start; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; font-weight: 700; cursor: pointer; transition: 0.4s; text-decoration: none; }
-        .book-btn:hover { background: var(--gold); color: #000; }
-
-        footer { height: 80px; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.4); }
-        .social-links { display: flex; gap: 20px; margin-bottom: 5px; }
-        .copyright { font-size: 0.6rem; color: var(--white); font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
+        .book-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-size: 0.7rem; cursor: pointer; text-decoration: none; }
 
         @media (max-width: 850px) {
-            header { height: 100px !important; flex-direction: column; padding: 15px; }
-            .lang-selector { margin-top: 10px; }
-            .sidebar { position: fixed; top: 100px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.85); width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass); }
-            main { padding: 180px 20px 80px; }
-            .service-card { padding: 30px 20px; text-align: center; }
-            .book-btn { align-self: center; width: 100%; }
+            header { min-height: 70px; justify-content: center; gap: 10px; }
+            .sidebar { position: fixed; top: 110px; left: 0; transform: none; flex-direction: row; justify-content: center; padding: 15px; gap: 1rem; background: rgba(0, 0, 0, 0.85); width: 100%; border-bottom: 1px solid var(--glass); }
+            main { padding-top: 220px; }
         }
     </style>
 </head>
@@ -71,10 +42,9 @@
             <button onclick="changeLang('ru')" class="lang-btn" id="btn-ru">RU</button>
             <button onclick="changeLang('lv')" class="lang-btn" id="btn-lv">LV</button>
             <button onclick="changeLang('en')" class="lang-btn" id="btn-en">EN</button>
-            <button onclick="changeLang('ro')" class="lang-btn active" id="btn-ro">RO</button>
+            <button onclick="changeLang('ro')" class="lang-btn" id="btn-ro">RO</button>
         </div>
     </header>
-
     <nav class="sidebar">
         <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
         <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
@@ -82,82 +52,29 @@
         <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
         <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
-
     <main>
-        <h1 class="page-title shimmer-element" id="page-title">Consultații & Ghidare</h1>
-        <div class="services-grid" id="services-grid">
-            </div>
+        <h1 id="page-title" class="shimmer-element" style="text-align:center;margin-bottom:60px;font-family:'Playfair Display',serif;font-style:italic;">Consultații</h1>
+        <div class="services-grid" id="services-grid"></div>
     </main>
-
     <footer>
         <div class="social-links">
             <a href="#"><i class="fab fa-instagram shimmer-element"></i></a>
             <a href="#"><i class="fab fa-tiktok shimmer-element"></i></a>
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane shimmer-element"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp shimmer-element"></i></a>
         </div>
         <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
-
     <script>
         const translations = {
-            ro: {
-                home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact",
-                title: "Consultații & Ghidare", book: "Programează-te",
-                services: [
-                    { t: "Life Realisation", d: "Analiza misiunii personale și deblocarea potențialului tău energetic pentru a trăi în aliniere cu sinele." },
-                    { t: "Business & Cariera", d: "Strategii energetice pentru succes profesional, managementul puterii și atragerea abundenței." },
-                    { t: "Astrologie & Destin", d: "Descifrarea hărții natale pentru a înțelege parcursul vieții și momentele cheie de evoluție." }
-                ]
-            },
-            ru: {
-                home: "Главная", consult: "Консультации", shop: "Магазин", about: "Обо мне", contact: "Контакт",
-                title: "Консультации и Руководство", book: "Записаться",
-                services: [
-                    { t: "Самореализация", d: "Анализ личной миссии и разблокировка вашего энергетического потенциала для жизни в гармонии с собой." },
-                    { t: "Бизнес и Карьера", d: "Энергетические стратегии для профессионального успеха, управления силой и привлечения изобилия." },
-                    { t: "Астрология и Судьба", d: "Расшифровка натальной карты для понимания жизненного пути и ключевых моментов эволюции." }
-                ]
-            },
-            lv: {
-                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mani", contact: "Kontakti",
-                title: "Konsultācijas un Vadība", book: "Pieteikties",
-                services: [
-                    { t: "Dzīves realizācija", d: "Personīgās misijas analīze un enerģētiskā potenciāla atbloķēšana dzīvei saskaņā ar sevi." },
-                    { t: "Bizness un karjera", d: "Enerģētiskās stratēģijas profesionāliem panākumiem, spēka vadībai un pārticības piesaistīšanai." },
-                    { t: "Astroloģija un liktenis", d: "Dzimšanas kartes atšifrēšana, lai izprastu dzīves gaitu un galvenos evolūcijas mirkļus." }
-                ]
-            },
-            en: {
-                home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact",
-                title: "Consultations & Guidance", book: "Book Now",
-                services: [
-                    { t: "Life Realisation", d: "Analysis of personal mission and unlocking your energy potential to live in alignment with the self." },
-                    { t: "Business & Career", d: "Energy strategies for professional success, power management, and attracting abundance." },
-                    { t: "Astrology & Destiny", d: "Decoding the natal chart to understand the life path and key moments of evolution." }
-                ]
-            }
+            ro: { home:"Acasă", consult:"Consultații", shop:"Shop", about:"Despre", contact:"Contact", title:"Consultații & Ghidare", book:"Rezervă", services:[{t:"Life Realisation", d:"Analiza misiunii personale."}, {t:"Business", d:"Strategii energetice success."}] },
+            ru: { home:"Главная", consult:"Консультации", shop:"Магазин", about:"Обо мне", contact:"Контакт", title:"Консультации", book:"Записаться", services:[{t:"Самореализация", d:"Анализ миссии."}, {t:"Бизнес", d:"Энергостратегии."}] }
         };
-
         function changeLang(lang) {
             document.querySelectorAll('.lang-btn').forEach(btn => btn.classList.remove('active'));
-            document.getElementById('btn-' + lang).classList.add('active');
-            
-            document.getElementById('nav-home').innerText = translations[lang].home;
-            document.getElementById('nav-consult').innerText = translations[lang].consult;
-            document.getElementById('nav-shop').innerText = translations[lang].shop;
-            document.getElementById('nav-about').innerText = translations[lang].about;
-            document.getElementById('nav-contact').innerText = translations[lang].contact;
+            document.getElementById('btn-'+lang).classList.add('active');
+            ['home','consult','shop','about','contact'].forEach(id => document.getElementById('nav-'+id).innerText = translations[lang][id]);
             document.getElementById('page-title').innerText = translations[lang].title;
-
-            const grid = document.getElementById('services-grid');
-            grid.innerHTML = translations[lang].services.map(s => `
-                <div class="service-card">
-                    <h3>${s.t}</h3>
-                    <p>${s.d}</p>
-                    <a href="contact.html" class="book-btn">${translations[lang].book}</a>
-                </div>
-            `).join('');
+            document.getElementById('services-grid').innerHTML = translations[lang].services.map(s => `<div class='service-card'><h3>${s.t}</h3><p>${s.d}</p><br><a href='contact.html' class='book-btn'>${translations[lang].book}</a></div>`).join('');
         }
         changeLang('ro');
     </script>
