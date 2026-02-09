@@ -150,15 +150,19 @@
         @media (max-width: 850px) {
             header, footer { height: 70px !important; }
             .logo-header { font-size: 1.1rem; }
+            
+            /* MODIFICARE PENTRU FIXARE PERMANENTA PE MOBIL */
             .sidebar {
-                position: sticky; top: 70px; left: 0; transform: none;
+                position: fixed; /* Schimbat din sticky in fixed pentru siguranta scrolului */
+                top: 70px; left: 0; transform: none;
                 flex-direction: row; justify-content: center;
-                margin-top: 70px; padding: 15px; gap: 1rem;
+                padding: 15px; gap: 1rem;
                 background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(10px);
                 width: 100%; z-index: 1900; border-bottom: 1px solid var(--glass);
             }
+            
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
-            main { padding: 40px 15px 100px; }
+            main { padding: 140px 15px 100px; } /* Crestem padding-ul de sus pentru a nu fi acoperit de sidebar-ul fixed */
             .product-grid { grid-template-columns: 1fr; gap: 40px; }
             .section-title { font-size: 2.2rem; letter-spacing: 2px; margin-bottom: 40px; }
             .overlay-content { width: 95%; }
