@@ -12,74 +12,59 @@
             --burgundy: #5e1914; 
             --white: #ffffff; 
             --glass: rgba(255, 255, 255, 0.03); 
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+            --transition: all 1s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         @media (min-width: 951px) { html, body, a, button { cursor: none !important; } }
 
         /* CURSOR FLUID SOUL */
-        #cursor-dot {
-            position: fixed; width: 4px; height: 4px; background: var(--gold);
-            border-radius: 50%; pointer-events: none; z-index: 10001;
-            transform: translate(-50%, -50%); transition: transform 0.1s ease-out;
-        }
-        #cursor-aura {
-            position: fixed; width: 40px; height: 40px;
-            background: radial-gradient(circle, rgba(94, 25, 20, 0.6) 0%, rgba(94, 25, 20, 0) 70%);
-            border-radius: 50%; pointer-events: none; z-index: 10000;
-            transform: translate(-50%, -50%);
-            transition: width 0.4s, height 0.4s, background 0.4s;
-            animation: pulseAura 3s infinite ease-in-out;
-        }
-        @keyframes pulseAura {
-            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; }
-        }
+        #cursor-dot { position: fixed; width: 4px; height: 4px; background: var(--gold); border-radius: 50%; pointer-events: none; z-index: 10001; transform: translate(-50%, -50%); transition: transform 0.1s ease-out; }
+        #cursor-aura { position: fixed; width: 40px; height: 40px; background: radial-gradient(circle, rgba(94, 25, 20, 0.6) 0%, rgba(94, 25, 20, 0) 70%); border-radius: 50%; pointer-events: none; z-index: 10000; transform: translate(-50%, -50%); animation: pulseAura 3s infinite ease-in-out; }
+        @keyframes pulseAura { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; } 50% { transform: translate(-50%, -50%) scale(1.3); opacity: 0.4; } }
 
-        body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; line-height: 1.6; }
         
-        .fixed-bg { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
-        }
+        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        /* EFECT REVEAL ON SCROLL */
+        .reveal { opacity: 0; transform: translateY(30px); transition: var(--transition); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
 
         /* SMOKE EFFECT */
         .smoke-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-        .smoke-cloud {
-            position: absolute; width: 130px; height: 130px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(94, 25, 20, 0.2) 50%, rgba(0,0,0,0) 80%);
-            border-radius: 50%; filter: blur(25px); pointer-events: none;
-            animation: smokeDissolve 3s ease-out forwards;
-        }
-        @keyframes smokeDissolve {
-            0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); }
-            20% { opacity: 0.7; }
-            100% { opacity: 0; transform: translate(-50%, -150%) scale(3.5); }
-        }
+        .smoke-cloud { position: absolute; width: 130px; height: 130px; background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(94, 25, 20, 0.2) 50%, rgba(0,0,0,0) 80%); border-radius: 50%; filter: blur(25px); animation: smokeDissolve 3s ease-out forwards; }
+        @keyframes smokeDissolve { 0% { opacity: 0; transform: translate(-50%, -50%) scale(0.2); } 20% { opacity: 0.7; } 100% { opacity: 0; transform: translate(-50%, -150%) scale(3.5); } }
 
+        /* HEADER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.85); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.4rem; letter-spacing: 3px; font-weight: 700; color: var(--gold); }
 
-        .lang-dropdown { position: relative; }
-        .lang-current { 
+        .lang-dropdown { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
             padding: 8px 15px; font-size: 0.7rem; font-weight: 700; cursor: pointer; text-transform: uppercase; 
-            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold); height: 40px; width: 85px; 
-            display: flex; align-items: center; justify-content: center;
+            box-shadow: 0 4px 0 -2px var(--gold), 0 8px 0 -4px var(--gold);
         }
 
         .sidebar { position: fixed; top: 50%; left: 3rem; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; opacity: 0.7; }
         .nav-link:hover { opacity: 1; transform: translateX(10px); color: var(--white); }
 
+        /* HERO */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; color: var(--gold); }
-        .hero-sub { letter-spacing: 10px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.6; margin-bottom: 80px; }
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 15px; color: var(--gold); }
+        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.6; margin-bottom: 50px; }
 
-        .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; align-items: center; max-width: 1300px; margin: 0 auto; text-align: left; }
+        /* CTA BUTTONS */
+        .cta-group { display: flex; gap: 20px; align-items: center; }
+        .btn-main { background: var(--gold); color: #000; padding: 15px 40px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
+        .btn-main:hover { background: var(--white); box-shadow: 0 0 30px rgba(197, 160, 89, 0.4); }
+        .btn-secondary { background: transparent; border: 1px solid rgba(197, 160, 89, 0.4); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
+        .btn-secondary:hover { border-color: var(--gold); color: var(--white); }
+
+        /* ABOUT */
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; gap: 80px; align-items: center; max-width: 1300px; margin: 100px auto; padding: 0 5%; }
         .about-image-wrapper { position: relative; -webkit-mask-image: radial-gradient(circle at 50% 40%, black 60%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 420px; display: block; filter: contrast(1.1); }
         
@@ -88,28 +73,20 @@
             padding: 60px; border-left: 1px solid rgba(197, 160, 89, 0.2);
             box-shadow: 25px 25px 60px rgba(0,0,0,0.6);
         }
-        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.4rem; color: var(--gold); margin-bottom: 25px; font-style: italic; }
-        .about-text-card p { line-height: 1.9; margin-bottom: 35px; color: rgba(255,255,255,0.8); font-weight: 300; font-size: 1rem; }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; font-style: italic; }
+        .highlight { color: var(--burgundy); font-weight: 600; }
 
-        .aura-btn { 
-            background: transparent; border: 1px solid var(--gold); color: var(--gold); 
-            padding: 15px 40px; text-transform: uppercase; letter-spacing: 4px; 
-            font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); 
-        }
-        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
-        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 30px; opacity: 0.9; }
-
-        footer { padding: 60px 0; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.9); }
+        footer { padding: 80px 0; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.9); }
         .social-links { display: flex; gap: 40px; margin-bottom: 25px; font-size: 1.5rem; }
         .social-links a { color: var(--gold); transition: 0.4s; opacity: 0.7; }
 
         @media (max-width: 950px) {
             #cursor-dot, #cursor-aura { display: none; }
-            header { height: 70px; }
             .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 15px 5px; gap: 20px; background: rgba(0,0,0,0.95); width: 100%; z-index: 1900; }
-            .hero-section { padding-top: 180px; }
-            .about-hero { grid-template-columns: 1fr; text-align: center; }
-            .about-text-card { padding: 40px 25px; border-left: none; border-top: 1px solid rgba(197, 160, 89, 0.3); }
+            .cta-group { flex-direction: column; width: 100%; padding: 0 10%; }
+            .btn-main, .btn-secondary { width: 100%; text-align: center; }
+            .about-hero { grid-template-columns: 1fr; gap: 40px; margin-top: 180px; }
+            .about-text-card { padding: 40px 25px; border-left: none; border-top: 1px solid rgba(197, 160, 89, 0.2); }
         }
     </style>
 </head>
@@ -121,7 +98,7 @@
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div class="lang-dropdown"><div class="lang-current">RO</div></div>
+        <div class="lang-dropdown">RO</div>
     </header>
 
     <nav class="sidebar">
@@ -132,19 +109,27 @@
         <a href="contact.html" class="nav-link">Contact</a>
     </nav>
 
-    <main class="hero-section">
-        <h1 class="hero-title">The Power Boutique</h1>
-        <p class="hero-sub">BY JELENA SHIPKO</p>
+    <main>
+        <section class="hero-section">
+            <div class="reveal active">
+                <h1 class="hero-title">The Power Boutique</h1>
+                <p class="hero-sub">BY JELENA SHIPKO</p>
+                <div class="cta-group">
+                    <a href="products.html" class="btn-main">Shop Now</a>
+                    <a href="#about" class="btn-secondary">Povestea Mea</a>
+                </div>
+            </div>
+        </section>
 
-        <section class="about-hero">
+        <section class="about-hero reveal" id="about">
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-content">
                 <div class="about-text-card">
                     <span style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:20px; opacity:0.8;">Viziune & Creație</span>
                     <h2>Inima Din Spatele Puterii</h2>
-                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
-                    <a href="despre.html" class="aura-btn">Află Povestea</a>
-                    <div class="signature">Jelena Shipko</div>
+                    <p>Fiecare pas este o oportunitate de a ne alinia cu <span class="highlight">frecvența succesului</span>. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre <span class="highlight">evoluție</span>.</p>
+                    <a href="despre.html" class="btn-secondary" style="margin-top: 30px; display: inline-block;">Află Mai Multe</a>
+                    <div class="signature" style="font-family:'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 30px; opacity: 0.9;">Jelena Shipko</div>
                 </div>
             </div>
         </section>
@@ -161,33 +146,17 @@
     </footer>
 
     <script>
+        // CURSOR & SMOKE LOGIC
         const dot = document.getElementById('cursor-dot');
         const aura = document.getElementById('cursor-aura');
         const wrap = document.getElementById('smoke-wrap');
 
         document.addEventListener('mousemove', (e) => {
-            const x = e.clientX;
-            const y = e.clientY;
-            dot.style.left = x + 'px';
-            dot.style.top = y + 'px';
-            aura.style.left = x + 'px';
-            aura.style.top = y + 'px';
-            if (Math.random() > 0.6) createSmoke(x, y);
-        });
-
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => {
-                aura.style.width = '80px';
-                aura.style.height = '80px';
-                aura.style.background = 'radial-gradient(circle, rgba(197, 160, 89, 0.25) 0%, rgba(197, 160, 89, 0) 70%)';
-                dot.style.transform = 'translate(-50%, -50%) scale(2.5)';
-            });
-            el.addEventListener('mouseleave', () => {
-                aura.style.width = '40px';
-                aura.style.height = '40px';
-                aura.style.background = 'radial-gradient(circle, rgba(94, 25, 20, 0.6) 0%, rgba(94, 25, 20, 0) 70%)';
-                dot.style.transform = 'translate(-50%, -50%) scale(1)';
-            });
+            dot.style.left = e.clientX + 'px';
+            dot.style.top = e.clientY + 'px';
+            aura.style.left = e.clientX + 'px';
+            aura.style.top = e.clientY + 'px';
+            if (Math.random() > 0.6) createSmoke(e.clientX, e.clientY);
         });
 
         function createSmoke(x, y) {
@@ -201,9 +170,23 @@
         }
 
         window.addEventListener('touchmove', (e) => {
-            const touch = e.touches[0];
-            createSmoke(touch.clientX, touch.clientY);
+            createSmoke(e.touches[0].clientX, e.touches[0].clientY);
         }, { passive: true });
+
+        // REVEAL ON SCROLL LOGIC
+        function reveal() {
+            var reveals = document.querySelectorAll(".reveal");
+            for (var i = 0; i < reveals.length; i++) {
+                var windowHeight = window.innerHeight;
+                var elementTop = reveals[i].getBoundingClientRect().top;
+                var elementVisible = 150;
+                if (elementTop < windowHeight - elementVisible) {
+                    reveals[i].classList.add("active");
+                }
+            }
+        }
+        window.addEventListener("scroll", reveal);
+        reveal(); // Initial check
     </script>
 </body>
 </html>
