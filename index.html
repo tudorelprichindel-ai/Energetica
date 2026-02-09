@@ -10,11 +10,11 @@
         :root { --gold: #c5a059; --wine: #5e1914; --white: #ffffff; --glass: rgba(255, 255, 255, 0.05); --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; }
         
+        /* Ascundem cursorul pe desktop pentru a vedea efectul de fum */
         @media (min-width: 951px) { * { cursor: none; } }
 
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
-        /* FUNDAL CINEMATIC */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; 
@@ -22,18 +22,21 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* EFECTUL DE FUM AURIU (SVG BLUR) */
-        .smoke-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
-        .smoke-leaf {
-            position: absolute; width: 100px; height: 100px;
-            background: radial-gradient(circle, rgba(197, 160, 89, 0.5) 0%, rgba(197, 160, 89, 0) 70%);
-            border-radius: 50%; filter: url(#smoke-filter);
-            transform: translate(-50%, -50%); pointer-events: none;
-            animation: smokeRise 2s ease-out forwards;
+        /* EFECT FUM AURIU - FOARTE STABIL */
+        .smoke-wrap { position: fixed; top: 0; left: 0; width: 100%; height: 100%; pointer-events: none; z-index: 9999; }
+        .smoke-cloud {
+            position: absolute;
+            width: 80px; height: 80px;
+            background: radial-gradient(circle, rgba(197, 160, 89, 0.4) 0%, rgba(197, 160, 89, 0) 70%);
+            border-radius: 50%;
+            filter: blur(15px);
+            pointer-events: none;
+            transform: translate(-50%, -50%);
+            animation: smokeDissolve 2.5s ease-out forwards;
         }
-        @keyframes smokeRise {
+        @keyframes smokeDissolve {
             0% { opacity: 0.8; transform: translate(-50%, -50%) scale(0.5); }
-            100% { opacity: 0; transform: translate(-50%, -150%) scale(2.5); }
+            100% { opacity: 0; transform: translate(-50%, -100%) scale(4); }
         }
 
         /* HEADER */
@@ -46,7 +49,7 @@
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; text-shadow: 2px 2px 10px rgba(0,0,0,0.8); }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* HERO & ABOUT */
+        /* HERO & ABOUT INTEGRAT */
         .hero-section { min-height: 100vh; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 120px 5% 60px; text-align: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 7vw, 5rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 8px; text-transform: uppercase; font-size: 0.7rem; opacity: 0.8; margin-bottom: 60px; }
@@ -55,17 +58,19 @@
         .about-image-wrapper { position: relative; -webkit-mask-image: radial-gradient(circle at 50% 30%, black 50%, transparent 95%); }
         .about-image-wrapper img { width: 100%; max-width: 480px; display: block; filter: contrast(1.1); }
         .about-text-card { background: rgba(255, 255, 255, 0.08); backdrop-filter: blur(25px); padding: 40px; border-left: 2px solid var(--gold); }
-        
+        .about-text-card p { font-size: 1rem; margin-bottom: 25px; line-height: 1.7; color: rgba(255,255,255,0.9); }
+
         .aura-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 30px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; text-decoration: none; display: inline-block; transition: var(--transition); }
+        .aura-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 25px rgba(197, 160, 89, 0.5); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
-        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); }
+        footer { padding: 40px 0; border-top: 1px solid var(--wine); display: flex; flex-direction: column; align-items: center; background: rgba(0, 0, 0, 0.6); backdrop-filter: blur(15px); }
         .social-links { display: flex; gap: 30px; margin-bottom: 15px; font-size: 1.5rem; }
         .social-links a { color: var(--gold); }
 
         @media (max-width: 950px) {
             header { height: 70px; }
-            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: #000; width: 100%; z-index: 1900; }
+            .sidebar { position: fixed; top: 70px; left: 0; transform: none; flex-direction: row; flex-wrap: wrap; justify-content: center; padding: 12px 5px; gap: 15px; background: rgba(0, 0, 0, 0.9); width: 100%; z-index: 1900; }
             .hero-section { padding-top: 160px; }
             .about-hero { grid-template-columns: 1fr; text-align: center; }
             .about-text-card { border-left: none; border-top: 2px solid var(--gold); }
@@ -73,22 +78,12 @@
     </style>
 </head>
 <body>
-    <svg style="display:none;">
-        <defs>
-            <filter id="smoke-filter">
-                <feGaussianBlur in="SourceGraphic" stdDeviation="10" result="blur" />
-                <feColorMatrix in="blur" mode="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 18 -7" result="smoke" />
-                <feComposite in="SourceGraphic" in2="smoke" operator="atop" />
-            </filter>
-        </defs>
-    </svg>
-
     <div class="fixed-bg"></div>
-    <div class="smoke-container" id="smoke-container"></div>
+    <div class="smoke-wrap" id="smoke-wrap"></div>
 
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
-        <div style="color:var(--gold); font-weight:700; font-size:0.8rem; border:1px solid var(--gold); padding:5px 15px;">RO</div>
+        <div style="color:var(--gold); border:1px solid var(--gold); padding:5px 15px; font-weight:700;">RO</div>
     </header>
 
     <nav class="sidebar">
@@ -107,10 +102,10 @@
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-content">
                 <div class="about-text-card">
-                    <span style="color:var(--gold);letter-spacing:8px;text-transform:uppercase;font-size:0.75rem;display:block;margin-bottom:15px;">Viziune & Creație</span>
-                    <h2 style="font-family:'Playfair Display',serif;font-size:clamp(1.8rem,4vw,2.8rem);font-style:italic;margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
-                    <p style="line-height:1.7; color:rgba(255,255,255,0.9);">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
-                    <a href="despre.html" class="aura-btn" style="margin-top:25px;">Află Povestea</a>
+                    <span style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.75rem; display:block; margin-bottom:15px;">Viziune & Creație</span>
+                    <h2 style="font-family:'Playfair Display',serif; font-size:clamp(1.8rem,4vw,2.8rem); font-style:italic; margin-bottom:20px; color:var(--gold);">Inima Din Spatele Puterii</h2>
+                    <p>Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
+                    <a href="despre.html" class="aura-btn">Află Povestea</a>
                     <div class="signature">Jelena Shipko</div>
                 </div>
             </div>
@@ -128,24 +123,24 @@
     </footer>
 
     <script>
-        const container = document.getElementById('smoke-container');
+        const wrap = document.getElementById('smoke-wrap');
 
-        function createSmokeLeaf(x, y) {
-            const leaf = document.createElement('div');
-            leaf.className = 'smoke-leaf';
-            leaf.style.left = x + 'px';
-            leaf.style.top = y + 'px';
-            container.appendChild(leaf);
-            setTimeout(() => leaf.remove(), 2000);
+        function createSmoke(x, y) {
+            const smoke = document.createElement('div');
+            smoke.className = 'smoke-cloud';
+            smoke.style.left = x + 'px';
+            smoke.style.top = y + 'px';
+            wrap.appendChild(smoke);
+            setTimeout(() => smoke.remove(), 2500);
         }
 
         window.addEventListener('mousemove', (e) => {
-            createSmokeLeaf(e.clientX, e.clientY);
+            if (Math.random() > 0.8) createSmoke(e.clientX, e.clientY);
         });
 
         window.addEventListener('touchmove', (e) => {
             const touch = e.touches[0];
-            createSmokeLeaf(touch.clientX, touch.clientY);
+            createSmoke(touch.clientX, touch.clientY);
         }, { passive: true });
     </script>
 </body>
