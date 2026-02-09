@@ -57,34 +57,29 @@
 
         .about-container { padding: 180px 8% 120px; max-width: 1600px; margin: 0 auto; width: 100%; }
 
-        /* GRID ALINIAT PERFECT */
         .about-hero { 
             display: grid; 
             grid-template-columns: 1fr 1fr; 
             gap: 60px; 
-            align-items: stretch; /* Face ambele coloane egale ca inaltime */
+            align-items: center;
         }
 
+        /* EFECTUL DE BLUR ȘI TRANSPARENȚĂ PE MARGINI */
         .about-image-wrapper {
             position: relative;
             display: flex;
-            align-items: center; /* Centreaza imaginea vertical daca textul e mai lung */
             justify-content: center;
+            /* Creăm masca radială care face marginile transparente */
+            -webkit-mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
+            mask-image: radial-gradient(circle at center, black 40%, transparent 85%);
         }
 
         .about-image-wrapper img { 
             width: 100%; 
             max-width: 550px; 
             display: block; 
-            filter: contrast(1.05) brightness(1); /* Am scos transparenta */
-            border: 1px solid var(--glass);
-            opacity: 1; /* Imagine clara */
-        }
-
-        .about-content {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
+            filter: contrast(1.1) brightness(1) blur(0px);
+            transition: var(--transition);
         }
 
         .about-text-card { 
@@ -92,10 +87,6 @@
             backdrop-filter: blur(25px); 
             padding: 50px; 
             border-left: 2px solid var(--gold);
-            height: 100%; /* Se intinde cat coloana imaginii */
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
         }
 
         .section-subtitle { color: var(--gold); letter-spacing: 8px; text-transform: uppercase; font-size: 0.8rem; font-weight: 700; margin-bottom: 20px; display: block; }
@@ -128,7 +119,11 @@
             .nav-link { font-size: 0.65rem; letter-spacing: 2px; }
             .about-container { padding: 140px 20px 80px; }
             .about-hero { grid-template-columns: 1fr; }
-            .about-image-wrapper img { max-width: 100%; }
+            /* Pe mobil, ajustăm masca să fie mai subtilă pentru a nu tăia prea mult din poză */
+            .about-image-wrapper {
+                -webkit-mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+                mask-image: radial-gradient(circle at center, black 50%, transparent 90%);
+            }
             .about-text-card { padding: 35px 25px; border-left: none; border-top: 2px solid var(--gold); text-align: center; }
         }
     </style>
