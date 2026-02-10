@@ -24,7 +24,6 @@
             line-height: 1.6; -webkit-font-smoothing: antialiased;
         }
 
-        /* STIL CURSOR DIAMANT */
         .cursor-dot {
             width: 25px; height: 25px;
             background-image: url('diamond-graphic-clipart-design-free-png.webp');
@@ -87,62 +86,44 @@
             flex-direction: column; z-index: 2100;
         }
         .lang-list.show { display: flex; }
-        .lang-item { 
-            background: none; border: none; color: var(--white); padding: 12px; 
-            font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; 
-            justify-content: center; gap: 8px;
-        }
+        .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
         .flag-img { width: 18px; height: 12px; object-fit: cover; }
 
-        /* SIDEBAR & NAV */
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
         .nav-link:hover { transform: translateX(12px); color: var(--white); }
 
-        /* CONTAINER & GRID */
         .consultation-container { padding: 160px 5% 120px; max-width: 1550px; margin: 0 auto; text-align: center; }
         .section-subtitle { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; margin-bottom: 20px; }
-        .section-title {
-            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem);
-            font-style: italic; margin-bottom: 60px; letter-spacing: 4px; 
-            font-weight: 700; line-height: 1.1;
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            animation: shimmerEffect 5s linear infinite;
-        }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 60px; letter-spacing: 4px; font-weight: 700; line-height: 1.1; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .consultation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; justify-content: center; margin-bottom: 50px; }
-        
-        .consultation-card { 
-            background-size: cover; background-position: center;
-            position: relative; border-left: 2px solid var(--burgundy); 
-            padding: 50px 30px; transition: var(--transition); 
-            display: flex; flex-direction: column; align-items: center; 
-            overflow: hidden;
-        }
 
-        /* Overlay pentru a asigura lizibilitatea textului peste poze */
-        .consultation-card::before {
-            content: ""; position: absolute; top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0, 0, 0, 0.7); backdrop-filter: blur(2px);
-            z-index: 1; transition: var(--transition);
+        .consultation-card { 
+            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05);
+            padding: 60px 35px; transition: var(--transition); display: flex; flex-direction: column; align-items: center; border-radius: 4px; position: relative; overflow: hidden;
         }
+        .consultation-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.4; z-index: -1; transition: opacity 0.5s ease; }
+        
+        /* RESTAURARE POZE CARDURI */
+        .consultation-card:nth-child(1)::before { background-image: url('consultation-life.jpg'); }
+        .consultation-card:nth-child(2)::before { background-image: url('consultation-business.jpg'); }
+        .consultation-card:nth-child(3)::before { background-image: url('consultation-astrology.jpg'); }
+        .consultation-card:nth-child(4)::before { background-image: url('club.jpg'); }
+        .consultation-card:nth-child(5)::before { background-image: url('tgame.jpg'); }
 
         .consultation-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .consultation-card:hover::before { background: rgba(0, 0, 0, 0.5); backdrop-filter: blur(0px); }
+        .consultation-card:hover::before { opacity: 0.6; }
 
-        /* Conținutul cardului peste overlay */
-        .card-content { position: relative; z-index: 2; width: 100%; }
-
-        .card-icon { font-size: 2rem; color: var(--gold); margin-bottom: 20px; }
+        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
         .consultation-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
-        .consultation-card p { font-size: 0.95rem; color: rgba(255,255,255,0.9); margin-bottom: 30px; line-height: 1.8; }
+        .consultation-card p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 40px; font-weight: 400; }
 
         .service-list { list-style: none; padding: 0; margin-bottom: 30px; text-align: left; width: 100%; }
-        .service-list li { margin-bottom: 10px; font-size: 0.85rem; color: #ccc; display: flex; align-items: center; }
-        .service-list li::before { content: "◈"; color: var(--gold); margin-right: 10px; }
+        .service-list li { margin-bottom: 12px; font-weight: 300; display: flex; align-items: center; font-size: 0.85rem; color: #ccc; }
+        .service-list li::before { content: "◈"; color: var(--gold); margin-right: 15px; }
 
-        .book-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: var(--transition); text-decoration: none; }
+        .book-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.5s ease; text-decoration: none; display: inline-block; }
         .book-btn:hover { background: var(--gold); color: #000; }
 
         /* FOOTER - Identic Main Page */
@@ -162,9 +143,7 @@
             .consultation-container { padding-top: 160px; }
         }
 
-        @media (max-width: 768px) {
-            .consultation-grid { grid-template-columns: 1fr; }
-        }
+        @media (max-width: 768px) { .consultation-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -186,169 +165,4 @@
                 <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img"> RO</button>
-                <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')"><img src="https://flagcdn.com/w20/ru.png" class="flag-img"> RU</button>
-                <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img"> LV</button>
-                <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img"> EN</button>
-            </div>
-        </div>
-    </header>
-
-    <main class="consultation-container">
-        <nav class="sidebar">
-            <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
-            <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
-            <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
-            <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
-            <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
-        </nav>
-
-        <div class="section-subtitle" id="page-subtitle">Ghidare Divină</div>
-        <h1 class="section-title" id="page-title">Servicii de Consultații</h1>
-        
-        <div class="consultation-grid">
-            <div class="consultation-card" style="background-image: url('card1.jpg');">
-                <div class="card-content">
-                    <i class="fas fa-gem card-icon"></i>
-                    <h3 id="card-life">Life Realisation</h3>
-                    <p id="desc-life">Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.</p>
-                    <a href="contact.html" class="book-btn" id="btn-1">Programează</a>
-                </div>
-            </div>
-
-            <div class="consultation-card" style="background-image: url('card2.jpg');">
-                <div class="card-content">
-                    <i class="fas fa-chart-line card-icon"></i>
-                    <h3 id="card-biz">Business & Cariera</h3>
-                    <p id="desc-biz">Maximizează-ți succesul profesional cu strategii energetice.</p>
-                    <a href="contact.html" class="book-btn" id="btn-2">Consultă</a>
-                </div>
-            </div>
-
-            <div class="consultation-card" style="background-image: url('card3.jpg');">
-                <div class="card-content">
-                    <i class="fas fa-star card-icon"></i>
-                    <h3 id="card-astro">Astrologie & Destin</h3>
-                    <p id="desc-astro">Dezvăluie secretele hărții tale natale și influențele cosmice.</p>
-                    <a href="contact.html" class="book-btn" id="btn-3">Descoperă</a>
-                </div>
-            </div>
-
-            <div class="consultation-card" style="background-image: url('card4.jpg');">
-                <div class="card-content">
-                    <i class="fas fa-users card-icon"></i>
-                    <h3 id="card-club">Club Energetica</h3>
-                    <p id="desc-club">Comunitate exclusivă pentru evoluție și suport energetic zilnic.</p>
-                    <ul class="service-list">
-                        <li id="club-li1">Webinarii lunare</li>
-                        <li id="club-li2">Tehnici NLP</li>
-                        <li id="club-li3">Suport energetic</li>
-                    </ul>
-                    <a href="contact.html" class="book-btn" id="btn-4">Aderă</a>
-                </div>
-            </div>
-
-            <div class="consultation-card" style="background-image: url('card5.jpg');">
-                <div class="card-content">
-                    <i class="fas fa-chess-knight card-icon"></i>
-                    <h3 id="card-game">T-Game: Genius Road</h3>
-                    <p id="desc-game">Experiență imersivă pentru descătușarea potențialului prin joc.</p>
-                    <ul class="service-list">
-                        <li id="game-li1">Blocaje subconștiente</li>
-                        <li id="game-li2">Misiune personală</li>
-                        <li id="game-li3">Individual / Grup</li>
-                    </ul>
-                    <a href="contact.html" class="book-btn" id="btn-5">Rezervă</a>
-                </div>
-            </div>
-        </div>
-    </main>
-
-    <footer>
-        <div class="social-links">
-            <a href="#"><i class="fab fa-instagram"></i></a>
-            <a href="#"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
-        </div>
-        <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
-    </footer>
-
-    <script>
-        // JS Logic pentru cursor și traduceri (rămâne neschimbat)
-        const dot = document.getElementById('dot');
-        const trails = [
-            { el: document.getElementById('trail1'), x: 0, y: 0, lag: 0.05 },
-            { el: document.getElementById('trail2'), x: 0, y: 0, lag: 0.1 },
-            { el: document.getElementById('trail3'), x: 0, y: 0, lag: 0.15 },
-            { el: document.getElementById('trail4'), x: 0, y: 0, lag: 0.22 },
-            { el: document.getElementById('trail5'), x: 0, y: 0, lag: 0.3 }
-        ];
-
-        let mouseX = 0, mouseY = 0;
-        window.addEventListener('mousemove', (e) => {
-            mouseX = e.clientX; mouseY = e.clientY;
-            dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
-            trails.forEach(t => t.el.style.opacity = "1");
-        });
-
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
-            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
-        });
-
-        function animateTrails() {
-            trails.forEach(trail => {
-                trail.x += (mouseX - trail.x) * trail.lag;
-                trail.y += (mouseY - trail.y) * trail.lag;
-                trail.el.style.left = trail.x + 'px'; trail.el.style.top = trail.y + 'px';
-            });
-            requestAnimationFrame(animateTrails);
-        }
-        animateTrails();
-
-        const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", subtitle: "Ghidare Divină", title: "Servicii de Consultații", lifeT: "Life Realisation", lifeD: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.", bizT: "Business & Cariera", bizD: "Maximizează-ți succesul profesional cu strategii energetice.", astroT: "Astrologie & Destin", astroD: "Dezvăluie secretele hărții tale natale și influențele cosmice.", clubT: "Club Energetica", clubD: "Comunitate exclusivă pentru evoluție și suport energetic zilnic.", gameT: "T-Game: Genius Road", gameD: "Experiență imersivă pentru descătușarea potențialului prin joc.", btn1: "Programează", btn2: "Consultă", btn3: "Descoperă", btn4: "Aderă", btn5: "Rezervă" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", subtitle: "Божественное Руководство", title: "Консультационные Услуги", lifeT: "Жизненная Реализация", lifeD: "Раскройте свой скрытый потенциал и следуйте своей судьбе.", bizT: "Бизнес и Карьера", bizD: "Максимизируйте профессиональный успех с помощью энергетических стратегий.", astroT: "Астрология и Судьба", astroD: "Раскройте секреты своей натальной карты и космических влияний.", clubT: "Клуб Энергетика", clubD: "Эксклюзивное сообщество для непрерывного развития и ежедневной поддержки.", gameT: "T-Game: Genius Road", gameD: "Иммерсивный опыт для раскрытия врожденного потенциала через игру.", btn1: "Записаться", btn2: "Консультация", btn3: "Открыть", btn4: "Вступить", btn5: "Забронировать" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", subtitle: "Dievišķā Vadība", title: "Konsultāciju Pakalpojumi", lifeT: "Dzīves Realizācija", lifeD: "Atklājiet savu slēpto potenciālu un saskaņojieties ar savu likteni.", bizT: "Bizness un Karjera", bizD: "Maksimizējiet profesionālos panākumus ar enerģētiskām stratēģijām.", astroT: "Astroloģija un Liktenis", astroD: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi.", clubT: "Enerģētikas Klubs", clubD: "Ekskluzīva kopiena nepārtrauktai attīstībai un ikdienas enerģētiskam atbalstam.", gameT: "T-Game: Genius Road", gameD: "Imersīva pieredze iedzimtā potenciāla atraisīšanai caur spēli.", btn1: "Pierakstīties", btn2: "Konsultēties", btn3: "Atklāt", btn4: "Pievienoties", btn5: "Rezervēt" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", subtitle: "Divine Guidance", title: "Consultation Services", lifeT: "Life Realisation", lifeD: "Discover your hidden potential and align with your destiny.", bizT: "Business & Career", bizD: "Maximize professional success with energetic strategies.", astroT: "Astrology & Destiny", astroD: "Reveal the secrets of your natal chart and cosmic influences.", clubT: "Energetica Club", clubD: "Exclusive community for continuous evolution and daily support.", gameT: "T-Game: Genius Road", gameD: "Immersive experience to unleash native potential through play.", btn1: "Book Now", btn2: "Consult", btn3: "Discover", btn4: "Join", btn5: "Reserve" }
-        };
-
-        function changeLang(langCode, label, flagSrc) {
-            document.getElementById('active-flag').src = flagSrc;
-            document.getElementById('active-lang').innerText = label;
-            document.getElementById('lang-list').classList.remove('show');
-            const content = translations[langCode];
-            document.getElementById('nav-home').innerText = content.home;
-            document.getElementById('nav-consult').innerText = content.consult;
-            document.getElementById('nav-shop').innerText = content.shop;
-            document.getElementById('nav-about').innerText = content.about;
-            document.getElementById('nav-contact').innerText = content.contact;
-            document.getElementById('page-subtitle').innerText = content.subtitle;
-            document.getElementById('page-title').innerText = content.title;
-            document.getElementById('card-life').innerText = content.lifeT;
-            document.getElementById('desc-life').innerText = content.lifeD;
-            document.getElementById('card-biz').innerText = content.bizT;
-            document.getElementById('desc-biz').innerText = content.bizD;
-            document.getElementById('card-astro').innerText = content.astroT;
-            document.getElementById('desc-astro').innerText = content.astroD;
-            document.getElementById('card-club').innerText = content.clubT;
-            document.getElementById('desc-club').innerText = content.clubD;
-            document.getElementById('card-game').innerText = content.gameT;
-            document.getElementById('desc-game').innerText = content.gameD;
-            document.getElementById('btn-1').innerText = content.btn1;
-            document.getElementById('btn-2').innerText = content.btn2;
-            document.getElementById('btn-3').innerText = content.btn3;
-            document.getElementById('btn-4').innerText = content.btn4;
-            document.getElementById('btn-5').innerText = content.btn5;
-        }
-
-        window.onclick = function(event) {
-            if (!event.target.closest('.lang-dropdown')) {
-                const list = document.getElementById('lang-list');
-                if (list) list.classList.remove('show');
-            }
-        }
-    </script>
-</body>
-</html>
+                <button class="lang-item" onclick="changeLang('ro', 'RO', '
