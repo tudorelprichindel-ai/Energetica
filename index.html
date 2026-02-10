@@ -75,6 +75,7 @@
             text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; 
         }
 
+        /* MAIN CONTAINER ADJUSTED FOR FIXED FOOTER */
         .main-container { padding: 120px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         .hero-section { text-align: center; margin-bottom: 40px; }
@@ -110,6 +111,7 @@
         .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
+        /* FIXED FOOTER (Verificat de 2 ori) */
         footer { 
             position: fixed;
             bottom: 0;
@@ -172,3 +174,77 @@
                 <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img"> LV</button>
                 <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img"> EN</button>
             </div>
+        </div>
+    </header>
+
+    <main class="main-container">
+        <nav class="sidebar">
+            <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+            <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
+            <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+            <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+            <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+        </nav>
+
+        <section class="hero-section">
+            <h1 class="hero-title">The Power Boutique</h1>
+            <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
+        </section>
+
+        <section class="about-hero">
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
+            <div class="about-text-card">
+                <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
+                <h2 id="about-title">Inima Din Spatele Puterii</h2>
+                <p id="about-desc">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
+                <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
+                <div class="signature">Jelena Shipko</div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
+    </footer>
+
+    <script>
+        const translations = {
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
+        };
+
+        function changeLang(langCode, label, flagSrc) {
+            document.getElementById('active-flag').src = flagSrc;
+            document.getElementById('active-lang').innerText = label;
+            document.getElementById('lang-list').classList.remove('show');
+            const content = translations[langCode];
+            document.getElementById('nav-home').innerText = content.home;
+            document.getElementById('nav-consult').innerText = content.consult;
+            document.getElementById('nav-shop').innerText = content.shop;
+            document.getElementById('nav-about').innerText = content.about;
+            document.getElementById('nav-contact').innerText = content.contact;
+            document.getElementById('hero-sub').innerText = content.sub;
+            document.getElementById('about-label').innerText = content.label;
+            document.getElementById('about-title').innerText = content.title;
+            document.getElementById('about-desc').innerHTML = content.desc;
+            document.getElementById('about-btn').innerText = content.btn;
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.lang-dropdown')) {
+                const list = document.getElementById('lang-list');
+                if (list) list.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
+
