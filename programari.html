@@ -165,4 +165,154 @@
                 <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;"></i>
             </button>
             <div class="lang-list" id="lang-list">
-                <button class="lang-item" onclick="changeLang('ro', 'RO', '
+                <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img"> RO</button>
+                <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')"><img src="https://flagcdn.com/w20/ru.png" class="flag-img"> RU</button>
+                <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img"> LV</button>
+                <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img"> EN</button>
+            </div>
+        </div>
+    </header>
+
+    <main class="consultation-container">
+        <nav class="sidebar">
+            <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+            <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
+            <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+            <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+            <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+        </nav>
+
+        <div class="section-subtitle" id="page-subtitle">Ghidare Divină</div>
+        <h1 class="section-title" id="page-title">Servicii de Consultații</h1>
+        
+        <div class="consultation-grid">
+            <div class="consultation-card">
+                <i class="fas fa-gem card-icon"></i>
+                <h3 id="card-life">Life Realisation</h3>
+                <p id="desc-life">Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.</p>
+                <a href="contact.html" class="book-btn" id="btn-1">Programează</a>
+            </div>
+            <div class="consultation-card">
+                <i class="fas fa-chart-line card-icon"></i>
+                <h3 id="card-biz">Business & Cariera</h3>
+                <p id="desc-biz">Maximizează-ți succesul profesional cu strategii energetice.</p>
+                <a href="contact.html" class="book-btn" id="btn-2">Consultă</a>
+            </div>
+            <div class="consultation-card">
+                <i class="fas fa-star card-icon"></i>
+                <h3 id="card-astro">Astrologie & Destin</h3>
+                <p id="desc-astro">Dezvăluie secretele hărții tale natale și influențele cosmice.</p>
+                <a href="contact.html" class="book-btn" id="btn-3">Descoperă</a>
+            </div>
+            <div class="consultation-card">
+                <i class="fas fa-users card-icon"></i>
+                <h3 id="card-club">Club Energetica</h3>
+                <p id="desc-club">Comunitate exclusivă pentru evoluție și suport energetic zilnic.</p>
+                <ul class="service-list">
+                    <li id="club-li1">Webinarii lunare</li>
+                    <li id="club-li2">Tehnici NLP</li>
+                    <li id="club-li3">Suport energetic</li>
+                </ul>
+                <a href="contact.html" class="book-btn" id="btn-4">Aderă</a>
+            </div>
+            <div class="consultation-card">
+                <i class="fas fa-chess-knight card-icon"></i>
+                <h3 id="card-game">T-Game: Genius Road</h3>
+                <p id="desc-game">Experiență imersivă pentru descătușarea potențialului prin joc.</p>
+                <ul class="service-list">
+                    <li id="game-li1">Blocaje subconștiente</li>
+                    <li id="game-li2">Misiune personală</li>
+                    <li id="game-li3">Individual / Grup</li>
+                </ul>
+                <a href="contact.html" class="book-btn" id="btn-5">Rezervă</a>
+            </div>
+        </div>
+    </main>
+
+    <footer>
+        <div class="social-links">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
+        </div>
+        <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
+    </footer>
+
+    <script>
+        const dot = document.getElementById('dot');
+        const trails = [
+            { el: document.getElementById('trail1'), x: 0, y: 0, lag: 0.05 },
+            { el: document.getElementById('trail2'), x: 0, y: 0, lag: 0.1 },
+            { el: document.getElementById('trail3'), x: 0, y: 0, lag: 0.15 },
+            { el: document.getElementById('trail4'), x: 0, y: 0, lag: 0.22 },
+            { el: document.getElementById('trail5'), x: 0, y: 0, lag: 0.3 }
+        ];
+
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+            trails.forEach(t => t.el.style.opacity = "1");
+        });
+
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
+            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
+        });
+
+        function animateTrails() {
+            trails.forEach(trail => {
+                trail.x += (mouseX - trail.x) * trail.lag;
+                trail.y += (mouseY - trail.y) * trail.lag;
+                trail.el.style.left = trail.x + 'px'; trail.el.style.top = trail.y + 'px';
+            });
+            requestAnimationFrame(animateTrails);
+        }
+        animateTrails();
+
+        const translations = {
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", subtitle: "Ghidare Divină", title: "Servicii de Consultații", lifeT: "Life Realisation", lifeD: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.", bizT: "Business & Cariera", bizD: "Maximizează-ți succesul profesional cu strategii energetice.", astroT: "Astrologie & Destin", astroD: "Dezvăluie secretele hărții tale natale și influențele cosmice.", clubT: "Club Energetica", clubD: "Comunitate exclusivă pentru evoluție și suport energetic zilnic.", gameT: "T-Game: Genius Road", gameD: "Experiență imersivă pentru descătușarea potențialului prin joc.", btn1: "Programează", btn2: "Consultă", btn3: "Descoperă", btn4: "Aderă", btn5: "Rezervă" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", subtitle: "Божественное Руководство", title: "Консультационные Услуги", lifeT: "Жизненная Реализация", lifeD: "Раскройте свой скрытый потенциал и следуйте своей судьбе.", bizT: "Бизнес и Карьера", bizD: "Максимизируйте профессиональный успех с помощью энергетических стратегий.", astroT: "Астрология и Судьба", astroD: "Раскройте секреты своей натальной карты и космических влияний.", clubT: "Клуб Энергетика", clubD: "Эксклюзивное сообщество для непрерывного развития и ежедневной поддержки.", gameT: "T-Game: Genius Road", gameD: "Иммерсивный опыт для раскрытия врожденного потенциала через игру.", btn1: "Записаться", btn2: "Консультация", btn3: "Открыть", btn4: "Вступить", btn5: "Забронировать" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", subtitle: "Dievišķā Vadība", title: "Konsultāciju Pakalpojumi", lifeT: "Dzīves Realizācija", lifeD: "Atklājiet savu slēpto potenciālu un saskaņojieties ar savu likteni.", bizT: "Bizness un Karjera", bizD: "Maksimizējiet profesionālos panākumus ar enerģētiskām stratēģijām.", astroT: "Astroloģija un Liktenis", astroD: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi.", clubT: "Enerģētikas Klubs", clubD: "Ekskluzīva kopiena nepārtrauktai attīstībai un ikdienas enerģētiskam atbalstam.", gameT: "T-Game: Genius Road", gameD: "Imersīva pieredze iedzimtā potenciāla atraisīšanai caur spēli.", btn1: "Pierakstīties", btn2: "Konsultēties", btn3: "Atklāt", btn4: "Pievienoties", btn5: "Rezervēt" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", subtitle: "Divine Guidance", title: "Consultation Services", lifeT: "Life Realisation", lifeD: "Discover your hidden potential and align with your destiny.", bizT: "Business & Career", bizD: "Maximize professional success with energetic strategies.", astroT: "Astrology & Destiny", astroD: "Reveal the secrets of your natal chart and cosmic influences.", clubT: "Energetica Club", clubD: "Exclusive community for continuous evolution and daily support.", gameT: "T-Game: Genius Road", gameD: "Immersive experience to unleash native potential through play.", btn1: "Book Now", btn2: "Consult", btn3: "Discover", btn4: "Join", btn5: "Reserve" }
+        };
+
+        function changeLang(langCode, label, flagSrc) {
+            document.getElementById('active-flag').src = flagSrc;
+            document.getElementById('active-lang').innerText = label;
+            document.getElementById('lang-list').classList.remove('show');
+            const content = translations[langCode];
+            document.getElementById('nav-home').innerText = content.home;
+            document.getElementById('nav-consult').innerText = content.consult;
+            document.getElementById('nav-shop').innerText = content.shop;
+            document.getElementById('nav-about').innerText = content.about;
+            document.getElementById('nav-contact').innerText = content.contact;
+            document.getElementById('page-subtitle').innerText = content.subtitle;
+            document.getElementById('page-title').innerText = content.title;
+            document.getElementById('card-life').innerText = content.lifeT;
+            document.getElementById('desc-life').innerText = content.lifeD;
+            document.getElementById('card-biz').innerText = content.bizT;
+            document.getElementById('desc-biz').innerText = content.bizD;
+            document.getElementById('card-astro').innerText = content.astroT;
+            document.getElementById('desc-astro').innerText = content.astroD;
+            document.getElementById('card-club').innerText = content.clubT;
+            document.getElementById('desc-club').innerText = content.clubD;
+            document.getElementById('card-game').innerText = content.gameT;
+            document.getElementById('desc-game').innerText = content.gameD;
+            document.getElementById('btn-1').innerText = content.btn1;
+            document.getElementById('btn-2').innerText = content.btn2;
+            document.getElementById('btn-3').innerText = content.btn3;
+            document.getElementById('btn-4').innerText = content.btn4;
+            document.getElementById('btn-5').innerText = content.btn5;
+        }
+
+        window.onclick = function(event) {
+            if (!event.target.closest('.lang-dropdown')) {
+                const list = document.getElementById('lang-list');
+                if (list) list.classList.remove('show');
+            }
+        }
+    </script>
+</body>
+</html>
