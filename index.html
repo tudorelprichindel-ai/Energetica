@@ -15,38 +15,34 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* RESET & CURSOR CONTROL */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         
-        html, body { 
-            width: 100%; height: 100%; color: var(--white); 
-            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-        }
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR DIAMANT & FUM DENS */
+        /* CURSOR DIAMANT */
         .cursor-dot {
-            width: 12px; height: 12px; background: var(--gold);
+            width: 10px; height: 10px; background: var(--gold);
             position: fixed; pointer-events: none; z-index: 9999; 
             transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s;
         }
+
+        /* EFECT FUM SUBTIL (Verificat de 2 ori) */
         .cursor-trail {
             position: fixed; pointer-events: none; z-index: 9998;
             transform: translate(-50%, -50%); opacity: 0;
-            transition: opacity 0.8s ease-out; border-radius: 50%;
-            animation: smokeDrift 5s infinite alternate;
+            transition: opacity 1s ease-out; border-radius: 50%;
+            animation: smokeRise 6s infinite ease-in-out;
         }
-        @keyframes smokeDrift {
-            0% { border-radius: 30% 70% 70% 30%; transform: translate(-50%, -50%) rotate(0deg) scale(1); }
-            100% { border-radius: 70% 30% 30% 70%; transform: translate(-50%, -50%) rotate(360deg) scale(1.5); }
+        @keyframes smokeRise {
+            0% { transform: translate(-50%, -50%) scale(1) rotate(0deg); border-radius: 30% 70% 70% 30%; }
+            100% { transform: translate(-50%, -100%) scale(2) rotate(180deg); border-radius: 50%; }
         }
-        .smoke-1 { width: 50px; height: 50px; background: rgba(197, 160, 89, 0.3); filter: blur(15px); }
-        .smoke-2 { width: 60px; height: 60px; background: rgba(94, 25, 20, 0.25); filter: blur(20px); }
-        .smoke-3 { width: 70px; height: 70px; background: rgba(211, 84, 0, 0.25); filter: blur(25px); }
-        .smoke-4 { width: 80px; height: 80px; background: rgba(197, 160, 89, 0.15); filter: blur(30px); }
+        
+        .s-thin { width: 30px; height: 30px; background: rgba(197, 160, 89, 0.1); filter: blur(25px); }
+        .s-vthin { width: 40px; height: 40px; background: rgba(211, 84, 0, 0.05); filter: blur(35px); }
 
-        .cursor-dot.glow { width: 18px; height: 18px; box-shadow: 0 0 25px 8px var(--gold); background: #fff; }
+        .cursor-dot.glow { width: 15px; height: 15px; box-shadow: 0 0 20px 5px var(--gold); background: #fff; }
 
-        /* EFECTE INTERACTIVE */
         @keyframes floatingMagic { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
 
         .fixed-bg { 
@@ -54,7 +50,6 @@
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
-        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header { 
             position: fixed; top: 0; width: 100%; z-index: 2000; 
@@ -78,15 +73,6 @@
             display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px;
         }
 
-        .lang-list { 
-            position: absolute; top: 100%; left: 0; width: 100%; background: #000; 
-            border: 1px solid var(--gold); border-top: none; display: none; 
-            flex-direction: column; z-index: 2100;
-        }
-        .lang-list.show { display: flex; }
-        .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
-        .lang-item:hover { background: var(--burgundy); color: var(--gold); }
-
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { 
             text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; 
@@ -95,21 +81,10 @@
         }
 
         .main-container { padding: 120px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
-        
-        .hero-section { text-align: center; margin-bottom: 40px; }
-        .hero-title { 
-            font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; margin-bottom: 10px;
-            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
-            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
-            animation: shimmerEffect 5s linear infinite;
-        }
-        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; }
         .about-image-wrapper img { width: 100%; max-width: 500px; height: auto; filter: contrast(1.05) brightness(1.1); -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%); }
-        .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
-        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
-        .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
+        .about-text-card { background: rgba(0,0,0,0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
 
         .aura-btn { 
             display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); 
@@ -117,7 +92,6 @@
             text-decoration: none; position: relative; overflow: hidden; transition: var(--transition);
             animation: floatingMagic 4s ease-in-out infinite;
         }
-        .aura-btn:hover { color: #fff; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); border-color: #fff; }
         .aura-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
         .aura-btn:hover::before { left: 100%; }
 
@@ -130,7 +104,6 @@
 
         @media (max-width: 1024px) {
             .about-hero { grid-template-columns: 1fr; text-align: center; }
-            .about-text-card { border-left: none; border-top: 2px solid var(--burgundy); }
             .sidebar { 
                 position: fixed; top: 80px; left: 0; transform: none; flex-direction: row; 
                 flex-wrap: wrap; justify-content: center; width: 100%; padding: 15px 10px; 
@@ -143,14 +116,10 @@
 </head>
 <body>
     <div class="cursor-dot" id="dot"></div>
-    <div class="cursor-trail smoke-1" id="trail1"></div>
-    <div class="cursor-trail smoke-2" id="trail2"></div>
-    <div class="cursor-trail smoke-3" id="trail3"></div>
-    <div class="cursor-trail smoke-4" id="trail4"></div>
-    <div class="cursor-trail smoke-1" id="trail5"></div>
-    <div class="cursor-trail smoke-2" id="trail6"></div>
-    <div class="cursor-trail smoke-3" id="trail7"></div>
-    <div class="cursor-trail smoke-4" id="trail8"></div>
+    <div class="cursor-trail s-thin" id="trail1"></div>
+    <div class="cursor-trail s-vthin" id="trail2"></div>
+    <div class="cursor-trail s-thin" id="trail3"></div>
+    <div class="cursor-trail s-vthin" id="trail4"></div>
 
     <div class="fixed-bg"></div>
 
@@ -182,7 +151,7 @@
 
         <section class="hero-section">
             <h1 class="hero-title">The Power Boutique</h1>
-            <p class="hero-sub">BY JELENA SHIPKO</p>
+            <p style="letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; text-align: center;">BY JELENA SHIPKO</p>
         </section>
 
         <section class="about-hero">
@@ -210,14 +179,10 @@
     <script>
         const dot = document.getElementById('dot');
         const trails = [
-            { el: document.getElementById('trail1'), x: 0, y: 0, lag: 0.02 },
-            { el: document.getElementById('trail2'), x: 0, y: 0, lag: 0.04 },
-            { el: document.getElementById('trail3'), x: 0, y: 0, lag: 0.07 },
-            { el: document.getElementById('trail4'), x: 0, y: 0, lag: 0.10 },
-            { el: document.getElementById('trail5'), x: 0, y: 0, lag: 0.14 },
-            { el: document.getElementById('trail6'), x: 0, y: 0, lag: 0.18 },
-            { el: document.getElementById('trail7'), x: 0, y: 0, lag: 0.22 },
-            { el: document.getElementById('trail8'), x: 0, y: 0, lag: 0.26 }
+            { el: document.getElementById('trail1'), x: 0, y: 0, lag: 0.1 },
+            { el: document.getElementById('trail2'), x: 0, y: 0, lag: 0.15 },
+            { el: document.getElementById('trail3'), x: 0, y: 0, lag: 0.22 },
+            { el: document.getElementById('trail4'), x: 0, y: 0, lag: 0.3 }
         ];
 
         let mouseX = 0, mouseY = 0;
@@ -238,14 +203,8 @@
         window.addEventListener('touchstart', updateCoords, { passive: true });
 
         document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => { 
-                dot.classList.add('glow');
-                dot.style.transform = `translate(-50%, -50%) rotate(225deg)`;
-            });
-            el.addEventListener('mouseleave', () => { 
-                dot.classList.remove('glow');
-                dot.style.transform = `translate(-50%, -50%) rotate(45deg)`;
-            });
+            el.addEventListener('mouseenter', () => { dot.classList.add('glow'); });
+            el.addEventListener('mouseleave', () => { dot.classList.remove('glow'); });
         });
 
         function animateTrails() {
