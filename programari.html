@@ -3,26 +3,22 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>Consultații | The Power Boutique</title>
+    <title>Brățări Energetice | The Power Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
-        :root {
-            --gold: #c5a059;
-            --burgundy: #5e1914;
-            --white: #ffffff;
-            --hermes-terracotta: #d35400;
-            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        :root { 
+            --gold: #c5a059; 
+            --burgundy: #5e1914; 
+            --white: #ffffff; 
+            --hermes-terracotta: #d35400; 
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
         /* CURSOR LOGIC */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         
-        body { 
-            width: 100%; background: #000; color: var(--white);
-            font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-            line-height: 1.6; -webkit-font-smoothing: antialiased;
-        }
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         .cursor-dot {
             width: 25px; height: 25px;
@@ -36,10 +32,15 @@
 
         .cursor-trail {
             position: fixed; pointer-events: none; z-index: 9998;
-            width: 15px; height: 15px; border-radius: 50%; opacity: 0;
-            transform: translate(-50%, -50%); filter: blur(4px); 
-            transition: opacity 1s ease-out; animation: smokeRise 4s infinite ease-out;
+            width: 15px; height: 15px;
+            border-radius: 50%;
+            opacity: 0;
+            transform: translate(-50%, -50%);
+            filter: blur(4px); 
+            transition: opacity 1s ease-out;
+            animation: smokeRise 4s infinite ease-out;
         }
+
         .trail-gold { background: var(--gold); }
         .trail-burgundy { background: var(--burgundy); }
         .trail-terracotta { background: var(--hermes-terracotta); }
@@ -49,12 +50,11 @@
             100% { transform: translate(-50%, -120%) scale(2); opacity: 0; }
         }
 
-        .fixed-bg {
+        .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('cristale3.jpg') no-repeat center center;
-            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out;
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
-
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         header { 
@@ -90,13 +90,14 @@
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; display: flex; align-items: center; }
 
-        /* SHOP SUBMENU */
-        .nav-item-container { position: relative; }
+        /* SIMMETRIC SUBMENU LOGIC */
+        .nav-item-container { position: relative; display: flex; flex-direction: column; align-items: flex-start; }
         .submenu { 
             display: none; 
             flex-direction: column; 
             gap: 1.2rem; 
-            padding: 1rem 0 0 1.5rem; 
+            padding: 1.2rem 0 0 0; 
+            width: 100%;
         }
         
         @media (min-width: 1025px) {
@@ -104,52 +105,31 @@
             .nav-link:hover { color: var(--white); }
         }
 
-        .submenu-link { text-decoration: none; color: var(--white); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7; transition: var(--transition); }
-        .submenu-link:hover { opacity: 1; color: var(--gold); transform: translateX(8px); }
-
-        .consultation-container { padding: 160px 5% 120px; max-width: 1550px; margin: 0 auto; text-align: center; }
-        .section-subtitle { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; margin-bottom: 20px; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 60px; letter-spacing: 4px; font-weight: 700; line-height: 1.1; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-
-        .consultation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; justify-content: center; margin-bottom: 50px; }
-
-        .consultation-card { 
-            background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05);
-            padding: 60px 35px; transition: var(--transition); display: flex; flex-direction: column; align-items: center; border-radius: 4px; position: relative; overflow: hidden;
+        .submenu-link { 
+            text-decoration: none; 
+            color: var(--gold); 
+            font-size: 0.75rem; 
+            text-transform: uppercase; 
+            letter-spacing: 4px; 
+            transition: var(--transition); 
+            font-weight: 700;
         }
-        .consultation-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.4; z-index: -1; transition: opacity 0.5s ease; }
-        .consultation-card:nth-child(1)::before { background-image: url('consultation-life.jpg'); }
-        .consultation-card:nth-child(2)::before { background-image: url('consultation-business.jpg'); }
-        .consultation-card:nth-child(3)::before { background-image: url('consultation-astrology.jpg'); }
-        .consultation-card:nth-child(4)::before { background-image: url('club.jpg'); }
-        .consultation-card:nth-child(5)::before { background-image: url('tgame.jpg'); }
+        .submenu-link:hover { color: var(--white); transform: translateX(12px); }
 
-        .consultation-card:hover { transform: translateY(-10px); border-color: var(--gold); }
-        .consultation-card:hover::before { opacity: 0.6; }
-
-        .card-icon { font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; }
-        .consultation-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
-        .consultation-card p { font-size: 0.95rem; color: rgba(255,255,255,0.85); margin-bottom: 40px; font-weight: 400; }
-
-        .service-list { list-style: none; padding: 0; margin-bottom: 30px; text-align: left; width: 100%; }
-        .service-list li { margin-bottom: 12px; font-weight: 300; display: flex; align-items: center; font-size: 0.85rem; color: #ccc; }
-        .service-list li::before { content: "◈"; color: var(--gold); margin-right: 15px; }
-
-        .book-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.5s ease; text-decoration: none; display: inline-block; }
-        .book-btn:hover { background: var(--gold); color: #000; }
+        .main-content { padding: 160px 5% 100px; text-align: center; }
+        .section-subtitle { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; margin-bottom: 20px; }
+        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 5rem); font-style: italic; margin-bottom: 60px; letter-spacing: 4px; font-weight: 700; line-height: 1.1; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         footer { 
-            position: relative; width: 100%; height: 80px; padding: 0 5%; z-index: 2000; 
-            border-top: 1px solid var(--burgundy); 
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; padding: 0 5%; z-index: 2000; border-top: 1px solid var(--burgundy); 
             display: flex; flex-direction: column; align-items: center; justify-content: center;
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
         }
-        .social-links { display: flex; gap: 30px; margin-bottom: 5px; }
-        .social-links a { color: var(--gold); font-size: 1.2rem; }
+        .social-links { display: flex; gap: 30px; margin-bottom: 5px; font-size: 1.2rem; }
+        .social-links a { color: var(--gold); }
         .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
         @media (max-width: 1024px) {
-            .consultation-grid { grid-template-columns: repeat(2, 1fr); }
             .sidebar { 
                 position: fixed; top: 80px; left: 0; transform: none; 
                 flex-direction: column; align-items: center;
@@ -157,10 +137,10 @@
                 background: rgba(0,0,0,0.95); backdrop-filter: blur(10px); z-index: 1999;
                 height: auto; max-height: calc(100vh - 80px); overflow-y: auto;
             }
-            .consultation-container { padding-top: 160px; }
-            .nav-item-container.active .submenu { display: flex; width: 100%; align-items: center; padding-left: 0; }
+            .nav-item-container { align-items: center; }
+            .nav-item-container.active .submenu { display: flex; align-items: center; text-align: center; }
+            .nav-link { justify-content: center; }
         }
-        @media (max-width: 768px) { .consultation-grid { grid-template-columns: 1fr; } }
     </style>
 </head>
 <body>
@@ -172,7 +152,7 @@
     <div class="cursor-trail trail-burgundy" id="trail5"></div>
 
     <div class="fixed-bg"></div>
-    
+
     <header>
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
@@ -190,7 +170,7 @@
         </div>
     </header>
 
-    <main class="consultation-container">
+    <main class="main-content">
         <nav class="sidebar">
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
@@ -209,52 +189,10 @@
             <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
         </nav>
 
-        <div class="section-subtitle" id="page-subtitle">Ghidare Divină</div>
-        <h1 class="section-title" id="page-title">Servicii de Consultații</h1>
+        <div class="section-subtitle">Luxury Collection</div>
+        <h1 class="section-title">Brățări Energetice Personalizate</h1>
         
-        <div class="consultation-grid">
-            <div class="consultation-card">
-                <i class="fas fa-gem card-icon"></i>
-                <h3 id="card-life">Life Realisation</h3>
-                <p id="card-life-desc">Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.</p>
-                <a href="contact.html" class="book-btn" id="btn-1">Programează</a>
-            </div>
-            <div class="consultation-card">
-                <i class="fas fa-chart-line card-icon"></i>
-                <h3 id="card-biz">Business & Cariera</h3>
-                <p id="card-biz-desc">Maximizează-ți succesul profesional cu strategii energetice.</p>
-                <a href="contact.html" class="book-btn" id="btn-2">Consultă</a>
-            </div>
-            <div class="consultation-card">
-                <i class="fas fa-star card-icon"></i>
-                <h3 id="card-astro">Astrologie & Destin</h3>
-                <p id="card-astro-desc">Dezvăluie secretele hărții tale natale și influențele cosmice.</p>
-                <a href="contact.html" class="book-btn" id="btn-3">Descoperă</a>
-            </div>
-            <div class="consultation-card">
-                <i class="fas fa-users card-icon"></i>
-                <h3 id="card-club">Club Energetica</h3>
-                <p id="card-club-desc">Comunitate exclusivă pentru evoluție și suport energetic zilnic.</p>
-                <ul class="service-list">
-                    <li id="club-li1">Webinarii lunare</li>
-                    <li id="club-li2">Tehnici NLP</li>
-                    <li id="club-li3">Suport energetic</li>
-                </ul>
-                <a href="contact.html" class="book-btn" id="btn-4">Aderă</a>
-            </div>
-            <div class="consultation-card">
-                <i class="fas fa-chess-knight card-icon"></i>
-                <h3 id="card-game">T-Game: Genius Road</h3>
-                <p id="card-game-desc">Experiență imersivă pentru descătușarea potențialului prin joc.</p>
-                <ul class="service-list">
-                    <li id="game-li1">Blocaje subconștiente</li>
-                    <li id="game-li2">Misiune personală</li>
-                    <li id="game-li3">Individual / Grup</li>
-                </ul>
-                <a href="contact.html" class="book-btn" id="btn-5">Rezervă</a>
-            </div>
-        </div>
-    </main>
+        </main>
 
     <footer>
         <div class="social-links">
@@ -299,10 +237,10 @@
         animateTrails();
 
         const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", subtitle: "Ghidare Divină", title: "Servicii de Consultații", lifeT: "Life Realisation", lifeD: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.", bizT: "Business & Cariera", bizD: "Maximizează-ți succesul profesional cu strategii energetice.", astroT: "Astrologie & Destin", astroD: "Dezvăluie secretele hărții tale natale și influențele cosmice.", clubT: "Club Energetica", clubD: "Comunitate exclusivă pentru evoluție și suport energetic zilnic.", gameT: "T-Game: Genius Road", gameD: "Experiență imersivă pentru descătușarea potențialului prin joc.", btn1: "Programează", btn2: "Consultă", btn3: "Descoperă", btn4: "Aderă", btn5: "Rezervă" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", subtitle: "Божественное Руководство", title: "Консультационные Услуги", lifeT: "Жизненная Реализация", lifeD: "Раскройте свой скрытый потенциал и следуйте своей судьбе.", bizT: "Бизнес и Карьера", bizD: "Максимизируйте профессиональный успех с помощью энергетических стратегий.", astroT: "Астрология и Судьба", astroD: "Раскройте секреты своей натальной карты и космических влияний.", clubT: "Клуб Энергетика", clubD: "Эксклюзивное сообщество для непрерывного развития и ежедневной поддержки.", gameT: "T-Game: Genius Road", gameD: "Иммерсивный опыт для раскрытия врожденного потенциала через игру.", btn1: "Записаться", btn2: "Консультация", btn3: "Открыть", btn4: "Вступить", btn5: "Забронировать" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", subtitle: "Dievišķā Vadība", title: "Konsultāciju Pakalpojumi", lifeT: "Dzīves Realizācija", lifeD: "Atklājiet savu slēpto potenciālu un saskaņojieties ar savu likteni.", bizT: "Bizness un Karjera", bizD: "Maksimizējiet profesionālos panākumus ar enerģētiskām stratēģijām.", astroT: "Astroloģija un Liktenis", astroD: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi.", clubT: "Enerģētikas Klubs", clubD: "Ekskluzīva kopiena nepārtrauktai attīstībai un ikdienas enerģētiskam atbalstam.", gameT: "T-Game: Genius Road", gameD: "Imersīva pieredze iedzimtā potenciāla atraisīšanai caur spēli.", btn1: "Pierakstīties", btn2: "Konsultēties", btn3: "Atklāt", btn4: "Pievienoties", btn5: "Rezervēt" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energetic Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", subtitle: "Divine Guidance", title: "Consultation Services", lifeT: "Life Realisation", lifeD: "Discover your hidden potential and align with your destiny.", bizT: "Business & Career", bizD: "Maximize professional success with energetic strategies.", astroT: "Astrology & Destiny", astroD: "Reveal the secrets of your natal chart and cosmic influences.", clubT: "Energetica Club", clubD: "Exclusive community for continuous evolution and daily support.", gameT: "T-Game: Genius Road", gameD: "Immersive experience to unleash native potential through play.", btn1: "Book Now", btn2: "Consult", btn3: "Discover", btn4: "Join", btn5: "Reserve" }
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Bracelets", digital: "Digital Shop", about: "About", contact: "Contact" }
         };
 
         function changeLang(langCode, label, flagSrc) {
@@ -317,23 +255,6 @@
             document.getElementById('nav-digital').innerText = content.digital;
             document.getElementById('nav-about').innerText = content.about;
             document.getElementById('nav-contact').innerText = content.contact;
-            document.getElementById('page-subtitle').innerText = content.subtitle;
-            document.getElementById('page-title').innerText = content.title;
-            document.getElementById('card-life').innerText = content.lifeT;
-            document.getElementById('card-life-desc').innerText = content.lifeD;
-            document.getElementById('card-biz').innerText = content.bizT;
-            document.getElementById('card-biz-desc').innerText = content.bizD;
-            document.getElementById('card-astro').innerText = content.astroT;
-            document.getElementById('card-astro-desc').innerText = content.astroD;
-            document.getElementById('card-club').innerText = content.clubT;
-            document.getElementById('card-club-desc').innerText = content.clubD;
-            document.getElementById('card-game').innerText = content.gameT;
-            document.getElementById('card-game-desc').innerText = content.gameD;
-            document.getElementById('btn-1').innerText = content.btn1;
-            document.getElementById('btn-2').innerText = content.btn2;
-            document.getElementById('btn-3').innerText = content.btn3;
-            document.getElementById('btn-4').innerText = content.btn4;
-            document.getElementById('btn-5').innerText = content.btn5;
         }
 
         window.onclick = function(event) {
