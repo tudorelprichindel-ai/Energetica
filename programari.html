@@ -90,16 +90,29 @@
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; display: flex; align-items: center; }
 
-        /* SHOP SUBMENU LOGIC - EXTRAS 1 LA 1 */
+        /* SHOP SUBMENU - REPLICATED FROM IMAGE 1 */
         .nav-item-container { position: relative; }
-        .submenu { display: none; flex-direction: column; gap: 1.2rem; padding: 1rem 0 0 1.5rem; }
+        .submenu { 
+            display: none; 
+            flex-direction: column; 
+            gap: 1.2rem; 
+            padding: 1rem 0 0 1.5rem; /* Indentare spre dreapta ca in imaginea 1 */
+        }
         
         @media (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover { color: var(--white); }
         }
 
-        .submenu-link { text-decoration: none; color: var(--white); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7; transition: var(--transition); }
+        .submenu-link { 
+            text-decoration: none; 
+            color: var(--white); 
+            font-size: 0.65rem; /* Dimensiune mai mica ca in imaginea 1 */
+            text-transform: uppercase; 
+            letter-spacing: 3px; 
+            opacity: 0.7; 
+            transition: var(--transition); 
+        }
         .submenu-link:hover { opacity: 1; color: var(--gold); transform: translateX(8px); }
 
         .consultation-container { padding: 160px 5% 120px; max-width: 1550px; margin: 0 auto; text-align: center; }
@@ -107,7 +120,6 @@
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 60px; letter-spacing: 4px; font-weight: 700; line-height: 1.1; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .consultation-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 40px; justify-content: center; margin-bottom: 50px; }
-
         .consultation-card { 
             background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(10px); border: 1px solid rgba(255, 255, 255, 0.05);
             padding: 60px 35px; transition: var(--transition); display: flex; flex-direction: column; align-items: center; border-radius: 4px; position: relative; overflow: hidden;
@@ -296,7 +308,7 @@
 
         const translations = {
             'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", subtitle: "Ghidare Divină", title: "Servicii de Consultații", lifeT: "Life Realisation", lifeD: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.", bizT: "Business & Cariera", bizD: "Maximizează-ți succesul profesional cu strategii energetice.", astroT: "Astrologie & Destin", astroD: "Dezvăluie secretele hărții tale natale și influențele cosmice.", clubT: "Club Energetica", clubD: "Comunitate exclusivă pentru evoluție și suport energetic zilnic.", gameT: "T-Game: Genius Road", gameD: "Experiență imersivă pentru descătușarea potențialului prin joc.", btn1: "Programează", btn2: "Consultă", btn3: "Descoperă", btn4: "Aderă", btn5: "Rezervă" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", subtitle: "Божественное Руководство", title: "Консультационные Услуги", lifeT: "Жизненная Реализация", lifeD: "Раскройте свой скрытый потенциал и следуйте своей судьбе.", bizT: "Бизнес и Карьера", bizD: "Максимизируйте профессиональный успех с помощью энергетических стратегий.", astroT: "Астрология и Судьба", astroD: "Раскройте секреты своей натальной карты и космических влияний.", clubT: "Клуб Энергетика", clubD: "Эксклюзивное сообщество для непрерывного развития и ежедневной поддержки.", gameT: "T-Game: Genius Road", gameD: "Иммерсивный опыт для раскрытия врожденного потенциала через игру.", btn1: "Записаться", btn2: "Консультация", btn3: "Открыть", btn4: "Вступить", btn5: "Забронировать" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", subtitle: "Божественное Руководство", title: "Консультационные Услуги", lifeT: "Жизненная Реализация", lifeD: "Раскройте свой скрытый потенциал и следуйте своей судьбе.", bizT: "Бизнес и Карьера", bizD: "Максимизируйте профессиональный успех с помощью энергетических стратегий.", astroT: "Астрология и Судьба", astroD: "Раскройте секреты своей натальной карты и космических влияний.", clubT: "Клуб Энергетика", clubD: "Эксклюзивное сообщество для непрерывного развития и ежедневной поддержки.", gameT: "T-Game: Genius Road", gameD: "Иммерсивный опыт для раскрытия врожденного потенциала через игру.", btn1: "Записаться", btn2: "Консультация", btn3: "Открыть", btn4: "Вступить", btn5: "Забронировать" },
             'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", subtitle: "Dievišķā Vadība", title: "Konsultāciju Pakalpojumi", lifeT: "Dzīves Realizācija", lifeD: "Atklājiet savu slēpto potenciālu un saskaņojieties ar savu likteni.", bizT: "Bizness un Karjera", bizD: "Maksimizējiet profesionālos panākumus ar enerģētiskām stratēģijām.", astroT: "Astroloģija un Liktenis", astroD: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi.", clubT: "Enerģētikas Klubs", clubD: "Ekskluzīva kopiena nepārtrauktai attīstībai un ikdienas enerģētiskam atbalstam.", gameT: "T-Game: Genius Road", gameD: "Imersīva pieredze iedzimtā potenciāla atraisīšanai caur spēli.", btn1: "Pierakstīties", btn2: "Konsultēties", btn3: "Atklāt", btn4: "Pievienoties", btn5: "Rezervēt" },
             'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", subtitle: "Divine Guidance", title: "Consultation Services", lifeT: "Life Realisation", lifeD: "Discover your hidden potential and align with your destiny.", bizT: "Business & Career", bizD: "Maximize professional success with energetic strategies.", astroT: "Astrology & Destiny", astroD: "Reveal the secrets of your natal chart and cosmic influences.", clubT: "Energetica Club", clubD: "Exclusive community for continuous evolution and daily support.", gameT: "T-Game: Genius Road", gameD: "Immersive experience to unleash native potential through play.", btn1: "Book Now", btn2: "Consult", btn3: "Discover", btn4: "Join", btn5: "Reserve" }
         };
