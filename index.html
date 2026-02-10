@@ -11,16 +11,14 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
-            --hermes-terracotta: rgba(211, 84, 0, 0.4); 
+            --hermes-terracotta: #d35400; 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
         /* CURSOR LOGIC */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         
-        html, body { 
-            width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden;
-        }
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         /* STIL CURSOR DIAMANT */
         .cursor-dot {
@@ -29,31 +27,29 @@
             background-size: contain; background-repeat: no-repeat; background-position: center;
             position: fixed; pointer-events: none; z-index: 9999; 
             transform: translate(-50%, -50%);
-            transition: width 0.3s, height 0.3s, filter 0.3s;
+            transition: width 0.3s, height 0.3s;
         }
-        .cursor-dot.glow { width: 40px; height: 40px; filter: brightness(1.2) drop-shadow(0 0 10px var(--gold)); }
+        .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
 
-        /* FUM FLUID GENERAT DIN COD */
+        /* FUM SUBȚIRE ȘI FLUID */
         .cursor-trail {
             position: fixed; pointer-events: none; z-index: 9998;
-            width: 100px; height: 100px;
+            width: 15px; height: 15px; /* Subțire cât diamantul */
             border-radius: 50%;
             opacity: 0;
             transform: translate(-50%, -50%);
-            filter: blur(25px); /* Blur mare pentru a elimina aspectul de sferă */
-            transition: opacity 1.5s ease-out;
-            animation: smokeFluid 6s infinite ease-out;
+            filter: blur(4px); 
+            transition: opacity 1s ease-out;
+            animation: smokeRise 4s infinite ease-out;
         }
 
-        /* Diferențiere culori pentru fluiditate */
-        .trail-gold { background: radial-gradient(circle, rgba(197, 160, 89, 0.2) 0%, transparent 70%); }
-        .trail-burgundy { background: radial-gradient(circle, rgba(94, 25, 20, 0.15) 0%, transparent 70%); }
-        .trail-terracotta { background: radial-gradient(circle, rgba(211, 84, 0, 0.15) 0%, transparent 70%); }
+        .trail-gold { background: var(--gold); }
+        .trail-burgundy { background: var(--burgundy); }
+        .trail-terracotta { background: var(--hermes-terracotta); }
 
-        @keyframes smokeFluid {
-            0% { transform: translate(-50%, -50%) scale(0.8) skew(0deg); opacity: 0.4; }
-            50% { transform: translate(-45%, -80%) scale(1.5) skew(15deg); opacity: 0.2; }
-            100% { transform: translate(-40%, -150%) scale(3) skew(-10deg); opacity: 0; }
+        @keyframes smokeRise {
+            0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; }
+            100% { transform: translate(-50%, -120%) scale(2); opacity: 0; }
         }
 
         .fixed-bg { 
@@ -231,9 +227,9 @@
 
         const translations = {
             'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. Через <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Наша История" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci. Ar <strong>The Power Boutique</strong> mēs esam radījuți tiltu starp vēlmi un enerģiju.", btn: "Uzzini stāstu" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we have created a bridge between desire and energy.", btn: "Discover Story" }
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success.", btn: "Discover Story" }
         };
 
         function changeLang(langCode, label, flagSrc) {
