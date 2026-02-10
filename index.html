@@ -96,6 +96,7 @@
         .nav-item-container { position: relative; }
         .submenu { display: none; flex-direction: column; gap: 1.2rem; padding: 1rem 0 0 1.5rem; }
         
+        /* Desktop Hover */
         @media (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover { color: var(--white); }
@@ -142,8 +143,8 @@
                 height: auto; max-height: calc(100vh - 80px); overflow-y: auto;
             }
             .main-container { padding-top: 160px; padding-bottom: 120px; }
+            /* Mobile Toggle Active */
             .nav-item-container.active .submenu { display: flex; width: 100%; align-items: center; padding-left: 0; }
-            .nav-item-container .nav-link { justify-content: center; }
         }
     </style>
 </head>
@@ -184,7 +185,7 @@
                     Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>
                 </a>
                 <div class="submenu">
-                    <a href="products.html" class="submenu-link" id="nav-physical">Produse Fizice</a>
+                    <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
                 </div>
             </div>
@@ -253,10 +254,10 @@
         animateTrails();
 
         const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", physical: "Produse Fizice", digital: "Digital Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.", btn: "Află Povestea" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", physical: "Физические товары", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха.", btn: "Наша История" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", physical: "Fiziskās preces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci.", btn: "Uzzini stāstu" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", physical: "Physical Products", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success.", btn: "Discover Story" }
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.", btn: "Află Povestea" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", sub: "ЕЛЕНА ШИПКО", label: "Видение и Творчество", title: "Сердце за Силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха.", btn: "Наша История" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", sub: "JELENA SHIPKO", label: "Vīzija un jaunrade", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja saskaņoties ar panākumu frekvenci.", btn: "Uzzini stāstu" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energetic Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind Power", desc: "Every step is an opportunity to align with the frequency of success.", btn: "Discover Story" }
         };
 
         function changeLang(langCode, label, flagSrc) {
@@ -267,7 +268,7 @@
             document.getElementById('nav-home').innerText = content.home;
             document.getElementById('nav-consult').innerText = content.consult;
             document.getElementById('nav-shop').innerHTML = `Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
-            document.getElementById('nav-physical').innerText = content.physical;
+            document.getElementById('nav-bracelets').innerText = content.bracelets;
             document.getElementById('nav-digital').innerText = content.digital;
             document.getElementById('nav-about').innerText = content.about;
             document.getElementById('nav-contact').innerText = content.contact;
