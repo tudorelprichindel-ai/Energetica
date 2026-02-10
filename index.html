@@ -15,7 +15,6 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* ELIMINARE CURSOR MANA PE TOATE ELEMENTELE INTERACTIVE */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         
         html, body { 
@@ -26,7 +25,7 @@
             overflow-x: hidden;
         }
 
-        /* CURSOR PERSONALIZAT CU EFECT DE GLOW (Verificat) */
+        /* CURSOR PERSONALIZAT */
         .cursor-dot {
             width: 8px; height: 8px; background: var(--gold);
             position: fixed; border-radius: 50%; pointer-events: none;
@@ -43,16 +42,8 @@
         .trail-burgundy { background: var(--burgundy); filter: blur(6px); }
         .trail-terracotta { background: #D35400; filter: blur(8px); }
 
-        /* CLASA DE GLOW ACTIVATA PRIN JS */
-        .cursor-dot.glow {
-            width: 12px; height: 12px;
-            box-shadow: 0 0 15px 5px var(--gold);
-            background: #fff;
-        }
-        .cursor-trail.glow {
-            width: 35px; height: 35px;
-            opacity: 0.8;
-        }
+        .cursor-dot.glow { width: 12px; height: 12px; box-shadow: 0 0 15px 5px var(--gold); background: #fff; }
+        .cursor-trail.glow { width: 35px; height: 35px; opacity: 0.8; }
 
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
@@ -65,15 +56,11 @@
             position: fixed; top: 0; width: 100%; z-index: 2000; 
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); 
             border-bottom: 1px solid rgba(255,255,255,0.05); 
-            height: 80px; 
-            display: flex; justify-content: space-between; align-items: center; 
-            padding: 0 5%; 
+            height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; 
         }
 
         .logo-header { 
-            font-family: 'Playfair Display', serif; font-style: italic; 
-            text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; 
-            font-weight: 700; 
+            font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; 
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
@@ -93,48 +80,54 @@
         .lang-list.show { display: flex; }
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 8px; }
 
-        .sidebar { 
-            position: fixed; top: 50%; left: 3%; transform: translateY(-50%); 
-            z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; 
-        }
-        .nav-link { 
-            text-decoration: none; color: var(--gold); font-size: 0.75rem; 
-            text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; 
-        }
+        .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
+        .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; transition: var(--transition); font-weight: 700; }
 
         .main-container { padding: 120px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
         .hero-section { text-align: center; margin-bottom: 40px; }
         .hero-title { 
-            font-family: 'Playfair Display', serif; 
-            font-size: clamp(3rem, 8vw, 6rem); 
-            font-style: italic; 
-            margin-bottom: 10px;
+            font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; margin-bottom: 10px;
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
 
-        .about-hero { 
-            display: grid; 
-            grid-template-columns: 1fr 1fr; 
-            align-items: center; 
-            width: 100%; max-width: 1200px; 
-            gap: 60px;
+        /* BUTON MAGIC & FLOATING (Verificat) */
+        .aura-btn { 
+            display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); 
+            padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; 
+            text-decoration: none; position: relative; overflow: hidden; transition: var(--transition);
+            animation: floating 4s ease-in-out infinite;
         }
-        
-        .about-image-wrapper img { 
-            width: 100%; max-width: 500px; height: auto; 
-            filter: contrast(1.05) brightness(1.1); 
-            -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%);
+
+        @keyframes floating {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-10px); }
         }
-        
+
+        .aura-btn:hover {
+            color: #fff;
+            box-shadow: 0 0 25px rgba(197, 160, 89, 0.4);
+            border-color: #fff;
+            transform: scale(1.05) translateY(-5px) !important;
+        }
+
+        /* Efect de lumina care trece peste buton */
+        .aura-btn::before {
+            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: 0.5s;
+        }
+        .aura-btn:hover::before { left: 100%; }
+
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; }
+        .about-image-wrapper img { width: 100%; max-width: 500px; height: auto; filter: contrast(1.05) brightness(1.1); -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%); }
         .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
         .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
         .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
 
-        .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
         footer { 
@@ -155,10 +148,7 @@
                 flex-wrap: wrap; justify-content: center; width: 100%; padding: 15px 10px; 
                 gap: 15px; background: var(--hermes-terracotta); backdrop-filter: blur(3px); z-index: 1999;
             }
-            .nav-link { 
-                font-size: 0.85rem; letter-spacing: 2px; 
-                text-shadow: 1px 1px 0px var(--burgundy), -1px -1px 0px var(--burgundy), 1px -1px 0px var(--burgundy), -1px 1px 0px var(--burgundy);
-            }
+            .nav-link { font-size: 0.85rem; letter-spacing: 2px; text-shadow: 1px 1px 0px var(--burgundy), -1px -1px 0px var(--burgundy), 1px -1px 0px var(--burgundy), -1px 1px 0px var(--burgundy); }
             .main-container { padding-top: 160px; padding-bottom: 120px; }
         }
     </style>
@@ -250,7 +240,7 @@
         window.addEventListener('touchmove', updateCoords, { passive: true });
         window.addEventListener('touchstart', updateCoords, { passive: true });
 
-        // LOGICA GLOW LA HOVER (Verificat de 2 ori)
+        // LOGICA GLOW & MAGIC PENTRU TOATE ELEMENTELE INTERACTIVE
         const interactives = document.querySelectorAll('a, button, .lang-item, .nav-link');
         interactives.forEach(el => {
             el.addEventListener('mouseenter', () => {
