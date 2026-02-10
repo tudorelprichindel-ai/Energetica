@@ -17,12 +17,18 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         
-        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        html, body { 
+            width: 100%;
+            height: 100%;
+            color: var(--white);
+            font-family: 'Montserrat', sans-serif;
+            overflow-x: hidden;
+        }
 
         /* CURSOR DIAMANT & FUM */
         .cursor-dot {
             width: 10px; height: 10px; background: var(--gold);
-            position: fixed; pointer-events: none; z-index: 9999; 
+            position: fixed; border-radius: 0; pointer-events: none; z-index: 9999; 
             transform: translate(-50%, -50%) rotate(45deg);
             transition: width 0.3s, height 0.3s, background 0.3s, box-shadow 0.3s, transform 0.3s;
         }
@@ -41,11 +47,8 @@
         .trail-terracotta { width: 60px; height: 60px; background: rgba(211, 84, 0, 0.15); filter: blur(18px); }
         .cursor-dot.glow { width: 15px; height: 15px; box-shadow: 0 0 20px 5px var(--gold); background: #fff; transform: translate(-50%, -50%) rotate(225deg); }
 
-        /* ANIMAȚII MAGICE UNIVERSALE */
-        @keyframes floatingMagic {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-8px); }
-        }
+        /* ANIMAȚIE FLOATING */
+        @keyframes floatingMagic { 0%, 100% { transform: translateY(0px); } 50% { transform: translateY(-8px); } }
 
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
@@ -54,7 +57,6 @@
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
-        /* HEADER & LOGO MAGIC */
         header { 
             position: fixed; top: 0; width: 100%; z-index: 2000; 
             background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); 
@@ -67,19 +69,17 @@
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite, floatingMagic 4s ease-in-out infinite;
-            display: inline-block; transition: var(--transition);
+            display: inline-block;
         }
-        .logo-header:hover { transform: scale(1.1) translateY(-5px) !important; filter: drop-shadow(0 0 10px var(--gold)); }
 
-        /* SELECTOR LIMBĂ MAGIC */
         .lang-dropdown { position: relative; animation: floatingMagic 4.5s ease-in-out infinite; }
         .lang-current { 
             background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); 
             padding: 8px 12px; font-size: 0.75rem; font-weight: 700; 
             display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px;
-            transition: var(--transition); position: relative; overflow: hidden;
+            transition: var(--transition);
         }
-        .lang-current:hover { color: #fff; border-color: #fff; box-shadow: 0 0 20px rgba(197, 160, 89, 0.3); }
+        .lang-current:hover { color: #fff; box-shadow: 0 0 15px var(--gold); border-color: #fff; }
 
         .lang-list { 
             position: absolute; top: 100%; left: 0; width: 100%; background: #000; 
@@ -90,23 +90,30 @@
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; display: flex; align-items: center; justify-content: center; gap: 8px; transition: 0.3s; }
         .lang-item:hover { background: var(--burgundy); color: var(--gold); }
 
-        /* SIDEBAR MAGIC */
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { 
             text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; 
             letter-spacing: 4px; transition: var(--transition); font-weight: 700; 
             display: inline-block; animation: floatingMagic 5s ease-in-out infinite;
         }
-        .nav-link:hover { color: #fff; transform: scale(1.1) translateX(10px) !important; text-shadow: 0 0 10px var(--gold); }
+        .nav-link:hover { color: #fff; transform: scale(1.1) translateX(5px) !important; text-shadow: 0 0 10px var(--gold); }
 
-        /* BUTON & CONȚINUT */
         .main-container { padding: 120px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        .hero-section { text-align: center; margin-bottom: 40px; }
         .hero-title { 
             font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; margin-bottom: 10px;
             background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); 
             background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; 
             animation: shimmerEffect 5s linear infinite;
         }
+        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; opacity: 0.8; }
+
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; }
+        .about-image-wrapper img { width: 100%; max-width: 500px; height: auto; filter: contrast(1.05) brightness(1.1); -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%); }
+        .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+        .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
 
         .aura-btn { 
             display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); 
@@ -115,13 +122,11 @@
             animation: floatingMagic 4s ease-in-out infinite;
         }
         .aura-btn:hover { color: #fff; box-shadow: 0 0 25px rgba(197, 160, 89, 0.4); border-color: #fff; transform: scale(1.05) translateY(-5px) !important; }
-        .aura-btn::before, .lang-current::before, .nav-link::before { 
-            content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; 
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; 
-        }
-        .aura-btn:hover::before, .lang-current:hover::before { left: 100%; }
+        .aura-btn::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent); transition: 0.5s; }
+        .aura-btn:hover::before { left: 100%; }
 
-        /* FOOTER & SOCIAL MAGIC */
+        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
+
         footer { 
             position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; 
             padding: 0 5%; z-index: 2000; border-top: 1px solid var(--burgundy); 
@@ -130,9 +135,12 @@
         }
         .social-links { display: flex; gap: 30px; margin-bottom: 5px; font-size: 1.2rem; }
         .social-links a { color: var(--gold); display: inline-block; animation: floatingMagic 3.5s ease-in-out infinite; transition: var(--transition); }
-        .social-links a:hover { color: #fff; transform: scale(1.3) translateY(-5px) !important; filter: drop-shadow(0 0 8px var(--gold)); }
+        .social-links a:hover { color: #fff; transform: scale(1.3) translateY(-5px) !important; filter: drop-shadow(0 0 10px var(--gold)); }
+        .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
         @media (max-width: 1024px) {
+            .about-hero { grid-template-columns: 1fr; text-align: center; }
+            .about-text-card { border-left: none; border-top: 2px solid var(--burgundy); }
             .sidebar { 
                 position: fixed; top: 80px; left: 0; transform: none; flex-direction: row; 
                 flex-wrap: wrap; justify-content: center; width: 100%; padding: 15px 10px; 
@@ -179,15 +187,17 @@
 
         <section class="hero-section">
             <h1 class="hero-title">The Power Boutique</h1>
-            <p class="hero-sub" style="letter-spacing:12px; text-transform:uppercase; font-size:0.75rem; opacity:0.8;">BY JELENA SHIPKO</p>
+            <p class="hero-sub">BY JELENA SHIPKO</p>
         </section>
 
-        <section style="display:grid; grid-template-columns:1fr 1fr; align-items:center; width:100%; max-width:1200px; gap:60px;">
-            <div style="width:100%; max-width:500px;"><img src="6.jpg" style="width:100%; filter:contrast(1.05) brightness(1.1); -webkit-mask-image:radial-gradient(circle at 50% 40%, black 75%, transparent 100%);"></div>
-            <div style="background:rgba(0,0,0,0.4); backdrop-filter:blur(20px); padding:50px; border-left:2px solid var(--burgundy);">
+        <section class="about-hero">
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
+            <div class="about-text-card">
+                <span style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
                 <h2 style="font-family:'Playfair Display', serif; font-size:2.5rem; color:var(--gold); margin-bottom:20px; font-style:italic;">Inima Din Spatele Puterii</h2>
                 <p style="line-height:1.8; margin-bottom:30px; color:rgba(255,255,255,0.9); font-size:1rem;">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului.</p>
                 <a href="despre.html" class="aura-btn">Află Povestea</a>
+                <div class="signature">Jelena Shipko</div>
             </div>
         </section>
     </main>
@@ -199,7 +209,7 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-size:0.65rem; letter-spacing:4px; text-transform:uppercase; opacity:0.7;">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
@@ -224,6 +234,7 @@
 
         window.addEventListener('mousemove', updateCoords);
         window.addEventListener('touchmove', updateCoords, { passive: true });
+        window.addEventListener('touchstart', updateCoords, { passive: true });
 
         const interactives = document.querySelectorAll('a, button, .lang-item, .nav-link, .logo-header');
         interactives.forEach(el => {
@@ -245,6 +256,7 @@
             document.getElementById('active-flag').src = flagSrc;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
+            // Logica traduceri...
         }
 
         window.onclick = function(event) {
