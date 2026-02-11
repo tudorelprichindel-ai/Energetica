@@ -28,17 +28,29 @@
         .trail-terracotta { background: var(--hermes-terracotta); }
         @keyframes smokeRise { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; } 100% { transform: translate(-50%, -120%) scale(2); opacity: 0; } }
 
-        /* CINEMATIC BACKGROUND & PARTICLES CANVAS */
+        /* CINEMATIC BACKGROUND */
         .fixed-bg { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -3; 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
-        #particleCanvas {
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2;
-            pointer-events: none; opacity: 0.6;
-        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
+
+        /* EFECT PUNCTE DE LUMINA (HYPNOTIC PARTICLES) */
+        #particles-container {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            z-index: -1; pointer-events: none;
+        }
+        .particle {
+            position: absolute; background: radial-gradient(circle, rgba(255,255,255,0.8) 0%, rgba(197,160,89,0) 70%);
+            border-radius: 50%; opacity: 0; animation: floatParticle 15s infinite ease-in-out;
+        }
+        @keyframes floatParticle {
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { opacity: 0.3; }
+            50% { transform: translateY(-100px) scale(1.2); opacity: 0.1; }
+            100% { transform: translateY(-200px) scale(0); opacity: 0; }
+        }
 
         /* HEADER & NAVIGATION */
         header { 
@@ -59,6 +71,7 @@
         }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* SELECTOR LIMBA ORIGINAL */
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
@@ -104,8 +117,9 @@
 
         /* MOBILE */
         @media (max-width: 1024px) {
-            .cursor-dot { display: none !important; }
+            .cursor-dot, .cursor-trail { display: none !important; }
             * { cursor: auto !important; }
+
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             .desktop-nav { 
@@ -119,12 +133,19 @@
             .nav-link, .submenu-link { font-size: 1.2rem; }
             .submenu { position: relative; left: 0; transform: none; background: transparent; border: none; width: 100%; display: none; padding: 10px 0; gap: 1.5rem; }
             .nav-item-container.active-mobile .submenu { display: flex; align-items: center; }
+            
+            /* MODIFICARE POZA MOBIL - DIMENSIUNE MARITA */
+            .about-hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
+            .about-image-wrapper { width: 90%; margin: 0 auto; }
+            .about-image-wrapper img { width: 100%; max-width: 450px; }
+            
             .main-container { padding-top: 120px; padding-bottom: 120px; }
             footer { position: relative; }
         }
     </style>
 </head>
 <body>
+    <div id="particles-container"></div>
     <div class="cursor-dot" id="dot"></div>
     <div class="cursor-trail trail-gold" id="trail1"></div>
     <div class="cursor-trail trail-burgundy" id="trail2"></div>
@@ -133,7 +154,6 @@
     <div class="cursor-trail trail-burgundy" id="trail5"></div>
 
     <div class="fixed-bg"></div>
-    <canvas id="particleCanvas"></canvas>
 
     <header>
         <div class="header-top">
@@ -195,6 +215,24 @@
     </footer>
 
     <script>
+        // GENERARE PARTICULE DE LUMINA
+        function createParticles() {
+            const container = document.getElementById('particles-container');
+            const particleCount = 20;
+            for (let i = 0; i < particleCount; i++) {
+                const particle = document.createElement('div');
+                particle.className = 'particle';
+                const size = Math.random() * 5 + 2;
+                particle.style.width = `${size}px`;
+                particle.style.height = `${size}px`;
+                particle.style.left = `${Math.random() * 100}%`;
+                particle.style.top = `${Math.random() * 100}%`;
+                particle.style.animationDelay = `${Math.random() * 15}s`;
+                container.appendChild(particle);
+            }
+        }
+        createParticles();
+
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
@@ -221,17 +259,20 @@
 
         let mouseX = 0, mouseY = 0;
         function updatePos(e) {
-            if (window.innerWidth <= 1024) {
-                if (e.type === 'touchmove' || e.type === 'touchstart') {
-                    mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY;
-                    trails.forEach(t => t.el.style.opacity = "1");
+            if (e.type === 'touchmove' || e.type === 'touchstart') {
+                mouseX = e.touches[0].clientX; 
+                mouseY = e.touches[0].clientY;
+            } else {
+                if (window.innerWidth > 1024) {
+                    mouseX = e.clientX; 
+                    mouseY = e.clientY;
+                    dot.style.left = mouseX + 'px';
+                    dot.style.top = mouseY + 'px';
                 }
-                return;
             }
-            mouseX = e.clientX; mouseY = e.clientY;
-            dot.style.left = mouseX + 'px';
-            dot.style.top = mouseY + 'px';
-            trails.forEach(t => t.el.style.opacity = "1");
+            if (window.innerWidth > 1024 || e.type.includes('touch')) {
+                trails.forEach(t => t.el.style.opacity = "1");
+            }
         }
 
         window.addEventListener('mousemove', updatePos);
@@ -248,61 +289,14 @@
         }
         animateTrails();
 
-        /* LOGICA EFECT DE PUNCTE DE LUMINA (PARTICULE BOKEH) */
-        const canvas = document.getElementById('particleCanvas');
-        const ctx = canvas.getContext('2d');
-        let particles = [];
-
-        function resizeCanvas() {
-            canvas.width = window.innerWidth;
-            canvas.height = window.innerHeight;
-        }
-        window.addEventListener('resize', resizeCanvas);
-        resizeCanvas();
-
-        class Particle {
-            constructor() {
-                this.reset();
-            }
-            reset() {
-                this.x = Math.random() * canvas.width;
-                this.y = Math.random() * canvas.height;
-                this.size = Math.random() * 3 + 1;
-                this.speedX = (Math.random() - 0.5) * 0.5;
-                this.speedY = (Math.random() - 0.5) * 0.5;
-                this.opacity = Math.random() * 0.5 + 0.1;
-                this.blinkSpeed = Math.random() * 0.01 + 0.005;
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                this.opacity += this.blinkSpeed;
-                if (this.opacity > 0.6 || this.opacity < 0.1) this.blinkSpeed *= -1;
-                if (this.x > canvas.width || this.x < 0 || this.y > canvas.height || this.y < 0) this.reset();
-            }
-            draw() {
-                ctx.beginPath();
-                ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
-                ctx.fillStyle = `rgba(197, 160, 89, ${this.opacity})`;
-                ctx.fill();
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            for (let i = 0; i < 60; i++) particles.push(new Particle());
-        }
-        initParticles();
-
-        function animateParticles() {
-            ctx.clearRect(0, 0, canvas.width, canvas.height);
-            particles.forEach(p => {
-                p.update();
-                p.draw();
+        document.querySelectorAll('a, button').forEach(el => {
+            el.addEventListener('mouseenter', () => {
+                if (window.innerWidth > 1024) dot.classList.add('glow');
             });
-            requestAnimationFrame(animateParticles);
-        }
-        animateParticles();
+            el.addEventListener('mouseleave', () => {
+                if (window.innerWidth > 1024) dot.classList.remove('glow');
+            });
+        });
 
         function changeLang(code, label, flag) {
             document.getElementById('active-flag').src = flag;
