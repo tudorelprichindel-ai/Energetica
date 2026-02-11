@@ -178,16 +178,16 @@
                 { n: "Bărbatul Noii Ere", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
                 { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4" }
             ]},
-            'ru': { home: "Главная", consult: "Консультации", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", title: "Браслеты для него", order: "Запросить энергию", items: [
+            'ru': { home: "Главная", consult: "Консультации", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", title: "Мужские браслеты", order: "Запросить энергию", items: [
                 { n: "Мужчина новой эры", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
                 { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4" }
             ]},
             'lv': { home: "Sākums", consult: "Konsultācijas", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", title: "Aproces Viņam", order: "Pieprasīt Enerģiju", items: [
-                { n: "Jaunā Laikmeta Vīrietis", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
+                { n: "Jaunā laikmeta vīrietis", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
                 { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4" }
             ]},
             'en': { home: "Home", consult: "Consultations", bracelets: "Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", title: "Bracelets For Him", order: "Request Energy", items: [
-                { n: "New Age Man", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
+                { n: "New Era Man", p: "188€", v: "JAUNĀ LAIKMETA VĪRIETIS.mp4" },
                 { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4" }
             ]}
         };
@@ -238,11 +238,6 @@
 
         window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
-        
-        document.querySelectorAll('a, button, .product-media').forEach(el => {
-            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
-            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
-        });
     </script>
 </body>
 </html>
