@@ -56,7 +56,6 @@
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 50px; justify-content: center; }
         .product-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.1); padding: 40px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); position: relative; }
 
-        /* LUXURY HOVER + ZOOM */
         .product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.8); background: rgba(255, 255, 255, 0.05); }
         .product-media { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
         .product-media video { width: 100%; height: 100%; object-fit: contain; transition: transform 1s ease; }
@@ -67,7 +66,7 @@
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; }
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
 
-        /* FULLSCREEN MODAL - LUXURY DESIGN */
+        /* FULLSCREEN MODAL */
         .lux-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; }
         .lux-modal.show { display: flex; opacity: 1; }
         .modal-content { position: relative; width: 90%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; }
@@ -122,20 +121,20 @@
 
     <main>
         <nav class="sidebar">
-            <a href="index.html" class="nav-link">Acasă</a>
-            <a href="programari.html" class="nav-link">Consultații</a>
+            <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+            <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" onclick="if(window.innerWidth <= 1024) this.classList.toggle('active')">
-                <a href="javascript:void(0)" class="nav-link">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
-                    <a href="products.html" class="submenu-link">Brățări Energetice</a>
-                    <a href="digital-shop.html" class="submenu-link">Digital Shop</a>
+                    <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
+                    <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
                 </div>
             </div>
-            <a href="despre.html" class="nav-link">Despre</a>
-            <a href="contact.html" class="nav-link">Contact</a>
+            <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+            <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
         </nav>
 
-        <h1 class="section-title">Brățări Pentru Ea</h1>
+        <h1 class="section-title" id="page-title">Brățări Pentru Ea</h1>
         <div class="product-grid" id="p-grid"></div>
     </main>
 
@@ -174,23 +173,58 @@
         }
         animateTrails();
 
-        const products = [
-            { n: "Echilibru Antistres", p: "90€", v: "ANTISTRESS.mp4" },
-            { n: "Realizarea Dorințelor", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
-            { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4" }
-        ];
+        const translations = {
+            'ro': { home: "Acasă", consult: "Consultații", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", title: "Brățări Pentru Ea", order: "Solicită Energia", items: [
+                { n: "Echilibru Antistres", p: "90€", v: "ANTISTRESS.mp4" },
+                { n: "Realizarea Dorințelor", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4" }
+            ]},
+            'ru': { home: "Главная", consult: "Консультации", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", title: "Браслеты для неё", order: "Запросить энергию", items: [
+                { n: "Антистрессовый баланс", p: "90€", v: "ANTISTRESS.mp4" },
+                { n: "Исполнение желаний", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4" }
+            ]},
+            'lv': { home: "Sākums", consult: "Konsultācijas", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", title: "Aproces Viņai", order: "Pieprasīt Enerģiju", items: [
+                { n: "Antistresa līdzsvars", p: "90€", v: "ANTISTRESS.mp4" },
+                { n: "Vēlmju realizācija", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4" }
+            ]},
+            'en': { home: "Home", consult: "Consultations", bracelets: "Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", title: "Bracelets For Her", order: "Request Energy", items: [
+                { n: "Antistress Balance", p: "90€", v: "ANTISTRESS.mp4" },
+                { n: "Wish Realization", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
+                { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4" }
+            ]}
+        };
 
-        const grid = document.getElementById('p-grid');
-        grid.innerHTML = products.map(i => `
-            <div class="product-card">
-                <div class="product-media" onclick="openLux('${i.v}', '${i.n}')">
-                    <video src="${i.v}" autoplay muted loop playsinline></video>
+        function renderProducts(langData) {
+            const grid = document.getElementById('p-grid');
+            grid.innerHTML = langData.items.map(i => `
+                <div class="product-card">
+                    <div class="product-media" onclick="openLux('${i.v}', '${i.n}')">
+                        <video src="${i.v}" autoplay muted loop playsinline></video>
+                    </div>
+                    <h3>${i.n}</h3>
+                    <div class="product-price">${i.p}</div>
+                    <a href="contact.html" class="order-btn">${langData.order}</a>
                 </div>
-                <h3>${i.n}</h3>
-                <div class="product-price">${i.p}</div>
-                <a href="contact.html" class="order-btn">Solicită Energia</a>
-            </div>
-        `).join('');
+            `).join('');
+        }
+
+        function changeLang(code, label, flag) {
+            document.getElementById('active-flag').src = flag;
+            document.getElementById('active-lang').innerText = label;
+            document.getElementById('lang-list').classList.remove('show');
+            
+            const data = translations[code];
+            document.getElementById('nav-home').innerText = data.home;
+            document.getElementById('nav-consult').innerText = data.consult;
+            document.getElementById('nav-bracelets').innerText = data.bracelets;
+            document.getElementById('nav-digital').innerText = data.digital;
+            document.getElementById('nav-about').innerText = data.about;
+            document.getElementById('nav-contact').innerText = data.contact;
+            document.getElementById('page-title').innerText = data.title;
+            renderProducts(data);
+        }
 
         function openLux(src, title) {
             const modal = document.getElementById('luxModal');
@@ -203,23 +237,12 @@
 
         function closeLux() {
             const modal = document.getElementById('luxModal');
-            const video = document.getElementById('luxVideo');
-            video.pause();
+            document.getElementById('luxVideo').pause();
             modal.classList.remove('show');
         }
 
-        function changeLang(code, label, flag) {
-            document.getElementById('active-flag').src = flag;
-            document.getElementById('active-lang').innerText = label;
-            document.getElementById('lang-list').classList.remove('show');
-        }
-
         window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
-        
-        document.querySelectorAll('a, button, .product-media').forEach(el => {
-            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
-            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
-        });
+        changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
 </html>
