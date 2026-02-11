@@ -13,6 +13,7 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
+        /* RESET & CURSOR IDENTIC INDEX */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
@@ -25,6 +26,7 @@
         .trail-terracotta { background: var(--hermes-terracotta); }
         @keyframes smokeRise { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; } 100% { transform: translate(-50%, -120%) scale(2); opacity: 0; } }
 
+        /* CINEMATIC BACKGROUND IDENTIC INDEX */
         .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
@@ -32,6 +34,7 @@
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        /* SELECTOR LIMBA */
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; left: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
@@ -39,28 +42,36 @@
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; }
         .flag-img { width: 18px; height: 12px; object-fit: cover; }
 
+        /* SIDEBAR & SUBMENU IDENTIC INDEX */
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; transition: var(--transition); }
         .nav-item-container { position: relative; }
         .submenu { display: none; flex-direction: column; gap: 1.2rem; padding: 1rem 0 0 1.5rem; }
-        @media (min-width: 1025px) { .nav-item-container:hover .submenu { display: flex; } }
+        @media (min-width: 1025px) { .nav-item-container:hover .submenu { display: flex; } .nav-link:hover { color: var(--white); } }
         .submenu-link { text-decoration: none; color: var(--white); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7; transition: var(--transition); }
         .submenu-link:hover { opacity: 1; color: var(--gold); transform: translateX(8px); }
 
+        .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+
+        /* MAIN CONTENT */
         main { flex: 1; padding: 160px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-style: italic; margin-bottom: 60px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
+        /* GRID 3 COLOANE FIXE */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; justify-items: center; }
         .product-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.1); padding: 40px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); position: relative; width: 100%; max-width: 400px; }
         .product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.8); background: rgba(255, 255, 255, 0.05); }
+        
         .product-media { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); }
         .product-media video { width: 100%; height: 100%; object-fit: contain; transition: transform 1s ease; }
         .product-card:hover .product-media video { transform: scale(1.1); }
+
         .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; }
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
 
+        /* LIGHTBOX */
         .lux-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; }
         .lux-modal.show { display: flex; opacity: 1; }
         .modal-content { position: relative; width: 90%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; }
@@ -193,7 +204,7 @@
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n}')">
                         <video src="${i.v}" autoplay muted loop playsinline></video>
                     </div>
-                    <h3>${i.n}</h3>
+                    <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.p}</div>
                     <a href="contact.html" class="order-btn">${langData.order}</a>
                 </div>
@@ -225,7 +236,7 @@
 
         window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
-        
+
         document.querySelectorAll('a, button, .product-media').forEach(el => {
             el.addEventListener('mouseenter', () => dot.classList.add('glow'));
             el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
