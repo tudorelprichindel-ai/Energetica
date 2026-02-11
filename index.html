@@ -54,9 +54,9 @@
         }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* SELECTOR LIMBA - FORMATUL TAU ORIGINAL */
+        /* SELECTOR LIMBA - RESTAURAT COMPLET */
         .lang-dropdown { position: relative; }
-        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; min-width: 100px; }
+        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
         .lang-list.show { display: flex; }
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; }
@@ -92,7 +92,6 @@
         .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
         .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
         .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
-        .aura-btn:hover { background: var(--gold); color: #000; }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
         /* FOOTER */
@@ -154,7 +153,7 @@
                 <a href="javascript:void(0)" class="nav-link">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
                     <a href="products.html" class="submenu-link">Brățări Energetice</a>
-                    <a href="virtual-shop.html" class="submenu-link">Virtual Shop</a>
+                    <a href="digital-shop.html" class="submenu-link">Digital Shop</a>
                 </div>
             </div>
             <a href="despre.html" class="nav-link">Despre</a>
@@ -208,11 +207,9 @@
         let mouseX = 0, mouseY = 0, currentX = 0, currentY = 0;
         function updatePos(e) {
             if (e.type === 'touchmove' || e.type === 'touchstart') {
-                mouseX = e.touches[0].clientX;
-                mouseY = e.touches[0].clientY;
+                mouseX = e.touches[0].clientX; mouseY = e.touches[0].clientY;
             } else {
-                mouseX = e.clientX;
-                mouseY = e.clientY;
+                mouseX = e.clientX; mouseY = e.clientY;
             }
         }
         window.addEventListener('mousemove', updatePos);
@@ -231,7 +228,6 @@
             document.getElementById('active-flag').src = flag;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
-            // Logica funcțională: poți adăuga aici codul pentru schimbarea textelor dacă ai obiectul translations definit.
         }
 
         window.onclick = (e) => {
