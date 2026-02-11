@@ -11,6 +11,7 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
+            --hermes-terracotta: #d35400;
             --glass: rgba(255, 255, 255, 0.05); 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
@@ -20,12 +21,32 @@
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
         
         .cursor-dot { width: 25px; height: 25px; background-image: url('diamond-graphic-clipart-design-free-png.webp'); background-size: contain; background-repeat: no-repeat; background-position: center; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
+        .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
 
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; background: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0.5)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        .cursor-trail { position: fixed; pointer-events: none; z-index: 9998; width: 15px; height: 15px; border-radius: 50%; opacity: 0; transform: translate(-50%, -50%); filter: blur(4px); transition: opacity 1s ease-out; animation: smokeRise 4s infinite ease-out; }
+        .trail-gold { background: var(--gold); }
+        .trail-burgundy { background: var(--burgundy); }
+        .trail-terracotta { background: var(--hermes-terracotta); }
+
+        @keyframes smokeRise { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; } 100% { transform: translate(-50%, -120%) scale(2); opacity: 0; } }
+
+        /* CINEMATIC BACKGROUND IDENTIC INDEX */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
+            background-size: cover; animation: cinematicZoom 25s infinite alternate ease-in-out; 
+        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
         
         /* HEADER IDENTIC CU INDEX */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid var(--glass); height: 80px; display: flex; justify-content: space-between; align-items: center; padding: 0 5%; }
-        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        
+        .logo-header { 
+            font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; 
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
         
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
@@ -46,36 +67,44 @@
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        /* MAIN CONTENT - NO ZOOM ON HOVER */
+        /* MAIN CONTENT */
         main { flex: 1; padding: 160px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
-        .section-subtitle { color: var(--gold); letter-spacing: 10px; text-transform: uppercase; font-size: 0.9rem; font-weight: 700; margin-bottom: 15px; opacity: 0.8; }
-        .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 60px; line-height: 1.1; }
+        .section-subtitle { color: var(--gold); letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; margin-bottom: 15px; opacity: 0.8; }
+        .section-title { 
+            font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 6rem); font-style: italic; margin-bottom: 60px; line-height: 1.1;
+            background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%);
+            background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent;
+            animation: shimmerEffect 5s linear infinite;
+        }
 
         .product-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); gap: 40px; justify-content: center; }
         .product-card { background: rgba(255, 255, 255, 0.05); backdrop-filter: blur(15px); border: 1px solid var(--glass); padding: 35px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); width: 100%; max-width: 400px; margin: 0 auto; }
         .product-card:hover { border-color: var(--gold); transform: translateY(-5px); }
         
-        /* VIDEO CONTAINER - FULL BRACELET VIEW */
-        .product-media { width: 100%; aspect-ratio: 1/1; background: rgba(0, 0, 0, 0.3); overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1); }
-        .product-media video { width: 100%; height: 100%; object-fit: contain; } /* Asigură încadrarea completă a brățării */
+        /* VIDEO CONTAINER - NO AUTO ZOOM */
+        .product-media { width: 100%; aspect-ratio: 1/1; background: rgba(0, 0, 0, 0.3); overflow: hidden; margin-bottom: 25px; border: 1px solid rgba(255,255,255,0.1); cursor: zoom-in; }
+        .product-media video { width: 100%; height: 100%; object-fit: contain; }
         
         .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); margin-bottom: 15px; font-style: italic; height: 3.5rem; display: flex; align-items: center; justify-content: center; }
         .product-description { font-size: 0.85rem; color: rgba(255,255,255,0.7); margin-bottom: 20px; min-height: 60px; line-height: 1.6; }
         .product-price { font-weight: 600; font-size: 1.3rem; margin-bottom: 25px; color: var(--white); }
-        .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; font-size: 0.7rem; cursor: pointer; transition: 0.5s; text-decoration: none; display: inline-block; }
+        .order-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
         .order-btn:hover { background: var(--gold); color: #000; }
 
-        /* LIGHTBOX / ZOOM OVERLAY */
+        /* LIGHTBOX */
         .zoom-overlay { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.95); z-index: 3000; display: none; align-items: center; justify-content: center; }
         .zoom-overlay.show { display: flex; }
         .zoom-video-wrap { position: relative; width: 90%; max-width: 1000px; height: 80vh; }
         .zoom-video-wrap video { width: 100%; height: 100%; object-fit: contain; }
         .close-zoom { position: absolute; top: -50px; right: 0; color: var(--white); font-size: 2rem; cursor: pointer; transition: 0.3s; }
-        .close-zoom:hover { color: var(--gold); }
 
-        /* FOOTER */
-        footer { height: 100px; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); width: 100%; }
-        .social-links { display: flex; gap: 30px; margin-bottom: 10px; font-size: 1.4rem; }
+        /* FOOTER IDENTIC INDEX */
+        footer { 
+            position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; padding: 0 5%; z-index: 2000; border-top: 1px solid var(--burgundy); 
+            display: flex; flex-direction: column; align-items: center; justify-content: center;
+            background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px);
+        }
+        .social-links { display: flex; gap: 30px; margin-bottom: 5px; font-size: 1.2rem; }
         .social-links a { color: var(--gold); }
         .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
@@ -89,6 +118,12 @@
 </head>
 <body>
     <div class="cursor-dot" id="dot"></div>
+    <div class="cursor-trail trail-gold" id="trail1"></div>
+    <div class="cursor-trail trail-burgundy" id="trail2"></div>
+    <div class="cursor-trail trail-terracotta" id="trail3"></div>
+    <div class="cursor-trail trail-gold" id="trail4"></div>
+    <div class="cursor-trail trail-burgundy" id="trail5"></div>
+
     <div class="fixed-bg"></div>
 
     <div class="zoom-overlay" id="zoomOverlay">
@@ -102,7 +137,8 @@
         <a href="index.html" class="logo-header">The Power Boutique</a>
         <div class="lang-dropdown">
             <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag"> <span id="active-lang">RO</span> 
+                <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO">
+                <span id="active-lang">RO</span> 
                 <i class="fas fa-chevron-down" style="font-size: 0.5rem; opacity: 0.6; margin-left: 5px;"></i>
             </button>
             <div class="lang-list" id="lang-list">
@@ -115,22 +151,22 @@
     </header>
 
     <nav class="sidebar">
-        <a href="index.html" class="nav-link">Acasă</a>
-        <a href="programari.html" class="nav-link">Consultații</a>
+        <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
+        <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
         <div class="nav-item-container" onclick="if(window.innerWidth <= 1024) this.classList.toggle('active')">
-            <a href="javascript:void(0)" class="nav-link">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+            <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
             <div class="submenu">
-                <a href="products.html" class="submenu-link">Brățări Energetice</a>
-                <a href="digital-shop.html" class="submenu-link">Digital Shop</a>
+                <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
+                <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
             </div>
         </div>
-        <a href="despre.html" class="nav-link">Despre</a>
-        <a href="contact.html" class="nav-link">Contact</a>
+        <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+        <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
     </nav>
 
     <main>
         <div class="section-subtitle">O experiență hipnotică</div>
-        <h1 class="section-title shimmer-element">Brățări Pentru Ea</h1>
+        <h1 class="section-title">Brățări Pentru Ea</h1>
         <div class="product-grid" id="product-grid"></div>
     </main>
 
@@ -146,7 +182,35 @@
 
     <script>
         const dot = document.getElementById('dot');
-        window.addEventListener('mousemove', (e) => { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; });
+        const trails = [
+            { el: document.getElementById('trail1'), x: 0, y: 0, lag: 0.05 },
+            { el: document.getElementById('trail2'), x: 0, y: 0, lag: 0.1 },
+            { el: document.getElementById('trail3'), x: 0, y: 0, lag: 0.15 },
+            { el: document.getElementById('trail4'), x: 0, y: 0, lag: 0.22 },
+            { el: document.getElementById('trail5'), x: 0, y: 0, lag: 0.3 }
+        ];
+
+        let mouseX = 0, mouseY = 0;
+        window.addEventListener('mousemove', (e) => {
+            mouseX = e.clientX; mouseY = e.clientY;
+            dot.style.left = mouseX + 'px'; dot.style.top = mouseY + 'px';
+            trails.forEach(t => t.el.style.opacity = "1");
+        });
+
+        document.querySelectorAll('a, button, .product-media').forEach(el => {
+            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
+            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
+        });
+
+        function animateTrails() {
+            trails.forEach(trail => {
+                trail.x += (mouseX - trail.x) * trail.lag;
+                trail.y += (mouseY - trail.y) * trail.lag;
+                trail.el.style.left = trail.x + 'px'; trail.el.style.top = trail.y + 'px';
+            });
+            requestAnimationFrame(animateTrails);
+        }
+        animateTrails();
 
         const productsData = [
             { n: "Echilibru Antistres", d: "O oază de liniște purtată la încheietură pentru armonizarea stării de bine.", p: "90€", v: "ANTISTRESS.mp4" },
@@ -182,9 +246,9 @@
             zoomedVideo.src = "";
         };
 
-        function changeLang(code, label, flag) {
+        function changeLang(langCode, label, flagSrc) {
+            document.getElementById('active-flag').src = flagSrc;
             document.getElementById('active-lang').innerText = label;
-            document.getElementById('active-flag').src = flag;
             document.getElementById('lang-list').classList.remove('show');
         }
 
