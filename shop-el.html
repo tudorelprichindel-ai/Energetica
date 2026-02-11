@@ -33,7 +33,7 @@
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
         .lang-dropdown { position: relative; }
-        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; min-width: 100px; }
+        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; left: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
         .lang-list.show { display: flex; }
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; display: flex; align-items: center; gap: 8px; }
@@ -219,11 +219,17 @@
 
         function closeLux() {
             const modal = document.getElementById('luxModal');
-            document.getElementById('luxVideo').pause(); modal.classList.remove('show');
+            const video = document.getElementById('luxVideo');
+            video.pause(); modal.classList.remove('show');
         }
 
         window.onclick = e => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); }
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
+        
+        document.querySelectorAll('a, button, .product-media').forEach(el => {
+            el.addEventListener('mouseenter', () => dot.classList.add('glow'));
+            el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
+        });
     </script>
 </body>
 </html>
