@@ -17,7 +17,9 @@
 
         /* RESET & CURSOR */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
-        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background-color: #000; }
+        
+        /* FIX: Am scos background-color de aici ca să nu acopere imaginea */
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         .cursor-dot { width: 25px; height: 25px; background-image: url('diamond-graphic-clipart-design-free-png.webp'); background-size: contain; background-repeat: no-repeat; background-position: center; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
         .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
@@ -28,35 +30,32 @@
         .trail-terracotta { background: var(--hermes-terracotta); }
         @keyframes smokeRise { 0% { transform: translate(-50%, -50%) scale(1); opacity: 0.6; } 100% { transform: translate(-50%, -120%) scale(2); opacity: 0; } }
 
-        /* CINEMATIC BACKGROUND - FIXED FOR MOBILE */
+        /* CINEMATIC BACKGROUND */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            /* FIX: Am adăugat culoarea neagră aici, ca fallback sub imagine */
+            background-color: #000;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; 
-            /* Optimizare pentru mobil */
-            will-change: transform;
-            transform: translateZ(0); 
             animation: cinematicZoom 25s infinite alternate ease-in-out; 
         }
-        @keyframes cinematicZoom { 
-            from { transform: scale(1); } 
-            to { transform: scale(1.15); } 
-        }
+        @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        /* PARTICLES - VIZIBILITATE CRESCUTA */
-        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
+        /* PARTICLES - REZOLVAT VIZIBILITATE */
+        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .particle { 
             position: absolute; 
-            background: #fff; /* Alb pur pentru vizibilitate */
-            box-shadow: 0 0 8px var(--gold); /* Aura aurie */
+            background: #fff; /* Alb pur */
+            box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); /* Strălucire puternică */
             border-radius: 50%; 
             opacity: 0; 
-            animation: floatParticle 8s infinite ease-in-out; /* Animatie mai rapida */
+            animation: floatParticle 10s infinite ease-in-out; 
         }
         @keyframes floatParticle {
-            0% { transform: translateY(0) scale(0.5); opacity: 0; }
-            50% { opacity: 1; transform: translateY(-40px) scale(1.2); } /* Maxim de vizibilitate */
-            100% { transform: translateY(-100px) scale(0); opacity: 0; }
+            0% { transform: translateY(0) scale(0); opacity: 0; }
+            20% { opacity: 1; transform: translateY(-20px) scale(1); } /* Apar complet */
+            80% { opacity: 0.8; }
+            100% { transform: translateY(-150px) scale(0); opacity: 0; }
         }
 
         /* HEADER */
@@ -251,17 +250,17 @@
         function createParticles() {
             const container = document.getElementById('particles-container');
             if(!container) return;
-            // Generam 40 de particule pentru a fi vizibile
+            // Generam 40 de particule
             for (let i = 0; i < 40; i++) {
                 const particle = document.createElement('div');
                 particle.className = 'particle';
-                const size = Math.random() * 3 + 2; // Dimensiune putin mai mare
+                const size = Math.random() * 3 + 2; 
                 particle.style.width = `${size}px`; 
                 particle.style.height = `${size}px`;
                 particle.style.left = `${Math.random() * 100}%`; 
                 particle.style.top = `${Math.random() * 100}%`;
-                // Timp random pentru animatie ca sa nu apara toate odata
-                particle.style.animationDuration = `${Math.random() * 5 + 5}s`;
+                // Viteza variabila
+                particle.style.animationDuration = `${Math.random() * 8 + 8}s`;
                 particle.style.animationDelay = `${Math.random() * 5}s`;
                 container.appendChild(particle);
             }
