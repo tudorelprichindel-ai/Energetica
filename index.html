@@ -20,11 +20,11 @@
         
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR - Ascuns pe mobil */
+        /* CURSOR */
         .cursor-dot { width: 25px; height: 25px; background-image: url('diamond-graphic-clipart-design-free-png.webp'); background-size: contain; background-repeat: no-repeat; background-position: center; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
         .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
 
-        /* CINEMATIC BACKGROUND - VITEZA REDUSA (45s) */
+        /* CINEMATIC BACKGROUND */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background-color: #000;
@@ -87,35 +87,38 @@
         }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MAIN CONTENT & NEW SECTIONS */
-        .main-container { padding: 160px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        /* MAIN CONTENT */
+        .main-container { padding: 160px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; } /* Ensure no side scroll */
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; text-align: center; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; text-align: center; opacity: 0.8; margin-bottom: 40px; }
 
-        /* NEW: Hero CTA Button */
+        /* Hero CTA Button */
         .hero-btn-container { margin-bottom: 60px; }
         .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); position: relative; overflow: hidden; }
         .aura-btn:hover { background: rgba(197, 160, 89, 0.1); box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); color: #fff; }
 
-        /* NEW: Infinite Marquee */
+        /* FIX: MARQUEE FULL WIDTH */
         .marquee-container {
-            width: 100vw;
+            width: 100vw; /* Latime totala viewport */
+            position: relative;
+            left: 50%;
+            right: 50%;
+            margin-left: -50vw; /* Fortare iesire din container parinte */
+            margin-right: -50vw;
             overflow: hidden;
             white-space: nowrap;
             padding: 20px 0;
             border-top: 1px solid rgba(197, 160, 89, 0.2);
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            margin: 0 0 80px 0;
+            margin-bottom: 80px;
             background: rgba(0,0,0,0.3);
-            position: relative;
-            left: 50%;
-            transform: translateX(-50%);
         }
+        
         .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* NEW: Glassmorphism Quick Cards */
+        /* Glassmorphism Quick Cards */
         .quick-links-container {
             display: flex;
             gap: 30px;
@@ -187,7 +190,7 @@
             .nav-item-container.active-mobile .submenu { display: flex; }
             .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 0.95rem; opacity: 0.8; display: block; border-top: 1px solid rgba(197, 160, 89, 0.1); }
 
-            /* Mobile Adjustments for New Sections */
+            /* Mobile Adjustments */
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
             .quick-links-container { flex-direction: column; gap: 20px; }
             .glass-card { min-width: 100%; padding: 30px; }
@@ -338,7 +341,6 @@
             document.getElementById('about-desc').innerHTML = t.desc;
             document.getElementById('about-btn').innerText = t.btn;
             
-            // New Translations
             document.getElementById('hero-cta').innerText = t.heroCta;
             document.getElementById('card-title-shop').innerText = t.shopTitle;
             document.getElementById('card-sub-shop').innerText = t.shopSub;
@@ -356,10 +358,8 @@
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
                 this.size = Math.random() * 3 + 2;
-                // Viteza naturala
                 this.speedX = Math.random() * 1 - 0.5;
                 this.speedY = Math.random() * 1 - 0.5;
-                
                 this.element = document.createElement('div');
                 this.element.classList.add('particle');
                 this.element.style.width = this.size + 'px';
@@ -368,15 +368,12 @@
             }
 
             update() {
-                // Miscare naturala
                 this.x += this.speedX;
                 this.y += this.speedY;
 
-                // Margini
                 if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
 
-                // ATRACTIE (Magnet/Deget)
                 if (mouse.x != null) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -387,12 +384,10 @@
                         const forceDirectionY = dy / distance;
                         const force = (mouse.radius - distance) / mouse.radius;
                         const attractionStrength = 3; 
-                        
                         this.x += forceDirectionX * force * attractionStrength;
                         this.y += forceDirectionY * force * attractionStrength;
                     }
                 }
-
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
@@ -436,7 +431,6 @@
             } 
         };
 
-        // Actualizare pozitie magnet
         function updatePos(e) {
             if (e.type.includes('touch')) {
                 if(e.touches.length > 0) {
