@@ -20,11 +20,11 @@
         
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR - Ascuns pe mobil prin media query de mai jos */
+        /* CURSOR - Ascuns pe mobil */
         .cursor-dot { width: 25px; height: 25px; background-image: url('diamond-graphic-clipart-design-free-png.webp'); background-size: contain; background-repeat: no-repeat; background-position: center; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
         .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
 
-        /* CINEMATIC BACKGROUND */
+        /* CINEMATIC BACKGROUND - VITEZA REDUSA (45s) */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background-color: #000;
@@ -43,7 +43,7 @@
             background: #fff; 
             box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); 
             border-radius: 50%; 
-            opacity: 0.5; 
+            opacity: 0.8; 
             will-change: transform; 
         }
 
@@ -87,17 +87,75 @@
         }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MAIN CONTENT */
+        /* MAIN CONTENT & NEW SECTIONS */
         .main-container { padding: 160px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; text-align: center; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; text-align: center; opacity: 0.8; margin-bottom: 60px; }
+        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; text-align: center; opacity: 0.8; margin-bottom: 40px; }
+
+        /* NEW: Hero CTA Button */
+        .hero-btn-container { margin-bottom: 60px; }
+        .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); position: relative; overflow: hidden; }
+        .aura-btn:hover { background: rgba(197, 160, 89, 0.1); box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); color: #fff; }
+
+        /* NEW: Infinite Marquee */
+        .marquee-container {
+            width: 100vw;
+            overflow: hidden;
+            white-space: nowrap;
+            padding: 20px 0;
+            border-top: 1px solid rgba(197, 160, 89, 0.2);
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            margin: 0 0 80px 0;
+            background: rgba(0,0,0,0.3);
+            position: relative;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
+        .marquee-item { display: inline-block; color: var(--gold); font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* NEW: Glassmorphism Quick Cards */
+        .quick-links-container {
+            display: flex;
+            gap: 30px;
+            width: 100%;
+            max-width: 1000px;
+            margin-bottom: 100px;
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        .glass-card {
+            flex: 1;
+            min-width: 300px;
+            background: rgba(255,255,255,0.02);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.3);
+            padding: 40px;
+            text-align: center;
+            transition: 0.4s ease;
+            text-decoration: none;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+        }
+        .glass-card:hover {
+            background: rgba(197, 160, 89, 0.08);
+            border-color: var(--gold);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+        }
+        .card-icon { font-size: 2rem; color: var(--gold); margin-bottom: 15px; transition: 0.4s; }
+        .glass-card:hover .card-icon { transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-style: italic; }
+        .card-sub { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.6); }
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; }
         .about-image-wrapper img { width: 100%; height: auto; -webkit-mask-image: radial-gradient(circle at 50% 40%, black 75%, transparent 100%); filter: contrast(1.05) brightness(1.1); }
         .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
         .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
         .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
-        .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
         /* FOOTER */
@@ -108,7 +166,7 @@
 
         /* MOBILE STYLES */
         @media (max-width: 1024px) {
-            .cursor-dot { display: none !important; } /* Ascundem cursorul pe mobil */
+            .cursor-dot { display: none !important; }
             * { cursor: auto !important; }
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
@@ -129,6 +187,11 @@
             .nav-item-container.active-mobile .submenu { display: flex; }
             .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 0.95rem; opacity: 0.8; display: block; border-top: 1px solid rgba(197, 160, 89, 0.1); }
 
+            /* Mobile Adjustments for New Sections */
+            .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
+            .quick-links-container { flex-direction: column; gap: 20px; }
+            .glass-card { min-width: 100%; padding: 30px; }
+
             .about-hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .about-image-wrapper { width: 90%; margin: 0 auto; }
             .about-image-wrapper img { width: 100%; max-width: 450px; }
@@ -139,9 +202,7 @@
 </head>
 <body>
     <div id="particles-container"></div>
-    
     <div class="cursor-dot" id="dot"></div>
-
     <div class="fixed-bg"></div>
 
     <header>
@@ -181,6 +242,41 @@
     <main class="main-container">
         <h1 class="hero-title">The Power Boutique</h1>
         <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
+        
+        <div class="hero-btn-container">
+            <a href="shop.html" class="aura-btn" id="hero-cta">Descoperă Universul</a>
+        </div>
+
+        <div class="marquee-container">
+            <div class="marquee-content">
+                <span class="marquee-item">ENERGY</span>•
+                <span class="marquee-item">LUXURY</span>•
+                <span class="marquee-item">POWER</span>•
+                <span class="marquee-item">BALANCE</span>•
+                <span class="marquee-item">HARMONY</span>•
+                <span class="marquee-item">INTENTION</span>•
+                <span class="marquee-item">ENERGY</span>•
+                <span class="marquee-item">LUXURY</span>•
+                <span class="marquee-item">POWER</span>•
+                <span class="marquee-item">BALANCE</span>•
+                <span class="marquee-item">HARMONY</span>•
+                <span class="marquee-item">INTENTION</span>
+            </div>
+        </div>
+
+        <div class="quick-links-container">
+            <a href="products.html" class="glass-card">
+                <i class="fas fa-gem card-icon"></i>
+                <h3 class="card-title" id="card-title-shop">Shop</h3>
+                <span class="card-sub" id="card-sub-shop">Explorează Colecția</span>
+            </a>
+            <a href="programari.html" class="glass-card">
+                <i class="fas fa-calendar-alt card-icon"></i>
+                <h3 class="card-title" id="card-title-consult">Consultații</h3>
+                <span class="card-sub" id="card-sub-consult">Programează o Sesiune</span>
+            </a>
+        </div>
+
         <section class="about-hero">
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-text-card">
@@ -205,10 +301,22 @@
 
     <script>
         const translations = {
-            ro: { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.", btn: "Află Povestea" },
-            ru: { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", sub: "ОТ ЕЛЕНЫ ШИПКО", label: "Видение и творчество", title: "Сердце за силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. С <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Узнать историю" },
-            lv: { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", sub: "NO JELENAS SHIPKO", label: "Vīzija un radīšana", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja pieskaņoties panākumu biežumam. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmēm un enerģiju.", btn: "Uzzināt stāstu" },
-            en: { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind the Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we created a bridge between desire and energy.", btn: "Learn the Story" }
+            ro: { 
+                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.", btn: "Află Povestea",
+                heroCta: "Descoperă Universul", shopTitle: "Shop", shopSub: "Explorează Colecția", consultTitle: "Consultații", consultSub: "Programează o Sesiune"
+            },
+            ru: { 
+                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", sub: "ОТ ЕЛЕНЫ ШИПКО", label: "Видение и творчество", title: "Сердце за силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. С <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Узнать историю",
+                heroCta: "Откройте Вселенную", shopTitle: "Магазин", shopSub: "Изучить коллекцию", consultTitle: "Консультации", consultSub: "Записаться на сеанс"
+            },
+            lv: { 
+                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", sub: "NO JELENAS SHIPKO", label: "Vīzija un radīšana", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja pieskaņoties panākumu biežumam. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmēm un enerģiju.", btn: "Uzzināt stāstu",
+                heroCta: "Atklājiet Visumu", shopTitle: "Veikals", shopSub: "Izpētīt kolekciju", consultTitle: "Konsultācijas", consultSub: "Pieteikties sesijai"
+            },
+            en: { 
+                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind the Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we created a bridge between desire and energy.", btn: "Learn the Story",
+                heroCta: "Discover the Universe", shopTitle: "Shop", shopSub: "Explore Collection", consultTitle: "Consultations", consultSub: "Schedule a Session"
+            }
         };
 
         function changeLang(code, label, flag) {
@@ -229,6 +337,13 @@
             document.getElementById('about-title').innerText = t.title;
             document.getElementById('about-desc').innerHTML = t.desc;
             document.getElementById('about-btn').innerText = t.btn;
+            
+            // New Translations
+            document.getElementById('hero-cta').innerText = t.heroCta;
+            document.getElementById('card-title-shop').innerText = t.shopTitle;
+            document.getElementById('card-sub-shop').innerText = t.shopSub;
+            document.getElementById('card-title-consult').innerText = t.consultTitle;
+            document.getElementById('card-sub-consult').innerText = t.consultSub;
         }
 
         // --- PARTICULE + MAGNET (DESKTOP) + TOUCH FOLLOWER (MOBILE) ---
@@ -285,7 +400,6 @@
         function initParticles() {
             particles = [];
             particleContainer.innerHTML = '';
-            // Mai putine particule pe mobil pentru performanta
             let numberOfParticles = window.innerWidth < 768 ? 35 : 50;
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle());
@@ -325,13 +439,11 @@
         // Actualizare pozitie magnet
         function updatePos(e) {
             if (e.type.includes('touch')) {
-                // Pe mobil luam coordonatele primului deget
                 if(e.touches.length > 0) {
                     mouse.x = e.touches[0].clientX;
                     mouse.y = e.touches[0].clientY;
                 }
             } else {
-                // Pe desktop
                 mouse.x = e.clientX; 
                 mouse.y = e.clientY;
                 if (window.innerWidth > 1024 && dot) { 
@@ -341,20 +453,11 @@
             }
         }
 
-        // 1. Mouse Desktop
         window.addEventListener('mousemove', updatePos);
         window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-
-        // 2. Touch Mobil
-        // 'passive: true' e important pentru performanta scroll
         window.addEventListener('touchstart', updatePos, { passive: true });
         window.addEventListener('touchmove', updatePos, { passive: true });
-        
-        // 3. Reset cand ridicam degetul
-        window.addEventListener('touchend', () => { 
-            mouse.x = null; 
-            mouse.y = null; 
-        });
+        window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
@@ -369,8 +472,3 @@
     </script>
 </body>
 </html>
-
-
-
-
-
