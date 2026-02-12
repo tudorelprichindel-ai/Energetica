@@ -104,7 +104,7 @@
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* --- STILURI SPECIFICE PAGINII SHOP --- */
+        /* PAGE CONTAINER */
         .page-container {
             padding: 100px 5% 100px;
             width: 100%;
@@ -119,31 +119,53 @@
         
         .categories-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 40px; justify-content: center; width: 100%; }
         
-        /* Glass Card pentru Categorii */
+        /* Glass Card Categorii */
         .category-card { 
             background: rgba(255, 255, 255, 0.03); 
             backdrop-filter: blur(10px); 
             border: 1px solid rgba(197, 160, 89, 0.3); 
-            padding: 50px 30px; 
+            padding: 40px 30px; 
             transition: var(--transition); 
             text-decoration: none; 
             color: var(--white);
             display: flex;
             flex-direction: column;
             align-items: center;
-            justify-content: center;
+            justify-content: flex-end;
             gap: 20px;
             position: relative;
             overflow: hidden;
+            height: 380px;
         }
         
-        .category-card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(197, 160, 89, 0.08); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .category-card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(197, 160, 89, 0.08); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         
-        .category-card i { font-size: 2.5rem; color: var(--gold); transition: 0.4s; }
+        /* IMAGINE PRODUS */
+        .card-image-wrapper {
+            width: 100%;
+            height: 200px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: auto;
+        }
+
+        .floating-product {
+            max-width: 90%;
+            max-height: 100%;
+            filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+            transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+
+        .category-card:hover .floating-product {
+            transform: scale(1.15) rotate(-5deg);
+        }
+
+        .category-card i { font-size: 2.5rem; color: var(--gold); transition: 0.4s; margin-bottom: auto; margin-top: 40px; }
         .category-card:hover i { transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
         
-        .category-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; font-style: italic; letter-spacing: 2px; }
-        .category-card span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; }
+        .category-card h3 { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 5px; font-style: italic; letter-spacing: 2px; position: relative; z-index: 2; }
+        .category-card span { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.6; position: relative; z-index: 2; color: var(--gold); }
 
         /* FOOTER */
         footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 2000; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); }
@@ -176,7 +198,6 @@
 
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
             .page-container { padding-top: 60px; }
-            
             footer { position: relative; }
         }
     </style>
@@ -228,27 +249,34 @@
 
     <main class="page-container">
         <h1 class="hub-title" id="page-title">Alege Categoria</h1>
+        
         <div class="categories-grid">
             <a href="shop-ea.html" class="category-card">
                 <i class="fas fa-venus"></i>
                 <h3 id="cat-her">Pentru Ea</h3>
                 <span id="span-discover-1">Descoperă</span>
             </a>
+
             <a href="shop-el.html" class="category-card">
-                <i class="fas fa-mars"></i>
+                <div class="card-image-wrapper">
+                    <img src="tiger-gold.png" class="floating-product" alt="Bratara El">
+                </div>
                 <h3 id="cat-him">Pentru El</h3>
                 <span id="span-discover-2">Descoperă</span>
             </a>
+
             <a href="shop-cupluri.html" class="category-card">
                 <i class="fas fa-infinity"></i>
                 <h3 id="cat-couples">Pentru Cupluri</h3>
                 <span id="span-discover-3">Descoperă</span>
             </a>
+
             <a href="shop-personalizate.html" class="category-card">
                 <i class="fas fa-fingerprint"></i>
                 <h3 id="cat-custom">Personalizate</h3>
                 <span id="span-unique">Unice</span>
             </a>
+
             <a href="shop-morse.html" class="category-card">
                 <i class="fas fa-ellipsis-h"></i>
                 <h3 id="cat-morse">Brățări Morse</h3>
@@ -269,26 +297,10 @@
 
     <script>
         const translations = {
-            'ro': { 
-                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Alege Categoria", her: "Pentru Ea", him: "Pentru El", couples: "Pentru Cupluri", custom: "Personalizate", morse: "Brățări Morse", 
-                d1: "Descoperă", d2: "Descoperă", d3: "Descoperă", unique: "Unice", sacred: "Mesaje Sacre" 
-            },
-            'ru': { 
-                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Выберите категорию", her: "Для неё", him: "Для него", couples: "Для пар", custom: "Индивидуальные", morse: "Браслеты Морзе", 
-                d1: "Открыть", d2: "Открыть", d3: "Открыть", unique: "Уникальные", sacred: "Священные послания" 
-            },
-            'lv': { 
-                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Izvēlieties kategoriju", her: "Viņai", him: "Viņam", couples: "Pāriem", custom: "Personalizētas", morse: "Morzes aproces", 
-                d1: "Atklāt", d2: "Atklāt", d3: "Atklāt", unique: "Unikālas", sacred: "Svētie vēstījumi" 
-            },
-            'en': { 
-                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Choose Category", her: "For Her", him: "For Him", couples: "For Couples", custom: "Customized", morse: "Morse Bracelets", 
-                d1: "Discover", d2: "Discover", d3: "Discover", unique: "Unique", sacred: "Sacred Messages" 
-            }
+            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", title: "Alege Categoria", her: "Pentru Ea", him: "Pentru El", couples: "Pentru Cupluri", custom: "Personalizate", morse: "Brățări Morse", d1: "Descoperă", d2: "Descoperă", d3: "Descoperă", unique: "Unice", sacred: "Mesaje Sacre" },
+            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", title: "Выберите категорию", her: "Для неё", him: "Для него", couples: "Для пар", custom: "Индивидуальные", morse: "Браслеты Морзе", d1: "Открыть", d2: "Открыть", d3: "Открыть", unique: "Уникальные", sacred: "Священные послания" },
+            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", title: "Izvēlieties kategoriju", her: "Viņai", him: "Viņam", couples: "Pāriem", custom: "Personalizētas", morse: "Morzes aproces", d1: "Atklāt", d2: "Atklāt", d3: "Atklāt", unique: "Unikālas", sacred: "Svētie vēstījumi" },
+            'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", title: "Choose Category", her: "For Her", him: "For Him", couples: "For Couples", custom: "Customized", morse: "Morse Bracelets", d1: "Discover", d2: "Discover", d3: "Discover", unique: "Unique", sacred: "Sacred Messages" }
         };
 
         function changeLang(code, label, flag) {
@@ -297,8 +309,6 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code];
             if(!t) return;
-            
-            // Menu
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-consult').innerText = t.consult;
             document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
@@ -306,8 +316,6 @@
             document.getElementById('nav-digital').innerText = t.digital;
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
-            
-            // Content
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('cat-her').innerText = t.her;
             document.getElementById('cat-him').innerText = t.him;
@@ -321,7 +329,6 @@
             document.getElementById('span-sacred').innerText = t.sacred;
         }
 
-        // --- PARTICLES & CURSOR ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
