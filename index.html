@@ -20,29 +20,70 @@
         
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR STEA */
+        /* --- NOU: CURSOR STEA REALISTA (Pulsare Lenta) --- */
         .cursor-dot { 
-            width: 10px; 
-            height: 10px; 
-            background: #fff; 
+            width: 8px; /* Nucleu mic */
+            height: 8px; 
+            background: #fff; /* Centru alb intens */
             border-radius: 50%;
-            box-shadow: 0 0 15px #fff, 0 0 30px var(--gold);
             position: fixed; 
             pointer-events: none; 
             z-index: 9999; 
-            transform: translate(-50%, -50%) rotate(45deg); 
-            transition: width 0.3s, height 0.3s, box-shadow 0.3s; 
+            transform: translate(-50%, -50%); /* Centrat, fara rotatie initiala */
+            /* Glow multistratificat pentru realism */
+            box-shadow: 
+                0 0 10px 2px rgba(255, 255, 255, 0.8), /* Halou interior alb */
+                0 0 30px 10px rgba(197, 160, 89, 0.5), /* Aura aurie medie */
+                0 0 60px 20px rgba(197, 160, 89, 0.2); /* Aura exterioara difuza */
+            /* Animatie de "respiratie" foarte lenta */
+            animation: slowStarPulse 6s infinite ease-in-out;
+            transition: box-shadow 0.5s ease;
         }
+
+        /* Razele folosind gradiente transparente (nu linii solide) */
         .cursor-dot::before, .cursor-dot::after {
-            content: ''; position: absolute; top: 50%; left: 50%; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); animation: starPulse 2s infinite ease-in-out;
+            content: ''; 
+            position: absolute; 
+            top: 50%; 
+            left: 50%; 
+            transform: translate(-50%, -50%); 
+            /* O animatie separata de sclipire pentru raze */
+            animation: rayShimmer 5s infinite ease-in-out alternate;
         }
-        .cursor-dot::before { width: 40px; height: 2px; }
-        .cursor-dot::after { width: 2px; height: 40px; }
-        .cursor-dot.glow { width: 14px; height: 14px; box-shadow: 0 0 20px #fff, 0 0 40px var(--gold), 0 0 60px var(--gold); }
-        @keyframes starPulse {
-            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
-            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+
+        /* Raza orizontala (gradient transparent-alb-transparent) */
+        .cursor-dot::before { 
+            width: 70px; 
+            height: 1px; 
+            background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent);
         }
+        /* Raza verticala */
+        .cursor-dot::after { 
+            width: 1px; 
+            height: 70px; 
+            background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9) 50%, transparent);
+        }
+
+        /* Intensificare la hover */
+        .cursor-dot.glow { 
+            /* Strălucirea devine mai intensă și mai mare */
+             box-shadow: 
+                0 0 15px 4px rgba(255, 255, 255, 1),
+                0 0 50px 15px rgba(197, 160, 89, 0.7),
+                0 0 90px 30px rgba(197, 160, 89, 0.4);
+        }
+
+        /* Animatie principala lenta (Respiratie) */
+        @keyframes slowStarPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; filter: brightness(1); }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; filter: brightness(1.3); }
+        }
+        /* Animatie secundara sclipire raze */
+        @keyframes rayShimmer {
+             0% { opacity: 0.6; scale: 0.95; }
+             100% { opacity: 1; scale: 1.05; }
+        }
+        /* -------------------------------------------------- */
 
         /* CINEMATIC BACKGROUND */
         .fixed-bg { 
@@ -107,12 +148,11 @@
         }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MARQUEE REPARAT & POZITIONAT SUB HEADER */
+        /* MARQUEE SUB HEADER */
         .marquee-section {
             width: 100%;
-            /* Margin top 80px pentru a compensa headerul fix */
             margin-top: 80px; 
-            background: rgba(0, 0, 0, 0.4); /* Putin mai opac pentru contrast */
+            background: rgba(0, 0, 0, 0.4); 
             border-bottom: 1px solid rgba(197, 160, 89, 0.2);
             padding: 15px 0;
             overflow: hidden;
@@ -125,8 +165,7 @@
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* HERO & MAIN SECTIONS */
-        /* Padding redus deoarece Marquee ocupa spatiu acum */
+        /* MAIN SECTIONS */
         .main-container { padding: 60px 5% 0px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         .content-container { padding: 80px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
         
