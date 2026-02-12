@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>The Power Boutique | Energy & Luxury</title>
+    <title>The Power Boutique</title>
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
@@ -11,27 +11,21 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
+            --hermes-terracotta: #d35400; 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* --- EFECT SCROLLBAR LUXURY --- */
-        ::-webkit-scrollbar { width: 6px; }
-        ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent); 
-            border-radius: 10px; 
-        }
-        ::-webkit-scrollbar-thumb:hover { 
-            background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold)); 
-            box-shadow: 0 0 10px var(--gold); 
+        /* --- PASUL 3: ACTIVARE SCROLL LIN --- */
+        html { 
+            scroll-behavior: smooth; 
         }
 
-        /* RESET & SCROLL */
+        /* RESET */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
-        html { scroll-behavior: smooth; }
+        
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR STEA */
+        /* CURSOR STEA (Doar Desktop) */
         .cursor-dot { 
             width: 8px; height: 8px; background: #fff; border-radius: 50%;
             position: fixed; pointer-events: none; z-index: 9999; 
@@ -50,19 +44,23 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* BACKGROUND CINEMATIC */
+        /* CINEMATIC BACKGROUND */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background-color: #000;
             background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; 
-            will-change: transform; transform: translateZ(0);
+            will-change: transform;
+            transform: translateZ(0);
             animation: cinematicZoom 45s infinite alternate ease-in-out; 
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
         /* PARTICLES */
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
-        .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
+        .particle { 
+            position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; 
+        }
 
         /* HEADER */
         header { 
@@ -88,7 +86,7 @@
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
         .flag-img { width: 18px; height: 12px; object-fit: cover; }
 
-        /* NAVIGATION DESKTOP */
+        /* NAV DESKTOP */
         .desktop-nav { display: flex; gap: 2.5rem; align-items: center; justify-content: center; height: 40px; margin-top: 5px; }
         .nav-link, .submenu-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; transition: var(--transition); white-space: nowrap; }
         .nav-link:hover, .submenu-link:hover { color: var(--white); }
@@ -111,28 +109,57 @@
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* HERO MAIN */
-        .hero-main { height: calc(100vh - 120px); display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; padding: 0 5%; }
-        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.8rem; margin-bottom: 20px; opacity: 0.8; }
-        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 10vw, 7rem); font-style: italic; margin-bottom: 40px; line-height: 1; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        /* MAIN SECTIONS */
+        .main-container { padding: 60px 5% 0px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .content-container { padding: 80px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
+        .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; text-align: center; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; text-align: center; opacity: 0.8; margin-bottom: 40px; }
 
-        /* CARDS GRID */
-        .main-cards-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 30px; width: 100%; max-width: 1400px; padding: 80px 5%; margin: 0 auto; }
-        .glass-card { 
-            background: rgba(255,255,255,0.03); backdrop-filter: blur(10px); border: 1px solid rgba(197,160, 89, 0.2); 
-            padding: 60px 40px; text-align: center; text-decoration: none; transition: var(--transition);
+        .hero-btn-container { margin-bottom: 80px; }
+        .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); position: relative; overflow: hidden; }
+        .aura-btn:hover { background: rgba(197, 160, 89, 0.1); box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); color: #fff; }
+
+        /* Quick Links Container */
+        .quick-links-container { 
+            display: flex; gap: 30px; width: 100%; max-width: 1000px; margin-bottom: 150px; justify-content: center; flex-wrap: wrap; 
+            /* Fix pentru ca scroll-ul sa se opreasca unde trebuie */
+            scroll-margin-top: 150px; 
         }
-        .glass-card:hover { border-color: var(--gold); transform: translateY(-10px); background: rgba(197, 160, 89, 0.05); }
-        .glass-card i { font-size: 2.5rem; color: var(--gold); margin-bottom: 25px; display: block; }
-        .glass-card h3 { font-family: 'Playfair Display', serif; font-size: 1.8rem; margin-bottom: 15px; font-style: italic; color: #fff; }
-        .glass-card p { font-size: 0.9rem; opacity: 0.7; letter-spacing: 1px; color: #ccc; }
+        
+        .glass-card {
+            flex: 1; min-width: 300px; background: rgba(255,255,255,0.02); backdrop-filter: blur(10px);
+            border: 1px solid rgba(197, 160, 89, 0.3); padding: 40px; text-align: center;
+            transition: 0.4s ease; text-decoration: none; display: flex; flex-direction: column; align-items: center; justify-content: center;
+        }
+        .glass-card:hover { background: rgba(197, 160, 89, 0.08); border-color: var(--gold); transform: translateY(-5px); box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
+        .card-icon { font-size: 2rem; color: var(--gold); margin-bottom: 15px; transition: 0.4s; }
+        .glass-card:hover .card-icon { transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
+        .card-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: #fff; margin-bottom: 10px; font-style: italic; }
+        .card-sub { font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; color: rgba(255,255,255,0.6); }
+
+        /* ABOUT */
+        .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; margin-bottom: 50px; }
+        .about-image-wrapper { 
+            width: 100%; max-width: 450px; margin: 0 auto; position: relative; z-index: 1;
+            border-radius: 45%; overflow: hidden;
+            box-shadow: 0 0 40px rgba(197, 160, 89, 0.2), 0 0 80px rgba(197, 160, 89, 0.1);
+            animation: floatPortal 6s ease-in-out infinite; transition: transform 0.5s ease, box-shadow 0.5s ease;
+        }
+        .about-image-wrapper:hover { transform: scale(1.02); box-shadow: 0 0 50px rgba(197, 160, 89, 0.4), 0 0 100px rgba(197, 160, 89, 0.2); }
+        .about-image-wrapper img { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(1.05) saturate(0.9); }
+        @keyframes floatPortal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
+
+        .about-text-card { background: rgba(0, 0, 0, 0.4); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+        .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
+        .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
         /* FOOTER */
         footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 2000; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); }
         .social-links { display: flex; gap: 30px; margin-bottom: 5px; font-size: 1.2rem; }
-        .social-links a { color: var(--gold); text-decoration: none; transition: 0.3s; }
-        .social-links a:hover { transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
-        .copyright { font-size: 0.55rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
+        .social-links a { color: var(--gold); transition: 0.3s; }
+        .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
         /* MOBILE STYLES */
         @media (max-width: 1024px) {
@@ -140,14 +167,38 @@
             * { cursor: auto !important; }
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
-            .desktop-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); flex-direction: column; opacity: 0; visibility: hidden; transition: 0.5s; z-index: 2100; padding-top: 100px; overflow-y: auto; }
+            
+            .desktop-nav { 
+                position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
+                background: rgba(0,0,0,0.95); backdrop-filter: blur(15px); 
+                flex-direction: column; justify-content: flex-start; align-items: center; 
+                opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; 
+                padding-top: 100px; padding-bottom: 50px; overflow-y: auto;
+            }
             .desktop-nav.active { opacity: 1; visibility: visible; }
-            .nav-link { font-size: 1.2rem; padding: 20px; width: 100%; text-align: center; }
-            .nav-item-container { width: 100%; flex-direction: column; height: auto; }
-            .submenu { position: static; transform: none; background: rgba(197,160,89,0.05); border: none; width: 100%; display: none; padding: 0; }
+            
+            .nav-link { width: 100%; text-align: center; padding: 25px 0; font-size: 1.1rem; display: block; }
+            .nav-item-container { width: 100%; flex-direction: column; height: auto; align-items: center; display: block; }
+            
+            .submenu { position: static; transform: none; background: rgba(197, 160, 89, 0.05); border: none; width: 100%; display: none; padding: 0; gap: 0; box-shadow: none; }
             .nav-item-container.active-mobile .submenu { display: flex; }
-            .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 1rem; border-top: 1px solid rgba(197,160,89,0.1); }
-            .main-cards-grid { grid-template-columns: 1fr; gap: 20px; }
+            .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 0.95rem; opacity: 0.8; display: block; border-top: 1px solid rgba(197, 160, 89, 0.1); }
+
+            .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
+            
+            /* Ajustare scroll margin pe mobil */
+            .quick-links-container { 
+                flex-direction: column; gap: 20px; margin-bottom: 100px; 
+                scroll-margin-top: 120px; 
+            }
+            
+            .glass-card { min-width: 100%; padding: 30px; }
+
+            .about-hero { grid-template-columns: 1fr; text-align: center; gap: 40px; }
+            .about-image-wrapper { width: 70%; max-width: 300px; margin-bottom: 20px; box-shadow: 0 0 30px rgba(197, 160, 89, 0.3); }
+            .about-text-card { padding: 30px 20px; border-left: none; border-top: 1px solid var(--burgundy); }
+
+            .main-container { padding-top: 60px; }
             footer { position: relative; }
         }
     </style>
@@ -163,7 +214,7 @@
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                    <img src="https://flagcdn.com/w20/ro.png" id="active-flag" class="flag-img"> 
+                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag"> 
                     <span id="active-lang">RO</span> 
                     <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
                 </button>
@@ -175,6 +226,7 @@
                 </div>
             </div>
         </div>
+
         <nav class="desktop-nav" id="sidebar">
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
@@ -192,35 +244,43 @@
 
     <div class="marquee-section">
         <div class="marquee-content">
-            <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>
+            <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>• <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>• <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>
         </div>
     </div>
 
-    <main>
-        <section class="hero-main">
-            <span class="hero-sub" id="hero-sub">Manifestă-ți Potențialul</span>
-            <h1 class="hero-title">The Power Boutique</h1>
-            <a href="products.html" class="nav-link" id="hero-cta" style="border: 1px solid var(--gold); padding: 15px 40px; font-size: 0.8rem;">Descoperă Universul</a>
-        </section>
-
-        <div class="main-cards-grid">
-            <a href="products.html" class="glass-card">
-                <i class="fas fa-gem"></i>
-                <h3 id="card-shop-t">The Shop</h3>
-                <p id="card-shop-d">Instrumente energetice create pentru a-ți amplifica vibrația.</p>
-            </a>
-            <a href="programari.html" class="glass-card">
-                <i class="fas fa-sparkles"></i>
-                <h3 id="card-consult-t">Consultații</h3>
-                <p id="card-consult-d">Ghidare spirituală și aliniere cu misiunea ta personală.</p>
-            </a>
-            <a href="despre.html" class="glass-card">
-                <i class="fas fa-eye"></i>
-                <h3 id="card-about-t">Despre</h3>
-                <p id="card-about-d">Inima și viziunea din spatele The Power Boutique.</p>
-            </a>
+    <main class="main-container">
+        <h1 class="hero-title">The Power Boutique</h1>
+        <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
+        <div class="hero-btn-container">
+            <a href="#explore" class="aura-btn" id="hero-cta">Descoperă Universul</a>
         </div>
     </main>
+
+    <section class="content-container">
+        <div class="quick-links-container" id="explore">
+            <a href="products.html" class="glass-card">
+                <i class="fas fa-gem card-icon"></i>
+                <h3 class="card-title" id="card-title-shop">Shop</h3>
+                <span class="card-sub" id="card-sub-shop">Explorează Colecția</span>
+            </a>
+            <a href="programari.html" class="glass-card">
+                <i class="fas fa-calendar-alt card-icon"></i>
+                <h3 class="card-title" id="card-title-consult">Consultații</h3>
+                <span class="card-sub" id="card-sub-consult">Programează o Sesiune</span>
+            </a>
+        </div>
+
+        <div class="about-hero">
+            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
+            <div class="about-text-card">
+                <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
+                <h2 id="about-title">Inima Din Spatele Puterii</h2>
+                <p id="about-desc">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie, oferind instrumente care să îți potențeze drumul spre evoluție.</p>
+                <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
+                <div class="signature">Jelena Shipko</div>
+            </div>
+        </div>
+    </section>
 
     <footer>
         <div class="social-links">
@@ -229,16 +289,15 @@
             <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
             <a href="https://wa.me/407XXXXXXXX" target="_blank"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p class="copyright">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
-        // --- TRANSLATIONS LOGIC ---
         const translations = {
-            'ro': { home: "Acasă", shop: "Shop", consult: "Consultații", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", heroSub: "Manifestă-ți Potențialul", heroCta: "Descoperă Universul", cardShopT: "The Shop", cardShopD: "Instrumente energetice create pentru a-ți amplifica vibrația.", cardConsultT: "Consultații", cardConsultD: "Ghidare spirituală și aliniere cu misiunea ta personală.", cardAboutT: "Despre", cardAboutD: "Inima și viziunea din spatele The Power Boutique." },
-            'ru': { home: "Главная", shop: "Магазин", consult: "Консультации", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О во мне", contact: "Контакт", heroSub: "Проявите свой потенциал", heroCta: "Откройте вселенную", cardShopT: "Магазин", cardShopD: "Энергетические инструменты для усиления вашей вибрации.", cardConsultT: "Консультации", cardConsultD: "Духовное руководство и согласование с вашей миссией.", cardAboutT: "О нас", cardAboutD: "Сердце и видение The Power Boutique." },
-            'lv': { home: "Sākums", shop: "Veikals", consult: "Konsultācijas", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mani", contact: "Kontakti", heroSub: "Izpaudiet savu potenciālu", heroCta: "Atklājiet visumu", cardShopT: "Veikals", cardShopD: "Enerģētiskie rīki jūsu vibrācijas pastiprināšanai.", cardConsultT: "Konsultācijas", cardConsultD: "Garīgā vadība un saskaņošana ar personīgo misiju.", cardAboutT: "Par mums", cardAboutD: "The Power Boutique sirds un vīzija." },
-            'en': { home: "Home", shop: "Shop", consult: "Consultations", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", heroSub: "Manifest Your Potential", heroCta: "Discover Universe", cardShopT: "The Shop", cardShopD: "Energy tools created to amplify your vibration.", cardConsultT: "Consultations", cardConsultD: "Spiritual guidance and alignment with your mission.", cardAboutT: "About", cardAboutD: "The heart and vision behind The Power Boutique." }
+            ro: { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Viziune & Creație", title: "Inima Din Spatele Puterii", desc: "Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.", btn: "Află Povestea", heroCta: "Descoperă Universul", shopTitle: "Shop", shopSub: "Explorează Colecția", consultTitle: "Consultații", consultSub: "Programează o Sesiune" },
+            ru: { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", sub: "ОТ ЕЛЕНЫ ШИПКО", label: "Видение и творчество", title: "Сердце за силой", desc: "Каждый шаг — это возможность настроиться на частоту успеха. С <strong>The Power Boutique</strong> мы создали мост между желанием и энергией.", btn: "Узнать историю", heroCta: "Откройте Вселенную", shopTitle: "Магазин", shopSub: "Изучить коллекцию", consultTitle: "Консультации", consultSub: "Записаться на сеанс" },
+            lv: { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Enerģētiskās aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", sub: "NO JELENAS SHIPKO", label: "Vīzija un radīšana", title: "Sirds aiz spēka", desc: "Katrs solis ir iespēja pieskaņoties panākumu biežumam. Ar <strong>The Power Boutique</strong> mēs esam radījuši tiltu starp vēlmēm un enerģiju.", btn: "Uzzināt stāstu", heroCta: "Atklājiet Visumu", shopTitle: "Veikals", shopSub: "Izpētīt kolekciju", consultTitle: "Konsultācijas", consultSub: "Pieteikties sesijai" },
+            en: { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind the Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we created a bridge between desire and energy.", btn: "Learn the Story", heroCta: "Discover the Universe", shopTitle: "Shop", shopSub: "Explore Collection", consultTitle: "Consultations", consultSub: "Schedule a Session" }
         };
 
         function changeLang(code, label, flag) {
@@ -254,17 +313,18 @@
             document.getElementById('nav-digital').innerText = t.digital;
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
-            document.getElementById('hero-sub').innerText = t.heroSub;
+            document.getElementById('hero-sub').innerText = t.sub;
+            document.getElementById('about-label').innerText = t.label;
+            document.getElementById('about-title').innerText = t.title;
+            document.getElementById('about-desc').innerHTML = t.desc;
+            document.getElementById('about-btn').innerText = t.btn;
             document.getElementById('hero-cta').innerText = t.heroCta;
-            document.getElementById('card-shop-t').innerText = t.cardShopT;
-            document.getElementById('card-shop-d').innerText = t.cardShopD;
-            document.getElementById('card-consult-t').innerText = t.cardConsultT;
-            document.getElementById('card-consult-d').innerText = t.cardConsultD;
-            document.getElementById('card-about-t').innerText = t.cardAboutT;
-            document.getElementById('card-about-d').innerText = t.cardAboutD;
+            document.getElementById('card-title-shop').innerText = t.shopTitle;
+            document.getElementById('card-sub-shop').innerText = t.shopSub;
+            document.getElementById('card-title-consult').innerText = t.consultTitle;
+            document.getElementById('card-sub-consult').innerText = t.consultSub;
         }
 
-        // --- PARTICLES WITH ATTRACTION ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
@@ -273,39 +333,57 @@
             constructor() {
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+                this.size = Math.random() * 3 + 2;
+                this.speedX = Math.random() * 1 - 0.5;
+                this.speedY = Math.random() * 1 - 0.5;
                 this.element = document.createElement('div');
-                this.element.className = 'particle';
+                this.element.classList.add('particle');
                 this.element.style.width = this.size + 'px';
                 this.element.style.height = this.size + 'px';
                 particleContainer.appendChild(this.element);
             }
             update() {
-                this.x += this.speedX; this.y += this.speedY;
-                if (this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
-                if (this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
+                this.x += this.speedX;
+                this.y += this.speedY;
+                if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
                 if (mouse.x != null) {
-                    let dx = mouse.x - this.x; let dy = mouse.y - this.y;
-                    let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < mouse.radius) {
-                        this.x += (dx/dist) * 2.5; this.y += (dy/dist) * 2.5;
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let distance = Math.sqrt(dx * dx + dy * dy);
+                    if (distance < mouse.radius) {
+                        const forceDirectionX = dx / distance;
+                        const forceDirectionY = dy / distance;
+                        const force = (mouse.radius - distance) / mouse.radius;
+                        const attractionStrength = 3; 
+                        this.x += forceDirectionX * force * attractionStrength;
+                        this.y += forceDirectionY * force * attractionStrength;
                     }
                 }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
-        function init() {
-            particles = []; particleContainer.innerHTML = '';
-            let n = window.innerWidth < 768 ? 35 : 55;
-            for(let i=0; i<n; i++) particles.push(new Particle());
-        }
-        function animate() { particles.forEach(p => p.update()); requestAnimationFrame(animate); }
-        init(); animate();
-        window.addEventListener('resize', init);
 
-        // --- INTERACTION & MENU ---
+        function initParticles() {
+            particles = [];
+            particleContainer.innerHTML = '';
+            let numberOfParticles = window.innerWidth < 768 ? 35 : 50;
+            for (let i = 0; i < numberOfParticles; i++) {
+                particles.push(new Particle());
+            }
+        }
+
+        function animateParticles() {
+            for (let i = 0; i < particles.length; i++) {
+                particles[i].update();
+            }
+            requestAnimationFrame(animateParticles);
+        }
+
+        initParticles();
+        animateParticles();
+        window.addEventListener('resize', initParticles);
+        
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
@@ -317,20 +395,45 @@
         };
 
         shopContainer.onclick = (e) => { 
-            if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } 
+            if(window.innerWidth <= 1024) { 
+                e.stopPropagation(); 
+                shopContainer.classList.toggle('active-mobile'); 
+            } 
         };
 
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX; mouse.y = e.clientY;
-            if (window.innerWidth > 1024 && dot) { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; }
-        });
+        function updatePos(e) {
+            if (e.type.includes('touch')) {
+                if(e.touches.length > 0) {
+                    mouse.x = e.touches[0].clientX;
+                    mouse.y = e.touches[0].clientY;
+                }
+            } else {
+                mouse.x = e.clientX; 
+                mouse.y = e.clientY;
+                if (window.innerWidth > 1024 && dot) { 
+                    dot.style.left = mouse.x + 'px'; 
+                    dot.style.top = mouse.y + 'px'; 
+                }
+            }
+        }
+
+        window.addEventListener('mousemove', updatePos);
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        window.addEventListener('touchstart', updatePos, { passive: true });
+        window.addEventListener('touchmove', updatePos, { passive: true });
+        window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
         document.querySelectorAll('a, button').forEach(el => {
             el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
             el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
 
-        window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
+        window.onclick = (e) => { 
+            if (!e.target.closest('.lang-dropdown')) { 
+                document.getElementById('lang-list').classList.remove('show'); 
+            } 
+        };
     </script>
 </body>
 </html>
+
