@@ -20,9 +20,29 @@
         
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* CURSOR */
-        .cursor-dot { width: 25px; height: 25px; background-image: url('diamond-graphic-clipart-design-free-png.webp'); background-size: contain; background-repeat: no-repeat; background-position: center; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; }
-        .cursor-dot.glow { width: 38px; height: 38px; filter: brightness(1.2); }
+        /* CURSOR STEA */
+        .cursor-dot { 
+            width: 10px; 
+            height: 10px; 
+            background: #fff; 
+            border-radius: 50%;
+            box-shadow: 0 0 15px #fff, 0 0 30px var(--gold);
+            position: fixed; 
+            pointer-events: none; 
+            z-index: 9999; 
+            transform: translate(-50%, -50%) rotate(45deg); 
+            transition: width 0.3s, height 0.3s, box-shadow 0.3s; 
+        }
+        .cursor-dot::before, .cursor-dot::after {
+            content: ''; position: absolute; top: 50%; left: 50%; background: var(--gold); border-radius: 50%; transform: translate(-50%, -50%); animation: starPulse 2s infinite ease-in-out;
+        }
+        .cursor-dot::before { width: 40px; height: 2px; }
+        .cursor-dot::after { width: 2px; height: 40px; }
+        .cursor-dot.glow { width: 14px; height: 14px; box-shadow: 0 0 20px #fff, 0 0 40px var(--gold), 0 0 60px var(--gold); }
+        @keyframes starPulse {
+            0%, 100% { transform: translate(-50%, -50%) scale(0.8); opacity: 0.6; }
+            50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; }
+        }
 
         /* CINEMATIC BACKGROUND */
         .fixed-bg { 
@@ -87,36 +107,35 @@
         }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MAIN CONTENT */
-        .main-container { padding: 160px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; overflow-x: hidden; } /* Ensure no side scroll */
+        /* MARQUEE REPARAT & POZITIONAT SUB HEADER */
+        .marquee-section {
+            width: 100%;
+            /* Margin top 80px pentru a compensa headerul fix */
+            margin-top: 80px; 
+            background: rgba(0, 0, 0, 0.4); /* Putin mai opac pentru contrast */
+            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
+            padding: 15px 0;
+            overflow: hidden;
+            white-space: nowrap;
+            position: relative;
+            z-index: 10;
+        }
+        
+        .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
+        .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
+
+        /* HERO & MAIN SECTIONS */
+        /* Padding redus deoarece Marquee ocupa spatiu acum */
+        .main-container { padding: 60px 5% 0px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        .content-container { padding: 80px 5% 100px; width: 100%; display: flex; flex-direction: column; align-items: center; }
+        
         .hero-title { font-family: 'Playfair Display', serif; font-size: clamp(3rem, 8vw, 6rem); font-style: italic; text-align: center; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .hero-sub { letter-spacing: 12px; text-transform: uppercase; font-size: 0.75rem; text-align: center; opacity: 0.8; margin-bottom: 40px; }
 
-        /* Hero CTA Button */
-        .hero-btn-container { margin-bottom: 60px; }
+        .hero-btn-container { margin-bottom: 80px; }
         .aura-btn { display: inline-block; background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 12px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: var(--transition); position: relative; overflow: hidden; }
         .aura-btn:hover { background: rgba(197, 160, 89, 0.1); box-shadow: 0 0 20px rgba(197, 160, 89, 0.4); color: #fff; }
-
-        /* FIX: MARQUEE FULL WIDTH */
-        .marquee-container {
-            width: 100vw; /* Latime totala viewport */
-            position: relative;
-            left: 50%;
-            right: 50%;
-            margin-left: -50vw; /* Fortare iesire din container parinte */
-            margin-right: -50vw;
-            overflow: hidden;
-            white-space: nowrap;
-            padding: 20px 0;
-            border-top: 1px solid rgba(197, 160, 89, 0.2);
-            border-bottom: 1px solid rgba(197, 160, 89, 0.2);
-            margin-bottom: 80px;
-            background: rgba(0,0,0,0.3);
-        }
-        
-        .marquee-content { display: inline-block; animation: marquee 30s linear infinite; }
-        .marquee-item { display: inline-block; color: var(--gold); font-size: 0.8rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
-        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
         /* Glassmorphism Quick Cards */
         .quick-links-container {
@@ -198,7 +217,8 @@
             .about-hero { grid-template-columns: 1fr; text-align: center; gap: 30px; }
             .about-image-wrapper { width: 90%; margin: 0 auto; }
             .about-image-wrapper img { width: 100%; max-width: 450px; }
-            .main-container { padding-top: 120px; padding-bottom: 120px; }
+            
+            .main-container { padding-top: 60px; }
             footer { position: relative; }
         }
     </style>
@@ -242,31 +262,44 @@
         </nav>
     </header>
 
+    <div class="marquee-section">
+        <div class="marquee-content">
+            <span class="marquee-item">ENERGY</span>•
+            <span class="marquee-item">LUXURY</span>•
+            <span class="marquee-item">POWER</span>•
+            <span class="marquee-item">BALANCE</span>•
+            <span class="marquee-item">HARMONY</span>•
+            <span class="marquee-item">INTENTION</span>•
+            <span class="marquee-item">ENERGY</span>•
+            <span class="marquee-item">LUXURY</span>•
+            <span class="marquee-item">POWER</span>•
+            <span class="marquee-item">BALANCE</span>•
+            <span class="marquee-item">HARMONY</span>•
+            <span class="marquee-item">INTENTION</span>•
+            <span class="marquee-item">ENERGY</span>•
+            <span class="marquee-item">LUXURY</span>•
+            <span class="marquee-item">POWER</span>•
+            <span class="marquee-item">BALANCE</span>•
+            <span class="marquee-item">HARMONY</span>•
+            <span class="marquee-item">INTENTION</span>•
+            <span class="marquee-item">ENERGY</span>•
+            <span class="marquee-item">LUXURY</span>•
+            <span class="marquee-item">POWER</span>•
+            <span class="marquee-item">BALANCE</span>•
+            <span class="marquee-item">HARMONY</span>•
+            <span class="marquee-item">INTENTION</span>
+        </div>
+    </div>
+
     <main class="main-container">
         <h1 class="hero-title">The Power Boutique</h1>
         <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
-        
         <div class="hero-btn-container">
             <a href="shop.html" class="aura-btn" id="hero-cta">Descoperă Universul</a>
         </div>
+    </main>
 
-        <div class="marquee-container">
-            <div class="marquee-content">
-                <span class="marquee-item">ENERGY</span>•
-                <span class="marquee-item">LUXURY</span>•
-                <span class="marquee-item">POWER</span>•
-                <span class="marquee-item">BALANCE</span>•
-                <span class="marquee-item">HARMONY</span>•
-                <span class="marquee-item">INTENTION</span>•
-                <span class="marquee-item">ENERGY</span>•
-                <span class="marquee-item">LUXURY</span>•
-                <span class="marquee-item">POWER</span>•
-                <span class="marquee-item">BALANCE</span>•
-                <span class="marquee-item">HARMONY</span>•
-                <span class="marquee-item">INTENTION</span>
-            </div>
-        </div>
-
+    <section class="content-container">
         <div class="quick-links-container">
             <a href="products.html" class="glass-card">
                 <i class="fas fa-gem card-icon"></i>
@@ -280,7 +313,7 @@
             </a>
         </div>
 
-        <section class="about-hero">
+        <div class="about-hero">
             <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko"></div>
             <div class="about-text-card">
                 <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
@@ -289,8 +322,8 @@
                 <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
                 <div class="signature">Jelena Shipko</div>
             </div>
-        </section>
-    </main>
+        </div>
+    </section>
 
     <footer>
         <div class="social-links">
