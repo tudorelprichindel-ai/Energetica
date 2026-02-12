@@ -14,6 +14,28 @@
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
+        /* --- EFECT SCROLLBAR LUXURY --- */
+        ::-webkit-scrollbar {
+            width: 6px; /* Foarte subțire și elegant */
+        }
+        ::-webkit-scrollbar-track {
+            background: #000; /* Se contopește cu fundalul paginii */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: linear-gradient(to bottom, transparent, var(--gold), transparent);
+            border-radius: 10px;
+            transition: 0.3s;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold));
+            box-shadow: 0 0 10px var(--gold);
+        }
+        /* Suport pentru Firefox */
+        * {
+            scrollbar-width: thin;
+            scrollbar-color: var(--gold) #000;
+        }
+
         /* RESET & SCROLL */
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         html { scroll-behavior: smooth; }
@@ -41,6 +63,7 @@
         /* BACKGROUND */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background-color: #000;
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; 
             will-change: transform; transform: translateZ(0);
@@ -128,9 +151,10 @@
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 40px; }
 
         /* FOOTER */
-        footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 2000; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); }
+        footer { position: relative; height: 100px; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.95); }
         .social-links { display: flex; gap: 30px; margin-bottom: 5px; font-size: 1.2rem; }
         .social-links a { color: var(--gold); text-decoration: none; transition: 0.3s; }
+        .social-links a:hover { transform: scale(1.1); text-shadow: 0 0 10px var(--gold); }
         .copyright { font-size: 0.55rem; letter-spacing: 3px; color: rgba(255,255,255,0.4); text-transform: uppercase; }
 
         /* MOBILE */
@@ -254,7 +278,7 @@
                 ritual: "Ritualul Nostru", r1T: "Selecție Sacră", r1D: "Cristalele noastre sunt alese manual pentru puritatea și vibrația lor.", r2T: "Purificare Lunară", r2D: "Fiecare piesă trece printr-un proces de curățare sonoră și energetică.", r3T: "Activare Personală", r3D: "Misiunea mea capătă formă prin brățările energetice pe care le proiectez personal."
             },
             'ru': { 
-                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "Обо мне", contact: "Контакт", 
+                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Энергетические браслеты", digital: "Цифровой магазин", about: "О во мне", contact: "Контакт", 
                 title: "Сердце за Силой", content: "<p>Я Елена, и я создала The Power Boutique на основе личного поиска: желания найти символ, который был бы не просто аксессуаром, а энергетическим якорем.</p><p style='margin-top:20px;'>Каждое изделие призвано напоминать вам, что роскошь — это не обладание, а состояние ума, которое вы культивируете.</p>",
                 ritual: "Наш Ритуал", r1T: "Священный Выбор", r1D: "Наши кристаллы отбираются вручную по их чистоте и вибрации.", r2T: "Лунное Очищение", r2D: "Каждое изделие проходит процесс звуковой и энергетической очистки.", r3T: "Активация", r3D: "Моя миссия воплощается в браслетах, которые я создаю лично."
             },
@@ -276,7 +300,6 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code];
             if(!t) return;
-            
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-consult').innerText = t.consult;
             document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
@@ -298,8 +321,6 @@
         // --- PARTICLES & CURSOR ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
-
         class Particle {
             constructor() {
                 this.x = Math.random() * window.innerWidth;
@@ -320,7 +341,6 @@
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
-
         function initParticles() {
             particles = []; particleContainer.innerHTML = '';
             let n = window.innerWidth < 768 ? 35 : 50;
@@ -331,7 +351,6 @@
 
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
-        const shopContainer = document.getElementById('shopContainer');
         const dot = document.getElementById('dot');
 
         menuBtn.onclick = () => { 
