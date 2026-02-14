@@ -25,7 +25,7 @@
         html { scroll-behavior: smooth; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* --- CURSOR MASTER STAR --- */
+        /* --- CURSOR MASTER INDEX (STAR) --- */
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite alternate; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
@@ -45,7 +45,8 @@
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
+
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
@@ -69,10 +70,8 @@
         /* --- MAIN CONTENT --- */
         main { flex: 1; padding: 60px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 20px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
         .section-subtitle { font-size: 1rem; opacity: 0.7; margin-bottom: 60px; letter-spacing: 2px; }
 
-        /* --- PRODUCT GRID --- */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; justify-items: center; }
         .product-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.1); padding: 40px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); position: relative; width: 100%; max-width: 400px; border-radius: 4px; }
         .product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.8); background: rgba(255, 255, 255, 0.05); }
@@ -171,7 +170,7 @@
         // --- PHYSICS & PARTICLES ENGINE (ATTRACTION EFFECT) ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
-        let mouse = { x: null, y: null, radius: 200 }; // Radius mai mare pentru atracție
+        let mouse = { x: null, y: null, radius: 250 }; 
 
         class Particle {
             constructor() {
@@ -191,21 +190,20 @@
                 if(this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
                 if(this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
 
-                // --- EFECT ATRACȚIE (MAGNET) ---
                 if(mouse.x != null) {
                     let dx = mouse.x - this.x; 
                     let dy = mouse.y - this.y;
                     let dist = Math.sqrt(dx*dx + dy*dy);
                     if(dist < mouse.radius) { 
-                        // Vectorul de atracție (trage spre coordonatele mouse-ului)
-                        this.x += (dx/dist) * 2.2; 
-                        this.y += (dy/dist) * 2.2; 
+                        // EFECT ATRACȚIE: Trage spre mouse
+                        this.x += (dx/dist)*2.2; 
+                        this.y += (dy/dist)*2.2; 
                     }
                 }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
-        function initParticles() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<50; i++) particles.push(new Particle()); }
+        function initParticles() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<55; i++) particles.push(new Particle()); }
         function animateParticles() { particles.forEach(p => p.update()); requestAnimationFrame(animateParticles); }
         initParticles(); animateParticles(); window.addEventListener('resize', initParticles);
 
@@ -216,9 +214,9 @@
                 title: "Digital Shop", subtitle: "Ghiduri și resurse pentru expansiunea conștiinței tale.",
                 order: "Obține Acces",
                 items: [
-                    { id: "d1", n: "Codul Frecvenței (PDF)", p: "25€", icon: "fas fa-book-open", desc: "Ghid practic pentru alinierea zilnică și ridicarea vibrației personale." },
-                    { id: "d2", n: "Masterclass Aliniere", p: "49€", icon: "fas fa-video", desc: "Sesiune video profundă despre deblocarea fluxului de abundență." },
-                    { id: "d3", n: "Pachet Ritualuri (Bundle)", p: "65€", icon: "fas fa-sparkles", desc: "Colecție completă de ghiduri și meditații audio pentru transformare." }
+                    { id: "d1", n: "Codul Frecvenței (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Ghid practic pentru alinierea zilnică și ridicarea vibrației personale." },
+                    { id: "d2", n: "Masterclass Aliniere", p: "49€", icon: "fas fa-play-circle", desc: "Sesiune video profundă despre deblocarea fluxului de abundență." },
+                    { id: "d3", n: "Pachet Ritualuri (Bundle)", p: "65€", icon: "fas fa-moon", desc: "Colecție completă de ghiduri și meditații audio pentru transformare." }
                 ]
             },
             'en': {
@@ -226,9 +224,9 @@
                 title: "Digital Shop", subtitle: "Guides and resources for the expansion of your consciousness.",
                 order: "Get Access",
                 items: [
-                    { id: "d1", n: "Frequency Code (PDF)", p: "25€", icon: "fas fa-book-open", desc: "Practical guide for daily alignment and raising personal vibration." },
-                    { id: "d2", n: "Alignment Masterclass", p: "49€", icon: "fas fa-video", desc: "Deep video session on unlocking the flow of abundance." },
-                    { id: "d3", n: "Rituals Bundle", p: "65€", icon: "fas fa-sparkles", desc: "Complete collection of guides and audio meditations for transformation." }
+                    { id: "d1", n: "Frequency Code (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Practical guide for daily alignment and raising personal vibration." },
+                    { id: "d2", n: "Alignment Masterclass", p: "49€", icon: "fas fa-play-circle", desc: "Deep video session on unlocking the flow of abundance." },
+                    { id: "d3", n: "Rituals Bundle", p: "65€", icon: "fas fa-moon", desc: "Complete collection of guides and audio meditations for transformation." }
                 ]
             },
             'ru': {
@@ -236,9 +234,9 @@
                 title: "Цифровой магазин", subtitle: "Руководства и ресурсы для расширения вашего сознания.",
                 order: "Получить доступ",
                 items: [
-                    { id: "d1", n: "Код частоты (PDF)", p: "25€", icon: "fas fa-book-open", desc: "Практическое руководство по ежедневному выравниванию и повышению вибраций." },
-                    { id: "d2", n: "Мастер-класс Выравнивание", p: "49€", icon: "fas fa-video", desc: "Глубокая видеосессия о разблокировании потока изобилия." },
-                    { id: "d3", n: "Пакет Ритуалов", p: "65€", icon: "fas fa-sparkles", desc: "Полная коллекция руководств и аудиомедитаций для трансформации." }
+                    { id: "d1", n: "Код частоты (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Практическое руководство по ежедневному выравниванию и повышению вибраций." },
+                    { id: "d2", n: "Мастер-класс Выравнивание", p: "49€", icon: "fas fa-play-circle", desc: "Глубокая видеосессия о разблокировании потока изобилия." },
+                    { id: "d3", n: "Пакет Ритуалов", p: "65€", icon: "fas fa-moon", desc: "Полная коллекция руководств и аудиомедитаций для трансформации." }
                 ]
             },
             'lv': {
@@ -246,9 +244,9 @@
                 title: "Digitālais veikals", subtitle: "Ceļveži un resursi jūsu apziņas paplašināšanai.",
                 order: "Iegūt piekļuvi",
                 items: [
-                    { id: "d1", n: "Frekvences kods (PDF)", p: "25€", icon: "fas fa-book-open", desc: "Praktisks ceļvedis ikdienas izlīdzināšanai un personīgās vibrācijas celšanai." },
-                    { id: "d2", n: "Izlīdzināšanas meistarklase", p: "49€", icon: "fas fa-video", desc: "Dziļa video sesija par pārpilnības plūsmas atbloķēšanu." },
-                    { id: "d3", n: "Rituālu komplekts", p: "65€", icon: "fas fa-sparkles", desc: "Pilna ceļvežu un audio meditāciju kolekcija transformācijai." }
+                    { id: "d1", n: "Frekvences kods (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Praktisks ceļvedis ikdienas izlīdzināšanai un personīgās vibrācijas celšanai." },
+                    { id: "d2", n: "Izlīdzināšanas meistarklase", p: "49€", icon: "fas fa-play-circle", desc: "Dziļa video sesija par pārpilnības plūsmas atbloķēšanu." },
+                    { id: "d3", n: "Rituālu komplekts", p: "65€", icon: "fas fa-moon", desc: "Pilna ceļvežu un audio meditāciju kolekcija transformācijai." }
                 ]
             }
         };
@@ -289,14 +287,14 @@
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
 
-            // Page Texts Traducere prin ID
+            // Page Content Traducere prin ID
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('page-subtitle').innerText = t.subtitle;
             
             renderProducts(t);
         }
 
-        // --- UI CORE ---
+        // --- UI CORE LOGIC ---
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const dot = document.getElementById('dot');
@@ -314,12 +312,10 @@
         };
 
         window.addEventListener('mousemove', (e) => {
-            // Sincronizare cursor vizual
             if (window.innerWidth > 1024 && dot) { 
                 dot.style.left = e.clientX + 'px'; 
                 dot.style.top = e.clientY + 'px'; 
             }
-            // Sincronizare motor fizică particule
             mouse.x = e.clientX;
             mouse.y = e.clientY;
         });
@@ -337,7 +333,6 @@
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
-        // Init
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
