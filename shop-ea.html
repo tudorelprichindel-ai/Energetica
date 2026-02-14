@@ -8,48 +8,30 @@
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         :root { 
-            --gold: #c5a059; 
-            --burgundy: #5e1914; 
-            --white: #ffffff; 
+            --gold: #c5a059; --burgundy: #5e1914; --white: #ffffff; 
             --glass: rgba(255, 255, 255, 0.05); 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
-        /* --- 1. EFECTE DIN PRODUSE.HTML (SCROLLBAR & GLOBAL) --- */
+        /* --- 1. EFECTE VIZUALE MASTER --- */
         ::-webkit-scrollbar { width: 6px; }
         ::-webkit-scrollbar-track { background: #000; }
-        ::-webkit-scrollbar-thumb { 
-            background: linear-gradient(to bottom, transparent, var(--gold), transparent); 
-            border-radius: 10px; 
-        }
-        ::-webkit-scrollbar-thumb:hover { 
-            background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold)); 
-            box-shadow: 0 0 10px var(--gold); 
-        }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, transparent, var(--gold), transparent); border-radius: 10px; }
+        ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold)); box-shadow: 0 0 10px var(--gold); }
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         html { scroll-behavior: smooth; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* --- CURSOR & TRAILS --- */
-        .cursor-dot { 
-            width: 8px; height: 8px; background: #fff; border-radius: 50%; 
-            position: fixed; pointer-events: none; z-index: 9999; 
-            transform: translate(-50%, -50%); 
-            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5);
-            transition: width 0.3s, height 0.3s;
-        }
+        /* CURSOR */
+        .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); transition: width 0.3s, height 0.3s; box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); }
         .cursor-dot.glow { width: 30px; height: 30px; opacity: 0.5; }
         .cursor-trail { position: fixed; pointer-events: none; z-index: 9998; width: 15px; height: 15px; border-radius: 50%; opacity: 0; transform: translate(-50%, -50%); filter: blur(4px); transition: opacity 1s ease-out; }
         .trail-gold { background: var(--gold); }
         .trail-burgundy { background: var(--burgundy); }
 
         /* BACKGROUND */
-        .fixed-bg { 
-            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
-            background-size: cover; animation: cinematicZoom 45s infinite alternate ease-in-out; 
-        }
+        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 45s infinite alternate ease-in-out; }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.1); } }
 
         /* PARTICULE */
@@ -70,20 +52,17 @@
         .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
         .flag-img { width: 18px; height: 12px; object-fit: cover; }
 
-        /* SIDEBAR (NAV) */
-        .desktop-nav { display: none; } /* Ascuns implicit, activat pe mobile */
+        /* NAV LATERAL (DESKTOP) */
+        .desktop-nav { display: none; } 
         .sidebar { position: fixed; top: 50%; left: 3%; transform: translateY(-50%); z-index: 1000; display: flex; flex-direction: column; gap: 2.5rem; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.75rem; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; transition: var(--transition); }
         .nav-item-container { position: relative; }
         .submenu { display: none; flex-direction: column; gap: 1.2rem; padding: 1rem 0 0 1.5rem; }
-        @media (min-width: 1025px) { 
-            .nav-item-container:hover .submenu { display: flex; } 
-            .nav-link:hover { color: var(--white); } 
-        }
+        @media (min-width: 1025px) { .nav-item-container:hover .submenu { display: flex; } .nav-link:hover { color: var(--white); } }
         .submenu-link { text-decoration: none; color: var(--white); font-size: 0.65rem; text-transform: uppercase; letter-spacing: 3px; opacity: 0.7; transition: var(--transition); }
         .submenu-link:hover { opacity: 1; color: var(--gold); transform: translateX(8px); }
 
-        /* MARQUEE FULL WIDTH */
+        /* MARQUEE */
         .marquee-section {
             width: 100vw; margin-top: 80px; background: rgba(0, 0, 0, 0.4); 
             border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0;
@@ -94,11 +73,11 @@
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
         @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        /* MAIN */
+        /* MAIN CONTENT */
         main { flex: 1; padding: 100px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 5rem); font-style: italic; margin-bottom: 60px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
-        /* --- 2. CARDURI IDENTICE CU SHOP-EL --- */
+        /* --- 2. CARDURI IDENTICE CU SHOP-EL (AUTOPLAY VISUALS) --- */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; justify-items: center; }
         
         .product-card { 
@@ -113,16 +92,7 @@
         .product-media video { width: 100%; height: 100%; object-fit: contain; transition: transform 1s ease; }
         .product-card:hover .product-media video { transform: scale(1.1); }
         
-        /* Play Icon Overlay */
-        .product-media::after {
-            content: '\f04b'; font-family: 'Font Awesome 5 Free'; font-weight: 900;
-            position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%);
-            font-size: 3rem; color: rgba(255,255,255,0.7); opacity: 0; transition: 0.3s;
-        }
-        .product-card:hover .product-media::after { opacity: 1; }
-
         .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
-        /* Efect Shimmer pe titlu (ca la For Him) */
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
@@ -130,7 +100,7 @@
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; }
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
 
-        /* LIGHTBOX VIDEO */
+        /* LIGHTBOX */
         .lux-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; }
         .lux-modal.show { display: flex; opacity: 1; }
         .modal-content { position: relative; width: 90%; max-width: 1100px; display: flex; flex-direction: column; align-items: center; }
@@ -152,7 +122,6 @@
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             
-            /* Mobile Nav (inlocuieste Sidebar pe mobil) */
             .desktop-nav { display: flex; position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.95); flex-direction: column; opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; padding-top: 100px; overflow-y: auto; }
             .desktop-nav.active { opacity: 1; visibility: visible; }
             
@@ -162,7 +131,6 @@
             .nav-item-container.active-mobile .submenu { display: flex; }
             .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 1rem; border-top: 1px solid rgba(197,160,89,0.1); }
             
-            /* Ascunde sidebar clasic pe mobil */
             .sidebar { display: none; }
             
             main { padding-top: 120px; padding-bottom: 120px; }
@@ -278,7 +246,6 @@
                 if (this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
                 if (this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
                 
-                // LOGICA DE ATRACTIE
                 if(mouse.x != null) {
                     let dx = mouse.x - this.x; let dy = mouse.y - this.y;
                     let dist = Math.sqrt(dx*dx + dy*dy);
@@ -316,7 +283,7 @@
             }
         });
 
-        // --- PRODUCTS DATA (PENTRU EA) ---
+        // --- PRODUCTS DATA (AUTOPLAY ENABLED) ---
         const translations = {
             'ro': { 
                 title: "Brățări Pentru Ea", order: "Solicită Energia", 
@@ -333,22 +300,6 @@
                     { n: "Wish Realization", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
                     { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4" }
                 ]
-            },
-            'ru': {
-                title: "Браслеты для неё", order: "Запросить энергию",
-                items: [
-                    { n: "Антистрессовый баланс", p: "90€", v: "ANTISTRESS.mp4" },
-                    { n: "Исполнение желаний", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
-                    { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4" }
-                ]
-            },
-            'lv': {
-                title: "Aproces Viņai", order: "Pieprasīt Enerģiju",
-                items: [
-                    { n: "Antistresa līdzsvars", p: "90€", v: "ANTISTRESS.mp4" },
-                    { n: "Vēlmju realizācija", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" },
-                    { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4" }
-                ]
             }
         };
 
@@ -357,7 +308,7 @@
             grid.innerHTML = langData.items.map(i => `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n}')">
-                        <video src="${i.v}" muted loop playsinline onmouseover="this.play()" onmouseout="this.pause()"></video>
+                        <video src="${i.v}" autoplay muted loop playsinline></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.p}</div>
@@ -372,13 +323,10 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code];
             if(!t) return;
-            document.getElementById('nav-home').innerText = code === 'en' ? 'Home' : (code === 'ru' ? 'Главная' : (code === 'lv' ? 'Sākums' : 'Acasă')); 
-            // ... (restul traducerilor de meniu se pot adauga similar)
             document.getElementById('page-title').innerText = t.title;
             renderProducts(t);
         }
 
-        // --- VIDEO MODAL ---
         function openLux(src, title) {
             const modal = document.getElementById('luxModal');
             const video = document.getElementById('luxVideo');
@@ -394,10 +342,8 @@
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
-        // Initializare
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
 
-        // Hover Effect Cursor
         document.querySelectorAll('a, button, .product-media').forEach(el => {
             el.addEventListener('mouseenter', () => dot.classList.add('glow'));
             el.addEventListener('mouseleave', () => dot.classList.remove('glow'));
