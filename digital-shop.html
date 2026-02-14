@@ -25,7 +25,7 @@
         html { scroll-behavior: smooth; }
         body { display: flex; flex-direction: column; min-height: 100vh; background: #000; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* --- CURSOR MASTER INDEX (STAR) --- */
+        /* --- CURSOR MASTER STAR --- */
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite alternate; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
@@ -45,8 +45,7 @@
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
-        @keyframes shimmerEffect { to { background-position: 200% center; } }
-
+        
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
@@ -70,8 +69,10 @@
         /* --- MAIN CONTENT --- */
         main { flex: 1; padding: 60px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 20px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
         .section-subtitle { font-size: 1rem; opacity: 0.7; margin-bottom: 60px; letter-spacing: 2px; }
 
+        /* --- PRODUCT GRID --- */
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; justify-items: center; }
         .product-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.1); padding: 40px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); position: relative; width: 100%; max-width: 400px; border-radius: 4px; }
         .product-card:hover { transform: translateY(-15px); border-color: var(--gold); box-shadow: 0 20px 40px rgba(0,0,0,0.8); background: rgba(255, 255, 255, 0.05); }
@@ -167,10 +168,10 @@
     </footer>
 
     <script>
-        // Particles Logic
+        // --- PHYSICS & PARTICLES ENGINE (ATTRACTION EFFECT) ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
+        let mouse = { x: null, y: null, radius: 200 }; // Radius mai mare pentru atracție
 
         class Particle {
             constructor() {
@@ -189,18 +190,26 @@
                 this.x += this.speedX; this.y += this.speedY;
                 if(this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
                 if(this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
+
+                // --- EFECT ATRACȚIE (MAGNET) ---
                 if(mouse.x != null) {
-                    let dx = mouse.x - this.x; let dy = mouse.y - this.y;
+                    let dx = mouse.x - this.x; 
+                    let dy = mouse.y - this.y;
                     let dist = Math.sqrt(dx*dx + dy*dy);
-                    if(dist < mouse.radius) { this.x += (dx/dist)*2.5; this.y += (dy/dist)*2.5; }
+                    if(dist < mouse.radius) { 
+                        // Vectorul de atracție (trage spre coordonatele mouse-ului)
+                        this.x += (dx/dist) * 2.2; 
+                        this.y += (dy/dist) * 2.2; 
+                    }
                 }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
-        function init() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<50; i++) particles.push(new Particle()); }
-        function animate() { particles.forEach(p => p.update()); requestAnimationFrame(animate); }
-        init(); animate(); window.addEventListener('resize', init);
+        function initParticles() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<50; i++) particles.push(new Particle()); }
+        function animateParticles() { particles.forEach(p => p.update()); requestAnimationFrame(animateParticles); }
+        initParticles(); animateParticles(); window.addEventListener('resize', initParticles);
 
+        // --- TRANSLATION DATA ---
         const translations = {
             'ro': {
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact",
@@ -254,7 +263,7 @@
                     <h3 id="name-${i.id}">${i.n}</h3>
                     <p id="desc-${i.id}">${i.desc}</p>
                     <div class="product-price" id="price-${i.id}">${i.p}</div>
-                    <a href="javascript:void(0)" onclick="orderDigital('${i.n}')" class="order-btn" id="btn-${i.id}">${langData.order}</a>
+                    <a href="javascript:void(0)" onclick="orderDigital('${i.n.replace(/'/g, "\\'")}')" class="order-btn" id="btn-${i.id}">${langData.order}</a>
                 </div>
             `).join('');
         }
@@ -271,6 +280,7 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code] || translations['ro'];
             
+            // Header/Nav Traducere prin ID
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-consult').innerText = t.consult;
             document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
@@ -278,11 +288,15 @@
             document.getElementById('nav-digital').innerText = t.digital;
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
+
+            // Page Texts Traducere prin ID
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('page-subtitle').innerText = t.subtitle;
+            
             renderProducts(t);
         }
 
+        // --- UI CORE ---
         const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
         const dot = document.getElementById('dot');
@@ -300,16 +314,30 @@
         };
 
         window.addEventListener('mousemove', (e) => {
-            if (window.innerWidth > 1024 && dot) { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; }
+            // Sincronizare cursor vizual
+            if (window.innerWidth > 1024 && dot) { 
+                dot.style.left = e.clientX + 'px'; 
+                dot.style.top = e.clientY + 'px'; 
+            }
+            // Sincronizare motor fizică particule
+            mouse.x = e.clientX;
+            mouse.y = e.clientY;
         });
 
-        document.querySelectorAll('a, button').forEach(el => {
-            el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024) dot.classList.add('glow'); });
-            el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024) dot.classList.remove('glow'); });
+        document.addEventListener('mouseover', (e) => {
+            if (e.target.closest('a, button, .product-card')) {
+                if (window.innerWidth > 1024) dot.classList.add('glow');
+            }
+        });
+        document.addEventListener('mouseout', (e) => {
+            if (e.target.closest('a, button, .product-card')) {
+                if (window.innerWidth > 1024) dot.classList.remove('glow');
+            }
         });
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
+        // Init
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
