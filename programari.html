@@ -11,6 +11,7 @@
             --gold: #c5a059; 
             --burgundy: #5e1914; 
             --white: #ffffff; 
+            --glass: rgba(255, 255, 255, 0.05); 
             --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
         }
 
@@ -22,14 +23,14 @@
 
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         html { scroll-behavior: smooth; }
-        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background-color: #000; }
 
         /* CURSOR MASTER INDEX */
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
-        .cursor-dot.glow { box-shadow: 0 0 15px 4px rgba(255, 255, 255, 1), 0 0 50px 15px rgba(197, 160, 89, 0.7); }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
         .cursor-dot::after { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9) 50%, transparent); }
+        .cursor-dot.glow { box-shadow: 0 0 15px 4px rgba(255, 255, 255, 1), 0 0 50px 15px rgba(197, 160, 89, 0.7); }
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
@@ -60,7 +61,7 @@
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MARQUEE IDENTIC INDEX */
+        /* MARQUEE */
         .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
         .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
@@ -75,7 +76,6 @@
         .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: start; }
         .service-list { display: flex; flex-direction: column; gap: 30px; }
         
-        /* CARD SERVICIU */
         .service-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 40px; transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 15px; border-radius: 4px; min-height: 250px; justify-content: center; }
         .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: contain; background-repeat: no-repeat; background-position: center; opacity: 0.3; z-index: 0; transition: transform 0.6s, opacity 0.4s; }
         .service-card:nth-child(1)::before { background-image: url('consultation-life.jpg'); }
@@ -237,11 +237,9 @@
     </footer>
 
     <script>
-        // GLOBAL STATE
         let currentLang = 'ro';
         let currentServiceKey = 'life';
 
-        // WHATSAPP LOGIC
         function sendWhatsApp(event) {
             event.preventDefault();
             const service = document.getElementById('selected-service').value;
@@ -253,7 +251,6 @@
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // PARTICLES
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
@@ -287,37 +284,36 @@
         function animate() { particles.forEach(p => p.update()); requestAnimationFrame(animate); }
         init(); animate(); window.addEventListener('resize', init);
 
-        // DATA DICTIONARY
         const serviceDetails = {
             'life': {
-                'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc și vom crea un plan clar de acțiune aliniat cu misiunea sufletului tău.", price: "45 min • 250 RON" },
-                'en': { title: "Life Realisation", text: "A deep analysis session of energy blockages. We will work together to identify patterns holding you back and create a clear action plan.", price: "45 min • 50€" },
-                'ru': { title: "Жизненная Реализация", text: "Глубокий анализ энергетических блоков. Мы выявим шаблоны, которые вас сдерживают, и создадим четкий план действий.", price: "45 мин • 50€" },
-                'lv': { title: "Dzīves Realizācija", text: "Dziļa enerģētisko bloku analīze. Mēs strādāsim kopā, lai identificētu modeļus, kas jūs kavē, un izveidotu rīcības plānu.", price: "45 min • 50€" }
+                'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc și vom crea un plan clar de acțiune aliniat cu misiunea sufletului tău.", price: "45 min • 250 RON", desc: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău." },
+                'en': { title: "Life Realisation", text: "A deep analysis session of energy blockages. We will work together to identify patterns holding you back and create a clear action plan.", price: "45 min • 50€", desc: "Discover your hidden potential and align with your destiny." },
+                'ru': { title: "Жизненная Реализация", text: "Глубокий анализ энергетических блоков. Мы выявим шаблоны, которые вас сдерживают, и создадим четкий план действий.", price: "45 мин • 50€", desc: "Раскройте свой скрытый потенциал и следуйте своей судьбе." },
+                'lv': { title: "Dzīves Realizācija", text: "Dziļa enerģētisko bloku analīze. Mēs strādāsim kopā, lai identificētu modeļus, kas jūs kavē, un izveidotu rīcības plānu.", price: "45 min • 50€", desc: "Atklājiet savu apslēpto potenciālu un saskaņojiet sevi ar savu likteni." }
             },
             'biz': {
-                'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor, blocajele de abundență și momentul oportun pentru decizii majore.", price: "60 min • 350 RON" },
-                'en': { title: "Business & Career", text: "Energy strategies for business. We analyze money flow, abundance blocks, and the best timing for major decisions.", price: "60 min • 70€" },
-                'ru': { title: "Бизнес и Карьера", text: "Энергетические стратегии для бизнеса. Анализ денежного потока и выбор времени для важных решений.", price: "60 мин • 70€" },
-                'lv': { title: "Bizness un Karjera", text: "Enerģētiskās stratēģijas biznesam. Mēs analizējam naudas plūsmu un labāko laiku lēmumiem.", price: "60 min • 70€" }
+                'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor, blocajele de abundență și momentul oportun pentru decizii majore.", price: "60 min • 350 RON", desc: "Maximizează-ți succesul profesional cu strategii energetice." },
+                'en': { title: "Business & Career", text: "Energy strategies for business. We analyze money flow, abundance blocks, and the best timing for major decisions.", price: "60 min • 70€", desc: "Maximize your professional success with energy strategies." },
+                'ru': { title: "Бизнес и Карьера", text: "Энергетические стратегии для бизнеса. Анализ денежного потока и выбор времени для важных решений.", price: "60 мин • 70€", desc: "Максимизируйте свой профессиональный успех с помощью энергетики." },
+                'lv': { title: "Bizness un Karjera", text: "Enerģētiskās stratēģijas biznesam. Mēs analizējam naudas plūsmu un labāko laiku lēmumiem.", price: "60 min • 70€", desc: "Maksimizējiet savus profesionālos panākumus ar enerģētikas stratēģijām." }
             },
             'astro': {
-                'ro': { title: "Astrologie & Destin", text: "Incursune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare curente.", price: "60 min • 300 RON" },
-                'en': { title: "Astrology & Destiny", text: "Journey into your natal chart. Discover your cosmic assets and how to navigate current planetary transits.", price: "60 min • 60€" },
-                'ru': { title: "Астрология и Судьба", text: "Путешествие в натальную карту. Узнайте свои сильные стороны и текущие планетарные влияния.", price: "60 мин • 60€" },
-                'lv': { title: "Astroloģija un Liktenis", text: "Ceļojums dzimšanas kartē. Atklājiet savus kosmiskos aktīvus un planetārās ietekmes.", price: "60 min • 60€" }
+                'ro': { title: "Astrologie & Destin", text: "Incursune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare curente.", price: "60 min • 300 RON", desc: "Dezvăluie secretele hărții tale natale și influențele cosmice." },
+                'en': { title: "Astrology & Destiny", text: "Journey into your natal chart. Discover your cosmic assets and how to navigate current planetary transits.", price: "60 min • 60€", desc: "Reveal the secrets of your natal chart and cosmic influences." },
+                'ru': { title: "Астрология и Судьба", text: "Путешествие в натальную карту. Узнайте свои сильные стороны и текущие планетарные влияния.", price: "60 мин • 60€", desc: "Раскройте секреты своей натальной карты и космических влияний." },
+                'lv': { title: "Astroloģija un Liktenis", text: "Ceļojums dzimšanas kartē. Atklājiet savus kosmiskos aktīvus un planetārās ietekmes.", price: "60 min • 60€", desc: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi." }
             },
             'club': {
-                'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare, participi la sesiuni de grup lunare și resurse speciale.", price: "Abonament Lunar" },
-                'en': { title: "Energetica Club", text: "Exclusive access to our private group. Receive daily guidance and participate in monthly group sessions.", price: "Monthly Subscription" },
-                'ru': { title: "Клуб Энергетика", text: "Эксклюзивный доступ к частной группе. Ежедневное руководство и ежемесячные групповые сессии.", price: "Месячная подписка" },
-                'lv': { title: "Enerģētikas Klubs", text: "Ekskluzīva piekļuve privātajai grupai. Saņemiet ikdienas vadību un ikmēneša grupu sesijas.", price: "Mēneša abonements" }
+                'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare, participi la sesiuni de grup lunare și resurse speciale.", price: "Abonament Lunar", desc: "Comunitate exclusivă pentru evoluție și suport energetic zilnic." },
+                'en': { title: "Energetica Club", text: "Exclusive access to our private group. Receive daily guidance and participate in monthly group sessions.", price: "Monthly Subscription", desc: "Exclusive community for evolution and daily energy support." },
+                'ru': { title: "Клуб Энергетика", text: "Эксклюзивный доступ к частной группе. Ежедневное руководство и ежемесячные групповые сессии.", price: "Месячная подписка", desc: "Эксклюзивное сообщество для развития и ежедневной поддержки." },
+                'lv': { title: "Enerģētikas Klubs", text: "Ekskluzīva piekļuve privātajai grupai. Saņemiet ikdienas vadību un ikmēneša grupu sesijas.", price: "Mēneša abonements", desc: "Ekskluzīva kopiena izaugsmei un ikdienas enerģētiskajam atbalstam." }
             },
             'game': {
-                'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri la întrebări complexe într-un mod ludic.", price: "Sesiune Grup/Individual" },
-                'en': { title: "T-Game: Genius Road", text: "A transformational game serving as a mirror to the subconscious. Find answers to complex questions through play.", price: "Group/Individual Session" },
-                'ru': { title: "T-Game: Genius Road", text: "Трансформационная игра, зеркало подсознания. Ответы на сложные вопросы в игровой форме.", price: "Групповая/Инд. сессия" },
-                'lv': { title: "T-Game: Genius Road", text: "Transformācijas spēle, zemapziņas spogulis. Atrodiet atbildes uz sarežģītiem jautājumiem caur spēli.", price: "Grupas/Indiv. sesija" }
+                'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri la întrebări complexe într-un mod ludic.", price: "Sesiune Grup/Individual", desc: "Experiență imersivă pentru descătușarea potențialului prin joc." },
+                'en': { title: "T-Game: Genius Road", text: "A transformational game serving as a mirror to the subconscious. Find answers to complex questions through play.", price: "Group/Individual Session", desc: "Immersive experience to unleash your potential through play." },
+                'ru': { title: "T-Game: Genius Road", text: "Трансформационная игра, зеркало подсознания. Ответы на сложные вопросы в игровой форме.", price: "Групповая/Инд. сессия", desc: "Иммерсивный опыт раскрытия потенциала через игру." },
+                'lv': { title: "T-Game: Genius Road", text: "Transformācijas spēle, zemapziņas spogulis. Atrodiet atbildes uz sarežģītiem jautājumiem caur spēli.", price: "Grupas/Indiv. sesija", desc: "Ieskaujoša pieredze potenciāla atraisīšanai caur spēli." }
             }
         };
 
@@ -328,7 +324,6 @@
             'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", title: "Konsultāciju pakalpojumi", desc: "Izvēlieties pakalpojumu, lai redzētu informāciju un aizpildītu formu.", nameLab: "Jūsu vārds", namePh: "Kā jūs sauc?", dateLab: "Vēlamais datums", emailLab: "E-pasta adrese (sesijas saitei)", submit: "Pieteikties", servLab: "Izvēlētais pakalpojums" }
         };
 
-        // CORE FUNCTIONS
         function selectService(el, key) {
             currentServiceKey = key;
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
@@ -349,10 +344,8 @@
             document.getElementById('active-flag').src = flag;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
-            
             const t = translations[code];
             
-            // Translate Menu
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-consult').innerText = t.consult;
             document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
@@ -360,12 +353,8 @@
             document.getElementById('nav-digital').innerText = t.digital;
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
-
-            // Translate Page Header
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('page-desc').innerText = t.desc;
-
-            // Translate Form Labels
             document.getElementById('label-service').innerText = t.servLab;
             document.getElementById('label-name').innerText = t.nameLab;
             document.getElementById('client-name').placeholder = t.namePh;
@@ -373,30 +362,25 @@
             document.getElementById('label-email').innerText = t.emailLab;
             document.getElementById('btn-submit').innerText = t.submit;
 
-            // Translate Card Content
             Object.keys(serviceDetails).forEach(key => {
                 const s = serviceDetails[key][code];
-                if(key === 'life') { document.getElementById('card-life-title').innerText = s.title; document.getElementById('price-life').innerText = s.price; }
-                if(key === 'biz') { document.getElementById('card-biz-title').innerText = s.title; document.getElementById('price-biz').innerText = s.price; }
-                if(key === 'astro') { document.getElementById('card-astro-title').innerText = s.title; document.getElementById('price-astro').innerText = s.price; }
-                if(key === 'club') { document.getElementById('card-club-title').innerText = s.title; document.getElementById('price-club').innerText = s.price; }
-                if(key === 'game') { document.getElementById('card-game-title').innerText = s.title; document.getElementById('price-game').innerText = s.price; }
+                document.getElementById(`card-${key}-title`).innerText = s.title;
+                document.getElementById(`card-${key}-desc`).innerText = s.desc;
+                document.getElementById(`price-${key}`).innerText = s.price;
             });
-
             updateDetails();
         }
 
-        // UI INTERACTION
-        const menuBtn = document.getElementById('menuBtn');
         const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menuBtn');
         const dot = document.getElementById('dot');
+        const shopContainer = document.getElementById('shopContainer');
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
+        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
         window.addEventListener('mousemove', (e) => { if (window.innerWidth > 1024 && dot) { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; } });
         document.querySelectorAll('a, button, .service-card').forEach(el => { el.addEventListener('mouseenter', () => dot.classList.add('glow')); el.addEventListener('mouseleave', () => dot.classList.remove('glow')); });
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
-
-        // INITIALIZE
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
