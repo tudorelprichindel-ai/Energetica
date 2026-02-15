@@ -24,14 +24,13 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background: #000; display: flex; flex-direction: column; min-height: 100vh; }
 
-        /* CURSOR MASTER (Optimizat GPU) */
-        .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate3d(-50%, -50%, 0); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; will-change: transform; }
+        /* CURSOR MASTER (GPU Accelerated) */
+        .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate3d(-50%, -50%, 0); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); will-change: transform; }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
         .cursor-dot::after { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9) 50%, transparent); }
-        @keyframes slowStarPulse { 0%, 100% { transform: translate3d(-50%, -50%, 0) scale(1); opacity: 0.9; } 50% { transform: translate3d(-50%, -50%, 0) scale(1.2); opacity: 1; } }
 
-        /* BACKGROUND HYBRID (Elimină LCP Delay) */
+        /* MAIN BACKGROUND HYBRID (Rezolvă LCP Desktop) */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
             background: linear-gradient(rgba(0,0,0,0.7), rgba(0,0,0,0.7)), url('cristale3.jpg') no-repeat center center;
@@ -44,13 +43,11 @@
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); border-radius: 50%; will-change: transform; }
 
-        /* HEADER MASTER (Accesibilitate & CLS) */
+        /* HEADER MASTER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; color: var(--gold); }
-        
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .flag-img { width: 20px; height: 13px; object-fit: cover; }
 
         .desktop-nav { display: flex; gap: 2.5rem; margin-top: 5px; }
         .nav-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; transition: var(--transition); }
@@ -64,19 +61,35 @@
 
         /* CONTENT */
         .page-container { padding: 60px 5% 120px; width: 100%; max-width: 1400px; margin: 0 auto; text-align: center; }
-        .hub-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); font-style: italic; color: var(--gold); margin-bottom: 20px; }
+        .hub-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 3.5rem); font-style: italic; color: var(--gold); margin-bottom: 40px; }
         
         .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; text-align: left; }
-        .service-card { background: rgba(255,255,255,0.03); border: 1px solid rgba(197, 160, 89, 0.15); padding: 30px; transition: 0.4s; border-radius: 4px; margin-bottom: 15px; cursor: pointer; }
-        .service-card.selected { border-color: var(--gold); background: rgba(197, 160, 89, 0.08); }
-        .service-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 10px; display: block; }
         
+        /* SERVICE CARDS WITH BACKGROUND IMAGES */
+        .service-card { position: relative; background: rgba(0, 0, 0, 0.4); border: 1px solid rgba(197, 160, 89, 0.15); padding: 40px 30px; transition: 0.4s; border-radius: 4px; margin-bottom: 20px; cursor: pointer; overflow: hidden; min-height: 200px; display: flex; flex-direction: column; justify-content: center; }
+        
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.2; z-index: 0; transition: var(--transition); }
+        
+        /* CARD-SPECIFIC IMAGES (HYBRID) */
+        .card-life::before { background-image: url('consultation-life.jpg'); background-image: image-set(url('consultation-life.webp') 1x, url('consultation-life.jpg') 1x); }
+        .card-biz::before { background-image: url('consultation-business.jpg'); background-image: image-set(url('consultation-business.webp') 1x, url('consultation-business.jpg') 1x); }
+        .card-astro::before { background-image: url('consultation-astrology.jpg'); background-image: image-set(url('consultation-astrology.webp') 1x, url('consultation-astrology.jpg') 1x); }
+        .card-club::before { background-image: url('club.jpg'); background-image: image-set(url('club.webp') 1x, url('club.jpg') 1x); }
+        .card-game::before { background-image: url('tgame.jpg'); background-image: image-set(url('tgame.webp') 1x, url('tgame.jpg') 1x); }
+
+        .service-card:hover::before, .service-card.selected::before { opacity: 0.45; transform: scale(1.05); }
+        .service-card.selected { border-color: var(--gold); box-shadow: 0 0 30px rgba(197, 160, 89, 0.2); }
+        .service-card > * { position: relative; z-index: 1; }
+
+        .service-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 15px; display: block; }
+        .service-card h3 { font-family: 'Playfair Display', serif; font-style: italic; font-size: 1.4rem; color: var(--white); margin-bottom: 10px; }
+        .service-card p { font-size: 0.85rem; line-height: 1.6; opacity: 0.9; }
+
         .calendar-container { background: rgba(255, 255, 255, 0.04); backdrop-filter: blur(30px); padding: 50px; border: 1px solid var(--gold); position: sticky; top: 120px; border-radius: 4px; }
-        .form-control { width: 100%; padding: 18px; background: rgba(0,0,0,0.4); border: 1px solid rgba(197,160,89,0.2); color: #fff; margin-bottom: 20px; font-family: inherit; }
+        .form-control { width: 100%; padding: 18px; background: rgba(0,0,0,0.5); border: 1px solid rgba(197,160,89,0.2); color: #fff; margin-bottom: 20px; font-family: inherit; font-size: 0.9rem; }
         .submit-btn { width: 100%; padding: 20px; border: 1px solid var(--gold); background: transparent; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-weight: 700; cursor: pointer; transition: 0.4s; }
         .submit-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197,160,89,0.4); }
 
-        /* FOOTER MASTER */
         footer { margin-top: auto; padding: 40px 0; background: rgba(0, 0, 0, 0.95); text-align: center; border-top: 1px solid var(--burgundy); }
         .social-links { display: flex; gap: 30px; justify-content: center; margin-bottom: 15px; }
         .social-links a { color: var(--gold); font-size: 1.3rem; transition: 0.3s; }
@@ -123,17 +136,20 @@
         <h1 class="hub-title">Servicii de Consultații</h1>
         <div class="booking-grid">
             <div class="service-list">
-                <div class="service-card selected" onclick="selectService(this, 'Life Realisation')">
+                <div class="service-card card-life selected" onclick="selectService(this, 'Life Realisation')">
                     <i class="fas fa-gem" aria-hidden="true"></i>
                     <h3>Life Realisation</h3>
                     <p>Alinierea potențialului nativ cu misiunea personală.</p>
-                    <span class="service-price">45 min • 250 RON</span>
                 </div>
-                <div class="service-card" onclick="selectService(this, 'Business Strategy')">
+                <div class="service-card card-biz" onclick="selectService(this, 'Business Strategy')">
                     <i class="fas fa-chart-line" aria-hidden="true"></i>
                     <h3>Business & Cariera</h3>
-                    <p>Strategii energetice pentru scalarea succesului profesional.</p>
-                    <span class="service-price">60 min • 350 RON</span>
+                    <p>Strategii energetice pentru succes profesional.</p>
+                </div>
+                <div class="service-card card-astro" onclick="selectService(this, 'Astrology')">
+                    <i class="fas fa-star" aria-hidden="true"></i>
+                    <h3>Astrologie & Destin</h3>
+                    <p>Dezvăluie secretele hărții tale natale.</p>
                 </div>
             </div>
 
@@ -142,7 +158,7 @@
                     <input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly>
                     <input type="text" class="form-control" placeholder="Numele tău" required>
                     <input type="date" class="form-control" required>
-                    <button type="submit" class="submit-btn">Solicită Programare</button>
+                    <button type="submit" class="submit-btn" aria-label="Trimite solicitare">Solicită Programare</button>
                 </form>
             </div>
         </div>
@@ -164,7 +180,6 @@
             document.getElementById('selected-service').value = name;
         }
 
-        // PARTICULE ENGINE OPTIMIZAT
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
@@ -187,7 +202,6 @@
                 if(this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
                 if(this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
 
-                // MAGNET LOGIC (DOAR DESKTOP)
                 if (mouse.x !== null && window.innerWidth > 1024) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -196,7 +210,6 @@
                         this.x += (dx/dist) * 2; this.y += (dy/dist) * 2;
                     }
                 }
-                // Folosim translate3d pentru a forța GPU-ul (hardware acceleration)
                 this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
@@ -212,15 +225,13 @@
             requestAnimationFrame(animate);
         }
 
-        // Pornire întârziată pentru a nu bloca LCP (Largest Contentful Paint)
         window.addEventListener('load', () => {
             setTimeout(() => {
                 init(); animate();
                 window.addEventListener('mousemove', (e) => {
                     mouse.x = e.clientX; mouse.y = e.clientY;
                     if(window.innerWidth > 1024) {
-                        const dot = document.getElementById('dot');
-                        dot.style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
+                        document.getElementById('dot').style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
                     }
                 });
             }, 800);
