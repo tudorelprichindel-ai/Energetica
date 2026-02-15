@@ -28,7 +28,7 @@
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, transparent, var(--gold), transparent); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold)); box-shadow: 0 0 10px var(--gold); }
 
-        /* CURSOR */
+        /* CURSOR (Setări identice cu codul furnizat) */
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite alternate; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
@@ -78,8 +78,21 @@
         .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: start; }
         .service-list { display: flex; flex-direction: column; gap: 20px; }
         
-        .service-card { background: rgba(255,255,255,0.02); border: 1px solid rgba(197, 160, 89, 0.2); padding: 30px; transition: 0.4s; cursor: pointer; position: relative; overflow: hidden; display: flex; flex-direction: column; gap: 10px; border-radius: 4px; min-height: 180px; justify-content: center; }
-        .service-card:hover, .service-card.selected { border-color: var(--gold); box-shadow: 0 10px 40px rgba(0,0,0,0.5); background: rgba(197, 160, 89, 0.05); }
+        /* RESTAURARE IMAGINI FUNDAL CARDURI */
+        .service-card { position: relative; background: rgba(0,0,0,0.4); border: 1px solid rgba(197, 160, 89, 0.2); padding: 30px; transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; gap: 10px; border-radius: 4px; min-height: 180px; justify-content: center; }
+        .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.15; z-index: 0; transition: var(--transition); }
+        
+        /* LOGICĂ WEB PENTRU CARDURI */
+        .card-life::before { background-image: url('consultation-life.webp'); }
+        .card-biz::before { background-image: url('consultation-business.webp'); }
+        .card-astro::before { background-image: url('consultation-astrology.webp'); }
+        .card-club::before { background-image: url('club.webp'); }
+        .card-game::before { background-image: url('tgame.webp'); }
+
+        .service-card:hover::before, .service-card.selected::before { opacity: 0.35; transform: scale(1.05); }
+        .service-card:hover, .service-card.selected { border-color: var(--gold); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .service-card > * { position: relative; z-index: 1; }
+
         .service-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 5px; }
         .service-card h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; }
         .service-card p { font-size: 0.85rem; opacity: 0.8; line-height: 1.5; }
@@ -131,8 +144,6 @@
             .submenu-link { width: 100%; text-align: center; padding: 20px 0; font-size: 0.95rem; opacity: 0.8; display: block; border-top: 1px solid rgba(197, 160, 89, 0.1); }
 
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
-            
-            /* Ajustari Programari Mobil */
             .page-container { padding-top: 40px; }
             .booking-grid { grid-template-columns: 1fr; gap: 40px; }
             .calendar-container { position: relative; top: 0; padding: 30px 20px; }
@@ -191,31 +202,31 @@
 
         <div class="booking-grid">
             <div class="service-list">
-                <div class="service-card selected" onclick="selectService(this, 'life')">
+                <div class="service-card card-life selected" onclick="selectService(this, 'life')">
                     <i class="fas fa-gem"></i>
                     <h3 id="card-life-title">Life Realisation</h3>
                     <p id="card-life-desc">Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.</p>
                     <span class="service-price" id="price-life">45 min • 250 RON</span>
                 </div>
-                <div class="service-card" onclick="selectService(this, 'biz')">
+                <div class="service-card card-biz" onclick="selectService(this, 'biz')">
                     <i class="fas fa-chart-line"></i>
                     <h3 id="card-biz-title">Business & Cariera</h3>
                     <p id="card-biz-desc">Maximizează-ți succesul profesional cu strategii energetice.</p>
                     <span class="service-price" id="price-biz">60 min • 350 RON</span>
                 </div>
-                <div class="service-card" onclick="selectService(this, 'astro')">
+                <div class="service-card card-astro" onclick="selectService(this, 'astro')">
                     <i class="fas fa-star"></i>
                     <h3 id="card-astro-title">Astrologie & Destin</h3>
                     <p id="card-astro-desc">Dezvăluie secretele hărții tale natale și influențele cosmice.</p>
                     <span class="service-price" id="price-astro">60 min • 300 RON</span>
                 </div>
-                <div class="service-card" onclick="selectService(this, 'club')">
+                <div class="service-card card-club" onclick="selectService(this, 'club')">
                     <i class="fas fa-users"></i>
                     <h3 id="card-club-title">Club Energetica</h3>
                     <p id="card-club-desc">Comunitate exclusivă pentru evoluție și suport energetic zilnic.</p>
                     <span class="service-price" id="price-club">Abonament Lunar</span>
                 </div>
-                <div class="service-card" onclick="selectService(this, 'game')">
+                <div class="service-card card-game" onclick="selectService(this, 'game')">
                     <i class="fas fa-chess-knight"></i>
                     <h3 id="card-game-title">T-Game: Genius Road</h3>
                     <p id="card-game-desc">Experiență imersivă pentru descătușarea potențialului prin joc.</p>
@@ -233,7 +244,7 @@
                     <div class="form-group"><label id="label-name">Numele Tău</label><input type="text" id="client-name" class="form-control" placeholder="Cum te numești?" required></div>
                     <div class="form-group"><label id="label-date">Data Preferată</label><input type="date" id="pref-date" class="form-control" required></div>
                     <div class="form-group"><label id="label-email">Email (pentru link sesiune)</label><input type="email" id="client-email" class="form-control" placeholder="email@exemplu.com" required></div>
-                    <button type="submit" class="submit-btn" id="btn-submit">Solicită Programare</button>
+                    <button type="submit" class="submit-btn">Solicită Programare</button>
                 </form>
             </div>
         </div>
@@ -252,8 +263,9 @@
     <script>
         let currentLang = 'ro';
         let currentServiceKey = 'life';
+        let mouse = { x: null, y: null, radius: 150 };
 
-        // WhatsApp Logic
+        // --- WHATSAPP LOGIC ---
         function sendWhatsApp(event) {
             event.preventDefault();
             const service = document.getElementById('selected-service').value;
@@ -265,57 +277,20 @@
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
-        // Service Details Data
+        // --- SERVICE DETAILS DATA ---
         const serviceDetails = {
-            'life': {
-                'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc.", price: "45 min • 250 RON", desc: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău." },
-                'en': { title: "Life Realisation", text: "A deep analysis session of energy blockages. We will work together to identify patterns holding you back.", price: "45 min • 50€", desc: "Discover your hidden potential and align with your destiny." },
-                'ru': { title: "Жизненная Реализация", text: "Глубокий анализ энергетических блоков. Мы выявим шаблоны, которые вас сдерживают.", price: "45 мин • 50€", desc: "Раскройте свой скрытый потенциал и следуйте своей судьбе." },
-                'lv': { title: "Dzīves Realizācija", text: "Dziļa enerģētisko bloku analīze. Mēs strādāsim kopā, lai identificētu modeļus, kas jūs kavē.", price: "45 min • 50€", desc: "Atklājiet savu apslēpto potenciālu un saskaņojiet sevi ar savu likteni." }
-            },
-            'biz': {
-                'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor și blocajele de abundență.", price: "60 min • 350 RON", desc: "Maximizează-ți succesul profesional cu strategii energetice." },
-                'en': { title: "Business & Career", text: "Energy strategies for business. We analyze money flow and abundance blocks.", price: "60 min • 70€", desc: "Maximize your professional success with energy strategies." },
-                'ru': { title: "Бизнес и Карьера", text: "Энергетические стратегии для бизнеса. Анализ денежного потока и блоков изобилия.", price: "60 мин • 70€", desc: "Максимизируйте свой профессиональный успех с помощью энергетики." },
-                'lv': { title: "Bizness un Karjera", text: "Enerģētiskās stratēģijas biznesam. Mēs analizējam naudas plūsmu un pārpilnības blokus.", price: "60 min • 70€", desc: "Maksimizējiet savus profesionālos panākumus ar enerģētikas stratēģijām." }
-            },
-            'astro': {
-                'ro': { title: "Astrologie & Destin", text: "Incursune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare.", price: "60 min • 300 RON", desc: "Dezvăluie secretele hărții tale natale și influențele cosmice." },
-                'en': { title: "Astrology & Destiny", text: "Journey into your natal chart. Discover your cosmic assets and planetary transits.", price: "60 min • 60€", desc: "Reveal the secrets of your natal chart and cosmic influences." },
-                'ru': { title: "Астрология и Судьба", text: "Путешествие в натальную карту. Узнайте свои сильные стороны и влияния.", price: "60 мин • 60€", desc: "Раскройте секреты своей натальной карты и космических влияний." },
-                'lv': { title: "Astroloģija un Liktenis", text: "Ceļojums dzimšanas kartē. Atklājiet savus kosmiskos aktīvus un ietekmes.", price: "60 min • 60€", desc: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi." }
-            },
-            'club': {
-                'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare și resurse speciale.", price: "Abonament Lunar", desc: "Comunitate exclusivă pentru evoluție și suport energetic zilnic." },
-                'en': { title: "Energetica Club", text: "Exclusive access to our private group. Receive daily guidance and special resources.", price: "Monthly Subscription", desc: "Exclusive community for evolution and daily energy support." },
-                'ru': { title: "Клуб Энергетика", text: "Эксклюзивный доступ к частной группе. Ежедневное руководство и ресурсы.", price: "Месячная подписка", desc: "Эксклюзивное сообщество для развития и ежедневной поддержки." },
-                'lv': { title: "Enerģētikas Klubs", text: "Ekskluzīva piekļuve privātajai grupai. Saņemiet ikdienas vadību un resursus.", price: "Mēneša abonements", desc: "Ekskluzīva kopiena izaugsmei un ikdienas enerģētiskajam atbalstam." }
-            },
-            'game': {
-                'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri complexe.", price: "Sesiune Grup/Individual", desc: "Experiență imersivă pentru descătușarea potențialului prin joc." },
-                'en': { title: "T-Game: Genius Road", text: "A transformational game serving as a mirror to the subconscious.", price: "Group/Individual Session", desc: "Immersive experience to unleash your potential through play." },
-                'ru': { title: "T-Game: Genius Road", text: "Трансформационная игра, зеркало подсознания. Поиск ответов.", price: "Групповая/Инд. сессия", desc: "Иммерсивный опыт раскрытия потенциала через игру." },
-                'lv': { title: "T-Game: Genius Road", text: "Transformācijas spēle, zemapziņas spogulis. Atbilžu meklēšana.", price: "Grupas/Indiv. sesija", desc: "Ieskaujoša pieredze potenciāla atraisīšanai caur spēli." }
-            }
-        };
-
-        const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", title: "Servicii de Consultații", desc: "Selectează serviciul dorit pentru a vedea detaliile.", nameLab: "Numele Tău", namePh: "Cum te numești?", dateLab: "Data Preferată", emailLab: "Email (pentru link sesiune)", submit: "Solicită Programare", servLab: "Serviciu Selectat" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", title: "Consultation Services", desc: "Select the desired service to see details.", nameLab: "Your Name", namePh: "What is your name?", dateLab: "Preferred Date", emailLab: "Email (for session link)", submit: "Request Appointment", servLab: "Selected Service" },
-            'ru': { home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", title: "Услуги консультации", desc: "Выберите услугу, чтобы увидеть детали.", nameLab: "Ваше имя", namePh: "Как вас зовут?", dateLab: "Желаемая дата", emailLab: "Email (для ссылки)", submit: "Записаться", servLab: "Выбранная услуга" },
-            'lv': { home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", title: "Konsultāciju pakalpojumi", desc: "Izvēlieties pakalpojumu, lai redzētu informāciju.", nameLab: "Jūsu vārds", namePh: "Kā jūs sauc?", dateLab: "Vēlamais datums", emailLab: "E-pasts (saitei)", submit: "Pieteikties", servLab: "Izvēlētais pakalpojums" }
+            'life': { 'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc.", price: "45 min • 250 RON", desc: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău." } },
+            'biz': { 'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor și blocajele de abundență.", price: "60 min • 350 RON", desc: "Maximizează-ți succesul profesional cu strategii energetice." } },
+            'astro': { 'ro': { title: "Astrologie & Destin", text: "Incursune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare.", price: "60 min • 300 RON", desc: "Dezvăluie secretele hărții tale natale și influențele cosmice." } },
+            'club': { 'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare și resurse speciale.", price: "Abonament Lunar", desc: "Comunitate exclusivă pentru evoluție și suport energetic zilnic." } },
+            'game': { 'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri complexe.", price: "Sesiune Grup/Individual", desc: "Experiență imersivă pentru descătușarea potențialului prin joc." } }
         };
 
         function selectService(el, key) {
             currentServiceKey = key;
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            updateDetails();
-            if(window.innerWidth <= 1024) document.querySelector('.calendar-container').scrollIntoView({ behavior: 'smooth' });
-        }
-
-        function updateDetails() {
-            const data = serviceDetails[currentServiceKey][currentLang];
+            const data = serviceDetails[currentServiceKey][currentLang] || serviceDetails[currentServiceKey]['ro'];
             document.getElementById('selected-service').value = data.title;
             document.getElementById('detail-title').innerText = data.title;
             document.getElementById('detail-text').innerText = data.text;
@@ -326,53 +301,18 @@
             document.getElementById('active-flag').src = flag;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
-            const t = translations[code];
-            
-            document.getElementById('nav-home').innerText = t.home;
-            document.getElementById('nav-consult').innerText = t.consult;
-            document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
-            document.getElementById('nav-bracelets').innerText = t.bracelets;
-            document.getElementById('nav-digital').innerText = t.digital;
-            document.getElementById('nav-about').innerText = t.about;
-            document.getElementById('nav-contact').innerText = t.contact;
-            document.getElementById('page-title').innerText = t.title;
-            document.getElementById('page-desc').innerText = t.desc;
-            document.getElementById('label-service').innerText = t.servLab;
-            document.getElementById('label-name').innerText = t.nameLab;
-            document.getElementById('client-name').placeholder = t.namePh;
-            document.getElementById('label-date').innerText = t.dateLab;
-            document.getElementById('label-email').innerText = t.emailLab;
-            document.getElementById('btn-submit').innerText = t.submit;
-
-            Object.keys(serviceDetails).forEach(key => {
-                const s = serviceDetails[key][code];
-                document.getElementById(`card-${key}-title`).innerText = s.title;
-                document.getElementById(`card-${key}-desc`).innerText = s.desc;
-                document.getElementById(`price-${key}`).innerText = s.price;
-            });
-            updateDetails();
         }
 
-        // UI Logic
-        const sidebar = document.getElementById('sidebar');
-        const menuBtn = document.getElementById('menuBtn');
-        const dot = document.getElementById('dot');
-        const shopContainer = document.getElementById('shopContainer');
-
-        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
-        window.addEventListener('mousemove', (e) => { if (window.innerWidth > 1024 && dot) { dot.style.left = e.clientX + 'px'; dot.style.top = e.clientY + 'px'; } });
-        
-        // Particles
+        // --- PARTICULE ENGINE (Setări identice cu codul tau) ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         class Particle {
             constructor() {
                 this.x = Math.random() * window.innerWidth;
                 this.y = Math.random() * window.innerHeight;
-                this.size = Math.random() * 2 + 1;
-                this.speedX = Math.random() * 0.5 - 0.25;
-                this.speedY = Math.random() * 0.5 - 0.25;
+                this.size = Math.random() * 3 + 2; 
+                this.speedX = Math.random() * 1 - 0.5; 
+                this.speedY = Math.random() * 1 - 0.5; 
                 this.element = document.createElement('div');
                 this.element.className = 'particle';
                 this.element.style.width = this.size + 'px';
@@ -381,17 +321,57 @@
             }
             update() {
                 this.x += this.speedX; this.y += this.speedY;
-                if(this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
-                if(this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
+                if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
+                if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
+
+                // MAGNET LOGIC
+                if (mouse.x !== null && window.innerWidth > 1024) {
+                    let dx = mouse.x - this.x;
+                    let dy = mouse.y - this.y;
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < mouse.radius) {
+                        this.x += (dx/dist) * 2; this.y += (dy/dist) * 2;
+                    }
+                }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
         }
-        function init() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<50; i++) particles.push(new Particle()); }
-        function animate() { particles.forEach(p => p.update()); requestAnimationFrame(animate); }
-        init(); animate(); window.addEventListener('resize', init);
+
+        function initParticles() {
+            particles = []; particleContainer.innerHTML = '';
+            let n = window.innerWidth < 1024 ? 20 : 50; 
+            for(let i=0; i<n; i++) particles.push(new Particle());
+        }
+
+        function animateParticles() {
+            particles.forEach(p => p.update());
+            requestAnimationFrame(animateParticles);
+        }
+
+        // --- CURSOR LOGIC (Setări identice cu codul tau) ---
+        const dot = document.getElementById('dot');
+        window.addEventListener('mousemove', (e) => {
+            mouse.x = e.clientX; mouse.y = e.clientY;
+            if (window.innerWidth > 1024 && dot) { 
+                dot.style.left = e.clientX + 'px'; 
+                dot.style.top = e.clientY + 'px'; 
+            }
+        });
+
+        // --- UI BOOT ---
+        const sidebar = document.getElementById('sidebar');
+        const menuBtn = document.getElementById('menuBtn');
+        const shopContainer = document.getElementById('shopContainer');
+
+        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
+        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
+
+        window.addEventListener('load', () => {
+            initParticles(); animateParticles();
+        });
+
+        window.addEventListener('resize', initParticles);
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
-        
-        changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
 </html>
