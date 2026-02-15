@@ -4,57 +4,98 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Consultații | The Power Boutique</title>
-    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="icon" type="image/png" href="favicon.png">
+    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+
     <style>
-        :root { --gold: #c5a059; --burgundy: #5e1914; --white: #ffffff; --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); }
+        /* --- MASTER GLOBAL STYLES --- */
+        :root { 
+            --gold: #c5a059; 
+            --burgundy: #5e1914; 
+            --white: #ffffff; 
+            --transition: all 0.6s cubic-bezier(0.16, 1, 0.3, 1); 
+        }
+
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
-        body { width: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background: #000; display: flex; flex-direction: column; min-height: 100vh; }
-        
-        .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; transform: translate3d(-50%, -50%, 0); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; will-change: transform; }
+        body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background: #000; display: flex; flex-direction: column; min-height: 100vh; }
+
+        /* SCROLLBAR */
+        ::-webkit-scrollbar { width: 6px; }
+        ::-webkit-scrollbar-track { background: #000; }
+        ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, transparent, var(--gold), transparent); border-radius: 10px; }
+
+        /* CURSOR STAR - RESTAURARE SETARI ORIGINALE */
+        .cursor-dot { 
+            width: 8px; height: 8px; background: #fff; border-radius: 50%; 
+            position: fixed; top: 0; left: 0; pointer-events: none; z-index: 9999; 
+            transform: translate3d(-50%, -50%, 0); 
+            box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); 
+            animation: slowStarPulse 6s infinite ease-in-out; 
+            will-change: transform; 
+        }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite alternate; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
         .cursor-dot::after { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9) 50%, transparent); }
+        
         @keyframes slowStarPulse { 0%, 100% { transform: translate3d(-50%, -50%, 0) scale(1); opacity: 0.9; } 50% { transform: translate3d(-50%, -50%, 0) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), url('cristale3.jpg') no-repeat center center; background-image: linear-gradient(rgba(0,0,0,0.75), rgba(0,0,0,0.75)), -webkit-image-set(url('cristale3.webp') 1x, url('cristale3.jpg') 1x); background-size: cover; animation: cinematicZoom 45s infinite alternate ease-in-out; }
+        /* BACKGROUND HYBRID (.webp prioritizing) */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; 
+            background: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), url('cristale3.jpg') no-repeat center center;
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), -webkit-image-set(url('cristale3.webp') 1x, url('cristale3.jpg') 1x);
+            background-image: linear-gradient(rgba(0,0,0,0.65), rgba(0,0,0,0.65)), image-set(url('cristale3.webp') 1x, url('cristale3.jpg') 1x);
+            background-size: cover; will-change: transform; animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
-        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; }
-        .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8); border-radius: 50%; will-change: transform; }
+        
+        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
+        .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
+        /* HEADER & NAV MASTER */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; color: var(--gold); }
-        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; gap: 8px; }
-        .lang-list { position: absolute; top: 100%; right: 0; background: #000; border: 1px solid var(--gold); display: none; flex-direction: column; z-index: 2100; }
-        .lang-list.show { display: flex; }
-        .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; width: 100%; text-align: center; }
+        .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
+        .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        @keyframes shimmerEffect { to { background-position: 200% center; } }
 
-        .desktop-nav { display: flex; gap: 2.5rem; margin-top: 5px; }
-        .nav-link, .submenu-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; transition: var(--transition); }
-        .nav-link:hover { color: var(--white); }
+        .lang-dropdown { position: relative; }
+        .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
+        .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
+        .lang-list.show { display: flex; }
+        .lang-item { background: none; border: none; color: var(--white); padding: 12px; font-size: 0.7rem; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; width: 100%; }
+
+        .desktop-nav { display: flex; gap: 2.5rem; align-items: center; justify-content: center; height: 40px; margin-top: 5px; }
+        .nav-link, .submenu-link { text-decoration: none; color: var(--gold); font-size: 0.7rem; text-transform: uppercase; letter-spacing: 3px; font-weight: 700; transition: var(--transition); white-space: nowrap; }
+        .nav-link:hover, .submenu-link:hover { color: var(--white); }
         .nav-item-container { position: relative; height: 100%; display: flex; align-items: center; }
-        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0,0,0,0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; }
+        .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .nav-item-container:hover .submenu { display: flex; }
 
-        .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); padding: 15px 0; overflow: hidden; white-space: nowrap; border-bottom: 1px solid rgba(197, 160, 89, 0.2); }
+        /* MARQUEE - RESTAURARE SETARI ORIGINALE */
+        .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
         .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
-        .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; margin: 0 40px; opacity: 0.8; }
-        @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+        .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
+        @keyframes marquee { 0% { transform: translateX(0); } 100% { transform: translateX(-50%); } }
 
-        .page-container { padding: 60px 5% 120px; width: 100%; max-width: 1400px; margin: 0 auto; text-align: center; }
-        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; text-align: left; margin-top: 40px; }
+        /* CONSULTATIONS PAGE CONTENT */
+        .page-container { padding: 60px 5% 120px; width: 100%; max-width: 1400px; margin: 0 auto; display: flex; flex-direction: column; align-items: center; }
+        .hub-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 8vw, 3.5rem); font-style: italic; color: var(--gold); margin-bottom: 20px; text-align: center; }
+        .hub-subtitle { font-size: 1rem; opacity: 0.7; margin-bottom: 60px; text-align: center; max-width: 600px; line-height: 1.6; }
+
+        .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: start; }
         .service-list { display: flex; flex-direction: column; gap: 20px; }
-
+        
         .service-card { position: relative; background: rgba(0,0,0,0.4); border: 1px solid rgba(197, 160, 89, 0.2); padding: 30px; transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; gap: 10px; border-radius: 4px; min-height: 180px; justify-content: center; }
         .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.15; z-index: 0; transition: var(--transition); }
         
-        /* RESTAURARE IMAGINI CARDURI WEB */
         .card-life::before { background-image: url('consultation-life.jpg'); background-image: image-set(url('consultation-life.webp') 1x, url('consultation-life.jpg') 1x); }
         .card-biz::before { background-image: url('consultation-business.jpg'); background-image: image-set(url('consultation-business.webp') 1x, url('consultation-business.jpg') 1x); }
         .card-astro::before { background-image: url('consultation-astrology.jpg'); background-image: image-set(url('consultation-astrology.webp') 1x, url('consultation-astrology.jpg') 1x); }
@@ -62,25 +103,36 @@
         .card-game::before { background-image: url('tgame.jpg'); background-image: image-set(url('tgame.webp') 1x, url('tgame.jpg') 1x); }
 
         .service-card:hover::before, .service-card.selected::before { opacity: 0.35; transform: scale(1.05); }
-        .service-card.selected { border-color: var(--gold); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
+        .service-card:hover, .service-card.selected { border-color: var(--gold); box-shadow: 0 10px 40px rgba(0,0,0,0.5); }
         .service-card > * { position: relative; z-index: 1; }
-        .service-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 5px; }
 
-        .calendar-container { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px); padding: 50px; border: 1px solid var(--gold); position: sticky; top: 120px; border-radius: 4px; }
-        .form-control { width: 100%; padding: 18px; background: rgba(0,0,0,0.3); border: 1px solid rgba(197,160,89,0.2); color: #fff; margin-bottom: 20px; outline: none; }
+        .service-card i { font-size: 1.8rem; color: var(--gold); margin-bottom: 5px; }
+        .service-card h3 { color: #fff; font-family: 'Playfair Display', serif; font-size: 1.4rem; font-style: italic; }
+        .service-price { display: block; font-weight: 700; color: var(--gold); font-size: 0.85rem; letter-spacing: 1px; margin-top: 5px; }
+
+        .calendar-container { background: rgba(255, 255, 255, 0.03); backdrop-filter: blur(25px); padding: 50px; border: 1px solid rgba(197,160,89,0.3); position: sticky; top: 120px; box-shadow: 0 20px 50px rgba(0,0,0,0.5); border-radius: 4px; }
+        .calendar-container::before { content: ''; position: absolute; top: -1px; left: -1px; width: 30px; height: 30px; border-top: 2px solid var(--gold); border-left: 2px solid var(--gold); }
+        
+        .form-control { width: 100%; padding: 18px; background: rgba(0,0,0,0.3); border: 1px solid rgba(197,160,89,0.2); color: #fff; font-family: 'Montserrat'; outline: none; transition: 0.3s; margin-bottom: 20px; }
         .submit-btn { width: 100%; padding: 20px; border: 1px solid var(--gold); background: transparent; color: var(--gold); text-transform: uppercase; letter-spacing: 4px; font-weight: 700; cursor: pointer; transition: 0.4s; }
         .submit-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 30px rgba(197,160,89,0.4); }
 
-        footer { position: relative; padding: 40px 0; border-top: 1px solid var(--burgundy); background: rgba(0, 0, 0, 0.9); text-align: center; }
-        .social-links { display: flex; gap: 30px; justify-content: center; margin-bottom: 15px; }
-        .social-links a { color: var(--gold); font-size: 1.2rem; transition: 0.3s; }
+        footer { position: relative; margin-top: auto; padding: 40px 0; border-top: 1px solid var(--burgundy); background: rgba(0, 0, 0, 0.9); text-align: center; }
+        .social-links { display: flex; gap: 30px; justify-content: center; margin-bottom: 15px; font-size: 1.2rem; }
+        .social-links a { color: var(--gold); transition: 0.3s; }
 
         @media (max-width: 1024px) {
             .cursor-dot { display: none !important; }
             * { cursor: auto !important; }
-            .desktop-nav { display: none; }
+            header { height: 80px; flex-direction: row; justify-content: space-between; }
+            .menu-toggle { display: block; }
+            .desktop-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); flex-direction: column; justify-content: flex-start; align-items: center; opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; padding-top: 100px; }
+            .desktop-nav.active { opacity: 1; visibility: visible; }
+            .nav-link { font-size: 1.1rem; padding: 25px 0; display: block; width: 100%; text-align: center; }
+            .submenu { position: static; transform: none; background: rgba(197, 160, 89, 0.05); width: 100%; display: none; }
+            .nav-item-container.active-mobile .submenu { display: flex; }
             .booking-grid { grid-template-columns: 1fr; }
-            .calendar-container { position: static; padding: 30px 20px; }
+            .calendar-container { position: relative; top: 0; padding: 30px 20px; }
         }
     </style>
 </head>
@@ -91,26 +143,30 @@
 
     <header>
         <div class="header-top">
-            <div id="menuBtn" style="color:var(--gold); font-size:1.5rem; display:none;"><i class="fas fa-bars"></i></div>
+            <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')" aria-label="Select Language">
-                    <img src="https://flagcdn.com/w20/ro.png" width="20" height="13" alt="RO"> <span id="active-lang">RO</span>
+                    <img src="https://flagcdn.com/w20/ro.png" width="20" height="13" class="flag-img" id="active-flag" alt="RO"> 
+                    <span id="active-lang">RO</span> <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
                 </button>
                 <div class="lang-list" id="lang-list">
                     <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')">RO</button>
                     <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')">EN</button>
+                    <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')">RU</button>
+                    <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')">LV</button>
                 </div>
             </div>
         </div>
-        <nav class="desktop-nav">
+
+        <nav class="desktop-nav" id="sidebar">
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
-            <div class="nav-item-container">
-                <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size:0.5rem;"></i></a>
+            <div class="nav-item-container" id="shopContainer">
+                <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
-                    <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări</a>
-                    <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital</a>
+                    <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
+                    <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
                 </div>
             </div>
             <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
@@ -120,24 +176,26 @@
 
     <div class="marquee-section">
         <div class="marquee-content">
-            <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>
+            <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>• <span class="marquee-item">ENERGY</span>• <span class="marquee-item">LUXURY</span>• <span class="marquee-item">POWER</span>• <span class="marquee-item">BALANCE</span>• <span class="marquee-item">HARMONY</span>• <span class="marquee-item">INTENTION</span>
         </div>
     </div>
 
     <main class="page-container">
         <h1 class="hub-title" id="page-title">Servicii de Consultații</h1>
+        <p class="hub-subtitle" id="page-desc">Selectează serviciul dorit pentru a vedea detaliile.</p>
+
         <div class="booking-grid">
             <div class="service-list">
                 <div class="service-card card-life selected" onclick="selectService(this, 'life')">
                     <i class="fas fa-gem"></i>
                     <h3 id="card-life-title">Life Realisation</h3>
-                    <p id="card-life-desc">Alinierea potențialului nativ cu misiunea personală.</p>
+                    <p id="card-life-desc">Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău.</p>
                     <span class="service-price" id="price-life">45 min • 250 RON</span>
                 </div>
                 <div class="service-card card-biz" onclick="selectService(this, 'biz')">
                     <i class="fas fa-chart-line"></i>
                     <h3 id="card-biz-title">Business & Cariera</h3>
-                    <p id="card-biz-desc">Strategii energetice pentru succes profesional.</p>
+                    <p id="card-biz-desc">Maximizează-ți succesul profesional cu strategii energetice.</p>
                     <span class="service-price" id="price-biz">60 min • 350 RON</span>
                 </div>
                 <div class="service-card card-astro" onclick="selectService(this, 'astro')">
@@ -146,16 +204,28 @@
                     <p id="card-astro-desc">Dezvăluie secretele hărții tale natale.</p>
                     <span class="service-price" id="price-astro">60 min • 300 RON</span>
                 </div>
+                <div class="service-card card-club" onclick="selectService(this, 'club')">
+                    <i class="fas fa-users"></i>
+                    <h3 id="card-club-title">Club Energetica</h3>
+                    <p id="card-club-desc">Comunitate exclusivă pentru evoluție.</p>
+                    <span class="service-price" id="price-club">Abonament Lunar</span>
+                </div>
+                <div class="service-card card-game" onclick="selectService(this, 'game')">
+                    <i class="fas fa-chess-knight"></i>
+                    <h3 id="card-game-title">T-Game: Genius Road</h3>
+                    <p id="card-game-desc">Experiență imersivă pentru descătușarea potențialului prin joc.</p>
+                    <span class="service-price" id="price-game">Sesiune Grup/Individual</span>
+                </div>
             </div>
 
             <div class="calendar-container">
-                <div id="detail-title" style="color:var(--gold); font-family:'Playfair Display'; font-size:1.8rem; margin-bottom:10px;">Life Realisation</div>
-                <p id="detail-text" style="font-size:0.9rem; opacity:0.8; margin-bottom:30px;">O sesiune profundă de analiză a blocajelor energetice.</p>
-                <form onsubmit="event.preventDefault(); window.open('https://wa.me/40730685087', '_blank');">
-                    <input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly style="color:var(--gold); font-weight:700;">
+                <div id="detail-title" style="color:var(--gold); font-family:'Playfair Display'; font-size:1.8rem; margin-bottom:10px; font-style:italic;">Life Realisation</div>
+                <p id="detail-text" style="font-size:0.9rem; opacity:0.8; margin-bottom:30px; line-height:1.7;">O sesiune profundă de analiză a blocajelor energetice.</p>
+                <form onsubmit="event.preventDefault(); window.open('https://wa.me/40730685087?text=Buna! Doresc o programare.', '_blank');">
+                    <div style="margin-bottom:15px;"><label style="font-size:0.7rem; letter-spacing:2px; opacity:0.6; text-transform:uppercase;">Serviciu</label><input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly style="color:var(--gold); font-weight:700;"></div>
                     <input type="text" class="form-control" placeholder="Numele tău" required>
                     <input type="date" class="form-control" required>
-                    <button type="submit" class="submit-btn" id="btn-submit">Solicită Programare</button>
+                    <button type="submit" class="submit-btn" id="btn-submit" aria-label="Solicită Programare">Solicită Programare</button>
                 </form>
             </div>
         </div>
@@ -163,55 +233,49 @@
 
     <footer>
         <div class="social-links">
-            <a href="#" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
-            <a href="#" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
-            <a href="#" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" target="_blank" aria-label="Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="#" target="_blank" aria-label="TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="#" target="_blank" aria-label="Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="#" target="_blank" aria-label="WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
-        <p style="font-size: 0.65rem; opacity:0.5; letter-spacing:3px;">© 2026 ENERGETICA • JELENA SHIPKO</p>
+        <p style="font-size: 0.65rem; opacity:0.5; letter-spacing:3px; text-transform:uppercase;">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
     <script>
         let currentLang = 'ro';
         let currentServiceKey = 'life';
 
-        const translations = {
-            'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", about: "Despre", contact: "Contact", title: "Servicii de Consultații", submit: "Solicită Programare" },
-            'en': { home: "Home", consult: "Consultations", shop: "Shop", about: "About", contact: "Contact", title: "Consultation Services", submit: "Request Appointment" }
-        };
-
         const serviceDetails = {
-            'life': { 'ro': { title: "Life Realisation", text: "Analiză profundă a blocajelor energetice.", price: "45 min • 250 RON" }, 'en': { title: "Life Realisation", text: "Deep energy blockage analysis.", price: "45 min • 50€" } },
-            'biz': { 'ro': { title: "Business & Cariera", text: "Strategii energetice pentru afaceri.", price: "60 min • 350 RON" }, 'en': { title: "Business & Career", text: "Energy strategies for business.", price: "60 min • 70€" } },
-            'astro': { 'ro': { title: "Astrologie & Destin", text: "Explorarea hărții tale natale.", price: "60 min • 300 RON" }, 'en': { title: "Astrology & Destiny", text: "Exploration of your natal chart.", price: "60 min • 60€" } }
+            'life': { 'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice.", price: "45 min • 250 RON" }, 'en': { title: "Life Realisation", text: "Deep analysis of energy blockages.", price: "45 min • 50€" } },
+            'biz': { 'ro': { title: "Business & Cariera", text: "Strategii energetice pentru succes.", price: "60 min • 350 RON" }, 'en': { title: "Business & Career", text: "Energy strategies for business.", price: "60 min • 70€" } },
+            'astro': { 'ro': { title: "Astrologie & Destin", text: "Secretele hărții tale natale.", price: "60 min • 300 RON" }, 'en': { title: "Astrology & Destiny", text: "Natal chart secrets.", price: "60 min • 60€" } },
+            'club': { 'ro': { title: "Club Energetica", text: "Evoluție și suport zilnic.", price: "Abonament Lunar" }, 'en': { title: "Energetica Club", text: "Daily support and growth.", price: "Monthly" } },
+            'game': { 'ro': { title: "T-Game: Genius Road", text: "Potențial descătușat prin joc.", price: "Sesiune" }, 'en': { title: "T-Game: Genius Road", text: "Unlock potential through play.", price: "Session" } }
         };
 
         function selectService(el, key) {
             currentServiceKey = key;
             document.querySelectorAll('.service-card').forEach(c => c.classList.remove('selected'));
             el.classList.add('selected');
-            const d = serviceDetails[key][currentLang];
-            document.getElementById('selected-service').value = d.title;
-            document.getElementById('detail-title').innerText = d.title;
-            document.getElementById('detail-text').innerText = d.text;
+            const data = serviceDetails[key][currentLang];
+            document.getElementById('selected-service').value = data.title;
+            document.getElementById('detail-title').innerText = data.title;
+            document.getElementById('detail-text').innerText = data.text;
         }
 
         function changeLang(code, label, flag) {
             currentLang = code;
             document.getElementById('active-lang').innerText = label;
+            document.getElementById('active-flag').src = flag;
             document.getElementById('lang-list').classList.remove('show');
-            const t = translations[code];
-            document.getElementById('nav-home').innerText = t.home;
-            document.getElementById('nav-consult').innerText = t.consult;
-            document.getElementById('page-title').innerText = t.title;
-            document.getElementById('btn-submit').innerText = t.submit;
-            const d = serviceDetails[currentServiceKey][code];
+            const d = serviceDetails[currentServiceKey][code] || serviceDetails[currentServiceKey]['en'];
             document.getElementById('detail-title').innerText = d.title;
             document.getElementById('detail-text').innerText = d.text;
         }
 
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
+        let mouse = { x: null, y: null, radius: 180 };
 
         class Particle {
             constructor() {
@@ -233,26 +297,33 @@
                 if (mouse.x !== null && window.innerWidth > 1024) {
                     let dx = mouse.x - this.x; let dy = mouse.y - this.y;
                     let dist = Math.sqrt(dx*dx + dy*dy);
-                    if (dist < mouse.radius) { this.x += (dx/dist) * 2; this.y += (dy/dist) * 2; }
+                    if (dist < mouse.radius) { this.x += (dx/dist) * 2.5; this.y += (dy/dist) * 2.5; }
                 }
                 this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
 
-        function init() { particles = []; particleContainer.innerHTML = ''; let n = window.innerWidth < 1024 ? 20 : 45; for(let i=0; i<n; i++) particles.push(new Particle()); }
+        function init() { particles = []; particleContainer.innerHTML = ''; let n = window.innerWidth < 1024 ? 20 : 50; for(let i=0; i<n; i++) particles.push(new Particle()); }
         function animate() { particles.forEach(p => p.update()); requestAnimationFrame(animate); }
 
         window.addEventListener('load', () => {
+            const menuBtn = document.getElementById('menuBtn');
+            const sidebar = document.getElementById('sidebar');
+            const shopContainer = document.getElementById('shopContainer');
+            if(menuBtn) menuBtn.onclick = () => sidebar.classList.toggle('active');
+            if(shopContainer) shopContainer.onclick = () => { if(window.innerWidth <= 1024) shopContainer.classList.toggle('active-mobile'); };
+            
             setTimeout(() => {
                 init(); animate();
                 window.addEventListener('mousemove', (e) => {
-                    if(window.innerWidth > 1024) {
+                    if (window.innerWidth > 1024) {
                         mouse.x = e.clientX; mouse.y = e.clientY;
                         document.getElementById('dot').style.transform = `translate3d(${e.clientX}px, ${e.clientY}px, 0)`;
                     }
                 });
-            }, 1000); // Intarziere de 1 secunda pentru TBT optim
+            }, 1000);
         });
+        window.addEventListener('resize', init);
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
     </script>
 </body>
