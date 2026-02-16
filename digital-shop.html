@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Digital Shop | The Power Boutique</title>
+    
+    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- MASTER GLOBAL STYLES --- */
         :root { 
@@ -37,11 +44,18 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* BACKGROUND (DEFAULT DESKTOP) */
+        /* 3. BACKGROUND SEGREGAT */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
+        /* Desktop */
+        @media (min-width: 1025px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        }
+        /* Mobil */
+        @media (max-width: 1024px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top; background-size: cover; }
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
         
@@ -109,7 +123,7 @@
             
             .desktop-nav { 
                 position: fixed; top: 0; left: 0; width: 100%; height: 100vh; 
-                background: rgba(0,0,0,0.98); /* MASTER DESIGN: Opaque Black */
+                background: rgba(0,0,0,0.98); 
                 backdrop-filter: blur(15px); 
                 flex-direction: column; justify-content: flex-start; align-items: center; 
                 opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; 
@@ -130,11 +144,6 @@
             main { padding-top: 140px; }
             footer { position: relative; }
             .product-grid { grid-template-columns: 1fr; }
-
-            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
-            .fixed-bg { 
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
-            }
         }
     </style>
 </head>
@@ -272,7 +281,6 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code] || translations['ro'];
             
-            // Header/Nav
             document.getElementById('nav-home').innerText = t.home;
             document.getElementById('nav-consult').innerText = t.consult;
             document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
@@ -280,16 +288,12 @@
             document.getElementById('nav-digital').innerText = t.digital;
             document.getElementById('nav-about').innerText = t.about;
             document.getElementById('nav-contact').innerText = t.contact;
-
-            // Page Content
             document.getElementById('page-title').innerText = t.title;
             document.getElementById('page-subtitle').innerText = t.subtitle;
-            
-            // Render Products
             renderProducts(t);
         }
 
-        // --- PARTICLES ENGINE (MASTER TEMPLATE) ---
+        // --- PARTICLES ENGINE (OPTIMIZED) ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
@@ -345,27 +349,15 @@
             requestAnimationFrame(animateParticles);
         }
 
-        initParticles();
-        animateParticles();
         window.addEventListener('resize', initParticles);
         
-        // --- UI CORE ---
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
         const dot = document.getElementById('dot');
 
-        menuBtn.onclick = () => { 
-            sidebar.classList.toggle('active'); 
-            menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; 
-        };
-
-        shopContainer.onclick = (e) => { 
-            if(window.innerWidth <= 1024) { 
-                e.stopPropagation(); 
-                shopContainer.classList.toggle('active-mobile'); 
-            } 
-        };
+        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
+        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
 
         function updatePos(e) {
             if (e.type.includes('touch')) {
@@ -394,13 +386,13 @@
             el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
 
-        window.onclick = (e) => { 
-            if (!e.target.closest('.lang-dropdown')) { 
-                document.getElementById('lang-list').classList.remove('show'); 
-            } 
-        };
+        window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
-        // Initial Render
+        // EXECUTION DELAY
+        window.addEventListener('load', () => {
+            setTimeout(() => { initParticles(); animateParticles(); }, 800);
+        });
+
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
