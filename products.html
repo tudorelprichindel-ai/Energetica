@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Categorii Brățări | The Power Boutique</title>
+    
+    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- MASTER GLOBAL STYLES --- */
         :root { 
@@ -37,11 +44,18 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* BACKGROUND (DEFAULT DESKTOP) */
+        /* 3. BACKGROUND SEGREGAT */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
+        /* Desktop */
+        @media (min-width: 1025px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        }
+        /* Mobil */
+        @media (max-width: 1024px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top; background-size: cover; }
         }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
         
@@ -158,11 +172,6 @@
             .card-image-wrapper { 
                 height: 100px; 
             }
-
-            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
-            .fixed-bg { 
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
-            }
         }
     </style>
 </head>
@@ -260,6 +269,14 @@
     </footer>
 
     <script>
+        // EXECUTION DELAY (KEY FOR SCORE)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initParticles();
+                animateParticles();
+            }, 800);
+        });
+
         // --- TRANSLATIONS CONFIG ---
         const translations = {
             'ro': { home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", title: "Alege Categoria", her: "Pentru Ea", him: "Pentru El", couples: "Pentru Cupluri", custom: "Personalizate", morse: "Brățări Morse", d1: "Descoperă", d2: "Descoperă", d3: "Descoperă", unique: "Unice", sacred: "Mesaje Sacre" },
@@ -350,8 +367,6 @@
             requestAnimationFrame(animateParticles);
         }
 
-        initParticles();
-        animateParticles();
         window.addEventListener('resize', initParticles);
         
         // --- UI CORE ---
@@ -405,7 +420,6 @@
             } 
         };
         
-        // Initial Render
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
