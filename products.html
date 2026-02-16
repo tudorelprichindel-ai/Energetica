@@ -37,9 +37,14 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* BACKGROUND */
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; }
+        /* BACKGROUND (DEFAULT DESKTOP) */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
+            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
+            background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+        
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
@@ -64,7 +69,7 @@
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         .nav-item-container:hover .submenu { display: flex; }
 
-        /* MARQUEE - SECTIUNEA MODIFICATA */
+        /* MARQUEE */
         .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
         .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
         .marquee-item { display: inline-block; color: var(--gold); font-size: 0.7rem; letter-spacing: 6px; text-transform: uppercase; margin: 0 40px; opacity: 0.8; }
@@ -152,6 +157,11 @@
             }
             .card-image-wrapper { 
                 height: 100px; 
+            }
+
+            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
+            .fixed-bg { 
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
             }
         }
     </style>
@@ -395,6 +405,7 @@
             } 
         };
         
+        // Initial Render
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
