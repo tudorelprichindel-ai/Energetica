@@ -5,14 +5,17 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>The Power Boutique</title>
     
+    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com">
-
     <link rel="icon" type="image/png" href="favicon.png">
-    
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
     
     <style>
         :root { 
@@ -36,12 +39,18 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* CINEMATIC BACKGROUND */
+        /* 3. BACKGROUND SEGREGAT (Previne descărcarea dublă) */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
-            background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; 
+            /* background-image scos de aici */
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
         }
+        
+        /* REGULA DESKTOP */
+        @media (min-width: 1025px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        }
+
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
@@ -125,9 +134,10 @@
             
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
 
-            /* --- MODIFICARE SOLICITATA: Background Mobil Optimizat --- */
+            /* REGULA MOBIL: Încarcă DOAR imaginea mică */
             .fixed-bg { 
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background-size: cover;
             }
         }
     </style>
