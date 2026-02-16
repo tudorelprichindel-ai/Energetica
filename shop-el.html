@@ -136,7 +136,7 @@
             footer { position: relative; }
             
             .product-grid { 
-                grid-template-columns: repeat(2, 1fr); 
+                grid-template-columns: repeat(2, 1fr); /* 2 Coloane */
                 gap: 15px; 
             }
             .product-card { 
@@ -161,6 +161,11 @@
                 font-size: 0.6rem; 
                 width: 100%;
                 letter-spacing: 1px; 
+            }
+
+            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
+            .fixed-bg { 
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
             }
         }
     </style>
@@ -257,8 +262,8 @@
                 if (this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
                 if (mouse.x != null) {
                     let dx = mouse.x - this.x; let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx*dx + dy*dy);
-                    if (distance < mouse.radius) { this.x += (dx/distance) * 2.5; this.y += (dy/distance) * 2.5; }
+                    let dist = Math.sqrt(dx*dx + dy*dy);
+                    if (dist < mouse.radius) { this.x += (dx/dist) * 2.5; this.y += (dy/dist) * 2.5; }
                 }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
@@ -283,9 +288,15 @@
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.p}</div>
-                    <a href="contact.html" class="order-btn">${langData.order}</a>
+                    <a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.order}</a>
                 </div>
             `).join('');
+        }
+
+        function orderWhatsApp(prodName) {
+            const phoneNumber = "40730685087";
+            const message = `Buna Elena! Doresc sa comand bratara: ${prodName}. Te rog sa imi dai mai multe detalii.`;
+            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
         function changeLang(code, label, flag) {
