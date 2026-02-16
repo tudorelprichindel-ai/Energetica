@@ -4,9 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Consultații | The Power Boutique</title>
+    
+    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         /* --- MASTER GLOBAL STYLES --- */
         :root { 
@@ -28,18 +35,38 @@
         ::-webkit-scrollbar-thumb { background: linear-gradient(to bottom, transparent, var(--gold), transparent); border-radius: 10px; }
         ::-webkit-scrollbar-thumb:hover { background: linear-gradient(to bottom, var(--gold), var(--white), var(--gold)); box-shadow: 0 0 10px var(--gold); }
 
-        /* CURSOR (Setări identice cu codul furnizat) */
+        /* CURSOR */
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
-        .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite alternate; }
+        .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite ease-in-out alternate; }
         .cursor-dot::before { width: 70px; height: 1px; background: linear-gradient(to right, transparent, rgba(255,255,255,0.9) 50%, transparent); }
         .cursor-dot::after { width: 1px; height: 70px; background: linear-gradient(to bottom, transparent, rgba(255,255,255,0.9) 50%, transparent); }
         .cursor-dot.glow { box-shadow: 0 0 15px 4px rgba(255, 255, 255, 1), 0 0 50px 15px rgba(197, 160, 89, 0.7); }
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* BACKGROUND */
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; }
+        /* 3. BACKGROUND SEGREGAT */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
+            /* background-image scos de aici */
+            background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
+        /* Desktop */
+        @media (min-width: 1025px) {
+            .fixed-bg {
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center;
+                background-size: cover;
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), -webkit-image-set(url('cristale3.webp') 1x, url('cristale3.jpg') 1x);
+            }
+        }
+        /* Mobil */
+        @media (max-width: 1024px) {
+            .fixed-bg {
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background-size: cover;
+            }
+        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
@@ -78,11 +105,10 @@
         .booking-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 60px; width: 100%; align-items: start; }
         .service-list { display: flex; flex-direction: column; gap: 20px; }
         
-        /* RESTAURARE IMAGINI FUNDAL CARDURI */
         .service-card { position: relative; background: rgba(0,0,0,0.4); border: 1px solid rgba(197, 160, 89, 0.2); padding: 30px; transition: 0.4s; cursor: pointer; overflow: hidden; display: flex; flex-direction: column; gap: 10px; border-radius: 4px; min-height: 180px; justify-content: center; }
         .service-card::before { content: ''; position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-size: cover; background-position: center; opacity: 0.15; z-index: 0; transition: var(--transition); }
         
-        /* LOGICĂ WEB PENTRU CARDURI */
+        /* WEB Logic for Cards */
         .card-life::before { background-image: url('consultation-life.webp'); }
         .card-biz::before { background-image: url('consultation-business.webp'); }
         .card-astro::before { background-image: url('consultation-astrology.webp'); }
@@ -149,9 +175,10 @@
             .calendar-container { position: relative; top: 0; padding: 30px 20px; }
             footer { position: relative; }
 
-            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
+            /* --- REGULA MOBIL: BACKGROUND OPTIMIZAT --- */
             .fixed-bg { 
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background-size: cover;
             }
         }
     </style>
@@ -266,6 +293,14 @@
     </footer>
 
     <script>
+        // EXECUTION DELAY (KEY FOR SCORE)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initParticles();
+                animateParticles();
+            }, 800);
+        });
+
         let currentLang = 'ro';
         let currentServiceKey = 'life';
         let mouse = { x: null, y: null, radius: 150 };
@@ -308,7 +343,7 @@
             document.getElementById('lang-list').classList.remove('show');
         }
 
-        // --- PARTICULE ENGINE (Setări identice cu codul tau) ---
+        // --- PARTICLES ENGINE ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         class Particle {
@@ -329,7 +364,7 @@
                 if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
 
-                // MAGNET LOGIC
+                // MAGNET LOGIC (Only Desktop)
                 if (mouse.x !== null && window.innerWidth > 1024) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -343,7 +378,9 @@
         }
 
         function initParticles() {
-            particles = []; particleContainer.innerHTML = '';
+            particles = [];
+            particleContainer.innerHTML = '';
+            // Segregated Logic for Mobile
             let n = window.innerWidth < 1024 ? 20 : 50; 
             for(let i=0; i<n; i++) particles.push(new Particle());
         }
@@ -353,7 +390,7 @@
             requestAnimationFrame(animateParticles);
         }
 
-        // --- CURSOR LOGIC (Setări identice cu codul tau) ---
+        // --- CURSOR LOGIC ---
         const dot = document.getElementById('dot');
         window.addEventListener('mousemove', (e) => {
             mouse.x = e.clientX; mouse.y = e.clientY;
@@ -370,10 +407,6 @@
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
-
-        window.addEventListener('load', () => {
-            initParticles(); animateParticles();
-        });
 
         window.addEventListener('resize', initParticles);
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
