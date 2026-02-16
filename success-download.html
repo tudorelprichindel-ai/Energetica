@@ -4,8 +4,16 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
     <title>Mulțumim | The Power Boutique</title>
+    
+    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
+    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+
+    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
+
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
     <style>
         :root { 
             --gold: #c5a059; 
@@ -29,9 +37,22 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* --- BACKGROUND & PARTICLES --- */
-        .fixed-bg { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; animation: cinematicZoom 45s infinite alternate ease-in-out; }
+        /* 3. BACKGROUND SEGREGAT */
+        .fixed-bg { 
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
+            /* background-image scos de aici */
+            background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
+        }
+        /* Desktop */
+        @media (min-width: 1025px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+        }
+        /* Mobil */
+        @media (max-width: 1024px) {
+            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top; background-size: cover; }
+        }
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
+
         #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
@@ -70,7 +91,7 @@
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.2rem, 6vw, 4rem); font-style: italic; margin-bottom: 10px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .section-subtitle { font-size: 1rem; opacity: 0.7; margin-bottom: 40px; letter-spacing: 2px; }
 
-        /* --- CENTRAL MESSAGE (MOVED UP) --- */
+        /* --- CENTRAL MESSAGE --- */
         .personal-note { max-width: 750px; margin-bottom: 50px; background: rgba(255,255,255,0.02); padding: 30px; border-left: 2px solid var(--gold); border-right: 2px solid var(--gold); border-radius: 4px; }
         .note-title { font-family: 'Playfair Display', serif; font-size: 1.5rem; color: var(--gold); font-style: italic; margin-bottom: 15px; }
         .note-text { font-size: 1rem; line-height: 1.8; opacity: 0.9; font-style: italic; color: #fff; }
@@ -101,9 +122,10 @@
             main { padding-top: 120px; padding-bottom: 120px; }
             footer { position: relative; }
 
-            /* --- MODIFICARE UNICA: Background Mobil Optimizat --- */
+            /* --- REGULA MOBIL: BACKGROUND OPTIMIZAT --- */
             .fixed-bg { 
-                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp');
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background-size: cover;
             }
         }
     </style>
@@ -182,6 +204,14 @@
     </footer>
 
     <script>
+        // EXECUTION DELAY (KEY FOR SCORE)
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initParticles();
+                animateParticles();
+            }, 800);
+        });
+
         // --- PHYSICS & PARTICLES ENGINE (ATTRACTION) ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
@@ -218,7 +248,8 @@
         }
         function initParticles() { particles = []; particleContainer.innerHTML = ''; for(let i=0; i<50; i++) particles.push(new Particle()); }
         function animateParticles() { particles.forEach(p => p.update()); requestAnimationFrame(animateParticles); }
-        initParticles(); animateParticles(); window.addEventListener('resize', initParticles);
+        
+        window.addEventListener('resize', initParticles);
 
         // --- TRANSLATIONS (ALL IDs TARGETED) ---
         const translations = {
