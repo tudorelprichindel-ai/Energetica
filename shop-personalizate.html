@@ -156,7 +156,7 @@
             footer { position: relative; }
             
             .product-grid { 
-                grid-template-columns: repeat(2, 1fr); /* 2 Coloane */
+                grid-template-columns: repeat(2, 1fr); 
                 gap: 15px; 
             }
             .product-card { 
@@ -251,10 +251,10 @@
 
     <footer>
         <div class="social-links">
-            <a href="https://www.instagram.com" target="_blank"><i class="fab fa-instagram"></i></a>
-            <a href="https://www.tiktok.com" target="_blank"><i class="fab fa-tiktok"></i></a>
-            <a href="https://t.me/elena_shipko" target="_blank"><i class="fab fa-telegram-plane"></i></a>
-            <a href="https://wa.me/40730685087" target="_blank"><i class="fab fa-whatsapp"></i></a>
+            <a href="https://www.instagram.com" target="_blank" aria-label="Vizitează profilul nostru de Instagram"><i class="fab fa-instagram"></i></a>
+            <a href="https://www.tiktok.com" target="_blank" aria-label="Vizitează profilul nostru de TikTok"><i class="fab fa-tiktok"></i></a>
+            <a href="https://t.me/elena_shipko" target="_blank" aria-label="Contactează-ne pe Telegram"><i class="fab fa-telegram-plane"></i></a>
+            <a href="https://wa.me/40730685087" target="_blank" aria-label="Contactează-ne pe WhatsApp"><i class="fab fa-whatsapp"></i></a>
         </div>
         <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
@@ -292,7 +292,7 @@
                 if (mouse.x != null) {
                     let dx = mouse.x - this.x; let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx*dx + dy*dy);
-                    if (distance < mouse.radius) { this.x += (dx/distance) * 2.5; this.y += (dy/dist) * 2.5; }
+                    if (distance < mouse.radius) { this.x += (dx/distance) * 2.5; this.y += (dy/distance) * 2.5; }
                 }
                 this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
             }
