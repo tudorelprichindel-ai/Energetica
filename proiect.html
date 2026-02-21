@@ -287,7 +287,16 @@
         const shopContainer = document.getElementById('shopContainer'); const dot = document.getElementById('dot');
         
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.preventDefault(); e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
+        const navShop = document.getElementById('nav-shop');
+if (navShop) {
+    navShop.onclick = (e) => { 
+        if(window.innerWidth <= 1024) { 
+            e.preventDefault(); 
+            e.stopPropagation(); 
+            shopContainer.classList.toggle('active-mobile'); 
+        } 
+    };
+}
         
         function updatePos(e) {
             let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
@@ -311,3 +320,4 @@
     </script>
 </body>
 </html>
+
