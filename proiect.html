@@ -16,10 +16,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="favicon.png">
-    
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
     
     <style>
         :root { 
@@ -32,12 +29,7 @@
 
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
-        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background: #000; }
-
-        /* Contrast doar pe texte simple, fără titlurile cu gradient */
-        .nav-link, .submenu-link, .hero-sub, .card-title, .card-sub, .about-text-card p, .aura-btn {
-            text-shadow: 0px 2px 4px rgba(0,0,0,0.9);
-        }
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
         .cursor-dot { width: 8px; height: 8px; background: #fff; border-radius: 50%; position: fixed; pointer-events: none; z-index: 9999; transform: translate(-50%, -50%); box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.8), 0 0 30px 10px rgba(197, 160, 89, 0.5); animation: slowStarPulse 6s infinite ease-in-out; transition: box-shadow 0.5s ease; }
         .cursor-dot::before, .cursor-dot::after { content: ''; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); animation: rayShimmer 5s infinite ease-in-out alternate; }
@@ -55,16 +47,12 @@
         @media (min-width: 1025px) {
             .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
         }
-        @media (max-width: 1024px) {
-            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top; background-size: cover; }
-        }
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        #particles-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
+        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
-        /* --- RESTAURAT DESIGN HEADER ORIGINAL --- */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
@@ -113,7 +101,7 @@
         @keyframes floatPortal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
         .about-text-card { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
-        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
         .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
@@ -141,6 +129,11 @@
             .main-container { padding-top: 60px; }
             footer { position: relative; }
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
+
+            .fixed-bg { 
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background-size: cover;
+            }
         }
     </style>
 </head>
@@ -281,39 +274,36 @@
         function animateParticles() { for (let i = 0; i < particles.length; i++) particles[i].update(); requestAnimationFrame(animateParticles); }
         window.addEventListener('resize', initParticles);
         
-        // --- MENIU MOBIL IZOLAT ---
         const sidebar = document.getElementById('sidebar'); const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer'); const dot = document.getElementById('dot');
-        const navShop = document.getElementById('nav-shop');
         
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
+        const navShop = document.getElementById('nav-shop');
         if (navShop) {
             navShop.onclick = (e) => { 
                 if(window.innerWidth <= 1024) { 
                     e.preventDefault(); 
+                    e.stopPropagation(); 
                     shopContainer.classList.toggle('active-mobile'); 
                 } 
             };
         }
-        
+
         function updatePos(e) {
             let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
             let cy = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientY : null) : e.clientY;
             if (cx !== null && cy !== null) { mouse.x = cx; mouse.y = cy; if (window.innerWidth > 1024 && dot) { dot.style.left = cx + 'px'; dot.style.top = cy + 'px'; } }
         }
         window.addEventListener('mousemove', updatePos); window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-        
         window.addEventListener('touchstart', updatePos, { passive: true }); window.addEventListener('touchmove', updatePos, { passive: true });
         window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
-        
         document.querySelectorAll('a, button, .glass-card').forEach(el => {
             el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
             el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
-        
-        window.addEventListener('load', () => { setTimeout(() => { initParticles(); animateParticles(); }, 2500); });
+        window.addEventListener('load', () => { setTimeout(() => { initParticles(); animateParticles(); }, 800); });
     </script>
 </body>
 </html>
