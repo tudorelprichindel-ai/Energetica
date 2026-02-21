@@ -2,7 +2,8 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Digital Shop The Power Boutique. Ghiduri și resurse pentru expansiunea conștiinței tale, accesibile instant, semnate de Jelena Shipko.">
     <title>Digital Shop | The Power Boutique</title>
     
     <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
@@ -175,7 +176,7 @@
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" id="shopContainer">
-                <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="products.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
                     <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
@@ -281,19 +282,24 @@
             document.getElementById('lang-list').classList.remove('show');
             const t = translations[code] || translations['ro'];
             
-            document.getElementById('nav-home').innerText = t.home;
-            document.getElementById('nav-consult').innerText = t.consult;
-            document.getElementById('nav-shop').innerHTML = `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`;
-            document.getElementById('nav-bracelets').innerText = t.bracelets;
-            document.getElementById('nav-digital').innerText = t.digital;
-            document.getElementById('nav-about').innerText = t.about;
-            document.getElementById('nav-contact').innerText = t.contact;
-            document.getElementById('page-title').innerText = t.title;
-            document.getElementById('page-subtitle').innerText = t.subtitle;
+            // Safe update functions
+            const setTxt = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.innerText = txt; };
+            const setHtml = (id, html) => { const el = document.getElementById(id); if (el && html) el.innerHTML = html; };
+
+            setTxt('nav-home', t.home);
+            setTxt('nav-consult', t.consult);
+            setHtml('nav-shop', `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`);
+            setTxt('nav-bracelets', t.bracelets);
+            setTxt('nav-digital', t.digital);
+            setTxt('nav-about', t.about);
+            setTxt('nav-contact', t.contact);
+            setTxt('page-title', t.title);
+            setTxt('page-subtitle', t.subtitle);
+            
             renderProducts(t);
         }
 
-        // --- PARTICLES ENGINE (OPTIMIZED) ---
+        // --- MASTER ENGINE: PARTICLES & PHYSICS ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
         let mouse = { x: null, y: null, radius: 150 };
@@ -316,30 +322,25 @@
                 this.y += this.speedY;
                 if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
-                if (mouse.x != null) {
+                
+                if (mouse.x != null && window.innerWidth > 1024) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
                     let distance = Math.sqrt(dx * dx + dy * dy);
                     if (distance < mouse.radius) {
-                        const forceDirectionX = dx / distance;
-                        const forceDirectionY = dy / distance;
-                        const force = (mouse.radius - distance) / mouse.radius;
-                        const attractionStrength = 3; 
-                        this.x += forceDirectionX * force * attractionStrength;
-                        this.y += forceDirectionY * force * attractionStrength;
+                        this.x += (dx / distance) * 2;
+                        this.y += (dy / distance) * 2;
                     }
                 }
-                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+                this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
 
         function initParticles() {
             particles = [];
             particleContainer.innerHTML = '';
-            let numberOfParticles = window.innerWidth < 768 ? 35 : 50;
-            for (let i = 0; i < numberOfParticles; i++) {
-                particles.push(new Particle());
-            }
+            let n = window.innerWidth < 768 ? 20 : 50; 
+            for (let i = 0; i < n; i++) particles.push(new Particle());
         }
 
         function animateParticles() {
@@ -349,28 +350,22 @@
             requestAnimationFrame(animateParticles);
         }
 
-        window.addEventListener('resize', initParticles);
-        
+        // --- MASTER ENGINE: CURSOR & UI LOGIC ---
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
         const dot = document.getElementById('dot');
 
-        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
-
         function updatePos(e) {
-            if (e.type.includes('touch')) {
-                if(e.touches.length > 0) {
-                    mouse.x = e.touches[0].clientX;
-                    mouse.y = e.touches[0].clientY;
-                }
-            } else {
-                mouse.x = e.clientX; 
-                mouse.y = e.clientY;
+            let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
+            let cy = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientY : null) : e.clientY;
+            
+            if (cx !== null && cy !== null) {
+                mouse.x = cx;
+                mouse.y = cy;
                 if (window.innerWidth > 1024 && dot) { 
-                    dot.style.left = mouse.x + 'px'; 
-                    dot.style.top = mouse.y + 'px'; 
+                    dot.style.left = cx + 'px'; 
+                    dot.style.top = cy + 'px'; 
                 }
             }
         }
@@ -386,6 +381,16 @@
             el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
 
+        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
+        
+        shopContainer.onclick = (e) => { 
+            if(window.innerWidth <= 1024) { 
+                e.preventDefault(); 
+                e.stopPropagation(); 
+                shopContainer.classList.toggle('active-mobile'); 
+            } 
+        };
+
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
         // EXECUTION DELAY
@@ -393,6 +398,9 @@
             setTimeout(() => { initParticles(); animateParticles(); }, 800);
         });
 
+        window.addEventListener('resize', initParticles);
+        
+        // Init
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 </body>
