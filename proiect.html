@@ -32,9 +32,9 @@
 
         html { scroll-behavior: smooth; }
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
-        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
+        html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; background: #000; }
 
-        /* Contrast doar pe texte simple, exclus titlurile cu gradient */
+        /* Contrast doar pe texte simple, fără titlurile cu gradient */
         .nav-link, .submenu-link, .hero-sub, .card-title, .card-sub, .about-text-card p, .aura-btn {
             text-shadow: 0px 2px 4px rgba(0,0,0,0.9);
         }
@@ -64,8 +64,9 @@
         #particles-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; align-items: center; padding: 0 5%; }
-        .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; width: 100%; }
+        /* --- RESTAURAT DESIGN HEADER ORIGINAL --- */
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
+        .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
@@ -154,7 +155,7 @@
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO"> 
+                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="Flag"> 
                     <span id="active-lang">RO</span> 
                     <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
                 </button>
@@ -281,22 +282,19 @@
         window.addEventListener('resize', initParticles);
         
         // --- MENIU MOBIL IZOLAT ---
-        const sidebar = document.getElementById('sidebar'); 
-        const menuBtn = document.getElementById('menuBtn');
-        const shopContainer = document.getElementById('shopContainer'); 
+        const sidebar = document.getElementById('sidebar'); const menuBtn = document.getElementById('menuBtn');
+        const shopContainer = document.getElementById('shopContainer'); const dot = document.getElementById('dot');
         const navShop = document.getElementById('nav-shop');
-        const dot = document.getElementById('dot');
         
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
-        // Aplicăm block doar pe cuvântul SHOP pentru a deschide submeniul
         if (navShop) {
-            navShop.addEventListener('click', function(e) {
+            navShop.onclick = (e) => { 
                 if(window.innerWidth <= 1024) { 
                     e.preventDefault(); 
                     shopContainer.classList.toggle('active-mobile'); 
                 } 
-            });
+            };
         }
         
         function updatePos(e) {
