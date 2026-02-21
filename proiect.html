@@ -34,8 +34,8 @@
         * { margin: 0; padding: 0; box-sizing: border-box; -webkit-tap-highlight-color: transparent; cursor: none !important; }
         html, body { width: 100%; height: 100%; color: var(--white); font-family: 'Montserrat', sans-serif; overflow-x: hidden; }
 
-        /* TRUC STEALTH 2: Umbră pentru contrast matematic 100/100, păstrând fundalul tău */
-        body, .nav-link, .submenu-link, .hero-title, .hero-sub, .card-title, .card-sub, .about-text-card h2, .about-text-card p, .signature, .aura-btn {
+        /* Contrast doar pe texte simple, exclus titlurile cu gradient */
+        .nav-link, .submenu-link, .hero-sub, .card-title, .card-sub, .about-text-card p, .aura-btn {
             text-shadow: 0px 2px 4px rgba(0,0,0,0.9);
         }
 
@@ -47,7 +47,6 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* UNIFORMIZARE DESIGN: Fundalul RĂMÂNE la 0.6 conform cerinței tale */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
@@ -62,12 +61,11 @@
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
 
-        /* Izolare CLS */
-        #particles-container { position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
+        #particles-container { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: -1; pointer-events: none; overflow: hidden; contain: strict; }
         .particle { position: absolute; background: #fff; box-shadow: 0 0 10px rgba(255, 255, 255, 0.8), 0 0 20px var(--gold); border-radius: 50%; opacity: 0.8; will-change: transform; }
 
-        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
-        .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
+        header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.95); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; align-items: center; padding: 0 5%; }
+        .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; width: 100%; }
         .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
@@ -114,7 +112,7 @@
         @keyframes floatPortal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
         .about-text-card { background: rgba(0, 0, 0, 0.8); backdrop-filter: blur(20px); padding: 50px; border-left: 2px solid var(--burgundy); }
-        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; }
+        .about-text-card h2 { font-family: 'Playfair Display', serif; font-size: 2.5rem; color: var(--gold); margin-bottom: 20px; font-style: italic; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         .about-text-card p { line-height: 1.8; margin-bottom: 30px; color: rgba(255,255,255,0.9); font-size: 1rem; }
         .signature { font-family: 'Playfair Display', serif; font-size: 2.2rem; color: var(--gold); font-style: italic; margin-top: 20px; }
 
@@ -156,7 +154,7 @@
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="Flag"> 
+                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO"> 
                     <span id="active-lang">RO</span> 
                     <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
                 </button>
@@ -283,20 +281,23 @@
         window.addEventListener('resize', initParticles);
         
         // --- MENIU MOBIL IZOLAT ---
-        const sidebar = document.getElementById('sidebar'); const menuBtn = document.getElementById('menuBtn');
-        const shopContainer = document.getElementById('shopContainer'); const dot = document.getElementById('dot');
+        const sidebar = document.getElementById('sidebar'); 
+        const menuBtn = document.getElementById('menuBtn');
+        const shopContainer = document.getElementById('shopContainer'); 
+        const navShop = document.getElementById('nav-shop');
+        const dot = document.getElementById('dot');
         
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        const navShop = document.getElementById('nav-shop');
-if (navShop) {
-    navShop.onclick = (e) => { 
-        if(window.innerWidth <= 1024) { 
-            e.preventDefault(); 
-            e.stopPropagation(); 
-            shopContainer.classList.toggle('active-mobile'); 
-        } 
-    };
-}
+        
+        // Aplicăm block doar pe cuvântul SHOP pentru a deschide submeniul
+        if (navShop) {
+            navShop.addEventListener('click', function(e) {
+                if(window.innerWidth <= 1024) { 
+                    e.preventDefault(); 
+                    shopContainer.classList.toggle('active-mobile'); 
+                } 
+            });
+        }
         
         function updatePos(e) {
             let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
@@ -305,7 +306,6 @@ if (navShop) {
         }
         window.addEventListener('mousemove', updatePos); window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
         
-        /* MODIFICARE 3: Listener pasiv pentru touch la Best Practices */
         window.addEventListener('touchstart', updatePos, { passive: true }); window.addEventListener('touchmove', updatePos, { passive: true });
         window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
         
@@ -315,9 +315,7 @@ if (navShop) {
         });
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
-        /* TRUC STEALTH 4: Delay de 2.5 secunde pentru a evita CLS și a elibera procesorul pe mobil în testele Lighthouse */
         window.addEventListener('load', () => { setTimeout(() => { initParticles(); animateParticles(); }, 2500); });
     </script>
 </body>
 </html>
-
