@@ -2,7 +2,8 @@
 <html lang="ro">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Programează o consultație 1 la 1 cu Jelena Shipko. Descoperă serviciile de Life Realisation, Business & Cariera, Astrologie sau jocul transformațional T-Game.">
     <title>Consultații | The Power Boutique</title>
     
     <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
@@ -47,7 +48,6 @@
         /* 3. BACKGROUND SEGREGAT */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
-            /* background-image scos de aici */
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
         }
         /* Desktop */
@@ -175,7 +175,6 @@
             .calendar-container { position: relative; top: 0; padding: 30px 20px; }
             footer { position: relative; }
 
-            /* --- REGULA MOBIL: BACKGROUND OPTIMIZAT --- */
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
                 background-size: cover;
@@ -211,7 +210,7 @@
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" id="shopContainer">
-                <a href="javascript:void(0)" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="products.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
                     <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
@@ -272,11 +271,23 @@
                     <p class="details-content" id="detail-text">O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc și vom crea un plan clar de acțiune aliniat cu misiunea sufletului tău.</p>
                 </div>
                 <form id="bookingForm" onsubmit="sendWhatsApp(event)">
-                    <div class="form-group"><label id="label-service">Serviciu Selectat</label><input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly style="border-color: var(--gold); color: var(--gold); font-weight:700;"></div>
-                    <div class="form-group"><label id="label-name">Numele Tău</label><input type="text" id="client-name" class="form-control" placeholder="Cum te numești?" required></div>
-                    <div class="form-group"><label id="label-date">Data Preferată</label><input type="date" id="pref-date" class="form-control" required></div>
-                    <div class="form-group"><label id="label-email">Email (pentru link sesiune)</label><input type="email" id="client-email" class="form-control" placeholder="email@exemplu.com" required></div>
-                    <button type="submit" class="submit-btn">Solicită Programare</button>
+                    <div class="form-group">
+                        <label id="label-service">Serviciu Selectat</label>
+                        <input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly style="border-color: var(--gold); color: var(--gold); font-weight:700;">
+                    </div>
+                    <div class="form-group">
+                        <label id="label-name">Numele Tău</label>
+                        <input type="text" id="client-name" class="form-control" placeholder="Cum te numești?" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="label-date">Data Preferată</label>
+                        <input type="date" id="pref-date" class="form-control" required>
+                    </div>
+                    <div class="form-group">
+                        <label id="label-email">Email (pentru link sesiune)</label>
+                        <input type="email" id="client-email" class="form-control" placeholder="email@exemplu.com" required>
+                    </div>
+                    <button type="submit" class="submit-btn" id="btn-submit">Solicită Programare</button>
                 </form>
             </div>
         </div>
@@ -293,18 +304,6 @@
     </footer>
 
     <script>
-        // EXECUTION DELAY (KEY FOR SCORE)
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                initParticles();
-                animateParticles();
-            }, 800);
-        });
-
-        let currentLang = 'ro';
-        let currentServiceKey = 'life';
-        let mouse = { x: null, y: null, radius: 150 };
-
         // --- WHATSAPP LOGIC ---
         function sendWhatsApp(event) {
             event.preventDefault();
@@ -319,12 +318,40 @@
 
         // --- SERVICE DETAILS DATA ---
         const serviceDetails = {
-            'life': { 'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc.", price: "45 min • 250 RON", desc: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău." } },
-            'biz': { 'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor și blocajele de abundență.", price: "60 min • 350 RON", desc: "Maximizează-ți succesul profesional cu strategii energetice." } },
-            'astro': { 'ro': { title: "Astrologie & Destin", text: "Incursune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare.", price: "60 min • 300 RON", desc: "Dezvăluie secretele hărții tale natale și influențele cosmice." } },
-            'club': { 'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare și resurse speciale.", price: "Abonament Lunar", desc: "Comunitate exclusivă pentru evoluție și suport energetic zilnic." } },
-            'game': { 'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri complexe.", price: "Sesiune Grup/Individual", desc: "Experiență imersivă pentru descătușarea potențialului prin joc." } }
+            'life': { 
+                'ro': { title: "Life Realisation", text: "O sesiune profundă de analiză a blocajelor energetice. Vom lucra împreună pentru a identifica tiparele care te țin pe loc.", price: "45 min • 250 RON", desc: "Descoperă-ți potențialul ascuns și aliniază-te cu destinul tău." },
+                'en': { title: "Life Realization", text: "A deep session analyzing energetic blockages. We will work together to identify patterns holding you back.", price: "45 min • 250 RON", desc: "Discover your hidden potential and align with your destiny." },
+                'ru': { title: "Life Realisation", text: "Глубокая сессия анализа энергетических блоков. Мы вместе найдем паттерны, которые вас тормозят.", price: "45 мин • 250 RON", desc: "Раскройте свой скрытый потенциал и настройтесь на свою судьбу." },
+                'lv': { title: "Life Realisation", text: "Dziļa sesija enerģētisko bloku analīzei. Mēs strādāsim kopā, lai identificētu modeļus, kas jūs kavē.", price: "45 min • 250 RON", desc: "Atklājiet savu slēpto potenciālu un pieskaņojieties savam liktenim." }
+            },
+            'biz': { 
+                'ro': { title: "Business & Cariera", text: "Strategii energetice aplicate în afaceri. Analizăm fluxul banilor și blocajele de abundență.", price: "60 min • 350 RON", desc: "Maximizează-ți succesul profesional cu strategii energetice." },
+                'en': { title: "Business & Career", text: "Energetic strategies applied in business. We analyze money flow and abundance blocks.", price: "60 min • 350 RON", desc: "Maximize your professional success with energetic strategies." },
+                'ru': { title: "Бизнес и Карьера", text: "Энергетические стратегии в бизнесе. Анализируем денежный поток и блоки изобилия.", price: "60 мин • 350 RON", desc: "Максимизируйте свой профессиональный успех с помощью энергетических стратегий." },
+                'lv': { title: "Bizness un Karjera", text: "Enerģētiskās stratēģijas biznesā. Analizējam naudas plūsmu un pārpilnības blokus.", price: "60 min • 350 RON", desc: "Maksimizējiet savu profesionālo panākumu ar enerģētiskām stratēģijām." }
+            },
+            'astro': { 
+                'ro': { title: "Astrologie & Destin", text: "Incursiune în harta natală. Descoperă-ți atuurile cosmice și cum să navighezi tranzitele planetare.", price: "60 min • 300 RON", desc: "Dezvăluie secretele hărții tale natale și influențele cosmice." },
+                'en': { title: "Astrology & Destiny", text: "Journey into your birth chart. Discover your cosmic strengths and navigate planetary transits.", price: "60 min • 300 RON", desc: "Unveil the secrets of your birth chart and cosmic influences." },
+                'ru': { title: "Астрология и Судьба", text: "Погружение в натальную карту. Откройте свои космические сильные стороны.", price: "60 мин • 300 RON", desc: "Раскройте секреты вашей натальной карты и космических влияний." },
+                'lv': { title: "Astroloģija un Liktenis", text: "Ceļojums jūsu dzimšanas kartē. Atklājiet savas kosmiskās stiprās puses.", price: "60 min • 300 RON", desc: "Atklājiet savas dzimšanas kartes noslēpumus un kosmisko ietekmi." }
+            },
+            'club': { 
+                'ro': { title: "Club Energetica", text: "Acces exclusiv la grupul nostru privat. Primești zilnic ghidare și resurse speciale.", price: "Abonament Lunar", desc: "Comunitate exclusivă pentru evoluție și suport energetic zilnic." },
+                'en': { title: "Energetica Club", text: "Exclusive access to our private group. Receive daily guidance and special resources.", price: "Monthly Subscription", desc: "Exclusive community for evolution and daily energetic support." },
+                'ru': { title: "Клуб Энергетика", text: "Эксклюзивный доступ к нашей частной группе. Ежедневное руководство и ресурсы.", price: "Ежемесячная подписка", desc: "Эксклюзивное сообщество для развития и ежедневной поддержки." },
+                'lv': { title: "Klubs Energetica", text: "Ekskluzīva piekļuve mūsu privātajai grupai. Saņemiet ikdienas norādījumus un resursus.", price: "Mēneša abonements", desc: "Ekskluzīva kopiena attīstībai un ikdienas enerģētiskajam atbalstam." }
+            },
+            'game': { 
+                'ro': { title: "T-Game: Genius Road", text: "Un joc transformațional, oglindă a subconștientului. Ideal pentru a găsi răspunsuri complexe.", price: "Sesiune Grup/Individual", desc: "Experiență imersivă pentru descătușarea potențialului prin joc." },
+                'en': { title: "T-Game: Genius Road", text: "A transformational game reflecting the subconscious. Ideal for finding complex answers.", price: "Group/Individual Session", desc: "Immersive experience to unleash potential through play." },
+                'ru': { title: "Т-Игры: Дорога Гения", text: "Трансформационная игра, зеркало подсознания. Идеально для поиска ответов.", price: "Групповая/Индивидуальная", desc: "Погружающий опыт для раскрытия потенциала через игру." },
+                'lv': { title: "T-Game: Genius Road", text: "Transformējoša spēle, zemapziņas spogulis. Ideāli piemērots atbilžu meklēšanai.", price: "Grupas/Individuāla sesija", desc: "Iegremdējoša pieredze, lai atbrīvotu potenciālu caur spēli." }
+            }
         };
+
+        let currentLang = 'ro';
+        let currentServiceKey = 'life';
 
         function selectService(el, key) {
             currentServiceKey = key;
@@ -336,16 +363,85 @@
             document.getElementById('detail-text').innerText = data.text;
         }
 
+        // --- MASTER TRANSLATION ENGINE (SAFE UPDATE) ---
+        const translations_general = {
+            'ro': { 
+                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
+                title: "Servicii de Consultații", desc: "Selectează serviciul dorit pentru a vedea detaliile și a completa automat formularul.",
+                labelService: "Serviciu Selectat", labelName: "Numele Tău", labelDate: "Data Preferată", labelEmail: "Email (pentru link sesiune)", submit: "Solicită Programare",
+                namePh: "Cum te numești?"
+            },
+            'en': { 
+                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
+                title: "Consultation Services", desc: "Select the desired service to view details and automatically fill the form.",
+                labelService: "Selected Service", labelName: "Your Name", labelDate: "Preferred Date", labelEmail: "Email (for session link)", submit: "Request Appointment",
+                namePh: "What is your name?"
+            },
+            'ru': { 
+                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
+                title: "Услуги консультаций", desc: "Выберите желаемую услугу, чтобы увидеть детали и автоматически заполнить форму.",
+                labelService: "Выбранная услуга", labelName: "Ваше имя", labelDate: "Желаемая дата", labelEmail: "Email (для ссылки на сессию)", submit: "Запросить запись",
+                namePh: "Как вас зовут?"
+            },
+            'lv': { 
+                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
+                title: "Konsultāciju pakalpojumi", desc: "Izvēlieties vajadzīgo pakalpojumu, lai skatītu informāciju un automātiski aizpildītu veidlapu.",
+                labelService: "Izvēlētais pakalpojums", labelName: "Jūsu vārds", labelDate: "Vēlamais datums", labelEmail: "E-pasts (sesijas saitei)", submit: "Pieprasīt pierakstu",
+                namePh: "Kā jūs sauc?"
+            }
+        };
+
         function changeLang(code, label, flag) {
             currentLang = code;
             document.getElementById('active-flag').src = flag;
             document.getElementById('active-lang').innerText = label;
             document.getElementById('lang-list').classList.remove('show');
+            
+            const t = translations_general[code] || translations_general['ro'];
+            
+            // Safe assignment functions
+            const setTxt = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.innerText = txt; };
+            const setHtml = (id, html) => { const el = document.getElementById(id); if (el && html) el.innerHTML = html; };
+            const setPh = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.placeholder = txt; };
+
+            setTxt('nav-home', t.home);
+            setTxt('nav-consult', t.consult);
+            setHtml('nav-shop', `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`);
+            setTxt('nav-bracelets', t.bracelets);
+            setTxt('nav-digital', t.digital);
+            setTxt('nav-about', t.about);
+            setTxt('nav-contact', t.contact);
+            
+            setTxt('page-title', t.title);
+            setTxt('page-desc', t.desc);
+            setTxt('label-service', t.labelService);
+            setTxt('label-name', t.labelName);
+            setTxt('label-date', t.labelDate);
+            setTxt('label-email', t.labelEmail);
+            setTxt('btn-submit', t.submit);
+            setPh('client-name', t.namePh);
+
+            // Update Cards text and prices
+            const keys = ['life', 'biz', 'astro', 'club', 'game'];
+            keys.forEach(k => {
+                const sData = serviceDetails[k][code] || serviceDetails[k]['ro'];
+                setTxt(`card-${k}-title`, sData.title);
+                setTxt(`card-${k}-desc`, sData.desc);
+                setTxt(`price-${k}`, sData.price);
+            });
+
+            // Re-render selected details
+            const activeData = serviceDetails[currentServiceKey][code] || serviceDetails[currentServiceKey]['ro'];
+            document.getElementById('selected-service').value = activeData.title;
+            document.getElementById('detail-title').innerText = activeData.title;
+            document.getElementById('detail-text').innerText = activeData.text;
         }
 
-        // --- PARTICLES ENGINE ---
+        // --- MASTER ENGINE: PARTICLES & PHYSICS ---
         const particleContainer = document.getElementById('particles-container');
         let particles = [];
+        let mouse = { x: null, y: null, radius: 150 };
+
         class Particle {
             constructor() {
                 this.x = Math.random() * window.innerWidth;
@@ -364,7 +460,6 @@
                 if (this.x > window.innerWidth || this.x < 0) this.speedX = -this.speedX;
                 if (this.y > window.innerHeight || this.y < 0) this.speedY = -this.speedY;
 
-                // MAGNET LOGIC (Only Desktop)
                 if (mouse.x !== null && window.innerWidth > 1024) {
                     let dx = mouse.x - this.x;
                     let dy = mouse.y - this.y;
@@ -373,14 +468,13 @@
                         this.x += (dx/dist) * 2; this.y += (dy/dist) * 2;
                     }
                 }
-                this.element.style.transform = `translate(${this.x}px, ${this.y}px)`;
+                this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
 
         function initParticles() {
             particles = [];
             particleContainer.innerHTML = '';
-            // Segregated Logic for Mobile
             let n = window.innerWidth < 1024 ? 20 : 50; 
             for(let i=0; i<n; i++) particles.push(new Particle());
         }
@@ -392,12 +486,29 @@
 
         // --- CURSOR LOGIC ---
         const dot = document.getElementById('dot');
-        window.addEventListener('mousemove', (e) => {
-            mouse.x = e.clientX; mouse.y = e.clientY;
-            if (window.innerWidth > 1024 && dot) { 
-                dot.style.left = e.clientX + 'px'; 
-                dot.style.top = e.clientY + 'px'; 
+        function updatePos(e) {
+            let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
+            let cy = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientY : null) : e.clientY;
+            
+            if (cx !== null && cy !== null) {
+                mouse.x = cx;
+                mouse.y = cy;
+                if (window.innerWidth > 1024 && dot) { 
+                    dot.style.left = cx + 'px'; 
+                    dot.style.top = cy + 'px'; 
+                }
             }
+        }
+
+        window.addEventListener('mousemove', updatePos);
+        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
+        window.addEventListener('touchstart', updatePos, { passive: true });
+        window.addEventListener('touchmove', updatePos, { passive: true });
+        window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
+
+        document.querySelectorAll('a, button, input, textarea, .service-card').forEach(el => {
+            el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
+            el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
 
         // --- UI BOOT ---
@@ -406,10 +517,24 @@
         const shopContainer = document.getElementById('shopContainer');
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        shopContainer.onclick = (e) => { if(window.innerWidth <= 1024) { e.stopPropagation(); shopContainer.classList.toggle('active-mobile'); } };
+        
+        shopContainer.onclick = (e) => { 
+            if(window.innerWidth <= 1024) { 
+                e.preventDefault();
+                e.stopPropagation(); 
+                shopContainer.classList.toggle('active-mobile'); 
+            } 
+        };
 
-        window.addEventListener('resize', initParticles);
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
+        
+        window.addEventListener('load', () => {
+            setTimeout(() => {
+                initParticles();
+                animateParticles();
+            }, 800);
+        });
+        window.addEventListener('resize', initParticles);
     </script>
 </body>
 </html>
