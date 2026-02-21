@@ -71,7 +71,11 @@
         .nav-link:hover, .submenu-link:hover { color: var(--white); }
         .nav-item-container { position: relative; height: 100%; display: flex; align-items: center; }
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .nav-item-container:hover .submenu { display: flex; }
+        
+        /* IZOLARE HOVER DOAR PENTRU DESKTOP */
+        @media (min-width: 1025px) {
+            .nav-item-container:hover .submenu { display: flex; }
+        }
 
         .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
         .marquee-content { display: inline-block; animation: marquee 40s linear infinite; }
@@ -112,6 +116,7 @@
 
         @media (max-width: 1024px) {
             .cursor-dot { display: none !important; }
+            * { cursor: auto !important; } /* DEBLOCARE TAP PE MOBIL */
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             .desktop-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); backdrop-filter: blur(15px); flex-direction: column; justify-content: flex-start; align-items: center; opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; padding-top: 100px; padding-bottom: 50px; overflow-y: auto; }
