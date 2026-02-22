@@ -93,7 +93,7 @@
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         /* IZOLARE HOVER PENTRU DESKTOP (REZOLVĂ DUBLU-CLICK PE MOBIL) */
-        @media (min-width: 1025px) {
+        @media (hover: hover) and (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover, .submenu-link:hover { color: var(--white); }
             .cart-icon-btn:hover { color: var(--white); }
@@ -181,7 +181,7 @@
             
             /* REZOLVARE DUBLU-CLICK ȘI FEEDBACK TACTIL INSTANT PENTRU MOBIL */
             .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; transition: transform 0.1s ease, background-color 0.1s ease; }
-            .order-btn:active { background: var(--gold); color: #000; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); }
+            .order-btn:active { background: var(--gold) !important; color: #000 !important; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); transition: none; }
 
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
@@ -190,7 +190,7 @@
         }
     </style>
 </head>
-<body>
+<body ontouchstart="">
     <div id="particles-container"></div>
     <div class="cursor-dot" id="dot"></div>
     <div class="fixed-bg"></div>
@@ -268,237 +268,4 @@
 
     <div hidden id="snipcart-validation-container">
         <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
-        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
-    </div>
-
-    <script>
-        const translations = {
-            'ro': { 
-                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", 
-                items: [
-                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
-                ] 
-            },
-            'en': { 
-                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", 
-                items: [
-                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
-                ] 
-            },
-            'ru': { 
-                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", 
-                items: [
-                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
-                ] 
-            },
-            'lv': { 
-                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", 
-                items: [
-                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
-                ] 
-            }
-        };
-
-        function renderProducts(langData) {
-            const grid = document.getElementById('p-grid');
-            grid.innerHTML = langData.items.map(i => {
-                const actionButton = i.isCart 
-                    ? `<button class="order-btn snipcart-add-item" 
-                        data-item-id="${i.id}" 
-                        data-item-price="${i.pVal}" 
-                        data-item-url="/shop-ea.html" 
-                        data-item-name="${i.n.replace(/'/g, "\\'")}">
-                        ${langData.order}
-                       </button>`
-                    : `<a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.reqOrder}</a>`;
-                
-                return `
-                <div class="product-card">
-                    <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" autoplay muted loop playsinline></video>
-                    </div>
-                    <h3 class="shimmer-element">${i.n}</h3>
-                    <div class="product-price">${i.pDisplay}</div>
-                    ${actionButton}
-                </div>
-            `}).join('');
-        }
-
-        function orderWhatsApp(prodName) {
-            const phoneNumber = "40730685087";
-            const message = `Buna Elena! Doresc sa comand bratara: ${prodName}. Te rog sa imi dai mai multe detalii.`;
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
-        function changeLang(code, label, flag) {
-            document.getElementById('active-flag').src = flag; 
-            document.getElementById('active-lang').innerText = label; 
-            document.getElementById('lang-list').classList.remove('show');
-            const t = translations[code];
-            if(!t) return;
-            
-            const setTxt = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.innerText = txt; };
-            const setHtml = (id, html) => { const el = document.getElementById(id); if (el && html) el.innerHTML = html; };
-
-            setTxt('nav-home', t.home);
-            setTxt('nav-consult', t.consult);
-            setHtml('nav-shop', `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`);
-            setTxt('nav-bracelets', t.bracelets);
-            setTxt('nav-digital', t.digital);
-            setTxt('nav-about', t.about);
-            setTxt('nav-contact', t.contact);
-            setTxt('page-title', t.title);
-            
-            renderProducts(t);
-        }
-
-        function openLux(src, title) {
-            const modal = document.getElementById('luxModal');
-            const video = document.getElementById('luxVideo');
-            document.getElementById('luxTitle').innerText = title;
-            video.src = src;
-            modal.style.display = 'flex';
-            setTimeout(() => modal.classList.add('show'), 10);
-            video.play();
-        }
-
-        function closeLux() {
-            const modal = document.getElementById('luxModal');
-            const video = document.getElementById('luxVideo');
-            video.pause();
-            modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 500);
-        }
-
-        // --- MASTER ENGINE: PARTICLES & PHYSICS ---
-        const particleContainer = document.getElementById('particles-container');
-        let particles = [];
-        let mouse = { x: null, y: null, radius: 150 };
-
-        class Particle {
-            constructor() {
-                this.x = Math.random() * window.innerWidth;
-                this.y = Math.random() * window.innerHeight;
-                this.size = Math.random() * 3 + 2;
-                this.speedX = Math.random() * 1 - 0.5;
-                this.speedY = Math.random() * 1 - 0.5;
-                this.element = document.createElement('div');
-                this.element.classList.add('particle');
-                this.element.style.width = this.size + 'px';
-                this.element.style.height = this.size + 'px';
-                particleContainer.appendChild(this.element);
-            }
-            update() {
-                this.x += this.speedX;
-                this.y += this.speedY;
-                if (this.x > window.innerWidth || this.x < 0) this.speedX *= -1;
-                if (this.y > window.innerHeight || this.y < 0) this.speedY *= -1;
-                
-                if (mouse.x != null && window.innerWidth > 1024) {
-                    let dx = mouse.x - this.x;
-                    let dy = mouse.y - this.y;
-                    let distance = Math.sqrt(dx * dx + dy * dy);
-                    if (distance < mouse.radius) {
-                        this.x += (dx / distance) * 2;
-                        this.y += (dy / distance) * 2;
-                    }
-                }
-                this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
-            }
-        }
-
-        function initParticles() {
-            particles = [];
-            particleContainer.innerHTML = '';
-            let n = window.innerWidth < 768 ? 20 : 50; 
-            for (let i = 0; i < n; i++) particles.push(new Particle());
-        }
-
-        function animateParticles() {
-            for (let i = 0; i < particles.length; i++) {
-                particles[i].update();
-            }
-            requestAnimationFrame(animateParticles);
-        }
-
-        // --- MASTER ENGINE: CURSOR & UI LOGIC ---
-        const sidebar = document.getElementById('sidebar');
-        const menuBtn = document.getElementById('menuBtn');
-        const shopContainer = document.getElementById('shopContainer');
-        const navShop = document.getElementById('nav-shop');
-        const dot = document.getElementById('dot');
-
-        function updatePos(e) {
-            let cx = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientX : null) : e.clientX;
-            let cy = e.type.includes('touch') ? (e.touches.length > 0 ? e.touches[0].clientY : null) : e.clientY;
-            
-            if (cx !== null && cy !== null) {
-                mouse.x = cx;
-                mouse.y = cy;
-                if (window.innerWidth > 1024 && dot) { 
-                    dot.style.left = cx + 'px'; 
-                    dot.style.top = cy + 'px'; 
-                }
-            }
-        }
-
-        window.addEventListener('mousemove', updatePos);
-        window.addEventListener('mouseout', () => { mouse.x = null; mouse.y = null; });
-        window.addEventListener('touchstart', updatePos, { passive: true });
-        window.addEventListener('touchmove', updatePos, { passive: true });
-        window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
-
-        document.querySelectorAll('a, button, .product-media').forEach(el => {
-            el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
-            el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
-        });
-
-        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        
-        if (navShop) {
-            navShop.onclick = (e) => { 
-                if(window.innerWidth <= 1024) { 
-                    e.preventDefault(); 
-                    e.stopPropagation(); 
-                    shopContainer.classList.toggle('active-mobile'); 
-                } 
-            };
-        }
-
-        window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
-
-        window.addEventListener('load', () => {
-            setTimeout(() => {
-                initParticles();
-                animateParticles();
-            }, 800);
-        });
-        window.addEventListener('resize', initParticles);
-        
-        changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
-    </script>
-
-    <script>
-        window.SnipcartSettings = {
-            publicApiKey: 'ZTBlNGE2ZmQtZDdlNy00NTk5LWJjM2QtODI2NjZjNmFhMGM3NjM5MDczMzYwNzY4ODQ1NDI1',
-            loadStrategy: 'on-user-interaction',
-            modalStyle: 'side',
-            currency: 'eur'
-        };
-
-        (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
-    </script>
-</body>
-</html>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-
