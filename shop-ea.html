@@ -93,7 +93,7 @@
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         /* IZOLARE HOVER PENTRU DESKTOP (REZOLVĂ DUBLU-CLICK PE MOBIL) */
-        @media (hover: hover) and (min-width: 1025px) {
+        @media (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover, .submenu-link:hover { color: var(--white); }
             .cart-icon-btn:hover { color: var(--white); }
@@ -141,8 +141,8 @@
         .social-links a { color: var(--gold); transition: 0.3s; }
         .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
-        /* EXTRA PROTECȚIE: Forțăm coșul să fie stratul suprem fără a strica layout-ul intern */
-        .snipcart-modal__container { z-index: 99999 !important; }
+        /* EXTRA PROTECȚIE: Forțăm coșul să fie stratul suprem */
+        #snipcart { z-index: 99999 !important; position: relative; }
 
         /* MOBILE QUERY */
         @media (max-width: 1024px) {
@@ -181,7 +181,7 @@
             
             /* REZOLVARE DUBLU-CLICK ȘI FEEDBACK TACTIL INSTANT PENTRU MOBIL */
             .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; transition: transform 0.1s ease, background-color 0.1s ease; }
-            .order-btn:active { background: var(--gold) !important; color: #000 !important; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); transition: none; }
+            .order-btn:active { background: var(--gold); color: #000; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); }
 
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
@@ -190,7 +190,7 @@
         }
     </style>
 </head>
-<body ontouchstart="">
+<body>
     <div id="particles-container"></div>
     <div class="cursor-dot" id="dot"></div>
     <div class="fixed-bg"></div>
@@ -460,12 +460,10 @@
         window.addEventListener('touchmove', updatePos, { passive: true });
         window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
-        if (window.matchMedia("(hover: hover)").matches) {
-            document.querySelectorAll('a, button, .product-media').forEach(el => {
-                el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
-                el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
-            });
-        }
+        document.querySelectorAll('a, button, .product-media').forEach(el => {
+            el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
+            el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
+        });
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
@@ -495,13 +493,12 @@
     <script>
         window.SnipcartSettings = {
             publicApiKey: 'ZTBlNGE2ZmQtZDdlNy00NTk5LWJjM2QtODI2NjZjNmFhMGM3NjM5MDczMzYwNzY4ODQ1NDI1',
-            loadStrategy: 'default',
+            loadStrategy: 'on-user-interaction',
             modalStyle: 'side',
             currency: 'eur'
         };
+
+        (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
     </script>
-    <script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
-    <div hidden id="snipcart"></div>
 </body>
 </html>
-
