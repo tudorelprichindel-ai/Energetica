@@ -93,7 +93,7 @@
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
         /* IZOLARE HOVER PENTRU DESKTOP (REZOLVĂ DUBLU-CLICK PE MOBIL) */
-        @media (min-width: 1025px) {
+        @media (hover: hover) and (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover, .submenu-link:hover { color: var(--white); }
             .cart-icon-btn:hover { color: var(--white); }
@@ -181,7 +181,7 @@
             
             /* REZOLVARE DUBLU-CLICK ȘI FEEDBACK TACTIL INSTANT PENTRU MOBIL */
             .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; transition: transform 0.1s ease, background-color 0.1s ease; }
-            .order-btn:active { background: var(--gold); color: #000; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); }
+            .order-btn:active { background: var(--gold) !important; color: #000 !important; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); transition: none; }
 
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
@@ -190,7 +190,7 @@
         }
     </style>
 </head>
-<body>
+<body ontouchstart="">
     <div id="particles-container"></div>
     <div class="cursor-dot" id="dot"></div>
     <div class="fixed-bg"></div>
@@ -460,10 +460,12 @@
         window.addEventListener('touchmove', updatePos, { passive: true });
         window.addEventListener('touchend', () => { mouse.x = null; mouse.y = null; });
 
-        document.querySelectorAll('a, button, .product-media').forEach(el => {
-            el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
-            el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
-        });
+        if (window.matchMedia("(hover: hover)").matches) {
+            document.querySelectorAll('a, button, .product-media').forEach(el => {
+                el.addEventListener('mouseenter', () => { if (window.innerWidth > 1024 && dot) dot.classList.add('glow'); });
+                el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
+            });
+        }
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
