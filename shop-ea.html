@@ -266,47 +266,47 @@
     </footer>
 
     <div id="snipcart-validation-container" style="position: absolute; top: -9999px; left: -9999px;">
-        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="https://thepowerboutique.com/shop-ea.html" data-item-name="Echilibru Antistres"></button>
-        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="https://thepowerboutique.com/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
+        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
     </div>
 
     <script>
-        // --- TRANSLATIONS CONFIG WITH ABSOLUTE URLS PENTRU SHOP-EA.HTML ---
+        // --- TRANSLATIONS CONFIG - PREȚURILE SUNT ACUM "TEXT" ("90.00") PENTRU A NU PIERDE ZEROURILE ---
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
                 title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", 
                 items: [
-                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
+                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'en': { 
                 home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
                 title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", 
                 items: [
-                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
+                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'ru': { 
                 home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
                 title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", 
                 items: [
-                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
+                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'lv': { 
                 home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
                 title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", 
                 items: [
-                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
-                    { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
+                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: "0", v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             }
         };
@@ -314,11 +314,12 @@
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
             grid.innerHTML = langData.items.map(i => {
+                // Link relativ /shop-ea.html folosit aici pentru a corespunde perfect cu harta ascunsă
                 const actionButton = i.isCart 
                     ? `<button class="order-btn snipcart-add-item" 
                         data-item-id="${i.id}" 
                         data-item-price="${i.pVal}" 
-                        data-item-url="https://thepowerboutique.com/shop-ea.html" 
+                        data-item-url="/shop-ea.html" 
                         data-item-name="${i.n.replace(/'/g, "\\'")}">
                         ${langData.order}
                        </button>`
