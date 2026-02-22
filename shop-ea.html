@@ -50,7 +50,7 @@
         @keyframes slowStarPulse { 0%, 100% { transform: translate(-50%, -50%) scale(1); opacity: 0.9; } 50% { transform: translate(-50%, -50%) scale(1.2); opacity: 1; } }
         @keyframes rayShimmer { 0% { opacity: 0.6; scale: 0.95; } 100% { opacity: 1; scale: 1.05; } }
 
-        /* 3. BACKGROUND SEGREGAT */
+        /* BACKGROUND SEGREGAT */
         .fixed-bg { 
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
@@ -92,7 +92,6 @@
         .nav-item-container { position: relative; height: 100%; display: flex; align-items: center; }
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* IZOLARE STRICTĂ PENTRU HOVER (DESKTOP) - REZOLVĂ DUBLU-CLICK PE MOBIL */
         @media (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
             .nav-link:hover, .submenu-link:hover { color: var(--white); }
@@ -178,7 +177,10 @@
             .product-media { margin-bottom: 15px; }
             .product-card h3 { font-size: 0.9rem; margin-bottom: 10px; min-height: 50px; line-height: 1.3; }
             .product-price { font-size: 1rem; margin-bottom: 15px; }
-            .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; }
+            
+            /* FEEDBACK TACTIL INSTANT PENTRU BUTON MOBIL */
+            .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; transition: transform 0.1s ease, background-color 0.1s ease; }
+            .order-btn:active { background: var(--gold); color: #000; transform: scale(0.96); box-shadow: 0 0 10px var(--gold); }
 
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
@@ -262,6 +264,11 @@
         </div>
         <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
+
+    <div id="snipcart-validation-container" style="display: none !important;">
+        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/products.html" data-item-name="Echilibru Antistres"></button>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/products.html" data-item-name="Realizarea Dorințelor"></button>
+    </div>
 
     <script>
         // --- TRANSLATIONS CONFIG WITH SNIPCART DATA ---
