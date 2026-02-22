@@ -140,7 +140,7 @@
         .social-links a { color: var(--gold); transition: 0.3s; }
         .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
-        /* FIX: SUPRAPUNERE SNIPCART PESTE ELEMENTE FIXE (FOOTER) */
+        /* FIX: SUPRAPUNERE SNIPCART PESTE ELEMENTE FIXE */
         #snipcart { z-index: 9999 !important; }
 
         /* MOBILE QUERY */
@@ -233,9 +233,9 @@
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" id="shopContainer">
-                <a href="products.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="shop-ea.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
-                    <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
+                    <a href="shop-ea.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
                 </div>
             </div>
@@ -265,13 +265,13 @@
         <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
-    <div id="snipcart-validation-container" style="display: none !important;">
-        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/products.html" data-item-name="Echilibru Antistres"></button>
-        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/products.html" data-item-name="Realizarea Dorințelor"></button>
+    <div id="snipcart-validation-container" style="position: absolute; top: -9999px; left: -9999px;">
+        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="https://thepowerboutique.com/shop-ea.html" data-item-name="Echilibru Antistres"></button>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="https://thepowerboutique.com/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
     </div>
 
     <script>
-        // --- TRANSLATIONS CONFIG WITH SNIPCART DATA ---
+        // --- TRANSLATIONS CONFIG WITH ABSOLUTE URLS PENTRU SHOP-EA.HTML ---
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
@@ -318,7 +318,7 @@
                     ? `<button class="order-btn snipcart-add-item" 
                         data-item-id="${i.id}" 
                         data-item-price="${i.pVal}" 
-                        data-item-url="/products.html" 
+                        data-item-url="https://thepowerboutique.com/shop-ea.html" 
                         data-item-name="${i.n.replace(/'/g, "\\'")}">
                         ${langData.order}
                        </button>`
