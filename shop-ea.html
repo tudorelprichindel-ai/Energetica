@@ -83,7 +83,11 @@
         .nav-link:hover, .submenu-link:hover { color: var(--white); }
         .nav-item-container { position: relative; height: 100%; display: flex; align-items: center; }
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
-        .nav-item-container:hover .submenu { display: flex; }
+        
+        /* IZOLARE HOVER PENTRU DESKTOP - PARTEA 1 A FIX-ULUI DE MENIU */
+        @media (min-width: 1025px) {
+            .nav-item-container:hover .submenu { display: flex; }
+        }
 
         /* MARQUEE */
         .marquee-section { width: 100%; margin-top: 80px; background: rgba(0, 0, 0, 0.4); border-bottom: 1px solid rgba(197, 160, 89, 0.2); padding: 15px 0; overflow: hidden; white-space: nowrap; position: relative; z-index: 10; }
@@ -129,7 +133,7 @@
         /* MOBILE QUERY */
         @media (max-width: 1024px) {
             .cursor-dot { display: none !important; }
-            * { cursor: auto !important; }
+            * { cursor: auto !important; } /* DEBLOCARE TAP PE MOBIL - PARTEA 2 A FIX-ULUI */
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             
@@ -261,58 +265,64 @@
     </footer>
 
     <script>
-        // --- TRANSLATIONS CONFIG (SAFE UPDATE) ---
+        // --- TRANSLATIONS CONFIG WITH STRIPE LINKS ---
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Brățări Pentru Ea", order: "Solicită Energia", 
+                title: "Brățări Pentru Ea", order: "Cumpără Acum", reqOrder: "Solicită Energia", 
                 items: [
-                    { n: "Echilibru Antistres", p: "90€", v: "ANTISTRESS.mp4" }, 
-                    { n: "Realizarea Dorințelor", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" }, 
-                    { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4" }
+                    { n: "Echilibru Antistres", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
+                    { n: "Realizarea Dorințelor", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
+                    { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4", link: "" }
                 ] 
             },
             'en': { 
                 home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Bracelets For Her", order: "Request Energy", 
+                title: "Bracelets For Her", order: "Buy Now", reqOrder: "Request Energy", 
                 items: [
-                    { n: "Antistress Balance", p: "90€", v: "ANTISTRESS.mp4" }, 
-                    { n: "Wish Realization", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" }, 
-                    { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4" }
+                    { n: "Antistress Balance", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
+                    { n: "Wish Realization", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
+                    { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4", link: "" }
                 ] 
             },
             'ru': { 
                 home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Браслеты для неё", order: "Запросить энергию", 
+                title: "Браслеты для неё", order: "Купить сейчас", reqOrder: "Запросить энергию", 
                 items: [
-                    { n: "Антистрессовый баланс", p: "90€", v: "ANTISTRESS.mp4" }, 
-                    { n: "Исполнение желаний", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" }, 
-                    { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4" }
+                    { n: "Антистрессовый баланс", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
+                    { n: "Исполнение желаний", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
+                    { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4", link: "" }
                 ] 
             },
             'lv': { 
                 home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Aproces Viņai", order: "Pieprasīt Enerģiju", 
+                title: "Aproces Viņai", order: "Pirkt Tagad", reqOrder: "Pieprasīt Enerģiju", 
                 items: [
-                    { n: "Antistresa līdzsvars", p: "90€", v: "ANTISTRESS.mp4" }, 
-                    { n: "Vēlmju realizācija", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4" }, 
-                    { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4" }
+                    { n: "Antistresa līdzsvars", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
+                    { n: "Vēlmju realizācija", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
+                    { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4", link: "" }
                 ] 
             }
         };
 
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
-            grid.innerHTML = langData.items.map(i => `
+            grid.innerHTML = langData.items.map(i => {
+                // Logica: Dacă are link Stripe, trimite pe link și scrie "Cumpără", altfel deschide WhatsApp și scrie "Solicită"
+                const actionButton = i.link && i.link !== "" 
+                    ? `<a href="${i.link}" target="_blank" class="order-btn">${langData.order}</a>`
+                    : `<a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.reqOrder}</a>`;
+                
+                return `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
                         <video src="${i.v}" autoplay muted loop playsinline></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.p}</div>
-                    <a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.order}</a>
+                    ${actionButton}
                 </div>
-            `).join('');
+            `}).join('');
         }
 
         function orderWhatsApp(prodName) {
@@ -328,7 +338,6 @@
             const t = translations[code];
             if(!t) return;
             
-            // Safe assignment functions
             const setTxt = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.innerText = txt; };
             const setHtml = (id, html) => { const el = document.getElementById(id); if (el && html) el.innerHTML = html; };
 
@@ -417,6 +426,7 @@
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
+        const navShop = document.getElementById('nav-shop');
         const dot = document.getElementById('dot');
 
         function updatePos(e) {
@@ -446,17 +456,19 @@
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
-        shopContainer.onclick = (e) => { 
-            if(window.innerWidth <= 1024) { 
-                e.preventDefault(); 
-                e.stopPropagation(); 
-                shopContainer.classList.toggle('active-mobile'); 
-            } 
-        };
+        // FIX MENIU MOBIL - PARTEA 3
+        if (navShop) {
+            navShop.onclick = (e) => { 
+                if(window.innerWidth <= 1024) { 
+                    e.preventDefault(); 
+                    e.stopPropagation(); 
+                    shopContainer.classList.toggle('active-mobile'); 
+                } 
+            };
+        }
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
 
-        // EXECUTION DELAY (KEY FOR SCORE)
         window.addEventListener('load', () => {
             setTimeout(() => {
                 initParticles();
