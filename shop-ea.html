@@ -141,8 +141,8 @@
         .social-links a { color: var(--gold); transition: 0.3s; }
         .footer-copy { font-size: 0.65rem; letter-spacing: 4px; text-transform: uppercase; opacity: 0.7; }
 
-        /* EXTRA PROTECȚIE: Forțăm coșul să fie stratul suprem */
-        #snipcart { z-index: 99999 !important; position: relative; }
+        /* EXTRA PROTECȚIE: Forțăm coșul să fie stratul suprem fără a strica layout-ul intern */
+        .snipcart-modal__container { z-index: 99999 !important; }
 
         /* MOBILE QUERY */
         @media (max-width: 1024px) {
@@ -492,7 +492,15 @@
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>
 
+    <script>
+        window.SnipcartSettings = {
+            publicApiKey: 'ZTBlNGE2ZmQtZDdlNy00NTk5LWJjM2QtODI2NjZjNmFhMGM3NjM5MDczMzYwNzY4ODQ1NDI1',
+            loadStrategy: 'default',
+            modalStyle: 'side',
+            currency: 'eur'
+        };
+    </script>
     <script async src="https://cdn.snipcart.com/themes/v3.3.3/default/snipcart.js"></script>
-    <div hidden id="snipcart" data-api-key="ZTBlNGE2ZmQtZDdlNy00NTk5LWJjM2QtODI2NjZjNmFhMGM3NjM5MDczMzYwNzY4ODQ1NDI1" data-currency="eur"></div>
+    <div hidden id="snipcart"></div>
 </body>
 </html>
