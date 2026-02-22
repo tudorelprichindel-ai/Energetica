@@ -15,7 +15,7 @@
 
     <link rel="icon" type="image/png" href="favicon.png">
     <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
-    
+
     <style>
         /* --- MASTER GLOBAL STYLES --- */
         :root { 
@@ -51,11 +51,9 @@
             position: fixed; top: 0; left: 0; width: 100%; height: 100%; z-index: -2; background-color: #000; 
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
         }
-        /* Desktop */
         @media (min-width: 1025px) {
             .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
         }
-        /* Mobil */
         @media (max-width: 1024px) {
             .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top; background-size: cover; }
         }
@@ -71,6 +69,13 @@
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
+        .header-controls { display: flex; align-items: center; gap: 20px; }
+
+        /* ICONIȚĂ COȘ SNIPCART */
+        .cart-icon-btn { background: none; border: none; color: var(--gold); font-size: 1.2rem; cursor: pointer !important; position: relative; display: flex; align-items: center; justify-content: center; transition: 0.3s; }
+        .cart-icon-btn:hover { color: var(--white); }
+        .snipcart-items-count { position: absolute; top: -8px; right: -12px; background: var(--gold); color: #000; font-size: 0.65rem; font-weight: bold; width: 18px; height: 18px; border-radius: 50%; display: flex; align-items: center; justify-content: center; font-family: 'Montserrat', sans-serif; }
+
         .lang-dropdown { position: relative; }
         .lang-current { background: rgba(255,255,255,0.03); border: 1px solid var(--gold); color: var(--gold); padding: 8px 12px; font-size: 0.75rem; font-weight: 700; cursor: pointer; display: flex; align-items: center; justify-content: center; gap: 8px; min-width: 100px; }
         .lang-list { position: absolute; top: 100%; right: 0; width: 100%; background: #000; border: 1px solid var(--gold); border-top: none; display: none; flex-direction: column; z-index: 2100; }
@@ -84,7 +89,6 @@
         .nav-item-container { position: relative; height: 100%; display: flex; align-items: center; }
         .submenu { display: none; position: absolute; top: 100%; left: 50%; transform: translateX(-50%); background: rgba(0, 0, 0, 0.95); border: 1px solid var(--gold); min-width: 220px; padding: 20px; flex-direction: column; gap: 15px; z-index: 2100; box-shadow: 0 10px 30px rgba(0,0,0,0.5); }
         
-        /* IZOLARE HOVER PENTRU DESKTOP - PARTEA 1 A FIX-ULUI DE MENIU */
         @media (min-width: 1025px) {
             .nav-item-container:hover .submenu { display: flex; }
         }
@@ -113,7 +117,7 @@
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
-        .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; width: 100%; display: inline-block; }
+        .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; width: 100%; display: inline-block; cursor: pointer !important; }
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
 
         /* LIGHTBOX */
@@ -133,7 +137,7 @@
         /* MOBILE QUERY */
         @media (max-width: 1024px) {
             .cursor-dot { display: none !important; }
-            * { cursor: auto !important; } /* DEBLOCARE TAP PE MOBIL - PARTEA 2 A FIX-ULUI */
+            * { cursor: auto !important; } 
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             
@@ -156,39 +160,16 @@
 
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
             
-            /* Ajustari Shop Mobil - 2 COLOANE */
             main { padding-top: 120px; padding-left: 10px; padding-right: 10px; }
             footer { position: relative; }
             
-            .product-grid { 
-                grid-template-columns: repeat(2, 1fr); 
-                gap: 15px; 
-            }
-            .product-card { 
-                padding: 15px 10px; 
-                border-radius: 4px; 
-            }
-            .product-media { 
-                margin-bottom: 15px; 
-            }
-            .product-card h3 { 
-                font-size: 0.9rem; 
-                margin-bottom: 10px; 
-                min-height: 50px; 
-                line-height: 1.3; 
-            }
-            .product-price { 
-                font-size: 1rem; 
-                margin-bottom: 15px; 
-            }
-            .order-btn { 
-                padding: 10px 5px; 
-                font-size: 0.6rem; 
-                width: 100%; 
-                letter-spacing: 1px; 
-            }
+            .product-grid { grid-template-columns: repeat(2, 1fr); gap: 15px; }
+            .product-card { padding: 15px 10px; border-radius: 4px; }
+            .product-media { margin-bottom: 15px; }
+            .product-card h3 { font-size: 0.9rem; margin-bottom: 10px; min-height: 50px; line-height: 1.3; }
+            .product-price { font-size: 1rem; margin-bottom: 15px; }
+            .order-btn { padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; }
 
-            /* --- REGULA MOBIL: BACKGROUND OPTIMIZAT --- */
             .fixed-bg { 
                 background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
                 background-size: cover;
@@ -213,17 +194,25 @@
         <div class="header-top">
             <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
             <a href="index.html" class="logo-header">The Power Boutique</a>
-            <div class="lang-dropdown">
-                <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
-                    <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO"> 
-                    <span id="active-lang">RO</span> 
-                    <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
+            
+            <div class="header-controls">
+                <button class="cart-icon-btn snipcart-checkout" aria-label="Vezi coșul">
+                    <i class="fas fa-shopping-bag"></i>
+                    <span class="snipcart-items-count">0</span>
                 </button>
-                <div class="lang-list" id="lang-list">
-                    <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img" alt="RO"> RO</button>
-                    <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')"><img src="https://flagcdn.com/w20/ru.png" class="flag-img" alt="RU"> RU</button>
-                    <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img" alt="LV"> LV</button>
-                    <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img" alt="EN"> EN</button>
+
+                <div class="lang-dropdown">
+                    <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
+                        <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO"> 
+                        <span id="active-lang">RO</span> 
+                        <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
+                    </button>
+                    <div class="lang-list" id="lang-list">
+                        <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img" alt="RO"> RO</button>
+                        <button class="lang-item" onclick="changeLang('ru', 'RU', 'https://flagcdn.com/w20/ru.png')"><img src="https://flagcdn.com/w20/ru.png" class="flag-img" alt="RU"> RU</button>
+                        <button class="lang-item" onclick="changeLang('lv', 'LV', 'https://flagcdn.com/w20/lv.png')"><img src="https://flagcdn.com/w20/lv.png" class="flag-img" alt="LV"> LV</button>
+                        <button class="lang-item" onclick="changeLang('en', 'EN', 'https://flagcdn.com/w20/gb.png')"><img src="https://flagcdn.com/w20/gb.png" class="flag-img" alt="EN"> EN</button>
+                    </div>
                 </div>
             </div>
         </div>
@@ -265,42 +254,42 @@
     </footer>
 
     <script>
-        // --- TRANSLATIONS CONFIG WITH STRIPE LINKS ---
+        // --- TRANSLATIONS CONFIG WITH SNIPCART DATA ---
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Brățări Pentru Ea", order: "Cumpără Acum", reqOrder: "Solicită Energia", 
+                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", 
                 items: [
-                    { n: "Echilibru Antistres", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
-                    { n: "Realizarea Dorințelor", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
-                    { n: "Prosperitate în Materie", p: "La cerere", v: "Rota ir pieejama.mp4", link: "" }
+                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'en': { 
                 home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Bracelets For Her", order: "Buy Now", reqOrder: "Request Energy", 
+                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", 
                 items: [
-                    { n: "Antistress Balance", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
-                    { n: "Wish Realization", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
-                    { n: "Prosperity in Matter", p: "On request", v: "Rota ir pieejama.mp4", link: "" }
+                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'ru': { 
                 home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Браслеты для неё", order: "Купить сейчас", reqOrder: "Запросить энергию", 
+                title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", 
                 items: [
-                    { n: "Антистрессовый баланс", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
-                    { n: "Исполнение желаний", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
-                    { n: "Процветание в материи", p: "По запросу", v: "Rota ir pieejama.mp4", link: "" }
+                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'lv': { 
                 home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Aproces Viņai", order: "Pirkt Tagad", reqOrder: "Pieprasīt Enerģiju", 
+                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", 
                 items: [
-                    { n: "Antistresa līdzsvars", p: "90€", v: "ANTISTRESS.mp4", link: "https://buy.stripe.com/fZu6oz7gDd0R5AX9NZ1Fe00" }, 
-                    { n: "Vēlmju realizācija", p: "113€", v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", link: "" }, 
-                    { n: "Materiālā labklājība", p: "Pēc pieprasījuma", v: "Rota ir pieejama.mp4", link: "" }
+                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: 90.00, v: "ANTISTRESS.mp4", isCart: true }, 
+                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: 113.00, v: "VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: 0, v: "Rota ir pieejama.mp4", isCart: false }
                 ] 
             }
         };
@@ -308,9 +297,15 @@
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
             grid.innerHTML = langData.items.map(i => {
-                // Logica: Dacă are link Stripe, trimite pe link și scrie "Cumpără", altfel deschide WhatsApp și scrie "Solicită"
-                const actionButton = i.link && i.link !== "" 
-                    ? `<a href="${i.link}" target="_blank" class="order-btn">${langData.order}</a>`
+                // Logica: Dacă produsul are isCart: true, generăm buton Snipcart. Dacă nu, WhatsApp.
+                const actionButton = i.isCart 
+                    ? `<button class="order-btn snipcart-add-item" 
+                        data-item-id="${i.id}" 
+                        data-item-price="${i.pVal}" 
+                        data-item-url="/products.html" 
+                        data-item-name="${i.n.replace(/'/g, "\\'")}">
+                        ${langData.order}
+                       </button>`
                     : `<a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.reqOrder}</a>`;
                 
                 return `
@@ -319,7 +314,7 @@
                         <video src="${i.v}" autoplay muted loop playsinline></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
-                    <div class="product-price">${i.p}</div>
+                    <div class="product-price">${i.pDisplay}</div>
                     ${actionButton}
                 </div>
             `}).join('');
@@ -456,7 +451,6 @@
 
         menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
         
-        // FIX MENIU MOBIL - PARTEA 3
         if (navShop) {
             navShop.onclick = (e) => { 
                 if(window.innerWidth <= 1024) { 
@@ -478,6 +472,15 @@
         window.addEventListener('resize', initParticles);
         
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
+    </script>
+
+    <script>
+        window.SnipcartSettings = {
+            publicApiKey: 'ZTBlNGE2ZmQtZDdlNy00NTk5LWJjM2QtODI2NjZjNmFhMGM3NjM5MDczMzYwNzY4ODQ1NDI1',
+            loadStrategy: 'on-user-interaction',
+        };
+
+        (()=>{var c,d;(d=(c=window.SnipcartSettings).version)!=null||(c.version="3.0");var s,S;(S=(s=window.SnipcartSettings).timeoutDuration)!=null||(s.timeoutDuration=2750);var l,p;(p=(l=window.SnipcartSettings).domain)!=null||(l.domain="cdn.snipcart.com");var w,u;(u=(w=window.SnipcartSettings).protocol)!=null||(w.protocol="https");var f=window.SnipcartSettings.version.includes("v3.0.0-ci")||window.SnipcartSettings.version!="3.0"&&window.SnipcartSettings.version.localeCompare("3.4.0",void 0,{numeric:!0,sensitivity:"base"})===-1,m=["focus","mouseover","touchmove","scroll","keydown"];window.LoadSnipcart=o;document.readyState==="loading"?document.addEventListener("DOMContentLoaded",r):r();function r(){window.SnipcartSettings.loadStrategy?window.SnipcartSettings.loadStrategy==="on-user-interaction"&&(m.forEach(t=>document.addEventListener(t,o)),setTimeout(o,window.SnipcartSettings.timeoutDuration)):o()}var a=!1;function o(){if(a)return;a=!0;let t=document.getElementsByTagName("head")[0],e=document.querySelector("#snipcart"),i=document.querySelector(`src[src^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][src$="snipcart.js"]`),n=document.querySelector(`link[href^="${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}"][href$="snipcart.css"]`);e||(e=document.createElement("div"),e.id="snipcart",e.setAttribute("hidden","true"),document.body.appendChild(e)),v(e),i||(i=document.createElement("script"),i.src=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.js`,i.async=!0,t.appendChild(i)),n||(n=document.createElement("link"),n.rel="stylesheet",n.type="text/css",n.href=`${window.SnipcartSettings.protocol}://${window.SnipcartSettings.domain}/themes/v${window.SnipcartSettings.version}/default/snipcart.css`,t.prepend(n)),m.forEach(g=>document.removeEventListener(g,o))}function v(t){!f||(t.dataset.apiKey=window.SnipcartSettings.publicApiKey,window.SnipcartSettings.addProductBehavior&&(t.dataset.configAddProductBehavior=window.SnipcartSettings.addProductBehavior),window.SnipcartSettings.modalStyle&&(t.dataset.configModalStyle=window.SnipcartSettings.modalStyle),window.SnipcartSettings.currency&&(t.dataset.currency=window.SnipcartSettings.currency),window.SnipcartSettings.templatesUrl&&(t.dataset.templatesUrl=window.SnipcartSettings.templatesUrl))}})();
     </script>
 </body>
 </html>
