@@ -233,9 +233,9 @@
             <a href="index.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" id="shopContainer">
-                <a href="shop-ea.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="proiect.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
                 <div class="submenu">
-                    <a href="shop-ea.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
+                    <a href="proiect.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
                 </div>
             </div>
@@ -266,12 +266,11 @@
     </footer>
 
     <div id="snipcart-validation-container" style="position: absolute; top: -9999px; left: -9999px;">
-        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
-        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
+        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="https://thepowerboutique.com/proiect.html" data-item-name="Echilibru Antistres"></button>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="https://thepowerboutique.com/proiect.html" data-item-name="Realizarea Dorințelor"></button>
     </div>
 
     <script>
-        // --- TRANSLATIONS CONFIG - PREȚURILE SUNT ACUM "TEXT" ("90.00") PENTRU A NU PIERDE ZEROURILE ---
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
@@ -314,12 +313,11 @@
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
             grid.innerHTML = langData.items.map(i => {
-                // Link relativ /shop-ea.html folosit aici pentru a corespunde perfect cu harta ascunsă
                 const actionButton = i.isCart 
                     ? `<button class="order-btn snipcart-add-item" 
                         data-item-id="${i.id}" 
                         data-item-price="${i.pVal}" 
-                        data-item-url="/shop-ea.html" 
+                        data-item-url="https://thepowerboutique.com/proiect.html" 
                         data-item-name="${i.n.replace(/'/g, "\\'")}">
                         ${langData.order}
                        </button>`
