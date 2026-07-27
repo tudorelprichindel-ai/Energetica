@@ -6,8 +6,7 @@
     <meta name="description" content="Brățări energetice The Power Boutique pentru Ea. Descoperă colecția dedicată echilibrului antistres, realizării dorințelor și prosperității.">
     <title>Pentru Ea | The Power Boutique</title>
     
-    <link rel="preload" as="image" href="assets/images/cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
-    <link rel="preload" as="image" href="assets/images/cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/cristale3.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
 
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -56,7 +55,12 @@
             background-size: cover; will-change: transform; transform: translateZ(0); animation: cinematicZoom 45s infinite alternate ease-in-out; 
         }
         @media (min-width: 1025px) {
-            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/cristale3.jpg') no-repeat center center; background-size: cover; }
+            .fixed-bg {
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/cristale3.jpg') no-repeat center center;
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), -webkit-image-set(url('assets/images/cristale3.webp') 1x, url('assets/images/cristale3.jpg') 1x);
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), image-set(url('assets/images/cristale3.webp') type("image/webp"), url('assets/images/cristale3.jpg') type("image/jpeg"));
+                background-size: cover;
+            }
         }
         @media (max-width: 1024px) {
             .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/cristale3-mobile.webp') no-repeat center top; background-size: cover; }

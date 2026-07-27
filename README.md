@@ -10,6 +10,10 @@ Static website and supporting prototypes for `thepowerboutique.com`.
 - `app.py`, `server.py`, `lookUpTable_base.csv`: legacy game-prototype files kept in place to avoid unrelated line-ending changes.
 - `CNAME`, `snipcart.json`, `index.json`: hosting and integration configuration.
 
+## Image strategy
+
+Pages prefer WebP assets for faster loading and retain JPG or PNG files as compatibility fallbacks. Responsive `<picture>` elements are used for content images, while CSS backgrounds use `image-set()` with a conventional fallback.
+
 ## Local preview
 
 Serve the repository root with any static HTTP server. Opening pages through a server is preferable to opening the files directly because browser security rules can affect local requests.
