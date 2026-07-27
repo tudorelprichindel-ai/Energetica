@@ -6,8 +6,7 @@
     <meta name="description" content="The Power Boutique by Jelena Shipko. Descoperă brățări energetice, instrumente de transformare, Digital Shop și consultații personalizate pentru echilibru și succes.">
     <title>The Power Boutique</title>
     
-    <link rel="preload" as="image" href="cristale3-mobile.webp" media="(max-width: 1024px)" fetchpriority="high">
-    <link rel="preload" as="image" href="cristale3.jpg" media="(min-width: 1025px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/cristale3.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
 
     <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
@@ -15,7 +14,7 @@
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link rel="icon" type="image/png" href="favicon.png">
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
     
     <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap">
     <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
@@ -48,7 +47,12 @@
         }
         
         @media (min-width: 1025px) {
-            .fixed-bg { background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3.jpg') no-repeat center center; background-size: cover; }
+            .fixed-bg {
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/cristale3.jpg') no-repeat center center;
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), -webkit-image-set(url('assets/images/cristale3.webp') 1x, url('assets/images/cristale3.jpg') 1x);
+                background-image: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), image-set(url('assets/images/cristale3.webp') type("image/webp"), url('assets/images/cristale3.jpg') type("image/jpeg"));
+                background-size: cover;
+            }
         }
 
         @keyframes cinematicZoom { from { transform: scale(1); } to { transform: scale(1.15); } }
@@ -103,6 +107,7 @@
 
         .about-hero { display: grid; grid-template-columns: 1fr 1fr; align-items: center; width: 100%; max-width: 1200px; gap: 60px; margin-bottom: 50px; }
         .about-image-wrapper { width: 100%; max-width: 450px; margin: 0 auto; position: relative; z-index: 1; border-radius: 45%; overflow: hidden; box-shadow: 0 0 40px rgba(197, 160, 89, 0.2), 0 0 80px rgba(197, 160, 89, 0.1); animation: floatPortal 6s ease-in-out infinite; transition: transform 0.5s ease, box-shadow 0.5s ease; }
+        .about-image-wrapper picture { display: block; }
         .about-image-wrapper img { width: 100%; height: auto; display: block; filter: contrast(1.1) brightness(1.05) saturate(0.9); }
         @keyframes floatPortal { 0%, 100% { transform: translateY(0); } 50% { transform: translateY(-15px); } }
 
@@ -138,7 +143,7 @@
             .marquee-item { font-size: 0.6rem; letter-spacing: 3px; margin: 0 20px; }
 
             .fixed-bg { 
-                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('cristale3-mobile.webp') no-repeat center top;
+                background: linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url('assets/images/cristale3-mobile.webp') no-repeat center top;
                 background-size: cover;
             }
         }
@@ -211,7 +216,12 @@
         </div>
 
         <div class="about-hero">
-            <div class="about-image-wrapper"><img src="6.jpg" alt="Jelena Shipko" loading="lazy"></div>
+            <div class="about-image-wrapper">
+                <picture>
+                    <source srcset="assets/images/6.webp" type="image/webp">
+                    <img src="assets/images/6.jpg" alt="Jelena Shipko" width="1440" height="1800" loading="lazy" decoding="async">
+                </picture>
+            </div>
             <div class="about-text-card">
                 <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
                 <h2 id="about-title">Inima Din Spatele Puterii</h2>
