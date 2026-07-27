@@ -271,6 +271,7 @@
         <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
+    <script src="assets/js/video-performance.js"></script>
     <script>
         // Translations & Products Data
         const translations = {
@@ -317,7 +318,7 @@
             grid.innerHTML = langData.items.map(i => `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" autoplay muted loop playsinline></video>
+                        <video src="${i.v}" muted loop playsinline preload="metadata"></video>
                     </div>
                     <h3 id="name-${i.id}">${i.n}</h3>
                     <p id="desc-${i.id}">${i.desc}</p>
@@ -325,6 +326,7 @@
                     <a href="javascript:void(0)" onclick="orderMorse('${i.n.replace(/'/g, "\\'")}')" class="order-btn" id="btn-${i.id}">${langData.order}</a>
                 </div>
             `).join('');
+            videoPerformance.init();
         }
 
         function orderMorse(prodName) {
@@ -359,6 +361,7 @@
         function openLux(src, title) {
             const modal = document.getElementById('luxModal');
             const video = document.getElementById('luxVideo');
+            videoPerformance.pauseAll();
             document.getElementById('luxTitle').innerText = title;
             video.src = src;
             modal.style.display = 'flex';
@@ -371,7 +374,12 @@
             const video = document.getElementById('luxVideo');
             video.pause();
             modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 500);
+            setTimeout(() => {
+                modal.style.display = 'none';
+                video.removeAttribute('src');
+                video.load();
+                videoPerformance.init();
+            }, 500);
         }
 
         // --- MASTER ENGINE: PARTICLES & PHYSICS ---

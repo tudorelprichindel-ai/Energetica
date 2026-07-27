@@ -275,6 +275,7 @@
         <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
     </div>
 
+    <script src="assets/js/video-performance.js"></script>
     <script>
         const translations = {
             'ro': { 
@@ -331,13 +332,14 @@
                 return `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" autoplay muted loop playsinline></video>
+                        <video src="${i.v}" muted loop playsinline preload="metadata"></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.pDisplay}</div>
                     ${actionButton}
                 </div>
             `}).join('');
+            videoPerformance.init();
         }
 
         function orderWhatsApp(prodName) {
@@ -371,6 +373,7 @@
         function openLux(src, title) {
             const modal = document.getElementById('luxModal');
             const video = document.getElementById('luxVideo');
+            videoPerformance.pauseAll();
             document.getElementById('luxTitle').innerText = title;
             video.src = src;
             modal.style.display = 'flex';
@@ -383,7 +386,12 @@
             const video = document.getElementById('luxVideo');
             video.pause();
             modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 500);
+            setTimeout(() => {
+                modal.style.display = 'none';
+                video.removeAttribute('src');
+                video.load();
+                videoPerformance.init();
+            }, 500);
         }
 
         // --- MASTER ENGINE: PARTICLES & PHYSICS ---

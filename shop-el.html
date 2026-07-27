@@ -264,6 +264,7 @@
         <p class="footer-copy">© 2026 ENERGETICA • JELENA SHIPKO</p>
     </footer>
 
+    <script src="assets/js/video-performance.js"></script>
     <script>
         // --- TRANSLATIONS CONFIG (SAFE UPDATE) ---
         const translations = {
@@ -306,13 +307,14 @@
             grid.innerHTML = langData.items.map(i => `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" autoplay muted loop playsinline></video>
+                        <video src="${i.v}" muted loop playsinline preload="metadata"></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.p}</div>
                     <a href="contact.html" class="order-btn">${langData.order}</a>
                 </div>
             `).join('');
+            videoPerformance.init();
         }
 
         function changeLang(code, label, flag) {
@@ -341,6 +343,7 @@
         function openLux(src, title) {
             const modal = document.getElementById('luxModal');
             const video = document.getElementById('luxVideo');
+            videoPerformance.pauseAll();
             document.getElementById('luxTitle').innerText = title;
             video.src = src;
             modal.style.display = 'flex';
@@ -353,7 +356,12 @@
             const video = document.getElementById('luxVideo');
             video.pause();
             modal.classList.remove('show');
-            setTimeout(() => modal.style.display = 'none', 500);
+            setTimeout(() => {
+                modal.style.display = 'none';
+                video.removeAttribute('src');
+                video.load();
+                videoPerformance.init();
+            }, 500);
         }
 
         // --- MASTER ENGINE: PARTICLES & PHYSICS ---
