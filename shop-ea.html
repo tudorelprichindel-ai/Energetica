@@ -148,6 +148,16 @@
 
         /* EXTRA PROTECȚIE: Forțăm coșul să fie stratul suprem */
         #snipcart { z-index: 99999 !important; position: relative; }
+        #snipcart, #snipcart * { cursor: auto !important; }
+        #snipcart input, #snipcart textarea { cursor: text !important; }
+        #snipcart a,
+        #snipcart button:not(:disabled),
+        #snipcart select,
+        #snipcart label[for],
+        #snipcart [role="button"],
+        #snipcart input[type="checkbox"],
+        #snipcart input[type="radio"],
+        #snipcart input[type="submit"] { cursor: pointer !important; }
 
         /* MOBILE QUERY */
         @media (max-width: 1024px) {
