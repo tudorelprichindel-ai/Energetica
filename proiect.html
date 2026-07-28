@@ -284,12 +284,29 @@
                 this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
+        function shouldAnimateParticles() {
+            return window.innerWidth > 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
         function initParticles() {
-            particles = []; particleContainer.innerHTML = ''; let n = window.innerWidth < 768 ? 20 : 50; 
+            particles = []; particleContainer.innerHTML = '';
+            if (!shouldAnimateParticles()) return;
+            let n = window.innerWidth < 768 ? 20 : 50;
             for (let i = 0; i < n; i++) particles.push(new Particle());
         }
-        function animateParticles() { for (let i = 0; i < particles.length; i++) particles[i].update(); requestAnimationFrame(animateParticles); }
-        window.addEventListener('resize', initParticles);
+        function animateParticles() {
+            if (!shouldAnimateParticles()) {
+                particles = [];
+                particleContainer.innerHTML = '';
+                return;
+            }
+            for (let i = 0; i < particles.length; i++) particles[i].update();
+            requestAnimationFrame(animateParticles);
+        }
+        window.addEventListener('resize', () => {
+            const wasInactive = particles.length === 0;
+            initParticles();
+            if (wasInactive && shouldAnimateParticles()) animateParticles();
+        });
         
         const sidebar = document.getElementById('sidebar'); const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer'); const dot = document.getElementById('dot');
