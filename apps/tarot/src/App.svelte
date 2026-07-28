@@ -12,6 +12,8 @@
   import BreatheView from "./components/BreatheView.svelte";
   import LibraryView from "./components/LibraryView.svelte";
   import OnboardingView from "./components/OnboardingView.svelte";
+  import SiteHeader from "./components/SiteHeader.svelte";
+  import SiteFooter from "./components/SiteFooter.svelte";
 
   const ONBOARDING_KEY = "thePowerTarotOnboardingDone";
   const INTENTION_KEY = "thePowerTarotFirstIntention";
@@ -94,6 +96,8 @@
 </script>
 
 {#if isReady}
+  <SiteHeader />
+
   {#if !onboardingDone}
     <main class="app-shell onboarding-shell">
       <OnboardingView on:complete={completeOnboarding} />
@@ -135,4 +139,6 @@
       {/if}
     </main>
   {/if}
+
+  <SiteFooter />
 {/if}
