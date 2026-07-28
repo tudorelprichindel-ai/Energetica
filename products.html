@@ -351,9 +351,14 @@
             }
         }
 
+        function shouldAnimateParticles() {
+            return window.innerWidth > 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
         function initParticles() {
             particles = [];
             particleContainer.innerHTML = '';
+            if (!shouldAnimateParticles()) return;
             let numberOfParticles = window.innerWidth < 768 ? 20 : 50;
             for (let i = 0; i < numberOfParticles; i++) {
                 particles.push(new Particle());
@@ -361,6 +366,11 @@
         }
 
         function animateParticles() {
+            if (!shouldAnimateParticles()) {
+                particles = [];
+                particleContainer.innerHTML = '';
+                return;
+            }
             for (let i = 0; i < particles.length; i++) {
                 particles[i].update();
             }
@@ -417,7 +427,11 @@
                 animateParticles();
             }, 800);
         });
-        window.addEventListener('resize', initParticles);
+        window.addEventListener('resize', () => {
+            const wasInactive = particles.length === 0;
+            initParticles();
+            if (wasInactive && shouldAnimateParticles()) animateParticles();
+        });
         
         changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png');
     </script>

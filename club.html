@@ -240,13 +240,23 @@
             }
         }
 
+        function shouldAnimateParticles() {
+            return window.innerWidth > 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+        }
+
         function initParticles() {
             particles = []; particleContainer.innerHTML = '';
+            if (!shouldAnimateParticles()) return;
             let n = window.innerWidth < 768 ? 20 : 55; 
             for(let i=0; i<n; i++) particles.push(new Particle());
         }
 
         function animate() {
+            if (!shouldAnimateParticles()) {
+                particles = [];
+                particleContainer.innerHTML = '';
+                return;
+            }
             for (let i = 0; i < particles.length; i++) particles[i].update();
             requestAnimationFrame(animate);
         }
