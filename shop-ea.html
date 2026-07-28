@@ -282,8 +282,8 @@
     </footer>
 
     <div hidden id="snipcart-validation-container">
-        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
-        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
+        <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-weight="100" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
+        <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-weight="100" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
     </div>
 
     <script src="assets/js/video-performance.js"></script>
@@ -332,9 +332,10 @@
             grid.innerHTML = langData.items.map(i => {
                 const actionButton = i.isCart 
                     ? `<button class="order-btn snipcart-add-item" 
-                        data-item-id="${i.id}" 
-                        data-item-price="${i.pVal}" 
-                        data-item-url="/shop-ea.html" 
+                        data-item-id="${i.id}"
+                        data-item-price="${i.pVal}"
+                        data-item-weight="100"
+                        data-item-url="/shop-ea.html"
                         data-item-name="${i.n.replace(/'/g, "\\'")}">
                         ${langData.order}
                        </button>`
