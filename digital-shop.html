@@ -107,6 +107,8 @@
         .product-media { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); display: flex; align-items: center; justify-content: center; background: rgba(0,0,0,0.2); }
         .product-media i { font-size: 5rem; color: var(--gold); opacity: 0.6; transition: 0.5s; }
         .product-card:hover .product-media i { transform: scale(1.1); opacity: 1; filter: drop-shadow(0 0 15px var(--gold)); }
+        .product-media img { width: 100%; height: 100%; object-fit: contain; filter: drop-shadow(0 12px 24px rgba(0,0,0,0.65)); transition: transform 0.5s ease; }
+        .product-card:hover .product-media img { transform: scale(1.035); }
 
         .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 15px; font-style: italic; }
         .product-card p { font-size: 0.85rem; opacity: 0.7; line-height: 1.6; margin-bottom: 25px; min-height: 50px; }
@@ -229,6 +231,7 @@
                 title: "Digital Shop", subtitle: "Ghiduri și resurse pentru expansiunea conștiinței tale.",
                 order: "Obține Acces",
                 items: [
+                    { id: "tarot", n: "The Power Tarot (EN)", p: "GRATUIT", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Deschide aplicația", desc: "Aplicație gratuită pentru cartea zilei, lecturi intuitive, respirație și jurnal personal. Disponibilă în engleză." },
                     { id: "d1", n: "Codul Frecvenței (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Ghid practic pentru alinierea zilnică și ridicarea vibrației personale." },
                     { id: "d2", n: "Masterclass Aliniere", p: "49€", icon: "fas fa-play-circle", desc: "Sesiune video profundă despre deblocarea fluxului de abundență." },
                     { id: "d3", n: "Pachet Ritualuri (Bundle)", p: "65€", icon: "fas fa-moon", desc: "Colecție completă de ghiduri și meditații audio pentru transformare." }
@@ -239,6 +242,7 @@
                 title: "Digital Shop", subtitle: "Guides and resources for the expansion of your consciousness.",
                 order: "Get Access",
                 items: [
+                    { id: "tarot", n: "The Power Tarot", p: "FREE", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Open the app", desc: "A free experience for a daily card, intuitive readings, breathwork and a private personal journal." },
                     { id: "d1", n: "Frequency Code (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Practical guide for daily alignment and raising personal vibration." },
                     { id: "d2", n: "Alignment Masterclass", p: "49€", icon: "fas fa-play-circle", desc: "Deep video session on unlocking the flow of abundance." },
                     { id: "d3", n: "Rituals Bundle", p: "65€", icon: "fas fa-moon", desc: "Complete collection of guides and audio meditations for transformation." }
@@ -249,6 +253,7 @@
                 title: "Цифровой магазин", subtitle: "Руководства и ресурсы для расширения вашего сознания.",
                 order: "Получить доступ",
                 items: [
+                    { id: "tarot", n: "The Power Tarot (EN)", p: "БЕСПЛАТНО", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Открыть приложение", desc: "Бесплатное приложение для карты дня, интуитивных раскладов, дыхательных практик и личного дневника. На английском языке." },
                     { id: "d1", n: "Код частоты (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Практическое руководство по ежедневному выравниванию и повышению вибраций." },
                     { id: "d2", n: "Мастер-класс Выравнивание", p: "49€", icon: "fas fa-play-circle", desc: "Глубокая видеосессия о разблокировании потока изобилия." },
                     { id: "d3", n: "Пакет Ритуалов", p: "65€", icon: "fas fa-moon", desc: "Полная коллекция руководств и аудиомедитаций для трансформации." }
@@ -259,6 +264,7 @@
                 title: "Digitālais veikals", subtitle: "Ceļveži un resursi jūsu apziņas paplašināšanai.",
                 order: "Iegūt piekļuvi",
                 items: [
+                    { id: "tarot", n: "The Power Tarot (EN)", p: "BEZ MAKSAS", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Atvērt lietotni", desc: "Bezmaksas lietotne dienas kārtij, intuitīviem lasījumiem, elpošanas praksei un personīgajai dienasgrāmatai. Angļu valodā." },
                     { id: "d1", n: "Frekvences kods (PDF)", p: "25€", icon: "fas fa-file-pdf", desc: "Praktisks ceļvedis ikdienas izlīdzināšanai un personīgās vibrācijas celšanai." },
                     { id: "d2", n: "Izlīdzināšanas meistarklase", p: "49€", icon: "fas fa-play-circle", desc: "Dziļa video sesija par pārpilnības plūsmas atbloķēšanu." },
                     { id: "d3", n: "Rituālu komplekts", p: "65€", icon: "fas fa-moon", desc: "Pilna ceļvežu un audio meditāciju kolekcija transformācijai." }
@@ -268,17 +274,24 @@
 
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
-            grid.innerHTML = langData.items.map(i => `
-                <div class="product-card">
-                    <div class="product-media">
-                        <i class="${i.icon}"></i>
+            grid.innerHTML = langData.items.map(i => {
+                const media = i.image
+                    ? `<img src="${i.image}" alt="${i.n}" loading="lazy">`
+                    : `<i class="${i.icon}" aria-hidden="true"></i>`;
+                const action = i.href
+                    ? `<a href="${i.href}" class="order-btn" id="btn-${i.id}">${i.cta}</a>`
+                    : `<button type="button" onclick="orderDigital('${i.n.replace(/'/g, "\\'")}')" class="order-btn" id="btn-${i.id}">${langData.order}</button>`;
+
+                return `
+                    <div class="product-card">
+                        <div class="product-media">${media}</div>
+                        <h3 id="name-${i.id}">${i.n}</h3>
+                        <p id="desc-${i.id}">${i.desc}</p>
+                        <div class="product-price" id="price-${i.id}">${i.p}</div>
+                        ${action}
                     </div>
-                    <h3 id="name-${i.id}">${i.n}</h3>
-                    <p id="desc-${i.id}">${i.desc}</p>
-                    <div class="product-price" id="price-${i.id}">${i.p}</div>
-                    <a href="javascript:void(0)" onclick="orderDigital('${i.n.replace(/'/g, "\\'")}')" class="order-btn" id="btn-${i.id}">${langData.order}</a>
-                </div>
-            `).join('');
+                `;
+            }).join('');
         }
 
         function changeLang(code, label, flag) {
