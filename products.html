@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Explorează colecția completă The Power Boutique. Brățări energetice pentru Ea, pentru El, de Cuplu, Personalizate și cu Mesaje Morse.">
     <title>Categorii Brățări | The Power Boutique</title>
     
@@ -70,7 +71,7 @@
         /* HEADER & NAV */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
+        .menu-toggle { display: none; min-width: 44px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
@@ -187,7 +188,7 @@
 
     <header>
         <div class="header-top">
-            <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
+            <button type="button" class="menu-toggle" id="menuBtn" aria-label="Deschide meniul" aria-expanded="false" aria-controls="sidebar"><i class="fas fa-bars"></i></button>
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
@@ -381,6 +382,7 @@
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
+        const navShop = document.getElementById('nav-shop');
         const dot = document.getElementById('dot');
 
         function updatePos(e) {
@@ -408,15 +410,22 @@
             el.addEventListener('mouseleave', () => { if (window.innerWidth > 1024 && dot) dot.classList.remove('glow'); });
         });
 
-        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
-        
-        shopContainer.onclick = (e) => { 
-            if(window.innerWidth <= 1024) { 
-                e.preventDefault(); 
-                e.stopPropagation(); 
-                shopContainer.classList.toggle('active-mobile'); 
-            } 
+        menuBtn.onclick = () => {
+            const isOpen = sidebar.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuBtn.setAttribute('aria-label', isOpen ? 'Închide meniul' : 'Deschide meniul');
+            menuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         };
+
+        if (navShop) {
+            navShop.onclick = (e) => {
+                if(window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    shopContainer.classList.toggle('active-mobile');
+                }
+            };
+        }
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
