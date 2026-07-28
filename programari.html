@@ -3,6 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
     <meta name="description" content="Programează o consultație 1 la 1 cu Jelena Shipko. Descoperă serviciile de Life Realisation, Business & Cariera, Astrologie sau jocul transformațional T-Game.">
     <title>Consultații | The Power Boutique</title>
     
@@ -73,7 +74,7 @@
         /* HEADER & NAV */
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
-        .menu-toggle { display: none; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
+        .menu-toggle { display: none; min-width: 44px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
@@ -188,6 +189,7 @@
             .page-container { padding-top: 40px; }
             .booking-grid { grid-template-columns: 1fr; gap: 40px; }
             .calendar-container { position: relative; top: 0; padding: 30px 20px; }
+            .form-control { font-size: 16px; }
             footer { position: relative; }
 
             .fixed-bg { 
@@ -204,7 +206,7 @@
 
     <header>
         <div class="header-top">
-            <div class="menu-toggle" id="menuBtn"><i class="fas fa-bars"></i></div>
+            <button type="button" class="menu-toggle" id="menuBtn" aria-label="Deschide meniul" aria-expanded="false" aria-controls="sidebar"><i class="fas fa-bars"></i></button>
             <a href="index.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
@@ -287,19 +289,19 @@
                 </div>
                 <form id="bookingForm" onsubmit="sendWhatsApp(event)">
                     <div class="form-group">
-                        <label id="label-service">Serviciu Selectat</label>
+                        <label id="label-service" for="selected-service">Serviciu Selectat</label>
                         <input type="text" id="selected-service" class="form-control" value="Life Realisation" readonly style="border-color: var(--gold); color: var(--gold); font-weight:700;">
                     </div>
                     <div class="form-group">
-                        <label id="label-name">Numele Tău</label>
+                        <label id="label-name" for="client-name">Numele Tău</label>
                         <input type="text" id="client-name" class="form-control" placeholder="Cum te numești?" required>
                     </div>
                     <div class="form-group">
-                        <label id="label-date">Data Preferată</label>
+                        <label id="label-date" for="pref-date">Data Preferată</label>
                         <input type="date" id="pref-date" class="form-control" required>
                     </div>
                     <div class="form-group">
-                        <label id="label-email">Email (pentru link sesiune)</label>
+                        <label id="label-email" for="client-email">Email (pentru link sesiune)</label>
                         <input type="email" id="client-email" class="form-control" placeholder="email@exemplu.com" required>
                     </div>
                     <button type="submit" class="submit-btn" id="btn-submit">Solicită Programare</button>
@@ -319,6 +321,11 @@
     </footer>
 
     <script>
+        const preferredDateInput = document.getElementById('pref-date');
+        const localToday = new Date();
+        localToday.setMinutes(localToday.getMinutes() - localToday.getTimezoneOffset());
+        preferredDateInput.min = localToday.toISOString().split('T')[0];
+
         // --- WHATSAPP LOGIC ---
         function sendWhatsApp(event) {
             event.preventDefault();
@@ -540,16 +547,24 @@
         const sidebar = document.getElementById('sidebar');
         const menuBtn = document.getElementById('menuBtn');
         const shopContainer = document.getElementById('shopContainer');
-
-        menuBtn.onclick = () => { sidebar.classList.toggle('active'); menuBtn.innerHTML = sidebar.classList.contains('active') ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>'; };
+        const navShop = document.getElementById('nav-shop');
         
-        shopContainer.onclick = (e) => { 
-            if(window.innerWidth <= 1024) { 
-                e.preventDefault();
-                e.stopPropagation(); 
-                shopContainer.classList.toggle('active-mobile'); 
-            } 
+        menuBtn.onclick = () => {
+            const isOpen = sidebar.classList.toggle('active');
+            menuBtn.setAttribute('aria-expanded', String(isOpen));
+            menuBtn.setAttribute('aria-label', isOpen ? 'Închide meniul' : 'Deschide meniul');
+            menuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
         };
+
+        if (navShop) {
+            navShop.onclick = (e) => {
+                if(window.innerWidth <= 1024) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    shopContainer.classList.toggle('active-mobile');
+                }
+            };
+        }
 
         window.onclick = (e) => { if (!e.target.closest('.lang-dropdown')) document.getElementById('lang-list').classList.remove('show'); };
         
