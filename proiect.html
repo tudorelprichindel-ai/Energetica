@@ -149,6 +149,242 @@
             }
         }
     </style>
+    <style id="commercial-homepage">
+        body { min-height: 100%; background: #050403; }
+        * { cursor: auto !important; }
+        a, button { cursor: pointer !important; }
+        .cursor-dot, #particles-container { display: none !important; }
+        .fixed-bg { animation: none; opacity: 0.72; }
+        .marquee-section { background: rgba(5, 4, 3, 0.78); }
+
+        .landing-main { width: 100%; }
+        .commercial-hero {
+            width: min(1320px, 90%);
+            min-height: calc(100vh - 125px);
+            margin: 0 auto;
+            padding: clamp(70px, 9vw, 130px) 0;
+            display: grid;
+            grid-template-columns: minmax(0, 1.35fr) minmax(320px, 0.65fr);
+            gap: clamp(45px, 7vw, 110px);
+            align-items: center;
+        }
+        .hero-copy { max-width: 830px; }
+        .section-kicker {
+            display: flex;
+            align-items: center;
+            gap: 14px;
+            margin-bottom: 25px;
+            color: var(--gold);
+            font-size: 0.68rem;
+            font-weight: 700;
+            letter-spacing: 4px;
+            line-height: 1.6;
+            text-transform: uppercase;
+        }
+        .section-kicker::before {
+            content: "";
+            width: 42px;
+            height: 1px;
+            flex: 0 0 auto;
+            background: var(--gold);
+            box-shadow: 0 0 14px rgba(197, 160, 89, 0.55);
+        }
+        .commercial-hero .hero-title {
+            margin: 0;
+            max-width: 900px;
+            text-align: left;
+            font-size: clamp(3.7rem, 7.3vw, 7.6rem);
+            font-style: normal;
+            font-weight: 400;
+            letter-spacing: -0.055em;
+            line-height: 0.91;
+            background: none;
+            -webkit-text-fill-color: currentColor;
+            animation: none;
+            color: #fff;
+        }
+        .commercial-hero .hero-title span {
+            display: block;
+            margin-top: 0.12em;
+            color: var(--gold);
+            font-style: italic;
+        }
+        .hero-description {
+            max-width: 720px;
+            margin: 35px 0 0;
+            color: rgba(255,255,255,0.76);
+            font-size: clamp(1rem, 1.4vw, 1.18rem);
+            line-height: 1.85;
+        }
+        .hero-actions, .final-actions {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 14px;
+            margin-top: 38px;
+        }
+        .primary-btn, .secondary-btn, .text-link {
+            min-height: 48px;
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            text-decoration: none;
+            text-transform: uppercase;
+            font-size: 0.69rem;
+            font-weight: 700;
+            letter-spacing: 3px;
+            transition: transform 0.3s ease, color 0.3s ease, background 0.3s ease, border-color 0.3s ease;
+        }
+        .primary-btn { padding: 15px 26px; border: 1px solid var(--gold); background: var(--gold); color: #090704; }
+        .secondary-btn { padding: 15px 26px; border: 1px solid rgba(255,255,255,0.28); color: #fff; background: rgba(0,0,0,0.18); }
+        .primary-btn:hover, .secondary-btn:hover { transform: translateY(-2px); }
+        .secondary-btn:hover { border-color: var(--gold); color: var(--gold); }
+        .hero-proof {
+            display: grid;
+            grid-template-columns: repeat(3, minmax(0, 1fr));
+            max-width: 760px;
+            margin-top: 48px;
+            padding-top: 25px;
+            border-top: 1px solid rgba(255,255,255,0.13);
+        }
+        .proof-item {
+            min-height: 45px;
+            padding: 0 22px;
+            border-left: 1px solid rgba(197,160,89,0.3);
+            color: rgba(255,255,255,0.72);
+            font-size: 0.7rem;
+            line-height: 1.5;
+            letter-spacing: 1.5px;
+            text-transform: uppercase;
+        }
+        .proof-item:first-child { padding-left: 0; border-left: 0; }
+        .hero-feature {
+            position: relative;
+            padding: clamp(35px, 4vw, 58px);
+            overflow: hidden;
+            background: linear-gradient(145deg, rgba(18,14,10,0.93), rgba(5,4,3,0.78));
+            border: 1px solid rgba(197,160,89,0.42);
+            box-shadow: 0 35px 80px rgba(0,0,0,0.34);
+        }
+        .hero-feature::before {
+            content: "";
+            position: absolute;
+            top: -75px;
+            right: -75px;
+            width: 180px;
+            height: 180px;
+            border: 1px solid rgba(197,160,89,0.22);
+            border-radius: 50%;
+            box-shadow: 0 0 70px rgba(197,160,89,0.08);
+        }
+        .feature-index { display: block; margin-bottom: 55px; color: rgba(197,160,89,0.8); font-size: 0.66rem; letter-spacing: 4px; text-transform: uppercase; }
+        .hero-feature h2 { position: relative; font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(2rem, 3.2vw, 3.15rem); font-weight: 400; line-height: 1.12; }
+        .hero-feature p { position: relative; margin: 22px 0 30px; color: rgba(255,255,255,0.66); font-size: 0.92rem; line-height: 1.75; }
+        .text-link { justify-content: flex-start; gap: 12px; min-height: 44px; color: var(--gold); }
+        .text-link::after { content: "→"; font-size: 1.1rem; transition: transform 0.3s ease; }
+        .text-link:hover::after { transform: translateX(5px); }
+
+        .journeys-section, .philosophy-section, .founder-section, .final-section {
+            width: min(1200px, 90%);
+            margin: 0 auto;
+        }
+        .journeys-section { padding: 120px 0 100px; scroll-margin-top: 120px; }
+        .section-heading { max-width: 850px; margin-bottom: 55px; }
+        .section-heading h2, .final-section h2 {
+            font-family: 'Playfair Display', serif;
+            color: #fff;
+            font-size: clamp(2.65rem, 5.5vw, 5.25rem);
+            font-weight: 400;
+            line-height: 1.02;
+            letter-spacing: -0.035em;
+        }
+        .section-heading > p:not(.section-kicker) {
+            max-width: 720px;
+            margin-top: 25px;
+            color: rgba(255,255,255,0.64);
+            line-height: 1.8;
+        }
+        .journey-grid { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+        .journey-card {
+            min-height: 390px;
+            padding: 38px 34px;
+            display: flex;
+            flex-direction: column;
+            background: rgba(9,7,5,0.78);
+            border: 1px solid rgba(255,255,255,0.1);
+            transition: transform 0.35s ease, border-color 0.35s ease, background 0.35s ease;
+        }
+        .journey-card:hover { transform: translateY(-6px); border-color: rgba(197,160,89,0.55); background: rgba(15,11,8,0.9); }
+        .journey-number { color: var(--gold); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; }
+        .journey-icon { margin: 55px 0 24px; color: var(--gold); font-size: 1.7rem; }
+        .journey-card h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 2rem; font-weight: 400; line-height: 1.15; }
+        .journey-card p { margin: 18px 0 30px; color: rgba(255,255,255,0.62); font-size: 0.9rem; line-height: 1.75; }
+        .journey-card .text-link { margin-top: auto; }
+
+        .philosophy-section { padding: 80px 0 130px; }
+        .philosophy-card {
+            position: relative;
+            padding: clamp(45px, 7vw, 90px);
+            text-align: center;
+            background: linear-gradient(135deg, rgba(94,25,20,0.45), rgba(12,9,6,0.88));
+            border: 1px solid rgba(197,160,89,0.28);
+        }
+        .philosophy-label { display: block; margin-bottom: 28px; color: var(--gold); font-size: 0.68rem; font-weight: 700; letter-spacing: 5px; text-transform: uppercase; }
+        .philosophy-card blockquote { max-width: 930px; margin: 0 auto; font-family: 'Playfair Display', serif; color: #fff; font-size: clamp(2rem, 4vw, 3.8rem); font-style: italic; line-height: 1.25; }
+
+        .founder-section { padding: 0 0 130px; }
+        .founder-section .about-hero { max-width: none; margin: 0; gap: clamp(45px, 8vw, 105px); }
+        .founder-section .about-image-wrapper { max-width: 480px; border-radius: 2px; animation: none; box-shadow: 24px 24px 0 rgba(94,25,20,0.28), 0 0 70px rgba(197,160,89,0.12); }
+        .founder-section .about-text-card { padding: clamp(35px, 5vw, 65px); background: rgba(7,5,4,0.88); border-left-color: var(--gold); }
+        .founder-section .about-text-card h2 { font-size: clamp(2.6rem, 4.5vw, 4.4rem); font-weight: 400; line-height: 1.05; }
+        .founder-section .signature { margin-top: 35px; }
+
+        .final-section { padding: 90px 0 120px; text-align: center; border-top: 1px solid rgba(197,160,89,0.25); }
+        .final-section .section-kicker { justify-content: center; }
+        .final-section .section-kicker::before { display: none; }
+        .final-section p { max-width: 690px; margin: 25px auto 0; color: rgba(255,255,255,0.66); line-height: 1.8; }
+        .final-actions { justify-content: center; }
+        footer { position: relative; }
+
+        @media (max-width: 1024px) {
+            .commercial-hero { min-height: auto; grid-template-columns: 1fr; padding: 70px 0 90px; }
+            .commercial-hero .hero-title { font-size: clamp(3.2rem, 12vw, 6rem); }
+            .hero-feature { max-width: 680px; }
+            .journey-grid { grid-template-columns: 1fr; }
+            .journey-card { min-height: 330px; }
+            .founder-section .about-text-card { text-align: left; border-top: 0; border-left: 2px solid var(--gold); }
+        }
+
+        @media (max-width: 640px) {
+            .marquee-section { padding: 11px 0; }
+            .commercial-hero { width: min(88%, 560px); padding: 55px 0 75px; gap: 55px; }
+            .section-kicker { align-items: flex-start; font-size: 0.6rem; letter-spacing: 2.5px; }
+            .section-kicker::before { width: 28px; margin-top: 7px; }
+            .commercial-hero .hero-title { font-size: clamp(3.15rem, 15vw, 4.7rem); line-height: 0.94; }
+            .hero-description { margin-top: 28px; font-size: 0.97rem; line-height: 1.75; }
+            .hero-actions, .final-actions { flex-direction: column; }
+            .primary-btn, .secondary-btn { width: 100%; min-height: 52px; padding: 15px 18px; letter-spacing: 2px; }
+            .hero-proof { grid-template-columns: 1fr; gap: 14px; margin-top: 38px; }
+            .proof-item, .proof-item:first-child { min-height: auto; padding: 0 0 0 16px; border-left: 1px solid rgba(197,160,89,0.38); }
+            .hero-feature { padding: 34px 28px; }
+            .feature-index { margin-bottom: 42px; }
+            .journeys-section { width: min(88%, 560px); padding: 90px 0 75px; }
+            .section-heading { margin-bottom: 38px; }
+            .section-heading h2, .final-section h2 { font-size: clamp(2.55rem, 12vw, 3.7rem); }
+            .journey-card { min-height: 340px; padding: 32px 26px; }
+            .journey-icon { margin-top: 45px; }
+            .philosophy-section, .founder-section, .final-section { width: min(88%, 560px); }
+            .philosophy-section { padding: 45px 0 90px; }
+            .philosophy-card { padding: 48px 24px; }
+            .founder-section { padding-bottom: 95px; }
+            .founder-section .about-image-wrapper { width: 88%; }
+            .founder-section .about-text-card { padding: 34px 24px; }
+            .final-section { padding: 70px 0 90px; }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
+        }
+    </style>
 </head>
 <body>
     <div id="particles-container"></div>
@@ -194,44 +430,103 @@
         </div>
     </div>
 
-    <main class="main-container">
-        <h1 class="hero-title">The Power Boutique</h1>
-        <p class="hero-sub" id="hero-sub">BY JELENA SHIPKO</p>
-        <div class="hero-btn-container">
-            <a href="#explore" class="aura-btn" id="hero-cta">Descoperă Universul</a>
-        </div>
+    <main class="landing-main">
+        <section class="commercial-hero" aria-labelledby="hero-title">
+            <div class="hero-copy">
+                <p class="section-kicker" id="commercial-hero-kicker">Bijuterii cu intenție • Ghidare personală • Resurse digitale</p>
+                <h1 class="hero-title" id="hero-title">
+                    <span id="commercial-hero-line-one" style="color:#fff; font-style:normal; margin-top:0;">Poartă-ți intenția.</span>
+                    <span id="commercial-hero-line-two">Activează-ți puterea.</span>
+                </h1>
+                <p class="hero-description" id="commercial-hero-description">Un univers creat pentru momentele în care vrei să alegi cu mai multă claritate, sens și prezență — prin brățări energetice, consultații 1:1 și resurse digitale.</p>
+                <div class="hero-actions">
+                    <a href="products.html" class="primary-btn" id="commercial-primary-cta">Explorează brățările</a>
+                    <a href="programari.html" class="secondary-btn" id="commercial-secondary-cta">Descoperă consultațiile</a>
+                </div>
+                <div class="hero-proof" aria-label="Serviciile disponibile">
+                    <span class="proof-item" id="commercial-proof-one">5 colecții de brățări</span>
+                    <span class="proof-item" id="commercial-proof-two">Personalizare la cerere</span>
+                    <span class="proof-item" id="commercial-proof-three">Consultații 1:1</span>
+                </div>
+            </div>
+
+            <aside class="hero-feature" aria-labelledby="feature-title">
+                <span class="feature-index" id="commercial-feature-label">Punct de pornire</span>
+                <h2 id="feature-title">Alege piesa care vorbește despre intenția ta.</h2>
+                <p id="commercial-feature-description">Explorează colecțiile pentru ea, pentru el, pentru cupluri, personalizate și Morse.</p>
+                <a href="products.html" class="text-link" id="commercial-feature-link">Vezi toate colecțiile</a>
+            </aside>
+        </section>
+
+        <section class="journeys-section" id="explore" aria-labelledby="journeys-title">
+            <div class="section-heading">
+                <p class="section-kicker" id="commercial-journeys-kicker">Descoperă The Power Boutique</p>
+                <h2 id="journeys-title">Un univers. Trei căi de a merge mai departe.</h2>
+                <p id="commercial-journeys-description">Începe cu ceea ce ai nevoie acum: un simbol de purtat, o conversație cu direcție sau o resursă pe care să o parcurgi în ritmul tău.</p>
+            </div>
+
+            <div class="journey-grid">
+                <article class="journey-card">
+                    <span class="journey-number" id="commercial-card-one-label">01 • Bijuterii</span>
+                    <i class="fas fa-gem journey-icon" aria-hidden="true"></i>
+                    <h3 id="commercial-card-one-title">Brățări energetice</h3>
+                    <p id="commercial-card-one-description">Colecții pentru ea, pentru el, pentru cupluri și modele personalizate, create în jurul unei intenții.</p>
+                    <a href="products.html" class="text-link" id="commercial-card-one-link">Explorează colecțiile</a>
+                </article>
+
+                <article class="journey-card">
+                    <span class="journey-number" id="commercial-card-two-label">02 • Ghidare</span>
+                    <i class="fas fa-compass journey-icon" aria-hidden="true"></i>
+                    <h3 id="commercial-card-two-title">Consultații 1:1</h3>
+                    <p id="commercial-card-two-description">Sesiuni dedicate momentelor în care ai nevoie de claritate, structură și o perspectivă personalizată.</p>
+                    <a href="programari.html" class="text-link" id="commercial-card-two-link">Vezi consultațiile</a>
+                </article>
+
+                <article class="journey-card">
+                    <span class="journey-number" id="commercial-card-three-label">03 • Resurse</span>
+                    <i class="fas fa-book-open journey-icon" aria-hidden="true"></i>
+                    <h3 id="commercial-card-three-title">Digital Shop</h3>
+                    <p id="commercial-card-three-description">Ghiduri și instrumente digitale pe care le poți accesa și integra în ritmul tău.</p>
+                    <a href="digital-shop.html" class="text-link" id="commercial-card-three-link">Descoperă resursele</a>
+                </article>
+            </div>
+        </section>
+
+        <section class="philosophy-section" aria-label="Filozofia brandului">
+            <div class="philosophy-card">
+                <span class="philosophy-label" id="commercial-philosophy-label">Filozofia noastră</span>
+                <blockquote id="commercial-philosophy-quote">Puterea nu vine dintr-un obiect. Obiectul îți poate aminti de puterea pe care ai ales deja să o activezi.</blockquote>
+            </div>
+        </section>
+
+        <section class="founder-section" aria-labelledby="about-title">
+            <div class="about-hero">
+                <div class="about-image-wrapper">
+                    <picture>
+                        <source srcset="assets/images/6.webp" type="image/webp">
+                        <img src="assets/images/6.jpg" alt="Jelena Shipko" width="1440" height="1800" loading="lazy" decoding="async">
+                    </picture>
+                </div>
+                <div class="about-text-card">
+                    <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
+                    <h2 id="about-title">Creat de Jelena Shipko</h2>
+                    <p id="about-desc">The Power Boutique aduce împreună estetica, simbolul și intenția într-o experiență personală — de la alegerea unei brățări până la o sesiune dedicată.</p>
+                    <a href="despre.html" class="secondary-btn" id="about-btn">Descoperă povestea</a>
+                    <div class="signature">Jelena Shipko</div>
+                </div>
+            </div>
+        </section>
+
+        <section class="final-section" aria-labelledby="final-title">
+            <p class="section-kicker" id="commercial-final-kicker">Începe de aici</p>
+            <h2 id="final-title">Ce alegere te reprezintă acum?</h2>
+            <p id="commercial-final-description">Explorează colecțiile sau scrie-ne dacă ai nevoie de ajutor pentru a găsi direcția potrivită.</p>
+            <div class="final-actions">
+                <a href="products.html" class="primary-btn" id="commercial-final-shop">Vezi colecțiile</a>
+                <a href="contact.html" class="secondary-btn" id="commercial-final-contact">Scrie-ne</a>
+            </div>
+        </section>
     </main>
-
-    <section class="content-container">
-        <div class="quick-links-container" id="explore">
-            <a href="products.html" class="glass-card">
-                <i class="fas fa-gem card-icon"></i>
-                <h3 class="card-title" id="card-title-shop">Shop</h3>
-                <span class="card-sub" id="card-sub-shop">Explorează Colecția</span>
-            </a>
-            <a href="programari.html" class="glass-card">
-                <i class="fas fa-calendar-alt card-icon"></i>
-                <h3 class="card-title" id="card-title-consult">Consultații</h3>
-                <span class="card-sub" id="card-sub-consult">Programează o Sesiune</span>
-            </a>
-        </div>
-
-        <div class="about-hero">
-            <div class="about-image-wrapper">
-                <picture>
-                    <source srcset="assets/images/6.webp" type="image/webp">
-                    <img src="assets/images/6.jpg" alt="Jelena Shipko" width="1440" height="1800" loading="lazy" decoding="async">
-                </picture>
-            </div>
-            <div class="about-text-card">
-                <span id="about-label" style="color:var(--gold); letter-spacing:8px; text-transform:uppercase; font-size:0.7rem; display:block; margin-bottom:15px; opacity:0.8;">Viziune & Creație</span>
-                <h2 id="about-title">Inima Din Spatele Puterii</h2>
-                <p id="about-desc">Fiecare pas este o oportunitate de a ne alinia cu frecvența succesului. Prin <strong>The Power Boutique</strong>, am creat o punte între dorință și energie.</p>
-                <a href="despre.html" class="aura-btn" id="about-btn">Află Povestea</a>
-                <div class="signature">Jelena Shipko</div>
-            </div>
-        </div>
-    </section>
 
     <footer>
         <div class="social-links">
@@ -251,6 +546,173 @@
             en: { home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", sub: "BY JELENA SHIPKO", label: "Vision & Creation", title: "The Heart Behind the Power", desc: "Every step is an opportunity to align with the frequency of success. Through <strong>The Power Boutique</strong>, we created a bridge between desire and energy.", btn: "Learn the Story", heroCta: "Discover the Universe", shopTitle: "Shop", shopSub: "Explore Collection", consultTitle: "Consultations", consultSub: "Schedule a Session" }
         };
 
+        const commercialTranslations = {
+            ro: {
+                "commercial-hero-kicker": "Bijuterii cu intenție • Ghidare personală • Resurse digitale",
+                "commercial-hero-line-one": "Poartă-ți intenția.",
+                "commercial-hero-line-two": "Activează-ți puterea.",
+                "commercial-hero-description": "Un univers creat pentru momentele în care vrei să alegi cu mai multă claritate, sens și prezență — prin brățări energetice, consultații 1:1 și resurse digitale.",
+                "commercial-primary-cta": "Explorează brățările",
+                "commercial-secondary-cta": "Descoperă consultațiile",
+                "commercial-proof-one": "5 colecții de brățări",
+                "commercial-proof-two": "Personalizare la cerere",
+                "commercial-proof-three": "Consultații 1:1",
+                "commercial-feature-label": "Punct de pornire",
+                "feature-title": "Alege piesa care vorbește despre intenția ta.",
+                "commercial-feature-description": "Explorează colecțiile pentru ea, pentru el, pentru cupluri, personalizate și Morse.",
+                "commercial-feature-link": "Vezi toate colecțiile",
+                "commercial-journeys-kicker": "Descoperă The Power Boutique",
+                "journeys-title": "Un univers. Trei căi de a merge mai departe.",
+                "commercial-journeys-description": "Începe cu ceea ce ai nevoie acum: un simbol de purtat, o conversație cu direcție sau o resursă pe care să o parcurgi în ritmul tău.",
+                "commercial-card-one-label": "01 • Bijuterii",
+                "commercial-card-one-title": "Brățări energetice",
+                "commercial-card-one-description": "Colecții pentru ea, pentru el, pentru cupluri și modele personalizate, create în jurul unei intenții.",
+                "commercial-card-one-link": "Explorează colecțiile",
+                "commercial-card-two-label": "02 • Ghidare",
+                "commercial-card-two-title": "Consultații 1:1",
+                "commercial-card-two-description": "Sesiuni dedicate momentelor în care ai nevoie de claritate, structură și o perspectivă personalizată.",
+                "commercial-card-two-link": "Vezi consultațiile",
+                "commercial-card-three-label": "03 • Resurse",
+                "commercial-card-three-title": "Digital Shop",
+                "commercial-card-three-description": "Ghiduri și instrumente digitale pe care le poți accesa și integra în ritmul tău.",
+                "commercial-card-three-link": "Descoperă resursele",
+                "commercial-philosophy-label": "Filozofia noastră",
+                "commercial-philosophy-quote": "Puterea nu vine dintr-un obiect. Obiectul îți poate aminti de puterea pe care ai ales deja să o activezi.",
+                "about-label": "Viziune & Creație",
+                "about-title": "Creat de Jelena Shipko",
+                "about-desc": "The Power Boutique aduce împreună estetica, simbolul și intenția într-o experiență personală — de la alegerea unei brățări până la o sesiune dedicată.",
+                "about-btn": "Descoperă povestea",
+                "commercial-final-kicker": "Începe de aici",
+                "final-title": "Ce alegere te reprezintă acum?",
+                "commercial-final-description": "Explorează colecțiile sau scrie-ne dacă ai nevoie de ajutor pentru a găsi direcția potrivită.",
+                "commercial-final-shop": "Vezi colecțiile",
+                "commercial-final-contact": "Scrie-ne"
+            },
+            en: {
+                "commercial-hero-kicker": "Intentional jewellery • Personal guidance • Digital resources",
+                "commercial-hero-line-one": "Wear your intention.",
+                "commercial-hero-line-two": "Activate your power.",
+                "commercial-hero-description": "A universe created for the moments when you want to choose with more clarity, meaning and presence — through energy bracelets, 1:1 consultations and digital resources.",
+                "commercial-primary-cta": "Explore the bracelets",
+                "commercial-secondary-cta": "Discover consultations",
+                "commercial-proof-one": "5 bracelet collections",
+                "commercial-proof-two": "Customisation on request",
+                "commercial-proof-three": "1:1 consultations",
+                "commercial-feature-label": "Starting point",
+                "feature-title": "Choose the piece that speaks to your intention.",
+                "commercial-feature-description": "Explore collections for her, for him, for couples, personalised pieces and Morse bracelets.",
+                "commercial-feature-link": "View all collections",
+                "commercial-journeys-kicker": "Discover The Power Boutique",
+                "journeys-title": "One universe. Three ways to move forward.",
+                "commercial-journeys-description": "Begin with what you need now: a symbol to wear, a focused conversation or a resource to explore at your own pace.",
+                "commercial-card-one-label": "01 • Jewellery",
+                "commercial-card-one-title": "Energy bracelets",
+                "commercial-card-one-description": "Collections for her, for him, for couples and personalised pieces, each created around an intention.",
+                "commercial-card-one-link": "Explore collections",
+                "commercial-card-two-label": "02 • Guidance",
+                "commercial-card-two-title": "1:1 consultations",
+                "commercial-card-two-description": "Sessions for the moments when you need clarity, structure and a personalised perspective.",
+                "commercial-card-two-link": "View consultations",
+                "commercial-card-three-label": "03 • Resources",
+                "commercial-card-three-title": "Digital Shop",
+                "commercial-card-three-description": "Digital guides and tools you can access and integrate at your own pace.",
+                "commercial-card-three-link": "Discover resources",
+                "commercial-philosophy-label": "Our philosophy",
+                "commercial-philosophy-quote": "Power does not come from an object. An object can remind you of the power you have already chosen to activate.",
+                "about-label": "Vision & Creation",
+                "about-title": "Created by Jelena Shipko",
+                "about-desc": "The Power Boutique brings aesthetics, symbolism and intention together in a personal experience — from choosing a bracelet to a dedicated session.",
+                "about-btn": "Discover the story",
+                "commercial-final-kicker": "Start here",
+                "final-title": "Which choice represents you now?",
+                "commercial-final-description": "Explore the collections or write to us if you would like help finding the right direction.",
+                "commercial-final-shop": "View collections",
+                "commercial-final-contact": "Write to us"
+            },
+            ru: {
+                "commercial-hero-kicker": "Украшения с намерением • Персональное сопровождение • Цифровые ресурсы",
+                "commercial-hero-line-one": "Носи своё намерение.",
+                "commercial-hero-line-two": "Активируй свою силу.",
+                "commercial-hero-description": "Пространство для моментов, когда хочется выбирать с большей ясностью, смыслом и осознанностью — через энергетические браслеты, консультации 1:1 и цифровые ресурсы.",
+                "commercial-primary-cta": "Смотреть браслеты",
+                "commercial-secondary-cta": "Открыть консультации",
+                "commercial-proof-one": "5 коллекций браслетов",
+                "commercial-proof-two": "Персонализация на заказ",
+                "commercial-proof-three": "Консультации 1:1",
+                "commercial-feature-label": "Точка старта",
+                "feature-title": "Выбери украшение, которое говорит о твоём намерении.",
+                "commercial-feature-description": "Познакомься с коллекциями для неё, для него, для пар, персонализированными моделями и браслетами Морзе.",
+                "commercial-feature-link": "Все коллекции",
+                "commercial-journeys-kicker": "Открой The Power Boutique",
+                "journeys-title": "Один мир. Три пути двигаться дальше.",
+                "commercial-journeys-description": "Начни с того, что нужно сейчас: символа, который можно носить, направляющего разговора или ресурса для работы в своём ритме.",
+                "commercial-card-one-label": "01 • Украшения",
+                "commercial-card-one-title": "Энергетические браслеты",
+                "commercial-card-one-description": "Коллекции для неё, для него, для пар и персонализированные модели, созданные вокруг определённого намерения.",
+                "commercial-card-one-link": "Смотреть коллекции",
+                "commercial-card-two-label": "02 • Сопровождение",
+                "commercial-card-two-title": "Консультации 1:1",
+                "commercial-card-two-description": "Сессии для моментов, когда нужны ясность, структура и персональный взгляд.",
+                "commercial-card-two-link": "Смотреть консультации",
+                "commercial-card-three-label": "03 • Ресурсы",
+                "commercial-card-three-title": "Digital Shop",
+                "commercial-card-three-description": "Цифровые руководства и инструменты, которые можно изучать и применять в своём ритме.",
+                "commercial-card-three-link": "Открыть ресурсы",
+                "commercial-philosophy-label": "Наша философия",
+                "commercial-philosophy-quote": "Сила не приходит из предмета. Предмет может напомнить о силе, которую ты уже выбираешь раскрывать.",
+                "about-label": "Видение и творчество",
+                "about-title": "Создано Еленой Шипко",
+                "about-desc": "The Power Boutique объединяет эстетику, символ и намерение в личном опыте — от выбора браслета до индивидуальной сессии.",
+                "about-btn": "Узнать историю",
+                "commercial-final-kicker": "Начни здесь",
+                "final-title": "Какой выбор отражает тебя сейчас?",
+                "commercial-final-description": "Изучи коллекции или напиши нам, если нужна помощь в выборе подходящего направления.",
+                "commercial-final-shop": "Смотреть коллекции",
+                "commercial-final-contact": "Написать нам"
+            },
+            lv: {
+                "commercial-hero-kicker": "Rotas ar nodomu • Personīgs atbalsts • Digitālie resursi",
+                "commercial-hero-line-one": "Nēsā savu nodomu.",
+                "commercial-hero-line-two": "Aktivizē savu spēku.",
+                "commercial-hero-description": "Vide brīžiem, kad vēlies izvēlēties ar lielāku skaidrību, jēgu un klātbūtni — ar enerģētiskām aprocēm, 1:1 konsultācijām un digitāliem resursiem.",
+                "commercial-primary-cta": "Apskatīt aproces",
+                "commercial-secondary-cta": "Atklāt konsultācijas",
+                "commercial-proof-one": "5 aproču kolekcijas",
+                "commercial-proof-two": "Personalizācija pēc pieprasījuma",
+                "commercial-proof-three": "1:1 konsultācijas",
+                "commercial-feature-label": "Sākumpunkts",
+                "feature-title": "Izvēlies rotu, kas stāsta par tavu nodomu.",
+                "commercial-feature-description": "Izpēti kolekcijas viņai, viņam, pāriem, personalizētos modeļus un Morzes aproces.",
+                "commercial-feature-link": "Skatīt visas kolekcijas",
+                "commercial-journeys-kicker": "Atklāj The Power Boutique",
+                "journeys-title": "Viena pasaule. Trīs ceļi, kā doties tālāk.",
+                "commercial-journeys-description": "Sāc ar to, kas šobrīd nepieciešams: simbolu, ko nēsāt, mērķtiecīgu sarunu vai resursu, ko apgūt savā ritmā.",
+                "commercial-card-one-label": "01 • Rotas",
+                "commercial-card-one-title": "Enerģētiskās aproces",
+                "commercial-card-one-description": "Kolekcijas viņai, viņam, pāriem un personalizēti modeļi, kas veidoti ap konkrētu nodomu.",
+                "commercial-card-one-link": "Izpētīt kolekcijas",
+                "commercial-card-two-label": "02 • Atbalsts",
+                "commercial-card-two-title": "1:1 konsultācijas",
+                "commercial-card-two-description": "Sesijas brīžiem, kad nepieciešama skaidrība, struktūra un personīgs skatījums.",
+                "commercial-card-two-link": "Skatīt konsultācijas",
+                "commercial-card-three-label": "03 • Resursi",
+                "commercial-card-three-title": "Digital Shop",
+                "commercial-card-three-description": "Digitāli ceļveži un rīki, kurus vari izmantot un integrēt savā ritmā.",
+                "commercial-card-three-link": "Atklāt resursus",
+                "commercial-philosophy-label": "Mūsu filozofija",
+                "commercial-philosophy-quote": "Spēks nerodas no priekšmeta. Priekšmets var atgādināt par spēku, kas jau ir tevī.",
+                "about-label": "Vīzija un radīšana",
+                "about-title": "Radījusi Jelena Shipko",
+                "about-desc": "The Power Boutique apvieno estētiku, simbolus un nodomu personīgā pieredzē — no aproces izvēles līdz individuālai sesijai.",
+                "about-btn": "Atklāt stāstu",
+                "commercial-final-kicker": "Sāc šeit",
+                "final-title": "Kura izvēle tevi raksturo šobrīd?",
+                "commercial-final-description": "Izpēti kolekcijas vai uzraksti mums, ja nepieciešama palīdzība piemērotā virziena atrašanā.",
+                "commercial-final-shop": "Skatīt kolekcijas",
+                "commercial-final-contact": "Uzrakstīt mums"
+            }
+        };
+
         function changeLang(code, label, flag) {
             document.getElementById('active-flag').src = flag;
             document.getElementById('active-lang').innerText = label;
@@ -263,7 +725,25 @@
             setTxt('nav-bracelets', t.bracelets); setTxt('nav-digital', t.digital); setTxt('nav-about', t.about); setTxt('nav-contact', t.contact);
             setTxt('hero-sub', t.sub); setTxt('hero-cta', t.heroCta); setTxt('card-title-shop', t.shopTitle); setTxt('card-sub-shop', t.shopSub);
             setTxt('card-title-consult', t.consultTitle); setTxt('card-sub-consult', t.consultSub); setTxt('about-label', t.label); setTxt('about-title', t.title); setHtml('about-desc', t.desc); setTxt('about-btn', t.btn);
+            const commercialCopy = commercialTranslations[code] || commercialTranslations.ro;
+            Object.entries(commercialCopy).forEach(([id, text]) => setTxt(id, text));
+            document.documentElement.lang = code;
+            try { localStorage.setItem('powerBoutiqueLanguage', code); } catch (error) { /* Storage is optional. */ }
         }
+
+        const languageOptions = {
+            ro: { label: 'RO', flag: 'https://flagcdn.com/w20/ro.png' },
+            ru: { label: 'RU', flag: 'https://flagcdn.com/w20/ru.png' },
+            lv: { label: 'LV', flag: 'https://flagcdn.com/w20/lv.png' },
+            en: { label: 'EN', flag: 'https://flagcdn.com/w20/gb.png' }
+        };
+        try {
+            const savedLanguage = localStorage.getItem('powerBoutiqueLanguage');
+            if (savedLanguage && languageOptions[savedLanguage]) {
+                const savedOption = languageOptions[savedLanguage];
+                changeLang(savedLanguage, savedOption.label, savedOption.flag);
+            }
+        } catch (error) { /* Romanian remains the default. */ }
 
         const particleContainer = document.getElementById('particles-container');
         let particles = []; let mouse = { x: null, y: null, radius: 150 };
@@ -285,9 +765,7 @@
                 this.element.style.transform = `translate3d(${this.x}px, ${this.y}px, 0)`;
             }
         }
-        function shouldAnimateParticles() {
-            return window.innerWidth > 1024 && !window.matchMedia('(prefers-reduced-motion: reduce)').matches;
-        }
+        function shouldAnimateParticles() { return false; }
         function initParticles() {
             particles = []; particleContainer.innerHTML = '';
             if (!shouldAnimateParticles()) return;
