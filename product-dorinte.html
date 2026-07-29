@@ -1,0 +1,125 @@
+<!DOCTYPE html>
+<html lang="ro">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="robots" content="noindex, nofollow">
+    <meta name="description" content="Descoperă brățara Realizarea Dorințelor din colecția Pentru Ea a The Power Boutique.">
+    <title>Realizarea Dorințelor | The Power Boutique</title>
+
+    <link rel="icon" type="image/png" href="assets/images/favicon.png">
+    <link rel="preload" as="image" href="assets/images/video-posters/wish-realization.webp" type="image/webp" fetchpriority="high">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preconnect" href="https://cdn.snipcart.com">
+    <link rel="preconnect" href="https://app.snipcart.com">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link rel="stylesheet" href="assets/css/product-detail.css">
+</head>
+<body data-product="dorinte">
+    <div class="fixed-bg" aria-hidden="true"></div>
+    <div class="cursor-dot" id="cursor-dot" aria-hidden="true"></div>
+
+    <header class="site-header">
+        <div class="header-inner">
+            <button type="button" class="menu-toggle" id="menu-button" aria-label="Deschide meniul" aria-expanded="false" aria-controls="site-navigation">
+                <i class="fas fa-bars" aria-hidden="true"></i>
+            </button>
+            <a href="proiect.html" class="logo-header">The Power Boutique</a>
+
+            <nav class="desktop-nav" id="site-navigation" aria-label="Navigare principală">
+                <a href="proiect.html" class="nav-link" id="nav-home">Acasă</a>
+                <a href="programari.html" class="nav-link" id="nav-consultations">Consultații</a>
+                <a href="products.html" class="nav-link" id="nav-shop">Shop</a>
+                <a href="despre.html" class="nav-link" id="nav-about">Despre</a>
+                <a href="contact.html" class="nav-link" id="nav-contact">Contact</a>
+            </nav>
+
+            <div class="header-controls">
+                <button type="button" class="cart-icon-btn snipcart-checkout" aria-label="Vezi coșul">
+                    <i class="fas fa-shopping-bag" aria-hidden="true"></i>
+                    <span class="snipcart-items-count">0</span>
+                </button>
+                <div class="lang-dropdown">
+                    <button type="button" class="lang-current" id="language-button" aria-label="Schimbă limba" aria-expanded="false" aria-controls="lang-list">
+                        <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="RO">
+                        <span class="active-label" id="active-lang">RO</span>
+                        <i class="fas fa-chevron-down" aria-hidden="true"></i>
+                    </button>
+                    <div class="lang-list" id="lang-list">
+                        <button type="button" class="lang-item" data-lang="ro"><img src="https://flagcdn.com/w20/ro.png" class="flag-img" alt=""> RO</button>
+                        <button type="button" class="lang-item" data-lang="en"><img src="https://flagcdn.com/w20/gb.png" class="flag-img" alt=""> EN</button>
+                        <button type="button" class="lang-item" data-lang="ru"><img src="https://flagcdn.com/w20/ru.png" class="flag-img" alt=""> RU</button>
+                        <button type="button" class="lang-item" data-lang="lv"><img src="https://flagcdn.com/w20/lv.png" class="flag-img" alt=""> LV</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <main class="product-main">
+        <a href="shop-ea.html" class="breadcrumb"><i class="fas fa-arrow-left" aria-hidden="true"></i><span id="back-label">Înapoi la colecția Pentru Ea</span></a>
+
+        <div class="product-layout">
+            <section class="product-visual" aria-label="Prezentare video produs">
+                <video id="product-video" controls playsinline preload="metadata" poster="assets/images/video-posters/wish-realization.webp"></video>
+                <span class="visual-note"><i class="fas fa-play" aria-hidden="true"></i><span id="video-hint">Pornește clipul</span></span>
+            </section>
+
+            <section class="product-info">
+                <span class="collection-label" id="collection-label">Colecția Pentru Ea</span>
+                <h1 class="product-title" id="product-title">Realizarea Dorințelor</h1>
+                <p class="product-tagline" id="product-tagline"></p>
+                <p class="product-price" id="product-price">113 €</p>
+                <p class="product-description" id="product-description"></p>
+
+                <div class="facts">
+                    <div class="fact"><span class="fact-label" id="type-label">Tip</span><span class="fact-value" id="type-value"></span></div>
+                    <div class="fact"><span class="fact-label" id="intention-label">Intenție</span><span class="fact-value" id="intention-value"></span></div>
+                    <div class="fact"><span class="fact-label" id="availability-label">Disponibilitate</span><span class="fact-value" id="availability-value"></span></div>
+                    <div class="fact"><span class="fact-label" id="delivery-label">Livrare</span><span class="fact-value" id="delivery-value"></span></div>
+                </div>
+
+                <p class="spec-notice" id="spec-notice"></p>
+
+                <div class="product-actions">
+                    <button type="button" class="primary-action snipcart-add-item" id="add-to-cart">
+                        <span id="add-label">Adaugă în coș</span>
+                    </button>
+                    <a href="https://wa.me/40730685087" class="secondary-action" id="whatsapp-link" target="_blank" rel="noopener">
+                        <span id="ask-label">Întreabă pe WhatsApp</span>
+                    </a>
+                </div>
+            </section>
+        </div>
+
+        <section class="trust-strip" aria-label="Informații despre comandă">
+            <div class="trust-item"><i class="fas fa-shield-halved" aria-hidden="true"></i><div><strong id="secure-title"></strong><span id="secure-text"></span></div></div>
+            <div class="trust-item"><i class="fas fa-earth-europe" aria-hidden="true"></i><div><strong id="shipping-title"></strong><span id="shipping-text"></span></div></div>
+            <div class="trust-item"><i class="fas fa-comments" aria-hidden="true"></i><div><strong id="support-title"></strong><span id="support-text"></span></div></div>
+        </section>
+
+        <section class="details-grid">
+            <article class="detail-card"><h2 id="about-title"></h2><p id="about-text"></p></article>
+            <article class="detail-card"><h2 id="role-title"></h2><p id="role-text"></p></article>
+        </section>
+    </main>
+
+    <footer class="site-footer">
+        <div class="footer-inner">
+            <div class="social-links">
+                <a href="https://www.instagram.com" target="_blank" rel="noopener" aria-label="Instagram"><i class="fab fa-instagram" aria-hidden="true"></i></a>
+                <a href="https://www.tiktok.com" target="_blank" rel="noopener" aria-label="TikTok"><i class="fab fa-tiktok" aria-hidden="true"></i></a>
+                <a href="https://t.me/elena_shipko" target="_blank" rel="noopener" aria-label="Telegram"><i class="fab fa-telegram-plane" aria-hidden="true"></i></a>
+                <a href="https://wa.me/40730685087" target="_blank" rel="noopener" aria-label="WhatsApp"><i class="fab fa-whatsapp" aria-hidden="true"></i></a>
+            </div>
+            <p class="footer-copy" id="footer-copy">© 2026 ENERGETICA · JELENA SHIPKO</p>
+        </div>
+    </footer>
+
+    <div hidden id="snipcart"></div>
+    <script src="assets/js/product-detail.js"></script>
+    <script src="assets/js/snipcart-loader.js"></script>
+</body>
+</html>

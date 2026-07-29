@@ -107,6 +107,7 @@
             .product-card:hover .product-media video { transform: scale(1.1); }
             .product-card:hover .product-media::after { opacity: 1; }
             .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
+            .details-link:hover { border-color: var(--gold); color: var(--gold); }
         }
 
         /* MARQUEE */
@@ -130,7 +131,9 @@
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
+        .product-actions { display: grid; gap: 10px; width: 100%; }
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; width: 100%; display: inline-block; cursor: pointer !important; }
+        .details-link { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; border: 1px solid rgba(197, 160, 89, 0.35); color: var(--white); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; text-decoration: none; text-transform: uppercase; transition: 0.4s; }
 
         /* LIGHTBOX */
         .lux-modal { position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: rgba(0,0,0,0.98); z-index: 5000; display: none; align-items: center; justify-content: center; opacity: 0; transition: opacity 0.5s ease; }
@@ -291,37 +294,37 @@
         const translations = {
             'ro': { 
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", 
+                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", details: "Vezi Detalii",
                 items: [
-                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
+                    { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'en': { 
                 home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", 
+                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", details: "View Details",
                 items: [
-                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
+                    { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'ru': { 
                 home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", 
+                title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", details: "Подробнее",
                 items: [
-                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
+                    { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
             'lv': { 
                 home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", 
+                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", details: "Skatīt Detaļas",
                 items: [
-                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", isCart: true }, 
-                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", isCart: true }, 
+                    { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
+                    { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             }
@@ -330,7 +333,10 @@
         function renderProducts(langData) {
             const grid = document.getElementById('p-grid');
             grid.innerHTML = langData.items.map(i => {
-                const actionButton = i.isCart 
+                const detailsLink = i.detail
+                    ? `<a href="${i.detail}" class="details-link">${langData.details}</a>`
+                    : '';
+                const actionButton = i.isCart
                     ? `<button class="order-btn snipcart-add-item" 
                         data-item-id="${i.id}"
                         data-item-price="${i.pVal}"
@@ -348,7 +354,10 @@
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.pDisplay}</div>
-                    ${actionButton}
+                    <div class="product-actions">
+                        ${detailsLink}
+                        ${actionButton}
+                    </div>
                 </div>
             `}).join('');
             videoPerformance.init();
