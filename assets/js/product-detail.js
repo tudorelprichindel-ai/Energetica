@@ -231,6 +231,7 @@
     };
 
     const byId = id => document.getElementById(id);
+    const languageStorageKey = 'tpb-language';
     const setText = (id, value) => {
         const element = byId(id);
         if (element) element.textContent = value;
@@ -300,6 +301,12 @@
 
         const message = `${languageUi.message} „${productText.name}”.`;
         byId('whatsapp-link').href = `https://wa.me/40730685087?text=${encodeURIComponent(message)}`;
+
+        try {
+            window.localStorage.setItem(languageStorageKey, language);
+        } catch {
+            // The page remains functional when browser storage is unavailable.
+        }
     }
 
     const video = byId('product-video');
@@ -355,5 +362,12 @@
         });
     }
 
-    changeLanguage('ro');
+    let initialLanguage = 'ro';
+    try {
+        const savedLanguage = window.localStorage.getItem(languageStorageKey);
+        if (savedLanguage && ui[savedLanguage]) initialLanguage = savedLanguage;
+    } catch {
+        initialLanguage = 'ro';
+    }
+    changeLanguage(initialLanguage);
 })();

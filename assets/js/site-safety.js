@@ -60,4 +60,38 @@
             link.rel = [...relations].join(' ');
         }
     });
+
+    const languageStorageKey = 'tpb-language';
+    const languages = {
+        ro: ['RO', 'https://flagcdn.com/w20/ro.png'],
+        en: ['EN', 'https://flagcdn.com/w20/gb.png'],
+        ru: ['RU', 'https://flagcdn.com/w20/ru.png'],
+        lv: ['LV', 'https://flagcdn.com/w20/lv.png']
+    };
+
+    if (typeof window.changeLang === 'function') {
+        const pageChangeLanguage = window.changeLang;
+        window.changeLang = (code, label, flag) => {
+            pageChangeLanguage(code, label, flag);
+            if (languages[code]) {
+                try {
+                    window.localStorage.setItem(languageStorageKey, code);
+                } catch {
+                    // The site remains functional when browser storage is unavailable.
+                }
+            }
+        };
+
+        let savedLanguage = '';
+        try {
+            savedLanguage = window.localStorage.getItem(languageStorageKey) || '';
+        } catch {
+            savedLanguage = '';
+        }
+
+        if (languages[savedLanguage]) {
+            const [label, flag] = languages[savedLanguage];
+            pageChangeLanguage(savedLanguage, label, flag);
+        }
+    }
 })();

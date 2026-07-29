@@ -115,6 +115,8 @@
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; width: 100%; display: inline-block; }
         .order-btn:hover { background: var(--gold); color: #000; box-shadow: 0 0 15px var(--gold); }
+        .order-btn.is-disabled { border-color: rgba(197, 160, 89, 0.25); color: rgba(255, 255, 255, 0.5); cursor: not-allowed !important; }
+        .order-btn.is-disabled:hover { background: transparent; color: rgba(255, 255, 255, 0.5); box-shadow: none; }
 
         /* FOOTER */
         footer { position: fixed; bottom: 0; left: 0; width: 100%; height: 80px; z-index: 2000; border-top: 1px solid var(--burgundy); display: flex; flex-direction: column; align-items: center; justify-content: center; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); }
@@ -204,7 +206,7 @@
 
     <main>
         <h1 class="section-title" id="page-title">Digital Shop</h1>
-        <p class="section-subtitle" id="page-subtitle">Ghiduri și resurse pentru expansiunea conștiinței tale, accesibile instant.</p>
+        <p class="section-subtitle" id="page-subtitle">Aplicația și ghidul Tarot sunt disponibile; celelalte resurse sunt în pregătire.</p>
         <div class="product-grid" id="p-grid"></div>
     </main>
 
@@ -219,19 +221,12 @@
     </footer>
 
     <script>
-        // --- ORDER LOGIC ---
-        function orderDigital(name) {
-            const phoneNumber = "40730685087";
-            const message = `Buna Elena! Doresc sa achizitionez produsul digital: ${name}. Te rog sa imi trimiti detaliile pentru plata si acces.`;
-            window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
-        }
-
         // --- TRANSLATION & DATA CONFIG ---
         const translations = {
             'ro': {
                 home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact",
-                title: "Digital Shop", subtitle: "Ghiduri și resurse pentru expansiunea conștiinței tale.",
-                order: "Obține Acces",
+                title: "Digital Shop", subtitle: "Aplicația și ghidul Tarot sunt disponibile; celelalte resurse sunt în pregătire.",
+                soon: "În pregătire",
                 items: [
                     { id: "tarot", n: "The Power Tarot (EN)", p: "GRATUIT", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Deschide aplicația", desc: "Aplicație gratuită pentru cartea zilei, lecturi intuitive, respirație și jurnal personal. Disponibilă în engleză." },
                     { id: "tarot-guide", n: "The Power Tarot Guidebook (EN)", p: "ACCES LIBER", image: "assets/guides/the-power-tarot-guidebook-cover.webp", href: "tarot-guide.html", cta: "Deschide ghidul", desc: "Ghid extins pentru interpretarea cărților, întrebări mai bune, ritualuri zilnice, lecturi și jurnal personal." },
@@ -242,8 +237,8 @@
             },
             'en': {
                 home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact",
-                title: "Digital Shop", subtitle: "Guides and resources for the expansion of your consciousness.",
-                order: "Get Access",
+                title: "Digital Shop", subtitle: "The Tarot app and guide are available; the other resources are in preparation.",
+                soon: "Coming soon",
                 items: [
                     { id: "tarot", n: "The Power Tarot", p: "FREE", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Open the app", desc: "A free experience for a daily card, intuitive readings, breathwork and a private personal journal." },
                     { id: "tarot-guide", n: "The Power Tarot Guidebook", p: "OPEN ACCESS", image: "assets/guides/the-power-tarot-guidebook-cover.webp", href: "tarot-guide.html", cta: "Open the guide", desc: "An expanded guide to card interpretation, better questions, daily rituals, readings and personal journaling." },
@@ -254,8 +249,8 @@
             },
             'ru': {
                 home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт",
-                title: "Цифровой магазин", subtitle: "Руководства и ресурсы для расширения вашего сознания.",
-                order: "Получить доступ",
+                title: "Цифровой магазин", subtitle: "Приложение и руководство Tarot доступны; остальные материалы готовятся.",
+                soon: "Готовится",
                 items: [
                     { id: "tarot", n: "The Power Tarot (EN)", p: "БЕСПЛАТНО", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Открыть приложение", desc: "Бесплатное приложение для карты дня, интуитивных раскладов, дыхательных практик и личного дневника. На английском языке." },
                     { id: "tarot-guide", n: "The Power Tarot Guidebook (EN)", p: "ОТКРЫТЫЙ ДОСТУП", image: "assets/guides/the-power-tarot-guidebook-cover.webp", href: "tarot-guide.html", cta: "Открыть руководство", desc: "Расширенное руководство по толкованию карт, вопросам, ежедневным ритуалам, раскладам и личному дневнику." },
@@ -266,8 +261,8 @@
             },
             'lv': {
                 home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti",
-                title: "Digitālais veikals", subtitle: "Ceļveži un resursi jūsu apziņas paplašināšanai.",
-                order: "Iegūt piekļuvi",
+                title: "Digitālais veikals", subtitle: "Tarot lietotne un ceļvedis ir pieejami; pārējie resursi tiek gatavoti.",
+                soon: "Sagatavošanā",
                 items: [
                     { id: "tarot", n: "The Power Tarot (EN)", p: "BEZ MAKSAS", image: "assets/tarot/cards/CardBacks.webp", href: "tarot/", cta: "Atvērt lietotni", desc: "Bezmaksas lietotne dienas kārtij, intuitīviem lasījumiem, elpošanas praksei un personīgajai dienasgrāmatai. Angļu valodā." },
                     { id: "tarot-guide", n: "The Power Tarot Guidebook (EN)", p: "BRĪVA PIEKĻUVE", image: "assets/guides/the-power-tarot-guidebook-cover.webp", href: "tarot-guide.html", cta: "Atvērt ceļvedi", desc: "Paplašināts ceļvedis kāršu interpretācijai, labākiem jautājumiem, ikdienas rituāliem, lasījumiem un personīgajai dienasgrāmatai." },
@@ -286,7 +281,7 @@
                     : `<i class="${i.icon}" aria-hidden="true"></i>`;
                 const action = i.href
                     ? `<a href="${i.href}" class="order-btn" id="btn-${i.id}">${i.cta}</a>`
-                    : `<button type="button" onclick="orderDigital('${i.n.replace(/'/g, "\\'")}')" class="order-btn" id="btn-${i.id}">${langData.order}</button>`;
+                    : `<span class="order-btn is-disabled" id="btn-${i.id}" aria-disabled="true">${langData.soon}</span>`;
 
                 return `
                     <div class="product-card" id="product-${i.id}">

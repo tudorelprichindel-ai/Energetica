@@ -20,7 +20,7 @@ The Tarot application targets modern browsers and uses optimized WebP card artwo
 
 ## Video strategy
 
-Product previews load metadata up front but play only one visible clip at a time. Opening a video pauses background previews, and closing it releases the modal source before resuming the most visible preview.
+Product previews display lightweight WebP posters and load only the active video. Opening a video pauses background previews, and closing it releases the modal source before resuming the most visible preview.
 
 ## Local preview
 
@@ -28,7 +28,9 @@ Serve the repository root with any static HTTP server. Opening pages through a s
 
 ## Known legacy gaps
 
-`academia.html` and `mentoring.html` reference `cristale.jpg`, which is not present. `success-download.html` links to a missing `ghid-frecventa.pdf`. These pre-existing gaps are intentionally documented rather than filled with guessed assets.
+`academia.html` and `mentoring.html` reference `cristale.jpg`, which is not present. These inactive legacy pages are intentionally documented rather than filled with guessed assets.
+
+Paid digital resources remain visibly marked as being in preparation. `success-download.html` is a non-transactional placeholder until real files and a protected delivery flow are configured.
 
 ## Deployment note
 
