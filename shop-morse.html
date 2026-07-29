@@ -320,7 +320,7 @@
             grid.innerHTML = langData.items.map(i => `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" muted loop playsinline preload="metadata"></video>
+                        <video data-src="${i.v}" muted loop playsinline preload="none"></video>
                     </div>
                     <h3 id="name-${i.id}">${i.n}</h3>
                     <p id="desc-${i.id}">${i.desc}</p>

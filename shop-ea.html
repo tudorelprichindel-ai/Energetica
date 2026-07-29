@@ -344,7 +344,7 @@
                 return `
                 <div class="product-card">
                     <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video src="${i.v}" muted loop playsinline preload="metadata"></video>
+                        <video data-src="${i.v}" muted loop playsinline preload="none"></video>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
                     <div class="product-price">${i.pDisplay}</div>
