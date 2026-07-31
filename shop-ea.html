@@ -131,19 +131,33 @@
         /* --- SHOP SPECIFIC STYLES - IZOLATE PENTRU SNIPCART --- */
         body > main { flex: 1; padding: 60px 5% 100px; max-width: 1600px; margin: 0 auto; width: 100%; text-align: center; }
         .section-title { font-family: 'Playfair Display', serif; font-size: clamp(2.5rem, 6vw, 4.5rem); font-style: italic; margin-bottom: 20px; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
+        .catalog-intro { max-width: 980px; margin: 0 auto 55px; padding: 28px clamp(20px, 4vw, 48px); border: 1px solid rgba(197,160,89,0.22); background: linear-gradient(135deg, rgba(197,160,89,0.09), rgba(0,0,0,0.5)); backdrop-filter: blur(14px); }
+        .catalog-intro-kicker { margin: 0 0 12px; color: var(--gold); font-size: 0.62rem; font-weight: 700; letter-spacing: 4px; text-transform: uppercase; }
+        .catalog-intro-copy { max-width: 820px; margin: 0 auto; color: rgba(255,255,255,0.82); font-size: 0.9rem; line-height: 1.8; }
+        .catalog-intro-points { display: flex; flex-wrap: wrap; justify-content: center; gap: 10px; margin-top: 20px; }
+        .catalog-intro-points span { padding: 8px 13px; border: 1px solid rgba(197,160,89,0.28); color: rgba(255,255,255,0.74); font-size: 0.58rem; font-weight: 600; letter-spacing: 1.5px; text-transform: uppercase; }
 
         .product-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 50px; justify-items: center; }
         .product-card { background: rgba(255, 255, 255, 0.02); backdrop-filter: blur(15px); border: 1px solid rgba(197, 160, 89, 0.1); padding: 40px; display: flex; flex-direction: column; align-items: center; transition: var(--transition); position: relative; width: 100%; max-width: 400px; border-radius: 4px; }
         
         .product-media { width: 100%; aspect-ratio: 1/1; overflow: hidden; margin-bottom: 30px; border: 1px solid rgba(255,255,255,0.05); cursor: pointer; position: relative; display: flex; align-items: center; justify-content: center; background: #000; }
         .product-media video { width: 100%; height: 100%; object-fit: contain; transition: transform 1s ease; pointer-events: none; }
+        .media-badge { position: absolute; right: 10px; bottom: 10px; z-index: 2; padding: 6px 9px; border: 1px solid rgba(197,160,89,0.5); background: rgba(0,0,0,0.72); color: var(--gold); font-size: 0.56rem; font-weight: 700; letter-spacing: 2px; text-transform: uppercase; }
         .product-media::after { content: '\f04b'; font-family: 'Font Awesome 5 Free'; font-weight: 900; position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); font-size: 3rem; color: rgba(255,255,255,0.7); opacity: 0; transition: 0.3s; }
 
         .product-card h3 { font-family: 'Playfair Display', serif; font-size: 1.6rem; color: var(--gold); margin-bottom: 15px; font-style: italic; min-height: 60px; display: flex; align-items: center; justify-content: center; text-align: center; }
         .shimmer-element { background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
 
         .product-price { font-weight: 600; font-size: 1.4rem; color: var(--white); margin-bottom: 25px; }
-        .product-actions { display: grid; gap: 10px; width: 100%; }
+        .product-price-label { display: block; margin-bottom: 6px; color: rgba(255,255,255,0.55); font-size: 0.58rem; font-weight: 600; letter-spacing: 2px; text-transform: uppercase; }
+        .product-description { color: rgba(255,255,255,0.78); font-size: 0.82rem; line-height: 1.65; margin: 0 0 14px; }
+        .product-intention { width: 100%; margin: 0 0 16px; padding: 12px; border-top: 1px solid rgba(197,160,89,0.18); border-bottom: 1px solid rgba(197,160,89,0.18); color: rgba(255,255,255,0.72); font-size: 0.74rem; line-height: 1.55; }
+        .product-intention strong { display: block; margin-bottom: 5px; color: var(--gold); font-size: 0.58rem; letter-spacing: 2px; text-transform: uppercase; }
+        .product-materials { color: rgba(255,255,255,0.58); font-size: 0.72rem; line-height: 1.55; margin: 0 0 16px; }
+        .product-materials strong { color: var(--gold); font-weight: 600; }
+        .availability-note { width: 100%; margin: 0 0 18px; padding: 10px 12px; border-left: 2px solid var(--gold); background: rgba(197,160,89,0.07); color: rgba(255,255,255,0.67); font-size: 0.66rem; line-height: 1.5; text-align: left; }
+        .catalog-card .product-price { margin-bottom: 14px; }
+        .product-actions { display: grid; gap: 10px; width: 100%; margin-top: auto; }
         .order-btn { background: transparent; border: 1px solid var(--gold); color: var(--gold); padding: 15px 35px; text-transform: uppercase; letter-spacing: 4px; font-weight: 700; font-size: 0.7rem; text-decoration: none; transition: 0.4s; width: 100%; display: inline-block; cursor: pointer !important; }
         .details-link { display: inline-flex; align-items: center; justify-content: center; min-height: 48px; padding: 12px 24px; border: 1px solid rgba(197, 160, 89, 0.35); color: var(--white); font-size: 0.65rem; font-weight: 700; letter-spacing: 3px; text-decoration: none; text-transform: uppercase; transition: 0.4s; }
 
@@ -208,6 +222,16 @@
             .product-media { margin-bottom: 15px; }
             .product-card h3 { font-size: 0.9rem; margin-bottom: 10px; min-height: 50px; line-height: 1.3; }
             .product-price { font-size: 1rem; margin-bottom: 15px; }
+            .product-price-label { font-size: 0.5rem; letter-spacing: 1px; }
+            .product-description { font-size: 0.7rem; line-height: 1.5; }
+            .product-intention { font-size: 0.64rem; padding: 9px 6px; }
+            .product-intention strong { font-size: 0.5rem; letter-spacing: 1px; }
+            .product-materials { font-size: 0.62rem; }
+            .availability-note { font-size: 0.58rem; padding: 8px; }
+            .catalog-intro { margin-bottom: 30px; padding: 22px 15px; }
+            .catalog-intro-kicker { font-size: 0.54rem; letter-spacing: 2px; }
+            .catalog-intro-copy { font-size: 0.74rem; line-height: 1.7; }
+            .catalog-intro-points span { font-size: 0.5rem; letter-spacing: 1px; }
             
             /* REZOLVARE DUBLU-CLICK ȘI FEEDBACK TACTIL INSTANT PENTRU MOBIL */
             .order-btn { min-height: 44px; padding: 10px 5px; font-size: 0.6rem; width: 100%; letter-spacing: 1px; transition: transform 0.1s ease, background-color 0.1s ease; }
@@ -285,6 +309,15 @@
 
     <main>
         <h1 class="section-title" id="page-title">Brățări Pentru Ea</h1>
+        <section class="catalog-intro" aria-labelledby="catalog-intro-kicker">
+            <p class="catalog-intro-kicker" id="catalog-intro-kicker">Creată cu intenție • Pregătită individual</p>
+            <p class="catalog-intro-copy" id="catalog-intro-copy">Fiecare brățară reunește cristale și minerale atent selectate într-o compoziție creată în jurul unei intenții personale. Prin metoda energetică proprie a creatoarei, fiecare piesă este pregătită și acordată individual. Poart-o ca pe un reper în ritualul tău de bunăstare și ca pe o amintire zilnică a direcției pe care alegi să o cultivi.</p>
+            <div class="catalog-intro-points" aria-label="Caracteristicile colecției">
+                <span id="catalog-point-crystals">Cristale atent selectate</span>
+                <span id="catalog-point-attunement">Acordaj energetic individual</span>
+                <span id="catalog-point-intention">Creată pentru intenția ta</span>
+            </div>
+        </section>
         <div class="product-grid" id="p-grid"></div>
     </main>
 
@@ -304,38 +337,51 @@
     </div>
 
     <script src="assets/js/video-performance.js"></script>
+    <script src="assets/js/bracelet-catalog.js"></script>
     <script>
         const translations = {
-            'ro': { 
-                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact", 
-                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Solicită Energia", details: "Vezi Detalii",
+            'ro': {
+                home: "Acasă", consult: "Consultații", shop: "Shop", bracelets: "Brățări Energetice", digital: "Digital Shop", about: "Despre", contact: "Contact",
+                title: "Brățări Pentru Ea", order: "Adaugă în Coș", reqOrder: "Verifică disponibilitatea", details: "Vezi Detalii",
+                introKicker: "Creată cu intenție • Pregătită individual",
+                introCopy: "Fiecare brățară reunește cristale și minerale atent selectate într-o compoziție creată în jurul unei intenții personale. Prin metoda energetică proprie a creatoarei, fiecare piesă este pregătită și acordată individual. Poart-o ca pe un reper în ritualul tău de bunăstare și ca pe o amintire zilnică a direcției pe care alegi să o cultivi.",
+                introPoints: ["Cristale atent selectate", "Acordaj energetic individual", "Creată pentru intenția ta"],
                 items: [
                     { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
-            'en': { 
-                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact", 
-                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Request Energy", details: "View Details",
+            'en': {
+                home: "Home", consult: "Consultations", shop: "Shop", bracelets: "Energy Bracelets", digital: "Digital Shop", about: "About", contact: "Contact",
+                title: "Bracelets For Her", order: "Add to Cart", reqOrder: "Check availability", details: "View Details",
+                introKicker: "Created with intention • Individually prepared",
+                introCopy: "Each bracelet brings together carefully selected crystals and minerals in a composition created around a personal intention. Through the creator's own energetic method, every piece is individually prepared and attuned. Wear it as an anchor in your wellbeing ritual and as a daily reminder of the direction you choose to cultivate.",
+                introPoints: ["Carefully selected crystals", "Individual energetic attunement", "Created for your intention"],
                 items: [
                     { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
-            'ru': { 
-                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт", 
-                title: "Браслеты для неё", order: "В корзину", reqOrder: "Запросить энергию", details: "Подробнее",
+            'ru': {
+                home: "Главная", consult: "Консультации", shop: "Магазин", bracelets: "Браслеты", digital: "Цифровой магазин", about: "О нас", contact: "Контакт",
+                title: "Браслеты для неё", order: "В корзину", reqOrder: "Уточнить наличие", details: "Подробнее",
+                introKicker: "Создан с намерением • Подготовлен индивидуально",
+                introCopy: "Каждый браслет объединяет тщательно отобранные кристаллы и минералы в композиции, созданной вокруг личного намерения. По авторскому энергетическому методу каждое изделие подготавливается и настраивается индивидуально. Носите его как опору в ритуале благополучия и ежедневное напоминание о выбранном направлении.",
+                introPoints: ["Тщательно отобранные кристаллы", "Индивидуальная энергетическая настройка", "Создан для вашего намерения"],
                 items: [
                     { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
                     { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
                 ] 
             },
-            'lv': { 
-                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti", 
-                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pieprasīt Enerģiju", details: "Skatīt Detaļas",
+            'lv': {
+                home: "Sākums", consult: "Konsultācijas", shop: "Veikals", bracelets: "Aproces", digital: "Digitālais veikals", about: "Par mums", contact: "Kontakti",
+                title: "Aproces Viņai", order: "Pievienot grozam", reqOrder: "Pārbaudīt pieejamību", details: "Skatīt Detaļas",
+                introKicker: "Radīta ar nodomu • Individuāli sagatavota",
+                introCopy: "Katrā aprocē rūpīgi atlasīti kristāli un minerāli apvienoti kompozīcijā, kas radīta ap personīgu nodomu. Izmantojot autores enerģētisko metodi, katra rota tiek individuāli sagatavota un noskaņota. Nēsā to kā atbalsta punktu savā labsajūtas rituālā un ikdienas atgādinājumu par izvēlēto virzienu.",
+                introPoints: ["Rūpīgi atlasīti kristāli", "Individuāla enerģētiskā noskaņošana", "Radīta tavam nodomam"],
                 items: [
                     { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
@@ -344,9 +390,15 @@
             }
         };
 
-        function renderProducts(langData) {
+        function renderProducts(langData, langCode) {
             const grid = document.getElementById('p-grid');
-            grid.innerHTML = langData.items.map(i => {
+            const catalogItems = window.BraceletCatalog?.getItems('women', langCode) || [];
+            const directPurchaseItems = langData.items.filter(item => item.isCart);
+            const requestItems = langData.items.filter(item => !item.isCart);
+            const items = [...directPurchaseItems, ...catalogItems, ...requestItems];
+
+            grid.innerHTML = items.map(i => {
+                const safeName = i.n.replace(/'/g, "\\'");
                 const detailsLink = i.detail
                     ? `<a href="${i.detail}" class="details-link">${langData.details}</a>`
                     : '';
@@ -356,18 +408,37 @@
                         data-item-price="${i.pVal}"
                         data-item-weight="100"
                         data-item-url="/shop-ea.html"
-                        data-item-name="${i.n.replace(/'/g, "\\'")}">
+                        data-item-name="${safeName}">
                         ${langData.order}
                        </button>`
-                    : `<a href="javascript:void(0)" onclick="orderWhatsApp('${i.n.replace(/'/g, "\\'")}')" class="order-btn">${langData.reqOrder}</a>`;
-                
+                    : `<a href="#" onclick="orderWhatsApp('${safeName}', '${langCode}'); return false;" class="order-btn">${langData.reqOrder}</a>`;
+                const posterAttribute = i.poster ? ` poster="${i.poster}"` : '';
+                const summary = i.summary ? `<p class="product-description">${i.summary}</p>` : '';
+                const intention = i.intention
+                    ? `<p class="product-intention"><strong>${i.intentionLabel}</strong>${i.intention}</p>`
+                    : '';
+                const materials = i.materials?.length
+                    ? `<p class="product-materials"><strong>${i.materialsLabel}:</strong> ${i.materials.join(' · ')}</p>`
+                    : '';
+                const availability = i.availabilityNote
+                    ? `<p class="availability-note">${i.availabilityNote}</p>`
+                    : '';
+                const priceLabel = i.priceLabel
+                    ? `<span class="product-price-label">${i.priceLabel}</span>`
+                    : '';
+
                 return `
-                <div class="product-card">
-                    <div class="product-media" onclick="openLux('${i.v}', '${i.n.replace(/'/g, "\\'")}')">
-                        <video data-src="${i.v}" muted loop playsinline preload="none"></video>
+                <div class="product-card${i.isCatalogItem ? ' catalog-card' : ''}">
+                    <div class="product-media" onclick="openLux('${i.v}', '${safeName}')">
+                        <video data-src="${i.v}"${posterAttribute} muted loop playsinline preload="none"></video>
+                        <span class="media-badge"><i class="fas fa-play" aria-hidden="true"></i> Video</span>
                     </div>
                     <h3 class="shimmer-element">${i.n}</h3>
-                    <div class="product-price">${i.pDisplay}</div>
+                    ${summary}
+                    ${intention}
+                    ${materials}
+                    <div class="product-price">${priceLabel}${i.pDisplay}</div>
+                    ${availability}
                     <div class="product-actions">
                         ${detailsLink}
                         ${actionButton}
@@ -377,9 +448,15 @@
             videoPerformance.init();
         }
 
-        function orderWhatsApp(prodName) {
+        function orderWhatsApp(prodName, langCode = 'ro') {
             const phoneNumber = "40730685087";
-            const message = `Buna Elena! Doresc sa comand bratara: ${prodName}. Te rog sa imi dai mai multe detalii.`;
+            const messages = {
+                ro: `Bună, Elena! Doresc să verific disponibilitatea brățării „${prodName}”. Te rog să îmi trimiți mai multe detalii.`,
+                en: `Hello, Elena! I would like to check the availability of the “${prodName}” bracelet. Please send me more details.`,
+                ru: `Здравствуйте, Елена! Я хочу уточнить наличие браслета «${prodName}». Пожалуйста, пришлите подробности.`,
+                lv: `Labdien, Jeļena! Vēlos pārbaudīt aproces “${prodName}” pieejamību. Lūdzu, atsūtiet sīkāku informāciju.`
+            };
+            const message = messages[langCode] || messages.ro;
             window.open(`https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`, '_blank');
         }
 
@@ -401,8 +478,13 @@
             setTxt('nav-about', t.about);
             setTxt('nav-contact', t.contact);
             setTxt('page-title', t.title);
-            
-            renderProducts(t);
+            setTxt('catalog-intro-kicker', t.introKicker);
+            setTxt('catalog-intro-copy', t.introCopy);
+            setTxt('catalog-point-crystals', t.introPoints[0]);
+            setTxt('catalog-point-attunement', t.introPoints[1]);
+            setTxt('catalog-point-intention', t.introPoints[2]);
+
+            renderProducts(t, code);
         }
 
         function openLux(src, title) {
