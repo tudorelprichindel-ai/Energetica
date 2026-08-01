@@ -2,6 +2,7 @@
     const text = {
         ro: {
             listPrice: 'Preț de listă',
+            priceOnRequest: 'Preț la cerere',
             materials: 'Materiale',
             intention: 'Intenție și acordaj individual',
             confirm: 'Disponibilitatea și prețul final se confirmă pe WhatsApp.',
@@ -9,6 +10,7 @@
         },
         en: {
             listPrice: 'List price',
+            priceOnRequest: 'Price on request',
             materials: 'Materials',
             intention: 'Intention and individual attunement',
             confirm: 'Availability and final price are confirmed on WhatsApp.',
@@ -16,6 +18,7 @@
         },
         ru: {
             listPrice: 'Цена по каталогу',
+            priceOnRequest: 'Цена по запросу',
             materials: 'Материалы',
             intention: 'Намерение и индивидуальная настройка',
             confirm: 'Наличие и окончательная цена подтверждаются в WhatsApp.',
@@ -23,6 +26,7 @@
         },
         lv: {
             listPrice: 'Kataloga cena',
+            priceOnRequest: 'Cena pēc pieprasījuma',
             materials: 'Materiāli',
             intention: 'Nodoms un individuāla noskaņošana',
             confirm: 'Pieejamība un gala cena tiek apstiprināta WhatsApp.',
@@ -464,29 +468,32 @@
     function localize(product, lang) {
         const locale = text[lang] ? lang : 'ro';
         const materials = product.materials?.[locale] || [];
+        const hasPrice = Number.isFinite(product.price);
 
         return {
             id: product.id,
             n: product.name[locale] || product.name.ro,
-            pDisplay: `${product.price}€`,
-            pVal: product.price.toFixed(2),
+            pDisplay: hasPrice ? `${product.price}€` : text[locale].priceOnRequest,
+            pVal: hasPrice ? product.price.toFixed(2) : '',
             v: product.video,
             poster: product.poster,
             summary: product.summary?.[locale] || text[locale].detailsOnRequest,
             materials,
             materialsLabel: text[locale].materials,
-            intention: intentions[product.id]?.[locale] || '',
+            intention: product.intention?.[locale] || intentions[product.id]?.[locale] || '',
             intentionLabel: text[locale].intention,
-            priceLabel: text[locale].listPrice,
+            priceLabel: hasPrice ? text[locale].listPrice : '',
             availabilityNote: text[locale].confirm,
-            isCart: false,
+            isCart: Boolean(product.isCart && hasPrice),
             isCatalogItem: true
         };
     }
 
     window.BraceletCatalog = {
         getItems(collection, lang) {
-            return (products[collection] || []).map(product => localize(product, lang));
+            const extraProducts = window.BraceletCatalogExtra?.[collection] || [];
+            return [...(products[collection] || []), ...extraProducts]
+                .map(product => localize(product, lang));
         }
     };
 })();
