@@ -20,18 +20,18 @@
     <meta name="twitter:image" content="https://thepowerboutique.com/assets/images/cristale3.webp">
     
     <link rel="preload" as="image" href="assets/images/cristale3.webp" type="image/webp" media="(min-width: 1025px)" fetchpriority="high">
+    <link rel="preload" as="image" href="assets/images/cristale3-mobile.webp" type="image/webp" media="(max-width: 1024px)" fetchpriority="high">
 
-    <link rel="preconnect" href="https://cdnjs.cloudflare.com" crossorigin>
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" onload="this.media='all'">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" media="print" fetchpriority="low" onload="this.media='all'">
     <noscript><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"></noscript>
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link rel="icon" type="image/png" href="assets/images/favicon.png">
     
-    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap" media="print" onload="this.media='all'">
-    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@300;400;600;700&display=swap"></noscript>
+    <link rel="preload" as="style" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap" media="print" onload="this.media='all'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=Montserrat:wght@400;600;700&display=swap"></noscript>
     
     <style>
         :root { 
@@ -76,6 +76,8 @@
         header { position: fixed; top: 0; width: 100%; z-index: 2000; background: rgba(0, 0, 0, 0.9); backdrop-filter: blur(20px); border-bottom: 1px solid rgba(255,255,255,0.05); height: 80px; display: flex; flex-direction: column; justify-content: center; align-items: center; padding: 0 5%; }
         .header-top { width: 100%; display: flex; justify-content: space-between; align-items: center; height: 100%; }
         .menu-toggle { display: none; min-width: 44px; min-height: 44px; padding: 0; background: none; border: 0; color: var(--gold); font-size: 1.5rem; cursor: pointer; z-index: 2200; }
+        .menu-icon { display: block; width: 24px; height: 24px; margin: auto; }
+        .nav-chevron { display: inline-block; width: 10px; height: 10px; margin-left: 6px; vertical-align: middle; }
         .logo-header { font-family: 'Playfair Display', serif; font-style: italic; text-decoration: none; font-size: 1.3rem; letter-spacing: 3px; font-weight: 700; background: linear-gradient(to right, var(--gold) 20%, #fff 40%, #fff 60%, var(--gold) 80%); background-size: 200% auto; -webkit-background-clip: text; -webkit-text-fill-color: transparent; animation: shimmerEffect 5s linear infinite; }
         @keyframes shimmerEffect { to { background-position: 200% center; } }
 
@@ -137,6 +139,7 @@
         @media (max-width: 1024px) {
             .cursor-dot { display: none !important; }
             * { cursor: auto !important; }
+            .logo-header { animation: none; background-position: 100% center; }
             header { height: 80px; flex-direction: row; justify-content: space-between; }
             .menu-toggle { display: block; }
             .desktop-nav { position: fixed; top: 0; left: 0; width: 100%; height: 100vh; background: rgba(0,0,0,0.98); backdrop-filter: blur(15px); flex-direction: column; justify-content: flex-start; align-items: center; opacity: 0; visibility: hidden; transition: 0.5s ease; z-index: 2100; padding-top: 100px; padding-bottom: 50px; overflow-y: auto; }
@@ -330,7 +333,7 @@
         }
         .journey-card:hover { transform: translateY(-6px); border-color: rgba(197,160,89,0.7); background: linear-gradient(145deg, rgba(7,5,4,0.58), rgba(7,5,4,0.38)); box-shadow: 0 24px 55px rgba(0,0,0,0.24); }
         .journey-number { color: var(--gold); font-size: 0.65rem; letter-spacing: 3px; text-transform: uppercase; }
-        .journey-icon { margin: 55px 0 24px; color: var(--gold); font-size: 1.7rem; }
+        .journey-icon { display: block; width: 28px; height: 28px; margin: 55px 0 24px; color: var(--gold); font-size: 1.7rem; }
         .journey-card h3 { font-family: 'Playfair Display', serif; color: #fff; font-size: 2rem; font-weight: 400; line-height: 1.15; }
         .journey-card p { margin: 18px 0 30px; color: rgba(255,255,255,0.78); font-size: 0.9rem; line-height: 1.75; }
         .journey-card .text-link { margin-top: auto; }
@@ -400,7 +403,7 @@
             *, *::before, *::after { scroll-behavior: auto !important; animation: none !important; transition-duration: 0.01ms !important; }
         }
     </style>
-    <link rel="stylesheet" href="assets/css/site-safety.css">
+    <link rel="stylesheet" href="assets/css/site-safety.css" media="(pointer: fine) and (min-width: 1025px)">
     <script defer src="assets/js/site-safety.js"></script>
 </head>
 <body>
@@ -410,13 +413,13 @@
 
     <header>
         <div class="header-top">
-            <button type="button" class="menu-toggle" id="menuBtn" aria-label="Deschide meniul" aria-expanded="false" aria-controls="sidebar"><i class="fas fa-bars"></i></button>
+            <button type="button" class="menu-toggle" id="menuBtn" aria-label="Deschide meniul" aria-expanded="false" aria-controls="sidebar"><img src="assets/icons/menu.svg" class="menu-icon" alt="" width="24" height="24" aria-hidden="true"></button>
             <a href="proiect.html" class="logo-header">The Power Boutique</a>
             <div class="lang-dropdown">
                 <button class="lang-current" onclick="document.getElementById('lang-list').classList.toggle('show')">
                     <img src="https://flagcdn.com/w20/ro.png" class="flag-img" id="active-flag" alt="Flag"> 
                     <span id="active-lang">RO</span> 
-                    <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 5px;"></i>
+                    <img src="assets/icons/chevron-down.svg" class="nav-chevron" alt="" width="10" height="10" aria-hidden="true">
                 </button>
                 <div class="lang-list" id="lang-list">
                     <button class="lang-item" onclick="changeLang('ro', 'RO', 'https://flagcdn.com/w20/ro.png')"><img src="https://flagcdn.com/w20/ro.png" class="flag-img" alt="RO"> RO</button>
@@ -430,7 +433,7 @@
             <a href="proiect.html" class="nav-link" id="nav-home">Acasă</a>
             <a href="programari.html" class="nav-link" id="nav-consult">Consultații</a>
             <div class="nav-item-container" id="shopContainer">
-                <a href="products.html" class="nav-link" id="nav-shop">Shop <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i></a>
+                <a href="products.html" class="nav-link" id="nav-shop">Shop <img src="assets/icons/chevron-down.svg" class="nav-chevron" alt="" width="10" height="10" aria-hidden="true"></a>
                 <div class="submenu">
                     <a href="products.html" class="submenu-link" id="nav-bracelets">Brățări Energetice</a>
                     <a href="digital-shop.html" class="submenu-link" id="nav-digital">Digital Shop</a>
@@ -485,7 +488,7 @@
             <div class="journey-grid">
                 <article class="journey-card">
                     <span class="journey-number" id="commercial-card-one-label">01 • Bijuterii</span>
-                    <i class="fas fa-gem journey-icon" aria-hidden="true"></i>
+                    <img src="assets/icons/gem.svg" class="journey-icon" alt="" width="28" height="28" loading="lazy" aria-hidden="true">
                     <h3 id="commercial-card-one-title">Brățări energetice</h3>
                     <p id="commercial-card-one-description">Colecții pentru ea, pentru el, pentru cupluri și modele personalizate, create în jurul unei intenții.</p>
                     <a href="products.html" class="text-link" id="commercial-card-one-link">Explorează colecțiile</a>
@@ -493,7 +496,7 @@
 
                 <article class="journey-card">
                     <span class="journey-number" id="commercial-card-two-label">02 • Ghidare</span>
-                    <i class="fas fa-compass journey-icon" aria-hidden="true"></i>
+                    <img src="assets/icons/compass.svg" class="journey-icon" alt="" width="28" height="28" loading="lazy" aria-hidden="true">
                     <h3 id="commercial-card-two-title">Consultații 1:1</h3>
                     <p id="commercial-card-two-description">Sesiuni dedicate momentelor în care ai nevoie de claritate, structură și o perspectivă personalizată.</p>
                     <a href="programari.html" class="text-link" id="commercial-card-two-link">Vezi consultațiile</a>
@@ -501,7 +504,7 @@
 
                 <article class="journey-card">
                     <span class="journey-number" id="commercial-card-three-label">03 • Resurse</span>
-                    <i class="fas fa-book-open journey-icon" aria-hidden="true"></i>
+                    <img src="assets/icons/book-open.svg" class="journey-icon" alt="" width="28" height="28" loading="lazy" aria-hidden="true">
                     <h3 id="commercial-card-three-title">Digital Shop</h3>
                     <p id="commercial-card-three-description">Ghiduri și instrumente digitale pe care le poți accesa și integra în ritmul tău.</p>
                     <a href="digital-shop.html" class="text-link" id="commercial-card-three-link">Descoperă resursele</a>
@@ -520,8 +523,11 @@
             <div class="about-hero">
                 <div class="about-image-wrapper">
                     <picture>
-                        <source srcset="assets/images/6.webp" type="image/webp">
-                        <img src="assets/images/6.jpg" alt="Jelena Shipko" width="1440" height="1800" loading="lazy" decoding="async">
+                        <source
+                            srcset="assets/images/6-640.webp 640w, assets/images/6-960.webp 960w, assets/images/6.webp 1440w"
+                            sizes="(max-width: 640px) 70vw, (max-width: 1024px) 60vw, 480px"
+                            type="image/webp">
+                        <img src="assets/images/6.jpg" alt="Jelena Shipko" width="1440" height="1800" loading="lazy" decoding="async" fetchpriority="low">
                     </picture>
                 </div>
                 <div class="about-text-card">
@@ -738,7 +744,7 @@
             if(!t) return;
             const setTxt = (id, txt) => { const el = document.getElementById(id); if (el && txt) el.innerText = txt; };
             const setHtml = (id, html) => { const el = document.getElementById(id); if (el && html) el.innerHTML = html; };
-            setTxt('nav-home', t.home); setTxt('nav-consult', t.consult); setHtml('nav-shop', `${t.shop} <i class="fas fa-chevron-down" style="font-size: 0.5rem; margin-left: 8px;"></i>`);
+            setTxt('nav-home', t.home); setTxt('nav-consult', t.consult); setHtml('nav-shop', `${t.shop} <img src="assets/icons/chevron-down.svg" class="nav-chevron" alt="" width="10" height="10" aria-hidden="true">`);
             setTxt('nav-bracelets', t.bracelets); setTxt('nav-digital', t.digital); setTxt('nav-about', t.about); setTxt('nav-contact', t.contact);
             setTxt('hero-sub', t.sub); setTxt('hero-cta', t.heroCta); setTxt('card-title-shop', t.shopTitle); setTxt('card-sub-shop', t.shopSub);
             setTxt('card-title-consult', t.consultTitle); setTxt('card-sub-consult', t.consultSub); setTxt('about-label', t.label); setTxt('about-title', t.title); setHtml('about-desc', t.desc); setTxt('about-btn', t.btn);
@@ -811,7 +817,9 @@
             const isOpen = sidebar.classList.toggle('active');
             menuBtn.setAttribute('aria-expanded', String(isOpen));
             menuBtn.setAttribute('aria-label', isOpen ? 'Închide meniul' : 'Deschide meniul');
-            menuBtn.innerHTML = isOpen ? '<i class="fas fa-times"></i>' : '<i class="fas fa-bars"></i>';
+            menuBtn.innerHTML = isOpen
+                ? '<img src="assets/icons/close.svg" class="menu-icon" alt="" width="24" height="24" aria-hidden="true">'
+                : '<img src="assets/icons/menu.svg" class="menu-icon" alt="" width="24" height="24" aria-hidden="true">';
         };
         
         const navShop = document.getElementById('nav-shop');
