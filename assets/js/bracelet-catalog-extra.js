@@ -133,7 +133,7 @@
         },
         {
             id: 'miracle-new-era-woman',
-            price: null,
+            price: 235,
             ...media('miracle-new-era-woman'),
             name: { ro: 'Brățara Miracolelor — Femeia Noii Ere', en: 'Miracle Bracelet — New Era Woman', ru: 'Браслет чудес — Женщина Новой Эры', lv: 'Brīnumu rota — Jaunā laikmeta sieviete' },
             summary: {

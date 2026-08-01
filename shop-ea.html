@@ -334,6 +334,7 @@
     <div hidden id="snipcart-validation-container">
         <button class="snipcart-add-item" data-item-id="antistress" data-item-price="90.00" data-item-weight="100" data-item-url="/shop-ea.html" data-item-name="Echilibru Antistres"></button>
         <button class="snipcart-add-item" data-item-id="dorinte" data-item-price="113.00" data-item-weight="100" data-item-url="/shop-ea.html" data-item-name="Realizarea Dorințelor"></button>
+        <button class="snipcart-add-item" data-item-id="prosperitate" data-item-price="96.00" data-item-weight="100" data-item-url="/shop-ea.html" data-item-name="Prosperitate în Materie"></button>
     </div>
 
     <script src="assets/js/video-performance.js"></script>
@@ -350,7 +351,13 @@
                 items: [
                     { id: "antistress", n: "Echilibru Antistres", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Realizarea Dorințelor", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
-                    { id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "La cerere", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
+                    {
+                        id: "prosperitate", n: "Prosperitate în Materie", pDisplay: "96€", pVal: "96.00", v: "assets/videos/Rota ir pieejama.mp4", isCart: true,
+                        summary: "Compoziție în tonuri pământii, realizată din cinci minerale.",
+                        intentionLabel: "Intenție", intention: "Simbol al stabilității, echilibrului și prosperității construite conștient.",
+                        materialsLabel: "Materiale", materials: ["Simbircit", "Jasp", "Jasp sanguin", "Gagat", "Cristal de stâncă"],
+                        priceLabel: "Preț de listă", availabilityNote: "Disponibilitatea și mărimea se confirmă înainte de pregătirea comenzii."
+                    }
                 ] 
             },
             'en': {
@@ -362,7 +369,13 @@
                 items: [
                     { id: "antistress", n: "Antistress Balance", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Wish Realization", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
-                    { id: "prosperitate", n: "Prosperity in Matter", pDisplay: "On request", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
+                    {
+                        id: "prosperitate", n: "Prosperity in Matter", pDisplay: "96€", pVal: "96.00", v: "assets/videos/Rota ir pieejama.mp4", isCart: true,
+                        summary: "An earthy-toned composition made from five minerals.",
+                        intentionLabel: "Intention", intention: "A symbol of stability, balance and consciously built prosperity.",
+                        materialsLabel: "Materials", materials: ["Simbircite", "Jasper", "Blood jasper", "Jet", "Rock crystal"],
+                        priceLabel: "List price", availabilityNote: "Availability and sizing are confirmed before the order is prepared."
+                    }
                 ] 
             },
             'ru': {
@@ -374,7 +387,13 @@
                 items: [
                     { id: "antistress", n: "Антистрессовый баланс", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Исполнение желаний", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
-                    { id: "prosperitate", n: "Процветание в материи", pDisplay: "По запросу", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
+                    {
+                        id: "prosperitate", n: "Процветание в материи", pDisplay: "96€", pVal: "96.00", v: "assets/videos/Rota ir pieejama.mp4", isCart: true,
+                        summary: "Композиция в природных оттенках из пяти минералов.",
+                        intentionLabel: "Намерение", intention: "Символ устойчивости, равновесия и осознанно создаваемого процветания.",
+                        materialsLabel: "Материалы", materials: ["Симбирцит", "Яшма", "Кровавая яшма", "Гагат", "Горный хрусталь"],
+                        priceLabel: "Цена", availabilityNote: "Наличие и размер подтверждаются перед подготовкой заказа."
+                    }
                 ] 
             },
             'lv': {
@@ -386,7 +405,13 @@
                 items: [
                     { id: "antistress", n: "Antistresa līdzsvars", pDisplay: "90€", pVal: "90.00", v: "assets/videos/ANTISTRESS.mp4", detail: "product-antistress.html", isCart: true },
                     { id: "dorinte", n: "Vēlmju realizācija", pDisplay: "113€", pVal: "113.00", v: "assets/videos/VĒLMJU REALIZĒŠANAS ROTA.mp4", detail: "product-dorinte.html", isCart: true },
-                    { id: "prosperitate", n: "Materiālā labklājība", pDisplay: "Pēc pieprasījuma", pVal: "0", v: "assets/videos/Rota ir pieejama.mp4", isCart: false }
+                    {
+                        id: "prosperitate", n: "Materiālā labklājība", pDisplay: "96€", pVal: "96.00", v: "assets/videos/Rota ir pieejama.mp4", isCart: true,
+                        summary: "Zemes toņu kompozīcija no pieciem minerāliem.",
+                        intentionLabel: "Nodoms", intention: "Simbols stabilitātei, līdzsvaram un apzināti veidotai labklājībai.",
+                        materialsLabel: "Materiāli", materials: ["Simbircīts", "Jašma", "Asins jašma", "Gagāts", "Kalnu kristāls"],
+                        priceLabel: "Pamata cena", availabilityNote: "Pieejamība un izmērs tiek apstiprināti pirms pasūtījuma sagatavošanas."
+                    }
                 ] 
             }
         };

@@ -291,6 +291,12 @@
                     en: 'A design created for girls; sizing is confirmed before ordering.',
                     ru: 'Модель для девочек; размер уточняется перед заказом.',
                     lv: 'Dizains meitenēm; izmērs tiek precizēts pirms pasūtīšanas.'
+                },
+                materials: {
+                    ro: ['Piatra lunii', 'Dreamstone'],
+                    en: ['Moonstone', 'Dreamstone'],
+                    ru: ['Лунный камень', 'Dreamstone'],
+                    lv: ['Mēness akmens', 'Dreamstone']
                 }
             },
             {
@@ -304,6 +310,12 @@
                     en: 'A design created for boys; sizing is confirmed before ordering.',
                     ru: 'Модель для мальчиков; размер уточняется перед заказом.',
                     lv: 'Dizains zēniem; izmērs tiek precizēts pirms pasūtīšanas.'
+                },
+                materials: {
+                    ro: ['Piatra lunii', 'Dreamstone'],
+                    en: ['Moonstone', 'Dreamstone'],
+                    ru: ['Лунный камень', 'Dreamstone'],
+                    lv: ['Mēness akmens', 'Dreamstone']
                 }
             },
             {
